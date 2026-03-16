@@ -1,0 +1,19 @@
+DirectoryIndex index.html
+RewriteEngine On
+
+# Force serving HTML files as static content
+<FilesMatch "\.html$">
+    SetHandler default-handler
+</FilesMatch>
+
+# Optional: Add security headers for better performance
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Optional: Enable compression for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript
+</IfModule>
