@@ -222,6 +222,11 @@
         .gallery-item:hover {
             cursor: zoom-in;
         }
+
+        /* Photo strip scrollbar hide */
+        .photo-strip::-webkit-scrollbar {
+            display: none;
+        }
         
         /* Enhanced Typography */
         .hero-title {
@@ -362,6 +367,137 @@
         .deep-dive-card .text-gray-700 {
             color: var(--deep-dive-text-medium);
         }
+
+        /* Marketing Full-Width Rows */
+        .marketing-row {
+            display: flex;
+            align-items: stretch;
+            min-height: 480px;
+            overflow: hidden;
+        }
+        .marketing-row.reverse {
+            flex-direction: row-reverse;
+        }
+        .marketing-row .row-image {
+            flex: 0 0 55%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .marketing-row .row-image .placeholder-visual {
+            width: 100%;
+            height: 100%;
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            opacity: 0.2;
+        }
+        .marketing-row .row-text {
+            flex: 0 0 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem 3.5rem;
+        }
+        .marketing-row .row-text h2 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        .marketing-row .row-text .sub-punchlines {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.75rem 0;
+        }
+        .marketing-row .row-text .sub-punchlines li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.85rem;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .marketing-row .row-text .sub-punchlines li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .marketing-row .row-text .hw-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .marketing-row .row-text .hw-icons span {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.2rem 0.65rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            border: 1px solid var(--card-border);
+            color: var(--text-tertiary);
+            background: var(--card-bg);
+        }
+        .marketing-row .row-text .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            width: fit-content;
+        }
+        .marketing-row .row-text .cta-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .marketing-row .row-text .cta-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        @media (max-width: 767px) {
+            .marketing-row,
+            .marketing-row.reverse {
+                flex-direction: column;
+            }
+            .marketing-row .row-image,
+            .marketing-row .row-text {
+                flex: 1 1 100%;
+            }
+            .marketing-row .row-image {
+                aspect-ratio: 16/9;
+                min-height: 220px;
+            }
+            .marketing-row .row-image .placeholder-visual {
+                min-height: 220px;
+            }
+            .marketing-row .row-text {
+                padding: 2rem 1.5rem;
+            }
+            .marketing-row .row-text h2 {
+                font-size: 1.35rem;
+            }
+            .marketing-row .row-text .cta-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -414,16 +550,8 @@
               <rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/>
               <rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
             </svg>
-            <p class="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto font-light">
-                Automated Vision Solutions.
-            </p>
-        </header>
 
-        <section class="mb-24">
-            <div class="flex justify-center">
-                <img src="assets/operator-robot-eyes.jpg" alt="Robot Vision" class="rounded-2xl shadow-lg max-w-3xl w-full">
-            </div>
-        </section>
+        </header>
 
         <section class="mb-24">
             <div class="professional-card quote-section rounded-2xl p-8 md:p-12 text-center">
@@ -434,6 +562,192 @@
             </div>
         </section>
 
+        <!-- ========== MARKETING FULL-WIDTH ROWS ========== -->
+
+        <!-- Card 1 — Platform Hero -->
+        <section class="mb-8">
+            <div class="professional-card rounded-2xl overflow-hidden marketing-row">
+                <div class="row-image" style="background: linear-gradient(135deg, #0c1929 0%, #0e3654 100%);">
+                    <img src="assets/Platform Hero.png" alt="Platform Hero — Boost Moderate Cameras" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="row-text">
+                    <h2>Boost Moderate Cameras to Powerful Machine Vision Nodes</h2>
+                    <ul class="sub-punchlines">
+                        <li style="--accent: #22d3ee;">Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</li>
+                        <li style="--accent: #22d3ee;">On-device AI processing: face detection, people counting, demographics, and route tracking in real time</li>
+                        <li style="--accent: #22d3ee;">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</li>
+                    </ul>
+                    <style>.marketing-row .sub-punchlines li[style*="--accent: #22d3ee"]::before{background:#22d3ee;}</style>
+                    <div class="hw-icons">
+                        <span>IP Camera</span><span>WiFi Camera</span><span>Smartphone</span><span>Mini PC / NUC</span><span>Laptop</span>
+                    </div>
+                    <a href="#" class="cta-btn" style="background: linear-gradient(135deg, #0891b2, #22d3ee);">See How It Works <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card 2 — People Analytics -->
+        <section class="mb-8">
+            <div class="professional-card rounded-2xl overflow-hidden marketing-row reverse">
+                <div class="row-image" style="background: linear-gradient(135deg, #1c1917 0%, #44403c 100%);">
+                    <img src="assets/Eyenet security.jpg" alt="People Analytics — Track Human Activity" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="row-text">
+                    <h2>Track and Regulate Human Activity</h2>
+                    <ul class="sub-punchlines">
+                        <li style="--accent: #f59e0b;">Real-time people tracking, counting, and attendance — replace badge systems and manual roll calls</li>
+                        <li style="--accent: #f59e0b;">3D route analysis and dwell-time mapping reveal bottlenecks, compliance gaps, and safety risks</li>
+                        <li style="--accent: #f59e0b;">Automated shift reports, zone alerts, and occupancy limits — enforcement without extra personnel</li>
+                    </ul>
+                    <style>.marketing-row .sub-punchlines li[style*="--accent: #f59e0b"]::before{background:#f59e0b;}</style>
+                    <div class="hw-icons">
+                        <span>Ceiling Camera</span><span>Dashboard</span><span>Hard Hat</span><span>Digital Clipboard</span>
+                    </div>
+                    <a href="#" class="cta-btn" style="background: linear-gradient(135deg, #d97706, #f59e0b);">Explore People Analytics <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card 3 — Digital Signage -->
+        <section class="mb-8">
+            <div class="professional-card rounded-2xl overflow-hidden marketing-row">
+                <div class="row-image" style="background: linear-gradient(135deg, #4a1942 0%, #c2185b 50%, #ff6f00 100%);">
+                    <img src="assets/Digital Signage.png" alt="Digital Signage — Real-Time Vision Triggers" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="row-text">
+                    <h2>Empower Your Digital Signage Solutions with Real-Time Vision Triggers</h2>
+                    <ul class="sub-punchlines">
+                        <li style="--accent: #e91e63;">Cameras read the room — age, gender, group size — and switch content in milliseconds</li>
+                        <li style="--accent: #e91e63;">Trigger playlists, promotions, or emergency messages automatically based on who's watching</li>
+                        <li style="--accent: #e91e63;">Measure every impression: views, dwell time, engagement rate — prove your signage ROI</li>
+                    </ul>
+                    <style>.marketing-row .sub-punchlines li[style*="--accent: #e91e63"]::before{background:#e91e63;}</style>
+                    <div class="hw-icons">
+                        <span>Digital Display</span><span>Camera</span><span>Media Player</span><span>Smartphone</span>
+                    </div>
+                    <a href="#" class="cta-btn" style="background: linear-gradient(135deg, #c2185b, #ff6f00);">Power Your Displays <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card 4 — Access Control -->
+        <section class="mb-8">
+            <div class="professional-card rounded-2xl overflow-hidden marketing-row reverse">
+                <div class="row-image" style="background: linear-gradient(135deg, #064e3b 0%, #34d399 100%);">
+                    <img src="assets/Access Control.png" alt="Access Control — Entrance and Exit Points" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="row-text">
+                    <h2>Take Complete Control of Entrance and Exit Points</h2>
+                    <ul class="sub-punchlines">
+                        <li style="--accent: #10b981;">Automatic headcount and identity awareness at every door, gate, and checkpoint — no queues, no badges</li>
+                        <li style="--accent: #10b981;">Instant alerts when unauthorised access is detected or capacity limits are breached</li>
+                        <li style="--accent: #10b981;">Full audit trail with timestamps, video evidence, and demographic logs for compliance reporting</li>
+                    </ul>
+                    <style>.marketing-row .sub-punchlines li[style*="--accent: #10b981"]::before{background:#10b981;}</style>
+                    <div class="hw-icons">
+                        <span>Gate Camera</span><span>Turnstile</span><span>Tablet</span><span>Badge Reader (replaced)</span>
+                    </div>
+                    <a href="#" class="cta-btn" style="background: linear-gradient(135deg, #059669, #34d399);">Secure Your Entry Points <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card 5 — Restricted Area Protection -->
+        <section class="mb-8">
+            <div class="professional-card rounded-2xl overflow-hidden marketing-row">
+                <div class="row-image" style="background: linear-gradient(135deg, #1a0a0a 0%, #7f1d1d 100%);">
+                    <img src="assets/Restricted Area Protection.png" alt="Restricted Area Protection" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="row-text">
+                    <h2>Cover Restricted Areas with Machine Vision Protective Nets</h2>
+                    <ul class="sub-punchlines">
+                        <li style="--accent: #ef4444;">Define virtual perimeters around any zone — machinery rooms, cargo holds, server racks — enforced 24/7 by AI</li>
+                        <li style="--accent: #ef4444;">Instant mobile and email alerts to supervisors the moment an unauthorised presence is detected</li>
+                        <li style="--accent: #ef4444;">Lone-worker monitoring, PPE compliance checks, and automatic incident documentation built in</li>
+                    </ul>
+                    <style>.marketing-row .sub-punchlines li[style*="--accent: #ef4444"]::before{background:#ef4444;}</style>
+                    <div class="hw-icons">
+                        <span>Industrial Camera</span><span>Warning Beacon</span><span>Control Monitor</span><span>Hard Hat / PPE</span>
+                    </div>
+                    <a href="#" class="cta-btn" style="background: linear-gradient(135deg, #b91c1c, #ef4444);">Deploy Virtual Perimeters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card 6 — VIP Protection -->
+        <section class="mb-8">
+            <div class="professional-card rounded-2xl overflow-hidden marketing-row reverse">
+                <div class="row-image" style="background: linear-gradient(135deg, #0f0f0f 0%, #1c1917 50%, #78350f 100%);">
+                    <img src="assets/VIP Protection.png" alt="VIP Protection — Machine Vision Eyeware" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="row-text">
+                    <h2>Protect VIPs with Instant Machine Vision Eyeware</h2>
+                    <ul class="sub-punchlines">
+                        <li style="--accent: #fbbf24;">Instant face recognition and person-of-interest alerts streamed directly to security eyewear and mobile devices</li>
+                        <li style="--accent: #fbbf24;">Known-face whitelists, threat watchlists, and real-time demographic profiling — all on-premises, all private</li>
+                        <li style="--accent: #fbbf24;">Parallel multi-camera detection across an entire venue, coordinated through a single command dashboard</li>
+                    </ul>
+                    <style>.marketing-row .sub-punchlines li[style*="--accent: #fbbf24"]::before{background:#fbbf24;}</style>
+                    <div class="hw-icons">
+                        <span>Smart Glasses</span><span>Body-Worn Camera</span><span>Smartphone</span><span>Earpiece</span>
+                    </div>
+                    <a href="#" class="cta-btn" style="background: linear-gradient(135deg, #92400e, #fbbf24);">Protect What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card 7 — Remote Operations -->
+        <section class="mb-8">
+            <div class="professional-card rounded-2xl overflow-hidden marketing-row">
+                <div class="row-image" style="background: linear-gradient(135deg, #1e3a5f 0%, #3b82f6 50%, #93c5fd 100%);">
+                    <img src="assets/Remote Operations.jpg" alt="Remote Operations — Control From Anywhere" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="row-text">
+                    <h2>Take Full Operational Control Remotely — Even with a Single Mobile Phone</h2>
+                    <ul class="sub-punchlines">
+                        <li style="--accent: #3b82f6;">Secure VPN-powered remote access to every camera, trigger, and dashboard from anywhere in the world</li>
+                        <li style="--accent: #3b82f6;">Mobile app with live feeds, push alerts, and full configuration control — manage an entire site from your pocket</li>
+                        <li style="--accent: #3b82f6;">Zero cloud dependency for video and data — your footage never leaves your premises, even when you do</li>
+                    </ul>
+                    <style>.marketing-row .sub-punchlines li[style*="--accent: #3b82f6"]::before{background:#3b82f6;}</style>
+                    <div class="hw-icons">
+                        <span>Smartphone</span><span>Laptop</span><span>VPN</span><span>Globe / Satellite</span>
+                    </div>
+                    <a href="#" class="cta-btn" style="background: linear-gradient(135deg, #2563eb, #60a5fa);">Manage From Anywhere <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card 8 — Instant Deployment -->
+        <section class="mb-24">
+            <div class="professional-card rounded-2xl overflow-hidden marketing-row reverse">
+                <div class="row-image" style="background: linear-gradient(135deg, #f0f9ff 0%, #bae6fd 100%);">
+                    <img src="assets/Instant Deployment.png" alt="Instant Deployment — Everyday Hardware" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="row-text">
+                    <h2>Get Started Instantly Using Everyday Hardware</h2>
+                    <ul class="sub-punchlines">
+                        <li style="--accent: #0ea5e9;">16 GB of RAM and a modern CPU — that's all. No GPU servers, no cloud subscriptions, no vendor lock-in</li>
+                        <li style="--accent: #0ea5e9;">Plug in any IP camera, WiFi cam, or just open the app on your phone — your first detection runs in minutes</li>
+                        <li style="--accent: #0ea5e9;">Start with one camera and one room; scale to hundreds of cameras across multiple sites when you're ready</li>
+                    </ul>
+                    <style>.marketing-row .sub-punchlines li[style*="--accent: #0ea5e9"]::before{background:#0ea5e9;}</style>
+                    <div class="hw-icons">
+                        <span>Laptop</span><span>USB Webcam</span><span>WiFi Camera</span><span>Smartphone</span><span>Router</span>
+                    </div>
+                    <a href="#" class="cta-btn" style="background: linear-gradient(135deg, #0284c7, #38bdf8);">Get Started in Minutes <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== END MARKETING ROWS ========== -->
+
+        <section class="mb-24">
+            <div class="flex justify-center">
+                <img src="assets/operator-robot-eyes.jpg" alt="Robot Vision" class="rounded-2xl shadow-lg max-w-3xl w-full">
+            </div>
+        </section>
+
         <section class="mb-24">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-light text-slate-800 section-header">Eyenet in Action</h2>
@@ -441,393 +755,233 @@
                     Discover how our intelligent vision technology transforms real-world environments across diverse applications and industries
                 </p>
             </div>
-            <div class="professional-card rounded-2xl p-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    <!-- Actions Edit -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/actions-edit.png', 'Actions Editor', 'Configure and manage automated actions')">
-                        <img src="assets/eyenet-screenshots/actions-edit.png" alt="Actions Editor" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="photo-strip-wrapper" style="position:relative;overflow:hidden;">
+                <!-- Fade edges -->
+                <div style="position:absolute;top:0;left:0;bottom:0;width:60px;z-index:2;pointer-events:none;background:linear-gradient(to right, var(--bg-gradient-start), transparent);"></div>
+                <div style="position:absolute;top:0;right:0;bottom:0;width:60px;z-index:2;pointer-events:none;background:linear-gradient(to left, var(--bg-gradient-start), transparent);"></div>
+                <div class="photo-strip" style="display:flex;gap:1rem;overflow-x:auto;scroll-behavior:smooth;padding:1rem 60px;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/actions-edit.png', 'Actions Editor', 'Configure and manage automated actions')">
+                        <img src="assets/eyenet-screenshots/actions-edit.png" alt="Actions Editor" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Actions Editor</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Actions Editor</p></div>
                         </div>
                     </div>
-
-                    <!-- Analytics 01 -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/analytics-01.png', 'Analytics Dashboard', 'Comprehensive analytics and insights')">
-                        <img src="assets/eyenet-screenshots/analytics-01.png" alt="Analytics Dashboard" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/analytics-01.png', 'Analytics Dashboard', 'Comprehensive analytics and insights')">
+                        <img src="assets/eyenet-screenshots/analytics-01.png" alt="Analytics Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Analytics Dashboard</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Analytics Dashboard</p></div>
                         </div>
                     </div>
-
-                    <!-- Analytics 02 -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/anaytics-02.png', 'Advanced Analytics', 'Detailed metrics and trends')">
-                        <img src="assets/eyenet-screenshots/anaytics-02.png" alt="Advanced Analytics" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/anaytics-02.png', 'Advanced Analytics', 'Detailed metrics and trends')">
+                        <img src="assets/eyenet-screenshots/anaytics-02.png" alt="Advanced Analytics" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Advanced Analytics</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Advanced Analytics</p></div>
                         </div>
                     </div>
-
-                    <!-- Analytics Filters -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/anaytics-filters.png', 'Analytics Filters', 'Flexible data filtering options')">
-                        <img src="assets/eyenet-screenshots/anaytics-filters.png" alt="Analytics Filters" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/anaytics-filters.png', 'Analytics Filters', 'Flexible data filtering options')">
+                        <img src="assets/eyenet-screenshots/anaytics-filters.png" alt="Analytics Filters" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Analytics Filters</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Analytics Filters</p></div>
                         </div>
                     </div>
-
-                    <!-- Camera Analytics 01-08 -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-01.png', 'Camera Analytics', 'Real-time camera performance metrics')">
-                        <img src="assets/eyenet-screenshots/camera-analytics-01.png" alt="Camera Analytics 1" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-01.png', 'Camera Analytics', 'Real-time camera performance metrics')">
+                        <img src="assets/eyenet-screenshots/camera-analytics-01.png" alt="Camera Analytics 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Camera Analytics</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera Analytics</p></div>
                         </div>
                     </div>
-
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-02.png', 'Camera Stats', 'Detailed camera statistics')">
-                        <img src="assets/eyenet-screenshots/camera-analytics-02.png" alt="Camera Analytics 2" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-02.png', 'Camera Stats', 'Detailed camera statistics')">
+                        <img src="assets/eyenet-screenshots/camera-analytics-02.png" alt="Camera Analytics 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Camera Stats</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera Stats</p></div>
                         </div>
                     </div>
-
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-03.png', 'Detection Analytics', 'Advanced detection insights')">
-                        <img src="assets/eyenet-screenshots/camera-analytics-03.png" alt="Camera Analytics 3" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-03.png', 'Detection Analytics', 'Advanced detection insights')">
+                        <img src="assets/eyenet-screenshots/camera-analytics-03.png" alt="Camera Analytics 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Detection Analytics</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Detection Analytics</p></div>
                         </div>
                     </div>
-
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-04.png', 'Event Analytics', 'Event tracking and analysis')">
-                        <img src="assets/eyenet-screenshots/camera-analytics-04.png" alt="Camera Analytics 4" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-04.png', 'Event Analytics', 'Event tracking and analysis')">
+                        <img src="assets/eyenet-screenshots/camera-analytics-04.png" alt="Camera Analytics 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Event Analytics</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Event Analytics</p></div>
                         </div>
                     </div>
-
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-05.png', 'Performance Metrics', 'Camera performance overview')">
-                        <img src="assets/eyenet-screenshots/camera-analytics-05.png" alt="Camera Analytics 5" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-05.png', 'Performance Metrics', 'Camera performance overview')">
+                        <img src="assets/eyenet-screenshots/camera-analytics-05.png" alt="Camera Analytics 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Performance Metrics</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Performance Metrics</p></div>
                         </div>
                     </div>
-
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-06.png', 'Activity Monitor', 'Real-time activity monitoring')">
-                        <img src="assets/eyenet-screenshots/camera-analytics-06.png" alt="Camera Analytics 6" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-06.png', 'Activity Monitor', 'Real-time activity monitoring')">
+                        <img src="assets/eyenet-screenshots/camera-analytics-06.png" alt="Camera Analytics 6" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Activity Monitor</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Activity Monitor</p></div>
                         </div>
                     </div>
-
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-07.png', 'Trend Analysis', 'Historical trends and patterns')">
-                        <img src="assets/eyenet-screenshots/camera-analytics-07.png" alt="Camera Analytics 7" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-07.png', 'Trend Analysis', 'Historical trends and patterns')">
+                        <img src="assets/eyenet-screenshots/camera-analytics-07.png" alt="Camera Analytics 7" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Trend Analysis</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Trend Analysis</p></div>
                         </div>
                     </div>
-
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-08.png', 'Data Visualization', 'Interactive data charts')">
-                        <img src="assets/eyenet-screenshots/camera-analytics-08.png" alt="Camera Analytics 8" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-08.png', 'Data Visualization', 'Interactive data charts')">
+                        <img src="assets/eyenet-screenshots/camera-analytics-08.png" alt="Camera Analytics 8" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Data Visualization</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Data Visualization</p></div>
                         </div>
                     </div>
-
-                    <!-- Camera List -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/camera-list.png', 'Camera List', 'Manage all connected cameras')">
-                        <img src="assets/eyenet-screenshots/camera-list.png" alt="Camera List" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/camera-list.png', 'Camera List', 'Manage all connected cameras')">
+                        <img src="assets/eyenet-screenshots/camera-list.png" alt="Camera List" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Camera List</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera List</p></div>
                         </div>
                     </div>
-
-                    <!-- Digital Signage -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/digital-signage-01.png', 'Digital Signage', 'Content management and display')">
-                        <img src="assets/eyenet-screenshots/digital-signage-01.png" alt="Digital Signage" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/digital-signage-01.png', 'Digital Signage', 'Content management and display')">
+                        <img src="assets/eyenet-screenshots/Digital signage.png" alt="Digital Signage" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Digital Signage</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Digital Signage</p></div>
                         </div>
                     </div>
-
-                    <!-- Main Dashboard -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/main-dashboard.png', 'Main Dashboard', 'Central control panel')">
-                        <img src="assets/eyenet-screenshots/main-dashboard.png" alt="Main Dashboard" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/main-dashboard.png', 'Main Dashboard', 'Central control panel')">
+                        <img src="assets/eyenet-screenshots/main-dashboard.png" alt="Main Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Main Dashboard</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Main Dashboard</p></div>
                         </div>
                     </div>
-
-                    <!-- Multi Camera Streams -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/multi-camera-streams.png', 'Multi-Camera View', 'Monitor multiple cameras simultaneously')">
-                        <img src="assets/eyenet-screenshots/multi-camera-streams.png" alt="Multi Camera Streams" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/multi-camera-streams.png', 'Multi-Camera View', 'Monitor multiple cameras simultaneously')">
+                        <img src="assets/eyenet-screenshots/multi-camera-streams.png" alt="Multi Camera Streams" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Multi-Camera View</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Multi-Camera View</p></div>
                         </div>
                     </div>
-
-                    <!-- MVR Group Search -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/mvr-group-search.png', 'MVR Group Search', 'Search and filter MVR groups')">
-                        <img src="assets/eyenet-screenshots/mvr-group-search.png" alt="MVR Group Search" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/mvr-group-search.png', 'MVR Group Search', 'Search and filter MVR groups')">
+                        <img src="assets/eyenet-screenshots/mvr-group-search.png" alt="MVR Group Search" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">MVR Group Search</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">MVR Group Search</p></div>
                         </div>
                     </div>
-
-                    <!-- MVR Groups Details -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/mvr-groups-details.png', 'MVR Groups Details', 'Detailed group configuration')">
-                        <img src="assets/eyenet-screenshots/mvr-groups-details.png" alt="MVR Groups Details" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/mvr-groups-details.png', 'MVR Groups Details', 'Detailed group configuration')">
+                        <img src="assets/eyenet-screenshots/mvr-groups-details.png" alt="MVR Groups Details" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">MVR Groups Details</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">MVR Groups Details</p></div>
                         </div>
                     </div>
-
-                    <!-- MVR Groups -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/mvr-groups.png', 'MVR Groups', 'Manage recording groups')">
-                        <img src="assets/eyenet-screenshots/mvr-groups.png" alt="MVR Groups" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/mvr-groups.png', 'MVR Groups', 'Manage recording groups')">
+                        <img src="assets/eyenet-screenshots/mvr-groups.png" alt="MVR Groups" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">MVR Groups</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">MVR Groups</p></div>
                         </div>
                     </div>
-
-                    <!-- Settings -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/settings.png', 'Settings', 'System configuration and preferences')">
-                        <img src="assets/eyenet-screenshots/settings.png" alt="Settings" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/settings.png', 'Settings', 'System configuration and preferences')">
+                        <img src="assets/eyenet-screenshots/settings.png" alt="Settings" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Settings</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Settings</p></div>
                         </div>
                     </div>
-
-                    <!-- Signage Android App -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/signage-android-app.jpg', 'Signage Android App', 'Mobile signage application')">
-                        <img src="assets/eyenet-screenshots/signage-android-app.jpg" alt="Signage Android App" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/signage-android-app.jpg', 'Signage Android App', 'Mobile signage application')">
+                        <img src="assets/eyenet-screenshots/signage-android-app.jpg" alt="Signage Android App" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Signage Android App</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Signage Android App</p></div>
                         </div>
                     </div>
-
-                    <!-- Single Camera Stream -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/single-camera-stream.png', 'Single Camera View', 'Focused camera monitoring')">
-                        <img src="assets/eyenet-screenshots/single-camera-stream.png" alt="Single Camera Stream" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/single-camera-stream.png', 'Single Camera View', 'Focused camera monitoring')">
+                        <img src="assets/eyenet-screenshots/single-camera-stream.png" alt="Single Camera Stream" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Single Camera View</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Single Camera View</p></div>
                         </div>
                     </div>
-
-                    <!-- Soft Camera 01 -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/soft-camera-01.jpg', 'Soft Camera', 'Virtual camera interface')">
-                        <img src="assets/eyenet-screenshots/soft-camera-01.jpg" alt="Soft Camera 1" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/soft-camera-01.jpg', 'Soft Camera', 'Virtual camera interface')">
+                        <img src="assets/eyenet-screenshots/soft-camera-01.jpg" alt="Soft Camera 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Soft Camera</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Soft Camera</p></div>
                         </div>
                     </div>
-
-                    <!-- Soft Camera 02 -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/soft-camera-02.jpg', 'Soft Camera Setup', 'Configure virtual cameras')">
-                        <img src="assets/eyenet-screenshots/soft-camera-02.jpg" alt="Soft Camera 2" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/soft-camera-02.jpg', 'Soft Camera Setup', 'Configure virtual cameras')">
+                        <img src="assets/eyenet-screenshots/soft-camera-02.jpg" alt="Soft Camera 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Soft Camera Setup</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Soft Camera Setup</p></div>
                         </div>
                     </div>
-
-                    <!-- Triggers List -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/triggers-list.png', 'Triggers List', 'Automated trigger management')">
-                        <img src="assets/eyenet-screenshots/triggers-list.png" alt="Triggers List" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/triggers-list.png', 'Triggers List', 'Automated trigger management')">
+                        <img src="assets/eyenet-screenshots/triggers-list.png" alt="Triggers List" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Triggers List</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Triggers List</p></div>
                         </div>
                     </div>
-
-                    <!-- Upload Media -->
-                    <div class="gallery-item group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer" onclick="openLightbox('assets/eyenet-screenshots/upload-media.png', 'Upload Media', 'Media management and upload')">
-                        <img src="assets/eyenet-screenshots/upload-media.png" alt="Upload Media" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px;" onclick="openLightbox('assets/eyenet-screenshots/upload-media.png', 'Upload Media', 'Media management and upload')">
+                        <img src="assets/eyenet-screenshots/upload-media.png" alt="Upload Media" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <p class="font-medium text-sm">Upload Media</p>
-                            </div>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
+                            <div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Upload Media</p></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <script>
+        // Smooth drag-to-scroll + auto-scroll for the photo strip
+        (function() {
+            const strip = document.querySelector('.photo-strip');
+            if (!strip) return;
+            let isDown = false, startX, scrollLeft;
+            let userInteracting = false;
+            let resumeTimer;
+
+            strip.addEventListener('mousedown', e => {
+                isDown = true;
+                userInteracting = true;
+                strip.style.cursor = 'grabbing';
+                startX = e.pageX - strip.offsetLeft;
+                scrollLeft = strip.scrollLeft;
+                clearTimeout(resumeTimer);
+            });
+            strip.addEventListener('mouseleave', () => {
+                isDown = false;
+                strip.style.cursor = 'grab';
+                scheduleResume();
+            });
+            strip.addEventListener('mouseup', () => {
+                isDown = false;
+                strip.style.cursor = 'grab';
+                scheduleResume();
+            });
+            strip.addEventListener('mousemove', e => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - strip.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                strip.scrollLeft = scrollLeft - walk;
+            });
+            // Pause auto-scroll on touch
+            strip.addEventListener('touchstart', () => { userInteracting = true; clearTimeout(resumeTimer); }, {passive: true});
+            strip.addEventListener('touchend', () => { scheduleResume(); }, {passive: true});
+
+            function scheduleResume() {
+                clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(() => { userInteracting = false; }, 3000);
+            }
+
+            // Auto-scroll at ~0.5px per frame (moderate slow)
+            let speed = 0.5;
+            function autoScroll() {
+                if (!userInteracting) {
+                    strip.scrollLeft += speed;
+                    // Loop: when we reach the end, jump back to start
+                    if (strip.scrollLeft >= strip.scrollWidth - strip.clientWidth - 1) {
+                        strip.scrollLeft = 0;
+                    }
+                }
+                requestAnimationFrame(autoScroll);
+            }
+            // Remove smooth scroll so auto-scroll isn't jittery
+            strip.style.scrollBehavior = 'auto';
+            requestAnimationFrame(autoScroll);
+
+            strip.style.setProperty('-ms-overflow-style', 'none');
+        })();
+        </script>
 
         <section class="mb-24">
             <div class="professional-card quote-section rounded-2xl p-8 md:p-12 text-center">
