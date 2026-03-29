@@ -65,6 +65,37 @@
             padding: 1.5rem 2rem;
         }
 
+        .download-btn {
+            margin-left: auto;
+            margin-right: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.2rem;
+            background: var(--primary-cyan);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.15s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .download-btn:hover {
+            background: var(--primary-teal);
+            transform: translateY(-1px);
+        }
+
+        .download-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
         .logo-container {
             display: flex;
             align-items: center;
@@ -1053,6 +1084,14 @@
                     </a>
                 </div>
             </div>
+            <a href="Eyenet-vision-BusinessPlan-print.pdf" download class="download-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download PDF
+            </a>
         </div>
     </header>
 
