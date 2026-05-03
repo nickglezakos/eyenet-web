@@ -1278,7 +1278,7 @@
                 <div class="success-box">
                     <h3>Investment Opportunity Overview</h3>
                     <p>
-                        EyeNet Vision is raising an <strong>immediate $1M Seed round</strong> followed by <strong>$2-3M Series A funding</strong> to scale an intelligent vision technology 
+                        EyeNet Vision is raising an <strong>immediate $2.5M Seed round</strong> followed by <strong>$2-3M Series A funding</strong> to scale an intelligent vision technology 
                         platform with <strong>six specialized applications</strong> serving a <strong>$2-4B addressable market</strong>. 
                         With five products ready for Q2 2026 launch, the company projects growth from <strong>$1M to $26M ARR</strong> 
                         by 2028, targeting exit at <strong>$500M-$1B valuation</strong> within 4-5 years.
@@ -1435,8 +1435,8 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
                     <div class="info-box">
                         <h4>Immediate Seed Ask</h4>
-                        <p style="font-size: 2rem; font-weight: bold; color: var(--secondary-color); margin: 0.5rem 0;">$1M</p>
-                        <p>Timing: Q1 2026 (before Series A)</p>
+                        <p style="font-size: 2rem; font-weight: bold; color: var(--secondary-color); margin: 0.5rem 0;">$2.5M</p>
+                        <p>Timing: Q1-Q2 2026 (before Series A)</p>
                     </div>
                     <div class="info-box">
                         <h4>Series A Ask</h4>
@@ -1469,9 +1469,9 @@
                     <tbody>
                         <tr>
                             <td><strong>Seed</strong></td>
-                            <td>$1M</td>
-                            <td><strong>45x</strong></td>
-                            <td><strong>110%</strong></td>
+                            <td>$2.5M</td>
+                            <td><strong>18x</strong></td>
+                            <td><strong>78%</strong></td>
                         </tr>
                         <tr>
                             <td><strong>Series A</strong></td>
@@ -5922,7 +5922,7 @@
                         datasets: [
                             {
                                 label: 'Return Multiple',
-                                data: [45, 30, 15, 4.9],
+                                data: [18, 30, 15, 4.9],
                                 backgroundColor: ['#27ae60', '#27ae60', '#3498db', '#95a5a6'],
                                 borderColor: ['#229954', '#229954', '#2980b9', '#7f8c8d'],
                                 borderWidth: 2,
@@ -5930,7 +5930,7 @@
                             },
                             {
                                 label: 'IRR %',
-                                data: [110, 85, 65, 40],
+                                data: [78, 85, 65, 40],
                                 backgroundColor: 'rgba(231, 76, 60, 0.6)',
                                 borderColor: '#c0392b',
                                 borderWidth: 2,
@@ -9093,7 +9093,7 @@
                 labels: ['Immediate Seed\nQ1-Q2 2026', 'Series A\nQ3-Q4 2026', 'Series B\nQ2-Q3 2027', 'Series C\nQ3 2028+'],
                 datasets: [{
                     label: 'Capital Raised',
-                    data: [1.0, 2.5, 6.5, 20],
+                    data: [2.5, 2.5, 6.5, 20],
                     backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#0dcaf0'],
                     borderColor: ['#0d6efd', '#198754', '#ffc107', '#0dcaf0'],
                     borderWidth: 2
@@ -9125,7 +9125,7 @@
                         padding: 12,
                         callbacks: {
                             label: function(context) {
-                                const valuations = ['$3M', '$8-12M', '$30-40M', '$100-150M'];
+                                const valuations = ['$10M', '$8-12M', '$30-40M', '$100-150M'];
                                 const dilutions = ['20%', '20-25%', '18-22%', '15-20%'];
                                 return [
                                     'Raise: $' + context.raw + 'M',
@@ -9185,18 +9185,18 @@
         window.returnMultiplesChartInstance = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Seed ($1M)', 'Series A ($2.5M)', 'Series B ($6M)', 'Series C ($20M)'],
+                labels: ['Seed ($2.5M)', 'Series A ($2.5M)', 'Series B ($6M)', 'Series C ($20M)'],
                 datasets: [
                     {
                         label: 'Return Multiple (IPO @ $750M)',
-                        data: [45, 30, 15, 4.9],
+                        data: [18, 30, 15, 4.9],
                         backgroundColor: '#0d6efd',
                         borderColor: '#0d6efd',
                         borderWidth: 2
                     },
                     {
                         label: 'Return Multiple (Acquisition @ $400M)',
-                        data: [24, 16, 8, null],
+                        data: [10, 16, 8, null],
                         backgroundColor: '#dc3545',
                         borderColor: '#dc3545',
                         borderWidth: 2
@@ -9240,8 +9240,8 @@
                         callbacks: {
                             label: function(context) {
                                 const irrs = {
-                                    'IPO @ $750M': ['110%', '85%', '65%', '40%'],
-                                    'Acquisition @ $400M': ['120%', '95%', '70%', '-']
+                                    'IPO @ $750M': ['78%', '85%', '65%', '40%'],
+                                    'Acquisition @ $400M': ['76%', '95%', '70%', '-']
                                 };
                                 const scenario = context.dataset.label.includes('IPO') ? 'IPO @ $750M' : 'Acquisition @ $400M';
                                 const tooltipLines = [
@@ -9249,7 +9249,7 @@
                                     'IRR: ' + irrs[scenario][context.dataIndex]
                                 ];
                                 if (context.dataIndex === 0) {
-                                    tooltipLines.push('Assumption: $1M at $3M pre-money (20% initial)');
+                                    tooltipLines.push('Assumption: $2.5M at $10M pre-money (20% initial)');
                                 }
                                 return tooltipLines;
                             }
