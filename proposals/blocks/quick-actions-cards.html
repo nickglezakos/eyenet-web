@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eyenet Quick Actions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Rounded:FILL@0..1&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #050509;
+      --surface-outline: #46474f;
+      --text-primary: #ffffff;
+      --text-secondary: #b5b7c2;
+      --accent: #22d3ee;
+      --radius: 12px;
+      --page-padding: 16px;
+      --gap: 16px;
+      --card-padding: 16px;
+      --icon-size: 48px;
+      --title-size: 16px;
+      --subtitle-size: 12px;
+      --ripple: rgba(255, 255, 255, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .quick-actions-view {
+      min-height: 100vh;
+      padding: var(--page-padding);
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.embed-mode .quick-actions-view {
+      min-height: 0;
+    }
+
+    body.embed-mode .quick-actions-grid {
+      flex: none;
+    }
+
+    .quick-actions-title {
+      margin: 0 0 16px 0;
+      font-size: 22px;
+      line-height: 1.27;
+      font-weight: 700;
+      letter-spacing: 0;
+      color: var(--text-primary);
+    }
+
+    .logo-header {
+      margin: 0 0 16px 0;
+      display: flex;
+      align-items: center;
+      min-height: 32px;
+    }
+
+    .logo-header img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .quick-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--gap);
+      align-content: start;
+      flex: 1;
+    }
+
+    .quick-action-card {
+      --highlight-rgb: 34, 211, 238;
+      --highlight-strength: 0;
+      position: relative;
+      border: 1px solid var(--surface-outline);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(
+          rgba(var(--highlight-rgb), calc(var(--highlight-strength) * 0.2)),
+          rgba(var(--highlight-rgb), calc(var(--highlight-strength) * 0.12))
+        ),
+        var(--surface);
+      color: inherit;
+      text-decoration: none;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      outline: none;
+    }
+
+    .quick-action-card:hover {
+      --highlight-strength: 0.58;
+      border-color: #7492a1;
+    }
+
+    .quick-action-card.is-highlighted {
+      --highlight-strength: 0.82;
+      border-color: #8db2c3;
+    }
+
+    .quick-action-card:active {
+      transform: scale(0.985);
+    }
+
+    .quick-action-card:focus-visible {
+      box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.45);
+    }
+
+    .quick-action-inner {
+      height: 100%;
+      width: 100%;
+      padding: var(--card-padding);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .material-symbols-rounded {
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+      font-size: var(--icon-size);
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 12px;
+      user-select: none;
+      transition: color 140ms ease, text-shadow 140ms ease, filter 140ms ease;
+    }
+
+    .quick-action-card.is-highlighted .material-symbols-rounded {
+      color: #92f6ff;
+      text-shadow:
+        0 0 8px rgba(34, 211, 238, 0.95),
+        0 0 18px rgba(34, 211, 238, 0.78),
+        0 0 34px rgba(34, 211, 238, 0.55);
+      filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.85));
+    }
+
+    .quick-action-card.is-highlighted:hover .material-symbols-rounded {
+      color: #b9fbff;
+      text-shadow:
+        0 0 10px rgba(34, 211, 238, 1),
+        0 0 24px rgba(34, 211, 238, 0.88),
+        0 0 42px rgba(34, 211, 238, 0.65);
+      filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.95));
+    }
+
+    .quick-action-title {
+      margin: 0;
+      font-size: var(--title-size);
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .quick-action-subtitle {
+      margin: 4px 0 0 0;
+      font-size: var(--subtitle-size);
+      line-height: 1.33;
+      font-weight: 400;
+      color: var(--text-secondary);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .ripple {
+      position: absolute;
+      border-radius: 999px;
+      transform: scale(0);
+      animation: ripple 520ms ease-out;
+      background: var(--ripple);
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 599px) {
+      :root {
+        --icon-size: 36px;
+        --card-padding: 12px;
+        --title-size: 14px;
+        --subtitle-size: 11px;
+      }
+
+      .material-symbols-rounded {
+        margin-bottom: 8px;
+      }
+
+      .quick-action-card.is-highlighted {
+        --highlight-strength: 0.72;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 899px) {
+      .quick-actions-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .quick-action-card {
+        aspect-ratio: 1.1 / 1;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .quick-actions-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .quick-action-card {
+        aspect-ratio: 1.2 / 1;
+      }
+    }
+
+    /* Embed-mode breakpoints are tighter because widgets are rendered in split layouts. */
+    @media (min-width: 480px) and (max-width: 699px) {
+      body.embed-mode .quick-actions-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      body.embed-mode .quick-action-card {
+        aspect-ratio: 1.1 / 1;
+      }
+    }
+
+    @media (min-width: 700px) {
+      body.embed-mode .quick-actions-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      body.embed-mode .quick-action-card {
+        aspect-ratio: 1.2 / 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="quick-actions-view" aria-label="Quick Actions View">
+    <h1 class="logo-header" aria-label="Eyenet Vision">
+      <img
+        src="../../assets/logos/svg/eyenet-light.svg"
+        alt="Eyenet Vision"
+        onerror="this.style.display='none'; this.parentNode.textContent='Eyenet Vision'; this.parentNode.classList.add('quick-actions-title');"
+      />
+    </h1>
+
+    <section class="quick-actions-grid" aria-label="Quick actions grid">
+      <a class="quick-action-card" href="#" data-route="/cameras" data-action="cameras" aria-label="Cameras">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">videocam</span>
+          <h2 class="quick-action-title">Cameras</h2>
+          <p class="quick-action-subtitle">Manage live cameras</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/collections" data-action="collections" aria-label="Collections">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">collections</span>
+          <h2 class="quick-action-title">Collections</h2>
+          <p class="quick-action-subtitle">Organize your media</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/presence" data-action="presence" aria-label="Presence">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">how_to_reg</span>
+          <h2 class="quick-action-title">Presence</h2>
+          <p class="quick-action-subtitle">Presence flows and assurance analytics</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/individual-groups" data-action="individualgroups" aria-label="Individual Groups">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">groups</span>
+          <h2 class="quick-action-title">Individual Groups</h2>
+          <p class="quick-action-subtitle">Organize people by groups</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/analytics" data-action="analytics" aria-label="Analytics">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">analytics</span>
+          <h2 class="quick-action-title">Analytics</h2>
+          <p class="quick-action-subtitle">View statistics</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/triggers" data-action="automation" aria-label="Automation">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">precision_manufacturing</span>
+          <h2 class="quick-action-title">Automation</h2>
+          <p class="quick-action-subtitle">Manage automated triggers &amp; actions</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/workflows" data-action="monitoring" aria-label="Monitoring">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">auto_awesome</span>
+          <h2 class="quick-action-title">Monitoring</h2>
+          <p class="quick-action-subtitle">System &amp; workflow monitoring</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/signage" data-action="signagemanagement" aria-label="Signage Management">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">display_settings</span>
+          <h2 class="quick-action-title">Signage Management</h2>
+          <p class="quick-action-subtitle">Manage digital signage playlists</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/storage" data-action="storage" aria-label="Storage">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">storage</span>
+          <h2 class="quick-action-title">Storage</h2>
+          <p class="quick-action-subtitle">Manage storage locations &amp; usage</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/network" data-action="network" aria-label="Network">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">dns</span>
+          <h2 class="quick-action-title">Network</h2>
+          <p class="quick-action-subtitle">Network &amp; service connections</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/gallery" data-action="mymedia" aria-label="My Media">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">photo_library</span>
+          <h2 class="quick-action-title">My Media</h2>
+          <p class="quick-action-subtitle">View your uploads</p>
+        </div>
+      </a>
+
+      <a class="quick-action-card" href="#" data-route="/upload" data-action="uploadmedia" aria-label="Upload Media">
+        <div class="quick-action-inner">
+          <span class="material-symbols-rounded" aria-hidden="true">cloud_upload</span>
+          <h2 class="quick-action-title">Upload Media</h2>
+          <p class="quick-action-subtitle">Upload photos and videos</p>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const isEmbedMode =
+        new URLSearchParams(window.location.search).get('embed') === '1' ||
+        window.self !== window.top;
+
+      if (isEmbedMode) {
+        document.body.classList.add('embed-mode');
+      }
+
+      const cards = document.querySelectorAll('.quick-action-card');
+      const params = new URLSearchParams(window.location.search);
+
+      function parseHighlights() {
+        const raw = params.get('highlights') || params.get('highlight') || '';
+        const tokens = raw
+          .split(/[\s,|;]+/)
+          .map((token) => token.trim().toLowerCase().replace(/[^a-z0-9]/g, ''))
+          .filter(Boolean);
+
+        // Keep Collections highlighted by default for standalone previews.
+        return new Set(tokens.length ? tokens : ['collections']);
+      }
+
+      const highlights = parseHighlights();
+
+      cards.forEach((card) => {
+        const action = (card.dataset.action || '')
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, '');
+        card.classList.toggle('is-highlighted', highlights.has(action));
+      });
+
+      cards.forEach((card) => {
+        card.addEventListener('click', (event) => {
+          event.preventDefault();
+        });
+
+        card.addEventListener('pointerdown', (event) => {
+          const rect = card.getBoundingClientRect();
+          const diameter = Math.max(rect.width, rect.height) * 1.5;
+          const radius = diameter / 2;
+          const ripple = document.createElement('span');
+
+          ripple.className = 'ripple';
+          ripple.style.width = diameter + 'px';
+          ripple.style.height = diameter + 'px';
+          ripple.style.left = event.clientX - rect.left - radius + 'px';
+          ripple.style.top = event.clientY - rect.top - radius + 'px';
+
+          const oldRipple = card.querySelector('.ripple');
+          if (oldRipple) {
+            oldRipple.remove();
+          }
+
+          card.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 560);
+        });
+      });
+
+      function notifyParentHeight() {
+        if (!isEmbedMode) return;
+        const height = Math.ceil(document.documentElement.scrollHeight);
+        window.parent.postMessage(
+          {
+            type: 'quick-actions-height',
+            height: height,
+          },
+          '*'
+        );
+      }
+
+      window.addEventListener('load', notifyParentHeight);
+      window.addEventListener('resize', notifyParentHeight);
+      setTimeout(notifyParentHeight, 0);
+      setTimeout(notifyParentHeight, 120);
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(notifyParentHeight);
+      }
+    })();
+  </script>
+</body>
+</html>
