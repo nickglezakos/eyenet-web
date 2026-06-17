@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eyenet Logo Variations — Proposal</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+  .section { padding: 60px 40px; }
+  .section-dark { background: #0f172a; }
+  .section-light { background: #f8fafc; }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .section-dark .section-title { color: #e2e8f0; }
+  .section-light .section-title { color: #334155; }
+  .section-title h1 { font-size: 28px; font-weight: 600; letter-spacing: 1px; }
+  .section-title p { font-size: 14px; opacity: 0.7; margin-top: 8px; letter-spacing: 0.5px; color: #94a3b8; }
+  .section-light .section-title p { color: #64748b; }
+
+  .eyenet-svg { display: none; }
+
+  /* ── Inline Layout ── */
+  .inline-showcase {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .variant-group-title {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #64748b;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: -20px;
+  }
+
+  .inline-row {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: background 0.2s;
+  }
+  .inline-row:hover {
+    background: rgba(255,255,255,0.07);
+  }
+
+  .inline-row .inline-demo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .inline-row .inline-demo svg.eyenet-logo-inline {
+    display: block;
+    width: auto;
+  }
+  .inline-row .inline-demo svg.eyenet-sub-inline {
+    display: block;
+    width: auto;
+  }
+
+  .inline-row .inline-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .inline-row .inline-meta .name {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #94a3b8;
+  }
+  .inline-row .inline-meta .desc {
+    font-size: 11px;
+    color: #64748b;
+  }
+
+  /* ── UI Mockups ── */
+  .ui-showcase {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .ui-group-title {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #64748b;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 0;
+  }
+  .section-light .ui-group-title {
+    color: #64748b;
+    border-bottom-color: rgba(0,0,0,0.08);
+  }
+
+  .ui-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+  }
+
+  /* Chips */
+  .demo-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px 6px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .demo-chip-sm {
+    padding: 4px 10px 4px 8px;
+    font-size: 11px;
+  }
+  .demo-chip svg {
+    display: block;
+  }
+  .demo-chip .chip-label {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .chip-dark {
+    background: rgba(8, 145, 178, 0.15);
+    border: 1px solid rgba(8, 145, 178, 0.3);
+    color: #22d3ee;
+  }
+  .chip-light {
+    background: rgba(8, 145, 178, 0.08);
+    border: 1px solid rgba(8, 145, 178, 0.2);
+    color: #0891b2;
+  }
+
+  /* Buttons */
+  .demo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: default;
+    transition: all 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .demo-btn svg { display: block; }
+
+  .btn-cyber {
+    background: linear-gradient(135deg, #0891b2, #22d3ee);
+    color: #fff;
+  }
+  .btn-dark {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #e2e8f0;
+  }
+  .btn-dark:hover {
+    background: rgba(255,255,255,0.12);
+  }
+  .btn-light {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .btn-light:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  /* Headline cards */
+  .headline-card {
+    padding: 24px 28px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+  }
+  .headline-card.dark {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .headline-card.light {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .headline-card .headline-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .headline-card .headline-logo svg {
+    display: block;
+  }
+  .headline-card .headline-text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .headline-card.dark .headline-text { color: #94a3b8; }
+  .headline-card.light .headline-text { color: #475569; }
+
+  /* Hero blocks */
+  .hero-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 48px 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-block.dark {
+    background: linear-gradient(135deg, #0c1929 0%, #0e3654 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-block.light {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid #e2e8f0;
+  }
+  .hero-block .hero-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-block .hero-logo svg { display: block; }
+  .hero-block .hero-sub {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 500px;
+  }
+  .hero-block.dark .hero-sub { color: #94a3b8; }
+  .hero-block.light .hero-sub { color: #475569; }
+  .hero-block .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- eyenet logo SVG templates (hidden, used for cloning) -->
+<div class="eyenet-svg">
+  <svg id="eyenet-light-svg" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+    <rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/>
+    <rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/>
+    <rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/>
+    <rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/>
+    <rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/>
+    <rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/>
+    <rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/>
+    <rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/>
+    <rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/>
+    <rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/>
+    <rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+    <rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/>
+    <rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/>
+    <rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/>
+    <rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+    <rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/>
+    <rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/>
+    <rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/>
+    <rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+    <rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/>
+    <rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
+  </svg>
+
+  <svg id="eyenet-dark-svg" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/>
+    <rect x="18" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/>
+    <rect x="18" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/>
+    <rect x="18" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+    <rect x="55" y="10" width="8" height="25" fill="#67e8f9" opacity="1"/>
+    <rect x="63" y="35" width="8" height="35" fill="#67e8f9" opacity="0.9"/>
+    <rect x="71" y="10" width="8" height="25" fill="#67e8f9" opacity="0.8"/>
+    <rect x="95" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/>
+    <rect x="103" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/>
+    <rect x="103" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/>
+    <rect x="103" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+    <rect x="145" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/>
+    <rect x="153" y="20" width="8" height="13" fill="#22d3ee" opacity="0.9"/>
+    <rect x="161" y="33" width="8" height="14" fill="#22d3ee" opacity="0.8"/>
+    <rect x="169" y="47" width="8" height="13" fill="#22d3ee" opacity="0.9"/>
+    <rect x="177" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/>
+    <rect x="200" y="10" width="8" height="60" fill="#67e8f9" opacity="1"/>
+    <rect x="208" y="10" width="25" height="8" fill="#67e8f9" opacity="0.9"/>
+    <rect x="208" y="36" width="20" height="8" fill="#67e8f9" opacity="0.8"/>
+    <rect x="208" y="62" width="25" height="8" fill="#67e8f9" opacity="1"/>
+    <rect x="250" y="10" width="30" height="8" fill="#22d3ee" opacity="1"/>
+    <rect x="261" y="18" width="8" height="52" fill="#22d3ee" opacity="0.9"/>
+  </svg>
+</div>
+
+<!-- ===== INLINE LAYOUT SECTION ===== -->
+<section class="section section-dark">
+  <div class="section-title">
+    <h1>eyenet — Inline Layout</h1>
+    <p>Logo and subtitle on the same row at various sizes</p>
+  </div>
+  <div class="inline-showcase" id="inline-showcase"></div>
+</section>
+
+<!-- ===== UI MOCKUPS SECTION: DARK ===== -->
+<section class="section section-dark">
+  <div class="section-title">
+    <h1>eyenet — UI Mockups (Dark Theme)</h1>
+    <p>Real-world UI contexts using the logo + subtitle inline pairs</p>
+  </div>
+  <div class="ui-showcase" id="ui-dark"></div>
+</section>
+
+<!-- ===== UI MOCKUPS SECTION: LIGHT ===== -->
+<section class="section section-light">
+  <div class="section-title">
+    <h1>eyenet — UI Mockups (Light Theme)</h1>
+    <p>Real-world UI contexts using the logo + subtitle inline pairs</p>
+  </div>
+  <div class="ui-showcase" id="ui-light"></div>
+</section>
+
+<script>
+// ── Pixel font: 5×7 uppercase letters ──
+const FONT = {
+  'A': [0b01110, 0b10001, 0b10001, 0b11111, 0b10001, 0b10001, 0b10001],
+  'B': [0b11110, 0b10001, 0b11110, 0b10001, 0b10001, 0b10001, 0b11110],
+  'C': [0b01110, 0b10001, 0b10000, 0b10000, 0b10000, 0b10001, 0b01110],
+  'D': [0b11110, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b11110],
+  'E': [0b11111, 0b10000, 0b11110, 0b10000, 0b10000, 0b10000, 0b11111],
+  'F': [0b11111, 0b10000, 0b11110, 0b10000, 0b10000, 0b10000, 0b10000],
+  'G': [0b01110, 0b10001, 0b10000, 0b10111, 0b10001, 0b10001, 0b01110],
+  'H': [0b10001, 0b10001, 0b11111, 0b10001, 0b10001, 0b10001, 0b10001],
+  'I': [0b11111, 0b00100, 0b00100, 0b00100, 0b00100, 0b00100, 0b11111],
+  'K': [0b10001, 0b10010, 0b11100, 0b11000, 0b11100, 0b10010, 0b10001],
+  'L': [0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b11111],
+  'M': [0b10001, 0b11011, 0b10101, 0b10101, 0b10001, 0b10001, 0b10001],
+  'N': [0b10001, 0b11001, 0b10101, 0b10011, 0b10001, 0b10001, 0b10001],
+  'O': [0b01110, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b01110],
+  'P': [0b11110, 0b10001, 0b10001, 0b11110, 0b10000, 0b10000, 0b10000],
+  'R': [0b11110, 0b10001, 0b10001, 0b11110, 0b11100, 0b10010, 0b10001],
+  'S': [0b01110, 0b10001, 0b10000, 0b01110, 0b00001, 0b10001, 0b01110],
+  'T': [0b11111, 0b00100, 0b00100, 0b00100, 0b00100, 0b00100, 0b00100],
+  'U': [0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b01110],
+  'V': [0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b01010, 0b00100],
+  'W': [0b10001, 0b10001, 0b10001, 0b10101, 0b10101, 0b11011, 0b10001],
+  'X': [0b10001, 0b10001, 0b01010, 0b00100, 0b01010, 0b10001, 0b10001],
+  'Y': [0b10001, 0b01010, 0b00100, 0b00100, 0b00100, 0b00100, 0b00100],
+  'Z': [0b11111, 0b00001, 0b00010, 0b00100, 0b01000, 0b10000, 0b11111],
+  ' ': [0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000],
+  '-': [0b00000, 0b00000, 0b00000, 0b11111, 0b00000, 0b00000, 0b00000],
+  '0': [0b01110, 0b10001, 0b10011, 0b10101, 0b11001, 0b10001, 0b01110],
+  '1': [0b00100, 0b01100, 0b00100, 0b00100, 0b00100, 0b00100, 0b11111],
+  '2': [0b01110, 0b10001, 0b00001, 0b00010, 0b00100, 0b01000, 0b11111],
+  '3': [0b01110, 0b10001, 0b00001, 0b00110, 0b00001, 0b10001, 0b01110],
+  '4': [0b00010, 0b00110, 0b01010, 0b10010, 0b11111, 0b00010, 0b00010],
+  '5': [0b11111, 0b10000, 0b11110, 0b00001, 0b00001, 0b10001, 0b01110],
+  '6': [0b01110, 0b10001, 0b10000, 0b11110, 0b10001, 0b10001, 0b01110],
+  '7': [0b11111, 0b00001, 0b00010, 0b00100, 0b01000, 0b01000, 0b01000],
+  '8': [0b01110, 0b10001, 0b10001, 0b01110, 0b10001, 0b10001, 0b01110],
+  '9': [0b01110, 0b10001, 0b10001, 0b01111, 0b00001, 0b10001, 0b01110],
+};
+
+const PIXEL = 3;
+const GLYPH_W = 5;
+const GLYPH_H = 7;
+const SPACING = 2;
+const VS = 1;
+
+function renderPixelText(text, fillColor, opacity) {
+  text = text.toUpperCase();
+  const chars = text.split('');
+  let totalW = 0;
+  const glyphData = chars.map(ch => FONT[ch] || FONT[' ']);
+  for (let i = 0; i < chars.length; i++) {
+    totalW += GLYPH_W * PIXEL + (i < chars.length - 1 ? SPACING : 0);
+  }
+  const totalH = GLYPH_H * PIXEL + (GLYPH_H - 1) * VS;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${totalW} ${totalH}`);
+  svg.setAttribute('width', totalW);
+  svg.setAttribute('height', totalH);
+  let cursorX = 0;
+  for (let gi = 0; gi < glyphData.length; gi++) {
+    const rows = glyphData[gi];
+    for (let row = 0; row < GLYPH_H; row++) {
+      const mask = rows[row];
+      for (let col = 0; col < GLYPH_W; col++) {
+        if (mask & (1 << (4 - col))) {
+          const x = cursorX + col * PIXEL;
+          const y = row * (PIXEL + VS);
+          const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          rect.setAttribute('x', x);
+          rect.setAttribute('y', y);
+          rect.setAttribute('width', PIXEL);
+          rect.setAttribute('height', PIXEL);
+          rect.setAttribute('fill', fillColor);
+          rect.setAttribute('opacity', opacity);
+          svg.appendChild(rect);
+        }
+      }
+    }
+    cursorX += GLYPH_W * PIXEL + SPACING;
+  }
+  return svg;
+}
+
+// ── All 12 variants ──
+const variants = [
+  'Presence',
+  'Handshake',
+  'Nod',
+  'Signage',
+  'Anonymous',
+  'VRadar',
+  'Gate',
+  'Sentinel',
+  'Insights',
+  'VProfiles',
+  'Logic',
+  'API',
+];
+
+const LOGO_ID = 'eyenet-light-svg';
+const DARK_LOGO_ID = 'eyenet-dark-svg';
+const SUBTITLE_COLOR = '#fbbf24';
+const SUBTITLE_LIGHT_COLOR = '#d97706';
+const OPACITY = 0.92;
+
+// ── Helper: clone logo at given height ──
+function cloneLogo(svgId, height) {
+  const svg = document.getElementById(svgId).cloneNode(true);
+  svg.removeAttribute('id');
+  svg.style.height = height + 'px';
+  svg.style.width = 'auto';
+  svg.style.display = 'block';
+  return svg;
+}
+
+// ── Helper: pixel text at given height ──
+function pixelText(text, color, height) {
+  const svg = renderPixelText(text, color, OPACITY);
+  svg.style.height = height + 'px';
+  svg.style.width = 'auto';
+  svg.style.display = 'block';
+  return svg;
+}
+
+// ── Populate Inline Layout Showcase ──
+const inlineShowcase = document.getElementById('inline-showcase');
+const inlineSizes = [
+  { label: 'Micro Chip',  logoH: 14, subH: 11, desc: 'Favicon / inline icon / badge' },
+  { label: 'Chip',        logoH: 20, subH: 16, desc: 'Tag / badge / inline chip' },
+  { label: 'Button',      logoH: 28, subH: 22, desc: 'Button label / compact control' },
+  { label: 'Headline',    logoH: 36, subH: 28, desc: 'Section header / panel title' },
+  { label: 'Hero',        logoH: 48, subH: 36, desc: 'Page title / modal header / hero' },
+];
+
+variants.forEach(variant => {
+  const title = document.createElement('div');
+  title.className = 'variant-group-title';
+  title.textContent = 'eyenet ' + variant;
+  inlineShowcase.appendChild(title);
+
+  inlineSizes.forEach(size => {
+    const row = document.createElement('div');
+    row.className = 'inline-row';
+    const demo = document.createElement('div');
+    demo.className = 'inline-demo';
+    demo.appendChild(cloneLogo(LOGO_ID, size.logoH));
+    demo.appendChild(pixelText(variant, SUBTITLE_COLOR, size.subH));
+    row.appendChild(demo);
+    const meta = document.createElement('div');
+    meta.className = 'inline-meta';
+    const name = document.createElement('div');
+    name.className = 'name';
+    name.textContent = size.label + ' — ' + size.logoH + 'px / ' + size.subH + 'px';
+    meta.appendChild(name);
+    const desc = document.createElement('div');
+    desc.className = 'desc';
+    desc.textContent = size.desc;
+    meta.appendChild(desc);
+    row.appendChild(meta);
+    inlineShowcase.appendChild(row);
+  });
+});
+
+// ── UI Mockup Builder ──
+function buildUISection(containerId, isDark) {
+  const container = document.getElementById(containerId);
+  const logoSvgId = isDark ? LOGO_ID : DARK_LOGO_ID;
+  const subColor = isDark ? SUBTITLE_COLOR : SUBTITLE_LIGHT_COLOR;
+  const v = isDark ? variants : variants.slice(0, 4); // show subset for light
+
+  // ── Chips ──
+  (function() {
+    const title = document.createElement('div');
+    title.className = 'ui-group-title';
+    title.textContent = 'Chips (Small / Medium)';
+    container.appendChild(title);
+
+    const row = document.createElement('div');
+    row.className = 'ui-row';
+
+    // Small chip
+    const chipSm = document.createElement('span');
+    chipSm.className = 'demo-chip demo-chip-sm ' + (isDark ? 'chip-dark' : 'chip-light');
+    chipSm.appendChild(cloneLogo(logoSvgId, 12));
+    chipSm.appendChild(pixelText('Gate', subColor, 10));
+    const lblSm = document.createElement('span');
+    lblSm.className = 'chip-label';
+    lblSm.textContent = '2 active';
+    chipSm.appendChild(lblSm);
+    row.appendChild(chipSm);
+
+    // Medium chip
+    const chipMd = document.createElement('span');
+    chipMd.className = 'demo-chip ' + (isDark ? 'chip-dark' : 'chip-light');
+    chipMd.appendChild(cloneLogo(logoSvgId, 16));
+    chipMd.appendChild(pixelText('Presence', subColor, 13));
+    const lblMd = document.createElement('span');
+    lblMd.className = 'chip-label';
+    lblMd.textContent = '12 people';
+    chipMd.appendChild(lblMd);
+    row.appendChild(chipMd);
+
+    // Another chip
+    const chipMd2 = document.createElement('span');
+    chipMd2.className = 'demo-chip ' + (isDark ? 'chip-dark' : 'chip-light');
+    chipMd2.appendChild(cloneLogo(logoSvgId, 16));
+    chipMd2.appendChild(pixelText('Signage', subColor, 13));
+    const lblMd2 = document.createElement('span');
+    lblMd2.className = 'chip-label';
+    lblMd2.textContent = '3 displays';
+    chipMd2.appendChild(lblMd2);
+    row.appendChild(chipMd2);
+
+    container.appendChild(row);
+  })();
+
+  // ── Buttons ──
+  (function() {
+    const title = document.createElement('div');
+    title.className = 'ui-group-title';
+    title.textContent = 'Buttons';
+    container.appendChild(title);
+
+    const row = document.createElement('div');
+    row.className = 'ui-row';
+
+    const btn1 = document.createElement('span');
+    btn1.className = 'demo-btn btn-cyber';
+    btn1.appendChild(cloneLogo(logoSvgId, 20));
+    btn1.appendChild(pixelText('Gate', subColor, 16));
+    btn1.innerHTML += ' Open Door';
+    row.appendChild(btn1);
+
+    const btn2 = document.createElement('span');
+    btn2.className = 'demo-btn ' + (isDark ? 'btn-dark' : 'btn-light');
+    btn2.appendChild(cloneLogo(logoSvgId, 20));
+    btn2.appendChild(pixelText('Insights', subColor, 16));
+    btn2.innerHTML += ' View Report';
+    row.appendChild(btn2);
+
+    container.appendChild(row);
+  })();
+
+  // ── Headline Cards ──
+  (function() {
+    const title = document.createElement('div');
+    title.className = 'ui-group-title';
+    title.textContent = 'Headline / Section Header';
+    container.appendChild(title);
+
+    const row = document.createElement('div');
+    row.className = 'ui-row';
+
+    // Card 1
+    const card1 = document.createElement('div');
+    card1.className = 'headline-card ' + (isDark ? 'dark' : 'light');
+    const hl1 = document.createElement('div');
+    hl1.className = 'headline-logo';
+    hl1.appendChild(cloneLogo(logoSvgId, 28));
+    hl1.appendChild(pixelText('Anonymous', subColor, 22));
+    card1.appendChild(hl1);
+    const t1 = document.createElement('div');
+    t1.className = 'headline-text';
+    t1.textContent = 'Privacy-first anonymous tracking with real-time demographic aggregation — no personal data stored.';
+    card1.appendChild(t1);
+    row.appendChild(card1);
+
+    // Card 2
+    const card2 = document.createElement('div');
+    card2.className = 'headline-card ' + (isDark ? 'dark' : 'light');
+    const hl2 = document.createElement('div');
+    hl2.className = 'headline-logo';
+    hl2.appendChild(cloneLogo(logoSvgId, 28));
+    hl2.appendChild(pixelText('VRadar', subColor, 22));
+    card2.appendChild(hl2);
+    const t2 = document.createElement('div');
+    t2.className = 'headline-text';
+    t2.textContent = 'Vehicle radar detection and license plate recognition for entry/exit monitoring and secure parking.';
+    card2.appendChild(t2);
+    row.appendChild(card2);
+
+    container.appendChild(row);
+  })();
+
+  // ── Hero Block ──
+  (function() {
+    const title = document.createElement('div');
+    title.className = 'ui-group-title';
+    title.textContent = 'Hero / Page Title';
+    container.appendChild(title);
+
+    const row = document.createElement('div');
+    row.className = 'ui-row';
+
+    const hero = document.createElement('div');
+    hero.className = 'hero-block ' + (isDark ? 'dark' : 'light');
+
+    const heroLogo = document.createElement('div');
+    heroLogo.className = 'hero-logo';
+    heroLogo.appendChild(cloneLogo(logoSvgId, 40));
+    heroLogo.appendChild(pixelText('Sentinel', subColor, 30));
+    hero.appendChild(heroLogo);
+
+    const heroSub = document.createElement('div');
+    heroSub.className = 'hero-sub';
+    heroSub.textContent = 'Real-time perimeter protection with AI-powered threat detection, instant alerts, and multi-camera coordination.';
+    hero.appendChild(heroSub);
+
+    const actions = document.createElement('div');
+    actions.className = 'hero-actions';
+    const actBtn = document.createElement('span');
+    actBtn.className = 'demo-btn btn-cyber';
+    actBtn.textContent = 'Get Started';
+    actions.appendChild(actBtn);
+    const actBtn2 = document.createElement('span');
+    actBtn2.className = 'demo-btn ' + (isDark ? 'btn-dark' : 'btn-light');
+    actBtn2.textContent = 'Learn More';
+    actions.appendChild(actBtn2);
+    hero.appendChild(actions);
+
+    row.appendChild(hero);
+    container.appendChild(row);
+  })();
+}
+
+buildUISection('ui-dark', true);
+buildUISection('ui-light', false);
+</script>
+</body>
+</html>
