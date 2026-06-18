@@ -35,6 +35,13 @@
             --deep-dive-card-bg: #ffffff;
             --deep-dive-text: #4b5563;
             --deep-dive-text-medium: #374151;
+            --chip-bg: #ffffff;
+            --chip-border: #e2e8f0;
+            --chip-color: #1e293b;
+            --chip-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            --chip-hover-bg: #ffffff;
+            --chip-hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --chip-sub-color: #d97706;
         }
         
         [data-theme="dark"] {
@@ -62,6 +69,13 @@
             --deep-dive-card-bg: #1e293b;
             --deep-dive-text: #94a3b8;
             --deep-dive-text-medium: #cbd5e1;
+            --chip-bg: #0f172a;
+            --chip-border: rgba(255,255,255,0.08);
+            --chip-color: #94a3b8;
+            --chip-shadow: none;
+            --chip-hover-bg: #1e293b;
+            --chip-hover-shadow: none;
+            --chip-sub-color: #fbbf24;
         }
         
         body {
@@ -451,7 +465,7 @@
             background: var(--card-bg);
         }
 
-        /* ── eyenet Chips (dark UX for both themes) ── */
+        /* ── eyenet Chips (theme-responsive) ── */
         .marketing-row .row-text .hw-icons span.eyenet-chip {
             display: inline-flex;
             align-items: center;
@@ -462,13 +476,15 @@
             font-weight: 500;
             letter-spacing: 0.5px;
             white-space: nowrap;
-            background: #0f172a !important;
-            border: 1px solid rgba(255,255,255,0.08) !important;
-            color: #94a3b8 !important;
+            background: var(--chip-bg);
+            border: 1px solid var(--chip-border);
+            color: var(--chip-color);
+            box-shadow: var(--chip-shadow);
             transition: all 0.2s ease;
         }
         .marketing-row .row-text .hw-icons span.eyenet-chip:hover {
-            background: #1e293b !important;
+            background: var(--chip-hover-bg);
+            box-shadow: var(--chip-hover-shadow);
         }
         .eyenet-chip .chip-logo-svg {
             display: block;
@@ -479,6 +495,169 @@
             display: block;
             height: 11px;
             width: auto;
+        }
+        .chip-sub-svg rect {
+            fill: var(--chip-sub-color) !important;
+        }
+        /* ── Inline Tag-line Punchlines (Variation 4) ── */
+        .var4-list {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .var4-item {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .var4-item:last-child {
+            border-bottom: none;
+        }
+        .var4-item .var4-lead {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--icon-color);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .var4-item p {
+            font-size: 1.05rem;
+            line-height: 1.55;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin: 0;
+        }
+        /* ── Inline Tag-line Punchlines ── */
+        .sub-punchlines-inline {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.75rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .sub-punchlines-inline .punch-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .sub-punchlines-inline .punch-item:last-child {
+            border-bottom: none;
+        }
+        .sub-punchlines-inline .punch-lead {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--icon-color);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .sub-punchlines-inline .punch-text {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        /* ── Chip Reel (horizontal scrolling strip) ── */
+        .chip-reel-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .chip-reel-wrapper::before,
+        .chip-reel-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .chip-reel-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #ffffff, transparent);
+        }
+        .chip-reel-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #ffffff, transparent);
+        }
+        [data-theme="dark"] .chip-reel-wrapper::before {
+            background: linear-gradient(to right, rgba(30,41,59,0.9), transparent);
+        }
+        [data-theme="dark"] .chip-reel-wrapper::after {
+            background: linear-gradient(to left, rgba(30,41,59,0.9), transparent);
+        }
+        .chip-reel {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scroll-behavior: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: none;
+            cursor: grab;
+            user-select: none;
+        }
+        .chip-reel::-webkit-scrollbar {
+            display: none;
+        }
+        .chip-reel .headline-card-reel {
+            flex-shrink: 0;
+        }
+        /* Headline Card (light themed card matching btn-light) */
+        .headline-card-light {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            padding: 20px 24px;
+        }
+        [data-theme="dark"] .headline-card-light {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        /* Compact headline card for reel */
+        .headline-card-reel {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px 6px 10px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            cursor: default;
+            transition: box-shadow 0.2s ease;
+        }
+        .headline-card-reel:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        [data-theme="dark"] .headline-card-reel {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: none;
+        }
+        [data-theme="dark"] .headline-card-reel:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .headline-card-reel .reel-logo-svg {
+            display: block;
+            height: 16px;
+            width: auto;
+        }
+        .headline-card-reel .reel-sub-svg {
+            display: block;
+            height: 13px;
+            width: auto;
+        }
+        .headline-card-reel .reel-sub-svg rect {
+            fill: var(--chip-sub-color) !important;
         }
         .marketing-row .row-text .cta-btn {
             display: inline-flex;
@@ -581,15 +760,13 @@
               <rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
             </svg>
 
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mt-6">Your business deserves next-gen machine vision tools.</h2>
+
         </header>
 
-        <section class="mb-24">
-            <div class="professional-card quote-section rounded-2xl p-8 md:p-12 text-center">
-                <p class="text-3xl md:text-4xl font-light text-slate-800 mb-4 leading-relaxed">
-                    Eye-opener tools for security, marketing & operations.
-                </p>
-                <div class="w-16 h-0.5 bg-gradient-to-r from-[#003F5C] to-[#7A5195] mx-auto"></div>
-            </div>
+        <!-- ========== All Chips ========== -->
+        <section class="mb-12">
+            <div class="flex flex-wrap justify-center gap-2" id="all-chips-header"></div>
         </section>
 
         <!-- ========== MARKETING FULL-WIDTH ROWS ========== -->
@@ -601,13 +778,21 @@
                     <img src="assets/Platform Hero.png" alt="Platform Hero — Boost Moderate Cameras" style="width:100%;height:100%;object-fit:cover;">
                 </div>
                 <div class="row-text">
-                    <h2>Boost Moderate Cameras to Powerful Machine Vision Nodes</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #22d3ee;">Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</li>
-                        <li style="--accent: #22d3ee;">On-device AI processing: face detection, people counting, demographics, and route tracking in real time</li>
-                        <li style="--accent: #22d3ee;">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #22d3ee"]::before{background:#22d3ee;}</style>
+                    <h2>Transform Moderate Hardware to Powerful Machine Vision Nodes</h2>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Any Camera.</span>
+                            <span class="punch-text">Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">On-Device AI.</span>
+                            <span class="punch-text">Face detection, people counting, demographics, and route tracking — processed in real time</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Infinite Scale.</span>
+                            <span class="punch-text">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</span>
+                        </div>
+                    </div>
                     <div class="hw-icons" id="eyenet-chips-platform"></div>
                     <a href="#application-suite" class="cta-btn" style="background: linear-gradient(135deg, #0891b2, #22d3ee);">See How It Works <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
@@ -622,12 +807,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Enjoy next-level staff presence with vision powered two-factor auth.</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #f59e0b;">Inteligent first level check-in/out with dymamic QR / NFC tech.</li>
-                        <li style="--accent: #f59e0b;">Combo QR/NFC with second level vision.</li>
-                        <li style="--accent: #f59e0b;">Asyncronous combo to have two factor vision applied on fast moving gate scenarios</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #f59e0b"]::before{background:#f59e0b;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Dynamic QR/NFC.</span>
+                            <span class="punch-text">Intelligent first level check-in/out with dynamic QR / NFC tech</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Vision 2FA.</span>
+                            <span class="punch-text">Combine QR/NFC with facial recognition for ironclad dual-factor verification</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Fast Gates.</span>
+                            <span class="punch-text">Asynchronous two-factor vision applied on fast-moving gate scenarios</span>
+                        </div>
+                    </div>
                     <div class="hw-icons" id="eyenet-chips-presence"></div>
                     <a href="#deep-dive-room-gate-protection" class="cta-btn" style="background: linear-gradient(135deg, #d97706, #f59e0b);">Discover eyenet presence <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
@@ -642,12 +835,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Empower Your Digital Signage with Real-Time Vision-Adaptive playlists & demographic analytics</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #e91e63;">Cameras read the room — age, gender, group size — and switch content in milliseconds</li>
-                        <li style="--accent: #e91e63;">Trigger playlists, promotions, or emergency messages automatically based on who's watching</li>
-                        <li style="--accent: #e91e63;">Measure every impression: views, dwell time, engagement rate — prove your signage ROI</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #e91e63"]::before{background:#e91e63;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Read the Room.</span>
+                            <span class="punch-text">Cameras read the room — age, gender, group size — and switch content in milliseconds</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Auto-Trigger.</span>
+                            <span class="punch-text">Trigger playlists, promotions, or emergency messages automatically based on who's watching</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Prove ROI.</span>
+                            <span class="punch-text">Measure every impression: views, dwell time, engagement rate — prove your signage ROI</span>
+                        </div>
+                    </div>
                     <div class="hw-icons" id="eyenet-chips-signage"></div>
                     <a href="#deep-dive-intelligent-signage" class="cta-btn" style="background: linear-gradient(135deg, #c2185b, #ff6f00);">Power Your Displays <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
@@ -661,13 +862,21 @@
                     <img src="assets/shipping-presence.jpeg" alt="Access Control — Entrance and Exit Points" style="width:100%;height:100%;object-fit:cover;">
                 </div>
                 <div class="row-text">
-                    <h2>Track exactly who is in and out of your premices in real time</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #10b981;">With eyenet presence badges, printed (tickets) or dynamic (using mobile phone devices).</li>
-                        <li style="--accent: #10b981;">Intant alerts on mobile devices and your other existing systems.</li>
-                        <li style="--accent: #10b981;">Operational reports of presence events.</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #10b981"]::before{background:#10b981;}</style>
+                    <h2>Track exactly who is in and out of your premises in real time</h2>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Any Badge.</span>
+                            <span class="punch-text">Support printed tickets or dynamic passes via mobile phone devices — your choice</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Live Alerts.</span>
+                            <span class="punch-text">Instant notifications on mobile devices and your existing security systems</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Reports.</span>
+                            <span class="punch-text">Operational presence reports with full event history for compliance</span>
+                        </div>
+                    </div>
                     <div class="hw-icons" id="eyenet-chips-access"></div>
                     <a href="#deep-dive-gate-activity" class="cta-btn" style="background: linear-gradient(135deg, #059669, #34d399);">Discover eyenet presence <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
@@ -682,12 +891,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Cover Restricted Areas with Machine Vision Protective Nets</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #ef4444;">Define virtual perimeters around any zone — machinery rooms, cargo holds, server racks — enforced 24/7 by AI</li>
-                        <li style="--accent: #ef4444;">Instant mobile and email alerts to supervisors the moment an unauthorised presence is detected</li>
-                        <li style="--accent: #ef4444;">Lone-worker monitoring, PPE compliance checks, and automatic incident documentation built in</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #ef4444"]::before{background:#ef4444;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Virtual Nets.</span>
+                            <span class="punch-text">Define virtual perimeters around any zone — enforced 24/7 by AI</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Instant Alerts.</span>
+                            <span class="punch-text">Mobile and email notifications the moment an unauthorised presence is detected</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Built-In Safety.</span>
+                            <span class="punch-text">Lone-worker monitoring, PPE checks, and automatic incident documentation</span>
+                        </div>
+                    </div>
                     <div class="hw-icons" id="eyenet-chips-restricted"></div>
                     <a href="#deep-dive-room-gate-protection" class="cta-btn" style="background: linear-gradient(135deg, #b91c1c, #ef4444);">Deploy Virtual Perimeters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
@@ -702,12 +919,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Protect VIPs with Instant Machine Vision Eyeware</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #fbbf24;">Instant face recognition and person-of-interest alerts streamed directly to security eyewear and mobile devices</li>
-                        <li style="--accent: #fbbf24;">Known-face whitelists, threat watchlists, and real-time demographic profiling — all on-premises, all private</li>
-                        <li style="--accent: #fbbf24;">Parallel multi-camera detection across an entire venue, coordinated through a single command dashboard</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #fbbf24"]::before{background:#fbbf24;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Face Match.</span>
+                            <span class="punch-text">Instant face recognition and POI alerts streamed directly to eyewear and mobile</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">On-Prem.</span>
+                            <span class="punch-text">Whitelists, watchlists, and demographic profiling — all on-premises, fully private</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Multi-Cam.</span>
+                            <span class="punch-text">Parallel detection across entire venues, coordinated through a single dashboard</span>
+                        </div>
+                    </div>
                     <div class="hw-icons" id="eyenet-chips-vip"></div>
                     <a href="#deep-dive-sentinel" class="cta-btn" style="background: linear-gradient(135deg, #92400e, #fbbf24);">Protect What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
@@ -722,12 +947,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Take Full Operational Control Remotely — Even with a Single Mobile Phone</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #3b82f6;">Secure VPN-powered remote access to every camera, trigger, and dashboard from anywhere in the world</li>
-                        <li style="--accent: #3b82f6;">Mobile app with live feeds, push alerts, and full configuration control — manage an entire site from your pocket</li>
-                        <li style="--accent: #3b82f6;">Zero cloud dependency for video and data — your footage never leaves your premises, even when you do</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #3b82f6"]::before{background:#3b82f6;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">VPN Access.</span>
+                            <span class="punch-text">Secure VPN-powered remote access to every camera, trigger, and dashboard worldwide</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Pocket Control.</span>
+                            <span class="punch-text">Live feeds, push alerts, and full configuration — manage an entire site from your phone</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Zero Cloud.</span>
+                            <span class="punch-text">No cloud dependency for video or data — your footage never leaves your premises</span>
+                        </div>
+                    </div>
                     <div class="hw-icons" id="eyenet-chips-remote"></div>
                     <a href="#value-across-every-role" class="cta-btn" style="background: linear-gradient(135deg, #2563eb, #60a5fa);">Manage From Anywhere <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
@@ -742,12 +975,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Get Started Instantly Using Everyday Hardware</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #0ea5e9;">16 GB of RAM and a modern CPU — that's all. No GPU servers, no cloud subscriptions, no vendor lock-in</li>
-                        <li style="--accent: #0ea5e9;">Plug in any IP camera, WiFi cam, or just open the app on your phone — your first detection runs in minutes</li>
-                        <li style="--accent: #0ea5e9;">Start with one camera and one room; scale to hundreds of cameras across multiple sites when you're ready</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #0ea5e9"]::before{background:#0ea5e9;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Lightweight.</span>
+                            <span class="punch-text">16 GB RAM and a modern CPU — that's all. No GPU servers, no cloud subscriptions, no lock-in</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Plug & Play.</span>
+                            <span class="punch-text">Connect any IP camera, WiFi cam, or your phone — first detection runs in minutes</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Start Small.</span>
+                            <span class="punch-text">Begin with one camera and one room; scale to hundreds across multiple sites when ready</span>
+                        </div>
+                    </div>
                     <div class="hw-icons" id="eyenet-chips-instant"></div>
                     <a href="#application-suite" class="cta-btn" style="background: linear-gradient(135deg, #0284c7, #38bdf8);">Get Started in Minutes <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div>
@@ -1073,12 +1314,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Secure staff presence compliance from one single office to entire maritime fleets</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #f59e0b;">Staff presence.</li>
-                        <li style="--accent: #f59e0b;">Incindents alelrts in real time.</li>
-                        <li style="--accent: #f59e0b;">Operational analyitcs for presence compliance.</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #f59e0b"]::before{background:#f59e0b;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Presence.</span>
+                            <span class="punch-text">Track staff presence across single offices or entire maritime fleets</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Live Alerts.</span>
+                            <span class="punch-text">Incident alerts delivered in real time to supervisors and stakeholders</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Analytics.</span>
+                            <span class="punch-text">Operational analytics for presence compliance across all locations</span>
+                        </div>
+                    </div>
                     <div class="hw-icons">
                         <span>Presence</span><span>QR / NFC</span><span>Smartphone</span><span>Multi-Site Globe</span>
                     </div>
@@ -1095,12 +1344,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Multiply Your Security Team with Always-On AI Surveillance</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #3b82f6;">AI watches every feed simultaneously — your team focuses only on verified alerts, not endless screens</li>
-                        <li style="--accent: #3b82f6;">Instant threat classification: intrusion, loitering, tailgating, and crowd density flagged before they escalate</li>
-                        <li style="--accent: #3b82f6;">Shift handover reports, incident timelines, and evidence exports generated automatically — audit-ready 24/7</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #3b82f6"]::before{background:#3b82f6;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">AI Watch.</span>
+                            <span class="punch-text">AI watches every feed simultaneously — your team focuses only on verified alerts</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Threat Class.</span>
+                            <span class="punch-text">Intrusion, loitering, tailgating, crowd density — flagged before they escalate</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Auto-Reports.</span>
+                            <span class="punch-text">Shift handover reports, timelines, and evidence exports — audit-ready 24/7</span>
+                        </div>
+                    </div>
                     <div class="hw-icons">
                         <span>Multi-Monitor Console</span><span>Two-Way Radio</span><span>Tablet</span><span>Body-Worn Camera</span>
                     </div>
@@ -1117,12 +1374,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Turn Foot Traffic into Measurable Marketing Intelligence</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #ec4899;">Know exactly who sees your displays — age, gender, group size, and attention time — with zero surveys</li>
-                        <li style="--accent: #ec4899;">A/B test signage campaigns in real time: swap content based on live audience data and measure what converts</li>
-                        <li style="--accent: #ec4899;">Prove ROI to stakeholders with automated impression reports, engagement rates, and footfall-to-sales funnels</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #ec4899"]::before{background:#ec4899;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Zero Surveys.</span>
+                            <span class="punch-text">Know exactly who sees your displays — age, gender, group size, attention time</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">A/B Test.</span>
+                            <span class="punch-text">Swap content based on live audience data and measure what converts in real time</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Prove ROI.</span>
+                            <span class="punch-text">Automated impression reports, engagement rates, and footfall-to-sales funnels</span>
+                        </div>
+                    </div>
                     <div class="hw-icons">
                         <span>Large Display</span><span>Laptop</span><span>Digital Signage Screen</span><span>Chart / Graph</span>
                     </div>
@@ -1139,12 +1404,20 @@
                 </div>
                 <div class="row-text">
                     <h2>Automate Facility Oversight from Loading Dock to Front Door</h2>
-                    <ul class="sub-punchlines">
-                        <li style="--accent: #14b8a6;">Automated zone monitoring across every floor, gate, and dock — one person sees what ten used to patrol</li>
-                        <li style="--accent: #14b8a6;">Predictive maintenance alerts: crowd build-ups, blocked exits, and HVAC triggers based on real-time occupancy</li>
-                        <li style="--accent: #14b8a6;">Compliance-ready audit logs with timestamped video evidence, occupancy records, and incident documentation</li>
-                    </ul>
-                    <style>.marketing-row .sub-punchlines li[style*="--accent: #14b8a6"]::before{background:#14b8a6;}</style>
+                    <div class="sub-punchlines-inline">
+                        <div class="punch-item">
+                            <span class="punch-lead">Auto-Zones.</span>
+                            <span class="punch-text">Zone monitoring across every floor, gate, and dock — one person sees what ten used to patrol</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Predictive.</span>
+                            <span class="punch-text">Crowd build-ups, blocked exits, and HVAC triggers based on real-time occupancy</span>
+                        </div>
+                        <div class="punch-item">
+                            <span class="punch-lead">Audit-Ready.</span>
+                            <span class="punch-text">Compliance-ready logs with timestamped video, occupancy records, and incident docs</span>
+                        </div>
+                    </div>
                     <div class="hw-icons">
                         <span>Tablet</span><span>Ceiling Camera</span><span>Floor-Plan Map</span><span>Clipboard-Check</span><span>Walkie-Talkie</span>
                     </div>
@@ -1402,11 +1675,27 @@
         </section>
 
         <section class="mb-24">
-            <div class="professional-card quote-section rounded-2xl p-8 md:p-12 text-center">
-                <p class="text-3xl md:text-4xl font-light text-slate-800 mb-4 leading-relaxed">
-                    "Eyenet makes the unseen visible."
-                </p>
-                <div class="w-16 h-0.5 bg-gradient-to-r from-[#003F5C] to-[#7A5195] mx-auto"></div>
+            <div class="professional-card quote-section rounded-2xl p-8 md:p-12">
+                <div class="var4-list">
+                    <div class="var4-item">
+                        <span class="var4-lead">Any Camera.</span>
+                        <p>Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</p>
+                    </div>
+                    <div class="var4-item">
+                        <span class="var4-lead">On-Device AI.</span>
+                        <p>On-device AI processing: face detection, people counting, demographics, and route tracking in real time</p>
+                    </div>
+                    <div class="var4-item">
+                        <span class="var4-lead">Infinite Scale.</span>
+                        <p>One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</p>
+                    </div>
+                </div>
+                <div class="text-center mt-8 pt-6 border-t border-gray-200/30 dark:border-slate-700/30">
+                    <p class="text-3xl md:text-4xl font-light text-slate-800 mb-4 leading-relaxed">
+                        "Eyenet makes the unseen visible."
+                    </p>
+                    <div class="w-16 h-0.5 bg-gradient-to-r from-[#003F5C] to-[#7A5195] mx-auto"></div>
+                </div>
             </div>
         </section>
 
@@ -1746,6 +2035,27 @@
 
         // Instant Deployment
         addEyenetChips('eyenet-chips-instant', ['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Insights','VProfiles']);
+
+        // ── All Chips Header (headline-card-reel containers) ──
+        (function buildHeaderChips() {
+            const container = document.getElementById('all-chips-header');
+            if (!container) return;
+            const names = ['Presence','Handshake','Nod','Signage','Anonymous','VRadar','Gate','Sentinel','Insights','VProfiles','Logic','API'];
+            names.forEach(name => {
+                const card = document.createElement('div');
+                card.className = 'headline-card-reel';
+
+                const logoSvg = cloneLogoSvg(16);
+                logoSvg.classList.add('reel-logo-svg');
+                card.appendChild(logoSvg);
+
+                const subSvg = renderPixelText(name, '#fbbf24', 0.92);
+                subSvg.classList.add('reel-sub-svg');
+                card.appendChild(subSvg);
+
+                container.appendChild(card);
+            });
+        })();
 
         document.addEventListener('DOMContentLoaded', function () {
             const brilliantBlues = ['#003F5C', '#7A5195', '#EF5675', '#FFA600', '#374C80', '#BC5090'];
