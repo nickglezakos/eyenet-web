@@ -761,7 +761,8 @@
             </svg>
 
 
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mt-6">Your business deserves next-gen machine vision tools.</h2>
+            <h2 class="sr-only">Your business deserves next-gen machine vision tools.</h2>
+            <div id="tagline-gradient" class="mx-auto mt-6" style="max-width: 600px; width: 100%; display: flex; justify-content: center;"></div>
 
         </header>
 
@@ -1986,6 +1987,97 @@
           return svg;
         }
 
+        function renderGradientPixelText(text, colorStart, colorEnd, opacity) {
+          text = text.toUpperCase();
+          const chars = text.split('');
+          let totalW = 0;
+          const glyphData = chars.map(ch => FONT[ch] || FONT[' ']);
+          for (let i = 0; i < chars.length; i++) {
+            totalW += GLYPH_W * PIXEL + (i < chars.length - 1 ? SPACING : 0);
+          }
+          const totalH = GLYPH_H * PIXEL + (GLYPH_H - 1) * VS;
+          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.setAttribute('viewBox', `0 0 ${totalW} ${totalH}`);
+          svg.setAttribute('width', totalW);
+          svg.setAttribute('height', totalH);
+
+          const hexToRgb = (h) => {
+            const r = parseInt(h.slice(1,3), 16);
+            const g = parseInt(h.slice(3,5), 16);
+            const b = parseInt(h.slice(5,7), 16);
+            return [r, g, b];
+          };
+          const rgbToHex = (r, g, b) => '#' + [r, g, b].map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
+
+          const startRgb = hexToRgb(colorStart);
+          const endRgb = hexToRgb(colorEnd);
+          const totalChars = chars.length;
+
+          let cursorX = 0;
+          for (let gi = 0; gi < glyphData.length; gi++) {
+            const rows = glyphData[gi];
+            const t = totalChars > 1 ? gi / (totalChars - 1) : 0;
+            const r = Math.round(startRgb[0] + (endRgb[0] - startRgb[0]) * t);
+            const g = Math.round(startRgb[1] + (endRgb[1] - startRgb[1]) * t);
+            const b = Math.round(startRgb[2] + (endRgb[2] - startRgb[2]) * t);
+            const charColor = rgbToHex(r, g, b);
+
+            for (let row = 0; row < GLYPH_H; row++) {
+              const mask = rows[row];
+              for (let col = 0; col < GLYPH_W; col++) {
+                if (mask & (1 << (4 - col))) {
+                  const x = cursorX + col * PIXEL;
+                  const y = row * (PIXEL + VS);
+                  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                  rect.setAttribute('x', x);
+                  rect.setAttribute('y', y);
+                  rect.setAttribute('width', PIXEL);
+                  rect.setAttribute('height', PIXEL);
+                  rect.setAttribute('fill', charColor);
+                  rect.setAttribute('opacity', opacity);
+                  svg.appendChild(rect);
+                }
+              }
+            }
+            cursorX += GLYPH_W * PIXEL + SPACING;
+          }
+          return svg;
+        }
+
+        function renderTagline() {
+          const container = document.getElementById('tagline-gradient');
+          if (!container) return;
+          container.innerHTML = '';
+
+          const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          const startColor = isDark ? '#0891b2' : '#0e7490';
+          const endColor = isDark ? '#67e8f9' : '#0891b2';
+          const opacity = 0.95;
+
+          const svg = renderGradientPixelText('Your business deserves next-gen machine vision tools.', startColor, endColor, opacity);
+          const vw = Math.max(document.documentElement.clientWidth, 320);
+          let height;
+          if (vw >= 768) {
+            height = 30;
+          } else {
+            height = 20;
+          }
+          svg.style.height = height + 'px';
+          svg.style.width = 'auto';
+          svg.style.display = 'block';
+          container.appendChild(svg);
+        }
+
+        // Render tagline on load
+        renderTagline();
+
+        // Re-render on resize for responsive sizing
+        let taglineResizeTimeout;
+        window.addEventListener('resize', () => {
+          clearTimeout(taglineResizeTimeout);
+          taglineResizeTimeout = setTimeout(renderTagline, 150);
+        });
+
         function cloneLogoSvg(height) {
           const svg = document.querySelector('header svg').cloneNode(true);
           svg.removeAttribute('class');
@@ -2232,6 +2324,9 @@
             
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            
+            // Re-render gradient tagline for new theme
+            renderTagline();
             
             // Toggle icon visibility
             const sunIcon = document.querySelector('.sun-icon');
