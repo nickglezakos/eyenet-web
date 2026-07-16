@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eyenet Header Redesign — Proposals</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #060e17; color: #f1f5f9; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+  .section-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #22d3ee;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #f8fafc;
+  }
+  .section-subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .direction-card {
+    background: linear-gradient(145deg, #0b1a2a, #0e1f33);
+    border: 1px solid rgba(8,145,178,0.18);
+    border-radius: 2rem;
+    margin-bottom: 48px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px -20px rgba(0,0,0,0.6);
+  }
+  .direction-label {
+    padding: 16px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .direction-badge {
+    background: linear-gradient(135deg, #0891b2, #22d3ee);
+    color: #060e17;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+  }
+  .direction-label h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f1f5f9;
+  }
+  .direction-label .rec {
+    font-size: 11px;
+    color: #22d3ee;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+  .direction-preview {
+    padding: 0;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ===== DIRECTION A: Command Center ===== */
+  .dir-a-bg {
+    background: radial-gradient(ellipse at 50% 30%, rgba(8,145,178,0.08) 0%, transparent 70%),
+                linear-gradient(180deg, #060e17 0%, #0b1420 100%);
+    min-height: 500px;
+    position: relative;
+  }
+  .dir-a-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(8,145,178,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(8,145,178,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 70%);
+  }
+  .dir-a-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px 40px;
+  }
+  .dir-a-logo {
+    display: block;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 32px;
+    filter: drop-shadow(0 0 40px rgba(8,145,178,0.3));
+    animation: logoIn 1s ease-out;
+  }
+  @keyframes logoIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .dir-a-tagline {
+    font-size: 28px;
+    font-weight: 300;
+    color: #e2e8f0;
+    letter-spacing: -0.01em;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    line-height: 1.3;
+    animation: taglineIn 1s ease-out 0.3s both;
+  }
+  @keyframes taglineIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .dir-a-tagline em {
+    font-style: normal;
+    font-weight: 700;
+    color: #22d3ee;
+  }
+  .dir-a-underline {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #22d3ee, transparent);
+    margin: 24px auto 0;
+    animation: lineDraw 1.5s ease-out 0.6s both;
+    transform-origin: center;
+  }
+  @keyframes lineDraw {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
+  }
+  .dir-a-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 32px;
+    animation: statsIn 1s ease-out 0.8s both;
+    flex-wrap: wrap;
+  }
+  @keyframes statsIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .dir-a-stat {
+    background: rgba(6,14,23,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    padding: 12px 24px;
+    backdrop-filter: blur(16px);
+    text-align: center;
+    min-width: 130px;
+  }
+  .dir-a-stat .val {
+    font-size: 28px;
+    font-weight: 800;
+    color: #22d3ee;
+    letter-spacing: -0.02em;
+    display: block;
+  }
+  .dir-a-stat .lbl {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 4px;
+  }
+
+  /* ===== DIRECTION B: Split Hero ===== */
+  .dir-b {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+    align-items: center;
+    padding: 40px 60px;
+    gap: 40px;
+    background: linear-gradient(135deg, #060e17 0%, #0b1420 100%);
+  }
+  .dir-b-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .dir-b-logo {
+    max-width: 360px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 30px rgba(8,145,178,0.25));
+  }
+  .dir-b-tagline {
+    font-size: 26px;
+    font-weight: 300;
+    color: #e2e8f0;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    max-width: 420px;
+  }
+  .dir-b-tagline em {
+    font-style: normal;
+    font-weight: 700;
+    color: #22d3ee;
+  }
+  .dir-b-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #0891b2, #22d3ee);
+    color: #060e17;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    width: fit-content;
+    box-shadow: 0 8px 25px -8px rgba(8,145,178,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .dir-b-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px -8px rgba(8,145,178,0.55);
+  }
+  .dir-b-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .dir-b-eye {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(8,145,178,0.15) 0%, transparent 70%);
+    border: 2px solid rgba(8,145,178,0.2);
+    position: relative;
+  }
+  .dir-b-eye::before {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(8,145,178,0.3);
+  }
+  .dir-b-eye::after {
+    content: '';
+    position: absolute;
+    inset: 80px;
+    border-radius: 50%;
+    background: rgba(8,145,178,0.2);
+    box-shadow: 0 0 40px rgba(8,145,178,0.3);
+  }
+
+  /* ===== DIRECTION C: Minimalist Authority ===== */
+  .dir-c {
+    text-align: center;
+    padding: 80px 60px 60px;
+    background: linear-gradient(180deg, #060e17 0%, #0b1420 100%);
+  }
+  .dir-c-logo {
+    max-width: 420px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 36px;
+    filter: drop-shadow(0 0 25px rgba(8,145,178,0.2));
+  }
+  .dir-c-tagline {
+    font-size: 24px;
+    font-weight: 200;
+    color: #94a3b8;
+    letter-spacing: 0.04em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  .dir-c-tagline em {
+    font-style: normal;
+    font-weight: 600;
+    color: #22d3ee;
+  }
+  .dir-c-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(8,145,178,0.4), transparent);
+    margin: 48px auto 0;
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 767px) {
+    .dir-b {
+      grid-template-columns: 1fr;
+      padding: 40px 30px;
+      gap: 30px;
+      text-align: center;
+    }
+    .dir-b-left { align-items: center; }
+    .dir-b-tagline { font-size: 20px; }
+    .dir-b-eye { width: 150px; height: 150px; }
+    .dir-a-tagline { font-size: 20px; }
+    .dir-a-stats { gap: 1rem; }
+    .dir-a-stat { min-width: 110px; padding: 10px 18px; }
+    .dir-a-stat .val { font-size: 22px; }
+    .dir-c-tagline { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="section-label">Header Redesign Proposals</div>
+  <h1 class="section-title">Modern Header Directions</h1>
+  <p class="section-subtitle">Three approaches for a modernized Eyenet header section — matching the dark navy/slate design language with cyan accents. Each keeps the brand identity intact while elevating visual impact.</p>
+
+  <!-- DIRECTION A: Command Center -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <span class="direction-badge">A</span>
+      <h3>Command Center — Full-Bleed Dark Hero</h3>
+      <span class="rec">★ Recommended</span>
+    </div>
+    <div class="direction-preview dir-a-bg">
+      <div class="dir-a-grid"></div>
+      <div class="dir-a-content">
+        <svg class="dir-a-logo" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/>
+          <rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/><rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/>
+          <rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/><rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/>
+          <rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+          <rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+          <rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/><rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
+        </svg>
+        <p class="dir-a-tagline">Your business deserves <em>next-gen</em> machine vision tools</p>
+        <div class="dir-a-underline"></div>
+        <div class="dir-a-stats">
+          <div class="dir-a-stat"><span class="val">∞</span><span class="lbl">Cameras</span></div>
+          <div class="dir-a-stat"><span class="val">Sub 50ms</span><span class="lbl">Latency</span></div>
+          <div class="dir-a-stat"><span class="val">99.7%</span><span class="lbl">Uptime</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION B: Split Hero -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <span class="direction-badge">B</span>
+      <h3>Split Hero — Logo & Tagline + Visual Element</h3>
+    </div>
+    <div class="direction-preview dir-b">
+      <div class="dir-b-left">
+        <svg class="dir-b-logo" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/>
+          <rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/><rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/>
+          <rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/><rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/>
+          <rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+          <rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+          <rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/><rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
+        </svg>
+        <p class="dir-b-tagline">Your business deserves <em>next-gen</em> machine vision tools</p>
+        <a href="#" class="dir-b-cta">Explore the Platform <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </div>
+      <div class="dir-b-right">
+        <div class="dir-b-eye"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION C: Minimalist Authority -->
+  <div class="direction-card">
+    <div class="direction-label">
+      <span class="direction-badge">C</span>
+      <h3>Minimalist Authority — Centered, Compact, Typographic</h3>
+    </div>
+    <div class="direction-preview dir-c">
+      <svg class="dir-c-logo" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/>
+        <rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/><rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/>
+        <rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/><rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/>
+        <rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+        <rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+        <rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/><rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
+      </svg>
+      <p class="dir-c-tagline">Your business deserves <em>next-gen</em> machine vision tools</p>
+      <div class="dir-c-divider"></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

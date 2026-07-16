@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eyenet — Hero Card Redesign · Proposal B</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #060e17;
+    color: #e2e8f0;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .section-label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #22d3ee;
+    margin-bottom: 0.25rem;
+  }
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 2rem;
+  }
+  .theme-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 1.25rem;
+  }
+  .theme-label::before { content: ''; width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ===== COMMON CARD SHELL ===== */
+  .card {
+    border-radius: 2rem;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-rows: auto auto;
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+
+  /* ============================================================
+     DARK THEME
+     ============================================================ */
+  .card-dark {
+    background: linear-gradient(145deg, #0b1a2a 0%, #0e1f33 100%);
+    border: 1px solid rgba(8, 145, 178, 0.18);
+    box-shadow: 0 25px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(8, 145, 178, 0.08) inset;
+  }
+  .card-dark:hover { border-color: rgba(8, 145, 178, 0.4); box-shadow: 0 25px 70px -20px rgba(8, 145, 178, 0.15); }
+  .card-dark .theme-label::before { background: #22d3ee; }
+
+  .card-dark .hero-area {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+  }
+  .card-dark .hero-area img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .card-dark .hero-gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(6,14,23,0.1) 0%,
+      rgba(6,14,23,0.35) 50%,
+      rgba(6,14,23,0.95) 100%);
+  }
+  .card-dark .hero-overlay {
+    position: absolute;
+    bottom: 1.5rem; left: 2.5rem;
+    z-index: 2;
+  }
+  .card-dark .headline {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: #fff;
+    max-width: 650px;
+  }
+  .card-dark .headline em { font-style: normal; color: #22d3ee; }
+
+  .card-dark .stats-panel {
+    position: absolute;
+    top: 1.5rem; right: 2rem;
+    z-index: 2;
+    display: flex; flex-direction: column;
+    gap: 0.6rem;
+  }
+  .card-dark .stat-badge {
+    background: rgba(6,14,23,0.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 1rem;
+    padding: 0.6rem 1rem;
+    display: flex; align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: #e2e8f0;
+  }
+  .card-dark .stat-val {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #22d3ee;
+    letter-spacing: -0.02em;
+  }
+
+  .card-dark .body-row {
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: rgba(11,26,42,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .card-dark .features-row {
+    display: flex; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .card-dark .feature {
+    flex: 1; min-width: 180px;
+  }
+  .card-dark .feature-head {
+    display: flex; align-items: center;
+    gap: 0.5rem; margin-bottom: 0.3rem;
+  }
+  .card-dark .feature-dot {
+    width: 0.5rem; height: 0.5rem;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 10px #22d3ee;
+  }
+  .card-dark .feature-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #f1f5f9;
+  }
+  .card-dark .feature-desc {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.45;
+    padding-left: 1rem;
+  }
+
+  .card-dark .cta-pill {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #0891b2, #22d3ee);
+    color: #060e17;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 25px -8px rgba(8, 145, 178, 0.4);
+  }
+  .card-dark .cta-pill:hover { transform: translateY(-2px); box-shadow: 0 12px 35px -8px rgba(8, 145, 178, 0.55); }
+  .card-dark .cta-pill svg { width: 1.1rem; height: 1.1rem; transition: transform 0.2s; }
+  .card-dark .cta-pill:hover svg { transform: translateX(3px); }
+
+  .card-dark .chip-row {
+    display: flex; gap: 0.4rem; flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+  .card-dark .chip {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 0.4rem;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    display: flex; align-items: center;
+    gap: 0.25rem;
+  }
+
+  /* ============================================================
+     LIGHT THEME
+     ============================================================ */
+  .card-light {
+    background: #ffffff;
+    border: 1px solid rgba(8, 145, 178, 0.15);
+    box-shadow: 0 20px 50px -15px rgba(0,0,0,0.12), 0 0 0 1px rgba(8, 145, 178, 0.06) inset;
+  }
+  .card-light:hover { border-color: rgba(8, 145, 178, 0.35); box-shadow: 0 25px 60px -15px rgba(8, 145, 178, 0.12); }
+  .card-light .theme-label::before { background: #0891b2; }
+
+  .card-light .hero-area {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+  }
+  .card-light .hero-area img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .card-light .hero-gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(255,255,255,0.0) 0%,
+      rgba(255,255,255,0.25) 50%,
+      rgba(255,255,255,0.90) 100%);
+    pointer-events: none;
+  }
+  .card-light .hero-overlay {
+    position: absolute;
+    bottom: 1.5rem; left: 2.5rem;
+    z-index: 2;
+  }
+  .card-light .headline {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: #0f172a;
+    max-width: 650px;
+  }
+  .card-light .headline em { font-style: normal; color: #0891b2; }
+
+  .card-light .stats-panel {
+    position: absolute;
+    top: 1.5rem; right: 2rem;
+    z-index: 2;
+    display: flex; flex-direction: column;
+    gap: 0.6rem;
+  }
+  .card-light .stat-badge {
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(8, 145, 178, 0.15);
+    border-radius: 1rem;
+    padding: 0.6rem 1rem;
+    display: flex; align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: #334155;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .card-light .stat-val {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0891b2;
+    letter-spacing: -0.02em;
+  }
+
+  .card-light .body-row {
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    border-top: 1px solid rgba(8, 145, 178, 0.1);
+    background: #f8fafc;
+  }
+  .card-light .features-row {
+    display: flex; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .card-light .feature {
+    flex: 1; min-width: 180px;
+  }
+  .card-light .feature-head {
+    display: flex; align-items: center;
+    gap: 0.5rem; margin-bottom: 0.3rem;
+  }
+  .card-light .feature-dot {
+    width: 0.5rem; height: 0.5rem;
+    border-radius: 50%;
+    background: #0891b2;
+    box-shadow: 0 0 8px rgba(8, 145, 178, 0.5);
+  }
+  .card-light .feature-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0f172a;
+  }
+  .card-light .feature-desc {
+    font-size: 0.8rem;
+    color: #475569;
+    line-height: 1.45;
+    padding-left: 1rem;
+  }
+
+  .card-light .cta-pill {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #0891b2, #06b6d4);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 25px -8px rgba(8, 145, 178, 0.35);
+  }
+  .card-light .cta-pill:hover { transform: translateY(-2px); box-shadow: 0 12px 35px -8px rgba(8, 145, 178, 0.5); }
+  .card-light .cta-pill svg { width: 1.1rem; height: 1.1rem; transition: transform 0.2s; }
+  .card-light .cta-pill:hover svg { transform: translateX(3px); }
+
+  .card-light .chip-row {
+    display: flex; gap: 0.4rem; flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+  .card-light .chip {
+    background: rgba(8, 145, 178, 0.05);
+    border: 1px solid rgba(8, 145, 178, 0.12);
+    border-radius: 0.4rem;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.8rem;
+    color: #334155;
+    display: flex; align-items: center;
+    gap: 0.25rem;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    body { padding: 2rem 1rem; }
+    .headline { font-size: 1.8rem; }
+    .stats-panel { display: none; }
+    .body-row { grid-template-columns: 1fr; padding: 1.5rem; }
+    .features-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header style="text-align:center; max-width:700px;">
+  <div class="section-label">Hero Card Redesign</div>
+  <div class="section-title">Proposal B - Full-Bleed Image + Floating Stats</div>
+  <p style="color:#64748b; line-height:1.6; font-size:0.95rem;">
+    Same layout, two colour systems. Scroll for the light theme variant.</p>
+</header>
+
+<!-- ============================================================
+     DARK THEME
+-->
+<article>
+  <span class="theme-label">Dark Theme</span>
+  <div class="card card-dark">
+    <div class="hero-area">
+      <img src="../assets/Platform Hero.png" alt="Platform Hero" loading="lazy">
+      <div class="hero-gradient"></div>
+      <div class="stats-panel">
+        <div class="stat-badge"><span class="stat-val">&#8734;</span> Cameras</div>
+        <div class="stat-badge"><span class="stat-val">Sub 50ms</span> Latency</div>
+        <div class="stat-badge"><span class="stat-val">99.7%</span> Uptime</div>
+      </div>
+      <div class="hero-overlay">
+        <div class="headline">Transform <em>moderate hardware</em> into powerful machine vision nodes</div>
+      </div>
+    </div>
+
+    <div class="body-row">
+      <div class="features-row">
+        <div class="feature">
+          <div class="feature-head"><span class="feature-dot"></span><span class="feature-title">Any Camera.</span></div>
+          <div class="feature-desc">Turn any IP, WiFi, or mobile camera into an intelligent sensor - no specialised hardware required</div>
+        </div>
+        <div class="feature">
+          <div class="feature-head"><span class="feature-dot"></span><span class="feature-title">On-Device AI.</span></div>
+          <div class="feature-desc">Face detection, people counting, demographics, and route tracking - processed in real time</div>
+        </div>
+        <div class="feature">
+          <div class="feature-head"><span class="feature-dot"></span><span class="feature-title">Infinite Scale.</span></div>
+          <div class="feature-desc">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</div>
+        </div>
+      </div>
+
+      <div>
+        <a href="#application-suite" class="cta-pill">
+          See How It Works
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+        <div class="chip-row">
+          <span class="chip">Jetson</span>
+          <span class="chip">Raspberry Pi</span>
+          <span class="chip">x86 Edge</span>
+          <span class="chip">Coral TPU</span>
+          <span class="chip">ARM64</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     LIGHT THEME
+-->
+<article>
+  <span class="theme-label">Light Theme</span>
+  <div class="card card-light">
+    <div class="hero-area">
+      <img src="../assets/Platform Hero.png" alt="Platform Hero" loading="lazy">
+      <div class="hero-gradient"></div>
+      <div class="stats-panel">
+        <div class="stat-badge"><span class="stat-val">&#8734;</span> Cameras</div>
+        <div class="stat-badge"><span class="stat-val">Sub 50ms</span> Latency</div>
+        <div class="stat-badge"><span class="stat-val">99.7%</span> Uptime</div>
+      </div>
+      <div class="hero-overlay">
+        <div class="headline">Transform <em>moderate hardware</em> into powerful machine vision nodes</div>
+      </div>
+    </div>
+
+    <div class="body-row">
+      <div class="features-row">
+        <div class="feature">
+          <div class="feature-head"><span class="feature-dot"></span><span class="feature-title">Any Camera.</span></div>
+          <div class="feature-desc">Turn any IP, WiFi, or mobile camera into an intelligent sensor - no specialised hardware required</div>
+        </div>
+        <div class="feature">
+          <div class="feature-head"><span class="feature-dot"></span><span class="feature-title">On-Device AI.</span></div>
+          <div class="feature-desc">Face detection, people counting, demographics, and route tracking - processed in real time</div>
+        </div>
+        <div class="feature">
+          <div class="feature-head"><span class="feature-dot"></span><span class="feature-title">Infinite Scale.</span></div>
+          <div class="feature-desc">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</div>
+        </div>
+      </div>
+
+      <div>
+        <a href="#application-suite" class="cta-pill">
+          See How It Works
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+        <div class="chip-row">
+          <span class="chip">Jetson</span>
+          <span class="chip">Raspberry Pi</span>
+          <span class="chip">x86 Edge</span>
+          <span class="chip">Coral TPU</span>
+          <span class="chip">ARM64</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<footer style="color:#475569; font-size:0.8rem; margin-top:1rem; text-align:center;">
+  Eyenet Web - Hero Card UX Proposal B - July 2026
+</footer>
+
+</body>
+</html>
