@@ -1099,9 +1099,9 @@
     <div class="badge-nav-container" id="badgeNavContainer">
         <span class="badge-nav active" data-page="home" onclick="showPage('home')">Overview</span>
         <span class="badge-nav" data-page="executive" onclick="showPage('executive')">Executive Summary</span>
+        <span class="badge-nav" data-page="services" onclick="showPage('services')">Services & Functionality</span>
         <span class="badge-nav" data-page="personas" onclick="showPage('personas')">Personas</span>
         <span class="badge-nav" data-page="competitive" onclick="showPage('competitive')">Competitive</span>
-        <span class="badge-nav" data-page="functionalities" onclick="showPage('functionalities')">Functionalities</span>
         <span class="badge-nav" data-page="business-better" onclick="showPage('business-better')">Make Business Better</span>
         <span class="badge-nav" data-page="revenue" onclick="showPage('revenue')">Financial Model</span>
         <span class="badge-nav" data-page="investor" onclick="showPage('investor')">Investor Strategy</span>
@@ -1122,6 +1122,12 @@
                 </svg>
                 Executive Summary
             </a></li>
+            <li><a href="#services" class="nav-link" onclick="showPage('services')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                Services
+            </a></li>
             <li><a href="#personas" class="nav-link" onclick="showPage('personas')">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
@@ -1133,13 +1139,6 @@
                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
                 Competitive Analysis
-            </a></li>
-            <li><a href="#functionalities" class="nav-link" onclick="showPage('functionalities')">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                Platform Functionalities
             </a></li>
             <li><a href="#business-better" class="nav-link" onclick="showPage('business-better')">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1175,9 +1174,10 @@
             <ol>
                 <li>Overview</li>
                 <li>Executive Summary</li>
+                <li>Services</li>
                 <li>Personas</li>
                 <li>Competitive Analysis</li>
-                <li>Platform Functionalities</li>
+                <li>Services & Platform Functionalities</li>
                 <li>Make Business Better</li>
                 <li>Financial Model</li>
                 <li>Investor Strategy</li>
@@ -1206,16 +1206,16 @@
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
                     <div style="background: rgba(34, 211, 238, 0.1); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(34, 211, 238, 0.2); backdrop-filter: blur(10px);">
+                        <h3>Services & Platform Functionalities</h3>
+                        <p>Five specialised applications from Presence to Matrix plus core platform capabilities — computer vision, intelligent triggers, event-driven automation, and more.</p>
+                    </div>
+                    <div style="background: rgba(34, 211, 238, 0.1); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(34, 211, 238, 0.2); backdrop-filter: blur(10px);">
                         <h3>Customer Personas</h3>
                         <p>Detailed profiles of target customers including warehouse managers, educational institutes, industrial facilities, retail owners, and security services.</p>
                     </div>
                     <div style="background: rgba(34, 211, 238, 0.1); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(34, 211, 238, 0.2); backdrop-filter: blur(10px);">
                         <h3>Competitive Analysis</h3>
                         <p>Comprehensive analysis of EyeNet Vision's commercial product offerings, competitive positioning, and market opportunities.</p>
-                    </div>
-                    <div style="background: rgba(34, 211, 238, 0.1); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(34, 211, 238, 0.2); backdrop-filter: blur(10px);">
-                        <h3>Platform Functionalities</h3>
-                        <p>Core capabilities including computer vision, intelligent triggers, automated actions, and event-driven automation.</p>
                     </div>
                     <div style="background: rgba(34, 211, 238, 0.1); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(34, 211, 238, 0.2); backdrop-filter: blur(10px);">
                         <h3>Make Business Better</h3>
@@ -1392,39 +1392,39 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Intelligent Signage</strong></td>
+                            <td><strong>Eyenet Signage</strong></td>
                             <td>Retail, Marketing, Events</td>
                             <td><span class="badge badge-success">Beta Ready</span></td>
                             <td>Q2 2026</td>
                         </tr>
                         <tr>
-                            <td><strong>Gate Activity</strong></td>
-                            <td>Security, Commercial Buildings</td>
+                            <td><strong>Eyenet Gate</strong></td>
+                            <td>Security, Commercial, Transport</td>
                             <td><span class="badge badge-success">Beta Ready</span></td>
                             <td>Q2 2026</td>
                         </tr>
                         <tr>
-                            <td><strong>Room & Gate Protection</strong></td>
+                            <td><strong>Eyenet Presence</strong></td>
                             <td>Education, Healthcare, Corporate</td>
                             <td><span class="badge badge-success">Beta Ready</span></td>
                             <td>Q2 2026</td>
                         </tr>
                         <tr>
-                            <td><strong>Sentinel</strong></td>
-                            <td>Security Firms, Corporate</td>
-                            <td><span class="badge badge-success">Beta Ready</span></td>
-                            <td>Q2 2026</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Underage Detector</strong></td>
-                            <td>Retail, Restaurants, Bars</td>
-                            <td><span class="badge badge-success">Beta Ready</span></td>
-                            <td>Q2 2026</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Security Officer Agent</strong></td>
-                            <td>Law Enforcement, Private Security</td>
+                            <td><strong>Eyenet Sentinel</strong></td>
+                            <td>Security, Government, Industrial</td>
                             <td><span class="badge badge-warning">Hardware Dev</span></td>
+                            <td>Q2 2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Eyenet Matrix</strong></td>
+                            <td>Multi-Site, Maritime, Franchise</td>
+                            <td><span class="badge badge-success">Beta Ready</span></td>
+                            <td>Q2 2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Eyenet Vradar</strong></td>
+                            <td>Law Enforcement, Private Security</td>
+                            <td><span class="badge badge-success">Beta Ready</span></td>
                             <td>Q3/Q4 2026</td>
                         </tr>
                     </tbody>
@@ -1731,6 +1731,410 @@
                         <em>This document contains proprietary and confidential information.</em>
                     </p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Services Page -->
+        <div id="services" class="page">
+            <div class="content-wrapper">
+                <h1>Eyenet Services & Platform Functionalities</h1>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    Five specialised applications engineered to address distinct operational challenges with precision and intelligence.
+                </p>
+
+                <h2>About Eyenet</h2>
+                <div class="info-box">
+                    <p style="margin-bottom: 0;">
+                        EyeNet is an on-premises, edge-computing computer vision platform for human activity monitoring and intelligent automation. It transforms standard cameras into powerful machine vision nodes — tracking and regulating human activity, empowering digital signage with real-time triggers, and taking complete control of entrance and exit points.
+                    </p>
+                </div>
+                <p>The platform operates efficiently on standard business hardware — 16 GB RAM and a modern multi-core CPU is all that's needed. There are no GPU servers, no cloud subscriptions, and no proprietary hardware lock-in. Connect any IP camera, WiFi cam, or mobile phone — the first detection runs in minutes. Scale from a single lens to a facility-wide mesh, from one office to entire maritime fleets, all connected securely over VPN with zero cloud dependency for video or data.</p>
+
+                <hr>
+
+                <!-- Eyenet Presence -->
+                <h2>1. Eyenet Presence</h2>
+                <div class="success-box">
+                    <p style="margin-bottom: 0;"><strong>Enjoy next-level staff presence with vision powered two-factor auth.</strong></p>
+                </div>
+                <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <div>
+                        <p>A versatile solution for monitoring attendance and activity in specific areas such as schools, gyms, or industrial spaces. It provides detailed attendance reports and enhanced security by ensuring only authorized individuals are present.</p>
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Assigns schedules and members to rooms, then tracks attendance and generates comprehensive reports.</li>
+                            <li>Sends automated alerts if unauthorized persons are detected in restricted areas.</li>
+                            <li>Can collaborate with Eyenet Gate for end-to-end entrance-to-area monitoring.</li>
+                            <li>Automatically sends attendance reports for minors to family members or sponsors in real time or on a recurring schedule.</li>
+                            <li>Dynamic QR/NFC check-in combined with facial recognition for ironclad dual-factor verification.</li>
+                            <li>Asynchronous two-factor vision applied on fast-moving gate scenarios.</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-color); align-self: start;">
+                        <p><strong>Available Modes</strong></p>
+                        <p><span class="badge badge-success">Area</span> <span class="badge badge-success">Gate</span></p>
+                        <p style="margin-top: 1rem;"><strong>Target Users</strong></p>
+                        <p style="margin-bottom: 0;">Schools, universities, gyms, industrial facilities, corporate offices, and hospitals.</p>
+                    </div>
+                </div>
+
+                <!-- Eyenet Signage -->
+                <h2>2. Eyenet Signage</h2>
+                <div class="success-box">
+                    <p style="margin-bottom: 0;"><strong>Empower your digital signage with real-time vision-adaptive playlists & demographic analytics.</strong></p>
+                </div>
+                <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <div>
+                        <p>Transforms traditional digital signage into a dynamic, data-driven marketing tool. By analyzing the age and gender of people approaching a display, it automatically serves targeted advertisements and media, maximizing engagement and campaign effectiveness.</p>
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Automatically displays content based on the demographics of the viewer — age, gender, group size — switching content in milliseconds.</li>
+                            <li>Trigger playlists, promotions, or emergency messages automatically based on who is watching.</li>
+                            <li>Owners and marketing collaborators can easily upload and assign targeted media via a user-friendly web interface.</li>
+                            <li>Measure every impression: views, dwell time, engagement rate — prove your signage ROI with audience analytics.</li>
+                            <li>Optional add-on for comprehensive people activity insights reports, including demographics, traffic counts, and activity heatmaps.</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-color); align-self: start;">
+                        <p><strong>Available Modes</strong></p>
+                        <p><span class="badge badge-success">Spot</span> <span class="badge badge-success">Gate</span> <span class="badge badge-success">Area</span></p>
+                        <p style="margin-top: 1rem;"><strong>Target Users</strong></p>
+                        <p style="margin-bottom: 0;">Retail shops, shopping malls, airports, advertising agencies, event venues, and marketing firms.</p>
+                    </div>
+                </div>
+
+                <!-- Eyenet Vradar -->
+                <h2>3. Eyenet Vradar</h2>
+                <div class="success-box">
+                    <p style="margin-bottom: 0;"><strong>Cover restricted areas with machine vision protective nets and mobile eyewear alerts.</strong></p>
+                </div>
+                <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <div>
+                        <p>An advanced, mobile security solution that operates using wearable camera eyewear (goggles) to empower security agents. It provides on-the-go alerts and streams data to a central command unit for collaborative security operations.</p>
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Provides instant audio alerts to the agent if a person of interest is detected in their field of view.</li>
+                            <li>All activity annotations are sent to a main computing unit, enabling the team operator to issue alerts and share information.</li>
+                            <li>The team operator can add a recently detected person to the "person of interest" group directly from an agent's live feed.</li>
+                            <li>Instant face recognition and POI alerts streamed directly to eyewear and mobile.</li>
+                            <li>Whitelists, watchlists, and demographic profiling — all on-premises, fully private.</li>
+                            <li>Parallel detection across entire venues, coordinated through a single dashboard.</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-color); align-self: start;">
+                        <p><strong>Available Modes</strong></p>
+                        <p><span class="badge badge-success">Goggles</span> <span class="badge badge-success">Drone</span></p>
+                        <p style="margin-top: 1rem;"><strong>Target Users</strong></p>
+                        <p style="margin-bottom: 0;">Security agencies, law enforcement, private security firms, and event security teams.</p>
+                    </div>
+                </div>
+
+                <!-- Eyenet Gate -->
+                <h2>4. Eyenet Gate</h2>
+                <div class="success-box">
+                    <p style="margin-bottom: 0;"><strong>Track exactly who is in and out of your premises in real time.</strong></p>
+                </div>
+                <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <div>
+                        <p>A robust security and operational tool designed to monitor people activity in gates, entrances, exits, and corridors. It provides real-time data and security alerts, enabling businesses to understand crowd dynamics and respond to security events proactively.</p>
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Provides real-time people counters, age and gender demographics, activity heatmaps, and advanced crowd behavior metrics.</li>
+                            <li>Triggers instant notifications for abnormal crowd activity and performs facial recognition for persons of interest.</li>
+                            <li>Offers live video streaming with people activity annotations and flexible video storage solutions (instant and deep archives).</li>
+                            <li>Instant notifications on mobile devices and integration with your existing security systems.</li>
+                            <li>Operational presence reports with full event history for compliance.</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-color); align-self: start;">
+                        <p><strong>Available Modes</strong></p>
+                        <p><span class="badge badge-success">Gate</span></p>
+                        <p style="margin-top: 1rem;"><strong>Target Users</strong></p>
+                        <p style="margin-bottom: 0;">Security agencies, commercial buildings, industrial facilities, airports, public transport hubs, and event organizers.</p>
+                    </div>
+                </div>
+
+                <!-- Eyenet Sentinel -->
+                <h2>5. Eyenet Sentinel</h2>
+                <div class="success-box">
+                    <p style="margin-bottom: 0;"><strong>Protect VIPs with instant machine vision eyeware.</strong></p>
+                </div>
+                <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <div>
+                        <p>This application ensures security personnel remain vigilant by automatically monitoring their activity at a watch station, providing business owners with peace of mind and guaranteeing consistent oversight during all shifts.</p>
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Delivers instant alerts and notifications based on customizable criteria for a guard's activity or inactivity.</li>
+                            <li>Provides live video streams with complete people activity annotations.</li>
+                            <li>Automated monitoring ensures no lapse in vigilance across any shift or watch station.</li>
+                            <li>Customizable detection parameters allow tailoring to specific security post requirements.</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-color); align-self: start;">
+                        <p><strong>Available Modes</strong></p>
+                        <p><span class="badge badge-success">Area</span></p>
+                        <p style="margin-top: 1rem;"><strong>Target Users</strong></p>
+                        <p style="margin-bottom: 0;">Security firms, corporate offices with dedicated security staff, industrial plants, and government buildings.</p>
+                    </div>
+                </div>
+
+                <!-- Eyenet Matrix -->
+                <h2>6. Eyenet Matrix</h2>
+                <div class="success-box">
+                    <p style="margin-bottom: 0;"><strong>Cross-installation aggregated reporting and centralised management over secure VPN.</strong></p>
+                </div>
+                <div class="info-box" style="margin-bottom: 1.5rem;">
+                    <p style="margin-bottom: 0;">A typical Eyenet installation runs on a single mini PC with 16–32 GB RAM and a standard GPU — no specialised GPU hardware required — comfortably handling a 2–5 camera load per site. Eyenet Matrix is the product that scales beyond a single location: it connects multiple installations over the VPN network, unifying reporting, user management, and operational visibility across all sites from one central dashboard.</p>
+                </div>
+                <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <div>
+                        <p>Eyenet Matrix runs alongside the primary installation in a multi-site network, providing centralised management and aggregated reporting across all member installations. Designed to operate under VPN, it communicates with member installations via their internal VPN node URLs — all cross-installation queries go over the VPN tunnel, transparently within a private network without needing public internet exposure.</p>
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li><strong>Aggregated Reporting — 6 Report Types:</strong> Summary, Presence, Gate Activity, Camera Events, Demographics, and Logs — each querying all member installations in parallel and aggregating results.</li>
+                            <li><strong>Matrix Groups & Installation Membership:</strong> Full CRUD for groups and member installations. Multi-install licensing enforcement via configurable flags.</li>
+                            <li><strong>User Directory & SSO (JWT-based):</strong> Centralised user management across installations with role-based access control (RBAC).</li>
+                            <li><strong>Degraded Mode:</strong> If some installations are unreachable, reports still return partial data with a <code>degraded: true</code> flag — no single point of failure blocks visibility.</li>
+                            <li><strong>Result Caching:</strong> 60-second TTL report cache for responsive dashboards across distributed sites.</li>
+                            <li><strong>Time-Range Filtering:</strong> All reports support optional ISO-8601 timestamp query parameters for precise historical analysis.</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-color); align-self: start;">
+                        <p><strong>Administrative Capabilities</strong></p>
+                        <ul>
+                            <li><strong>View Aggregated Reports</strong> — Access consolidated reports across all member installations</li>
+                            <li><strong>Manage Matrix Groups</strong> — Create, update, and delete Matrix groups; manage installation memberships</li>
+                            <li><strong>Manage Users & Permissions</strong> — Add and remove users from the Matrix directory; assign access rights</li>
+                            <li><strong>View Aggregated Logs</strong> — Access consolidated log reports from all installations</li>
+                            <li><strong>Full Administrator Access</strong> — Complete administrative control over all Matrix functions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h2>Use Cases</h2>
+                <p>Eyenet applications combine to solve real-world operational challenges across industries and environments.</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #f5f5f5; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong>Staff Presence & Attendance</strong></p>
+                        <p style="font-size: 0.9rem;">QR/NFC check-in combined with facial recognition for ironclad dual-factor staff verification. Automated attendance reports with full event history — from single offices to entire school campuses. Instant alerts for unauthorised access in restricted zones.</p>
+                        <p><span class="badge badge-info">Presence</span> <span class="badge badge-info">Gate</span></p>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong>Audience-Aware Digital Signage</strong></p>
+                        <p style="font-size: 0.9rem;">Displays that read the room — age, gender, group size — and switch content in milliseconds. Trigger playlists, promotions, or emergency messages automatically based on who is watching. Prove ROI with impression analytics, dwell time, and engagement rates.</p>
+                        <p><span class="badge badge-info">Signage</span></p>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong>Entrance & Gate Monitoring</strong></p>
+                        <p style="font-size: 0.9rem;">Real-time people counters, age and gender demographics, and activity heatmaps at every entrance. Instant crowd alerts and facial recognition for persons of interest. Live video streaming with people activity annotations across all entry points.</p>
+                        <p><span class="badge badge-info">Gate</span> <span class="badge badge-info">Presence</span></p>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong>Restricted Area Protection</strong></p>
+                        <p style="font-size: 0.9rem;">Define virtual perimeters around any zone — enforced 24/7 by AI. Mobile and email notifications the moment an unauthorised presence is detected. Lone-worker monitoring, PPE checks, and automatic incident documentation built in.</p>
+                        <p><span class="badge badge-info">Vradar</span> <span class="badge badge-info">Presence</span></p>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong>VIP & Personnel Protection</strong></p>
+                        <p style="font-size: 0.9rem;">Instant face recognition and POI alerts streamed directly to eyewear and mobile devices. Whitelists, watchlists, and demographic profiling — all on-premises, fully private. Parallel detection across entire venues coordinated through a single dashboard.</p>
+                        <p><span class="badge badge-info">Sentinel</span> <span class="badge badge-info">Vradar</span></p>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong>Remote Operational Control</strong></p>
+                        <p style="font-size: 0.9rem;">Secure VPN-powered remote access to every camera, trigger, and dashboard worldwide. Live feeds, push alerts, and full configuration — manage an entire site from a single mobile phone. Zero cloud dependency for video or data — footage never leaves your premises.</p>
+                        <p><span class="badge badge-info">Matrix</span> <span class="badge badge-info">Gate</span></p>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong>Maritime & Fleet Compliance</strong></p>
+                        <p style="font-size: 0.9rem;">Track staff presence across single offices or entire maritime fleets with offline-capable operation. Incident alerts delivered in real time to supervisors and stakeholders. Operational analytics for presence compliance across all locations — no internet required at sea.</p>
+                        <p><span class="badge badge-info">Presence</span> <span class="badge badge-info">Matrix</span></p>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong>Multi-Site Aggregated Reporting</strong></p>
+                        <p style="font-size: 0.9rem;">Consolidated dashboards pulling Presence, Gate Activity, Camera Events, Demographics, and Logs from all installations in parallel. Centralised user management with role-based access across every site. Degraded mode ensures visibility even when individual sites are temporarily unreachable.</p>
+                        <p><span class="badge badge-info">Matrix</span></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h2>Operating Modes Reference</h2>
+                <table>
+                    <thead>
+                        <tr><th>Mode</th><th>Description</th><th>Used By</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Spot</strong></td><td>Precise monitoring of fixed, close-range areas such as POS counters and product displays</td><td>Signage</td></tr>
+                        <tr><td><strong>Gate</strong></td><td>Comprehensive monitoring of entrances, exits, and corridors for traffic analysis</td><td>Presence, Signage, Gate</td></tr>
+                        <tr><td><strong>Area</strong></td><td>Wide-area surveillance for large spaces including rooms and outdoor environments</td><td>Presence, Signage, Sentinel</td></tr>
+                        <tr><td><strong>Goggles</strong></td><td>Mobile, first-person monitoring through wearable camera technology</td><td>Vradar</td></tr>
+                        <tr><td><strong>Drone</strong></td><td>Aerial surveillance providing comprehensive, mobile perspective coverage</td><td>Vradar</td></tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <h2>Note</h2>
+                <p>All Eyenet applications run on-premises with no cloud dependency for video or data. The platform operates efficiently on standard business hardware (16 GB RAM minimum, modern multi-core CPU). Internet connectivity is required only for remote notifications and email — core operation functions fully offline.</p>
+                <p style="color: #64748b; font-size: 0.85rem;">Prepared by EyeNet for informational purposes. Product specifications and availability subject to change.</p>
+
+                <hr>
+
+                <h2>Platform Functionalities</h2>
+                <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">Core capabilities and features powering EyeNet Vision's intelligent automation platform.</p>
+
+                <h3>1. Computer Vision & People Analytics</h3>
+                <h4>People Tracking & Analysis</h4>
+                <ul>
+                    <li>Real-time people tracking and identification</li>
+                    <li>Accurate counting and attendance monitoring</li>
+                    <li>3D route tracking and movement analysis</li>
+                    <li>Demographic analysis (age, gender, etc.)</li>
+                </ul>
+
+                <h3>2. Camera & Hardware Integration</h3>
+                <h4>Multi-Source Camera Support</h4>
+                <ul>
+                    <li>Traditional IP/network cameras</li>
+                    <li>WiFi-enabled cameras</li>
+                    <li>Soft cameras via mobile applications</li>
+                    <li>Comprehensive camera health monitoring</li>
+                </ul>
+
+                <h3>3. Intelligent Triggers & Automated Actions</h3>
+                <h4>Event-Driven Automation</h4>
+                <div class="info-box">
+                    <h5>Camera-Level Trigger Configuration</h5>
+                    <p>Each camera can be independently configured with custom triggers based on machine vision events.</p>
+                </div>
+
+                <div class="info-box">
+                    <h5>Real-Time Event Detection</h5>
+                    <p>Automatic detection of configurable events: person count thresholds, demographics, dwell time, velocity, direction, and more.</p>
+                </div>
+
+                <div class="info-box">
+                    <h5>Complex Condition Logic</h5>
+                    <p>Support for multiple conditions with AND/OR operators for sophisticated trigger rules.</p>
+                </div>
+
+                <h4>Automated Action Execution</h4>
+                <h5>Multi-Channel Notifications</h5>
+                <ul>
+                    <li>Mobile push notifications</li>
+                    <li>In-app alerts</li>
+                    <li>Email notifications</li>
+                    <li>SMS alerts (via integrations)</li>
+                </ul>
+
+                <h5>Advanced Integration Capabilities</h5>
+                <ul>
+                    <li>Digital Signage Integration: Automatic content switching based on demographics or behaviors</li>
+                    <li>Third-Party Application Triggers: Webhook-based actions to external systems</li>
+                    <li>Custom Workflows: Programmable action chains for complex automation scenarios</li>
+                </ul>
+
+                <h3>4. Video & Data Management</h3>
+                <div class="success-box">
+                    <h5>Privacy-First Architecture</h5>
+                    <ul>
+                        <li>Local video storage and management</li>
+                        <li>No cloud services required for video/data storage</li>
+                        <li>Full operational capability without internet connectivity</li>
+                        <li>Minimal internet access needed only for remote notifications</li>
+                    </ul>
+                </div>
+
+                <h3>5. Intelligent Communications</h3>
+                <h4>Multi-Channel Notification System</h4>
+                <ul>
+                    <li>Mobile push notifications</li>
+                    <li>In-app alerts and warnings</li>
+                    <li>Email notifications</li>
+                    <li>Automatic integrations with third-party applications</li>
+                    <li>Webhook support for custom workflows</li>
+                    <li>Audit logging of all communications with delivery tracking</li>
+                </ul>
+
+                <h3>6. Analytics & Insights</h3>
+                <h4>Data Intelligence</h4>
+                <ul>
+                    <li>Real-time analytics dashboards</li>
+                    <li>Historical trend analysis</li>
+                    <li>Behavioral pattern recognition</li>
+                    <li>Actionable insights and reporting</li>
+                    <li>Trigger performance analytics</li>
+                    <li>Action execution monitoring and statistics</li>
+                </ul>
+
+                <h3>7. Security & Access Control</h3>
+                <div class="warning-box">
+                    <h5>Enterprise-Grade Security</h5>
+                    <ul>
+                        <li>Comprehensive user access management with role-based permissions</li>
+                        <li>File-level encryption for sensitive data</li>
+                        <li>Optional private VPN for internet communications</li>
+                        <li>Complete data sovereignty (all data stays on-premises)</li>
+                        <li>Secure trigger and action configuration with user audit trails</li>
+                    </ul>
+                </div>
+
+                <h3>8. Scalability & Expandability</h3>
+                <h4>Flexible Scaling</h4>
+                <ul>
+                    <li>Scales from small installations (homes) to large industrial sites</li>
+                    <li>Hardware-based scalability (software adapts automatically)</li>
+                    <li>Performance scales with available hardware resources</li>
+                    <li>No architectural limits on deployment size</li>
+                    <li>Unlimited camera support based on hardware capacity</li>
+                </ul>
+
+                <h4>Integration & Extensibility</h4>
+                <ul>
+                    <li>Third-party software connectivity via REST APIs</li>
+                    <li>Standard webhook integrations for custom actions</li>
+                    <li>Custom integration support</li>
+                    <li>Modular plugin architecture</li>
+                    <li>Digital signage system integrations</li>
+                </ul>
+
+                <h3>Key Differentiators</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Benefit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Privacy-First</strong></td>
+                            <td>All processing and storage on-premises</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Offline-Capable</strong></td>
+                            <td>Full functionality without internet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Infinitely Scalable</strong></td>
+                            <td>From single camera to enterprise-wide</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Secure by Design</strong></td>
+                            <td>Encrypted, access-controlled, VPN-ready</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integration-Ready</strong></td>
+                            <td>REST APIs, webhooks, third-party connectors</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Per-Camera Automation</strong></td>
+                            <td>Independent trigger configuration for each camera</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -2381,25 +2785,25 @@
 
                 <h2>Product Portfolio</h2>
 
-                <h3>1. Intelligent Signage</h3>
+                <h3>1. Eyenet Signage</h3>
 
                 <h4>Overview</h4>
                 <p>Transforms digital displays into intelligent marketing platforms with demographic-driven content delivery and real-time audience analytics.</p>
 
                 <h4>Description</h4>
                 <p>
-                    This application converts traditional digital signage into a dynamic, data-driven marketing tool by analyzing 
-                    viewer demographics (age and gender) to automatically serve targeted advertisements and media, maximizing 
-                    engagement and campaign effectiveness.
+                    Transforms traditional digital signage into a dynamic, data-driven marketing tool. By analyzing the age and gender of people approaching a display, 
+                    it automatically serves targeted advertisements and media, maximizing engagement and campaign effectiveness.
                 </p>
 
                 <div class="success-box">
                     <h4>Key Features</h4>
                     <ul>
-                        <li><strong>Automated demographic-based content delivery</strong> - Displays content based on viewer age and gender</li>
-                        <li><strong>User-friendly web interface</strong> - Easy media upload and assignment by owners and marketing collaborators</li>
-                        <li><strong>Activity insights add-on</strong> - Comprehensive reports including demographics, traffic counts, and activity heatmaps</li>
-                        <li><strong>Real-time audience analytics</strong> - Continuous monitoring of viewer engagement</li>
+                        <li><strong>Automated demographic-based content delivery</strong> — Displays content based on viewer age, gender, group size, switching in milliseconds</li>
+                        <li><strong>Trigger playlists & promotions</strong> — Automatically adapt based on who is watching</li>
+                        <li><strong>User-friendly web interface</strong> — Easy media upload and assignment by owners and marketing collaborators</li>
+                        <li><strong>Impression analytics</strong> — Measure views, dwell time, engagement rate; prove your signage ROI</li>
+                        <li><strong>People activity insights add-on</strong> — Comprehensive reports including demographics, traffic counts, and activity heatmaps</li>
                     </ul>
                 </div>
 
@@ -2432,31 +2836,32 @@
 
                 <hr>
 
-                <h3>2. Gate Activity</h3>
+                <h3>2. Eyenet Gate</h3>
 
                 <h4>Overview</h4>
-                <p>Advanced security monitoring for entrances and corridors with crowd analytics, threat detection, and comprehensive behavioral insights.</p>
+                <p>Track exactly who is in and out of your premises in real time — a robust security and operational tool for gates, entrances, exits, and corridors.</p>
 
                 <h4>Description</h4>
                 <p>
-                    A robust security and operational tool designed to monitor people activity in gates, entrances, exits, and 
-                    corridors. It provides real-time data and security alerts, enabling businesses to understand crowd dynamics 
-                    and respond to security events proactively.
+                    Monitors people activity in gates, entrances, exits, and corridors. Provides real-time data and security alerts, enabling 
+                    businesses to understand crowd dynamics and respond to security events proactively.
                 </p>
 
                 <div class="warning-box">
                     <h4>Key Features</h4>
                     <ul>
-                        <li><strong>Real-time people counters</strong> - Live crowd size monitoring</li>
-                        <li><strong>Demographic analysis</strong> - Age and gender distribution tracking</li>
-                        <li><strong>Activity heatmaps</strong> - Visual representation of traffic patterns</li>
-                        <li><strong>Advanced crowd behavior metrics</strong> - Behavioral analysis and pattern recognition</li>
-                        <li><strong>Instant notifications</strong> - Alerts for abnormal crowd activity</li>
-                        <li><strong>Facial recognition</strong> - Person of interest identification and tracking</li>
-                        <li><strong>Live video streaming</strong> - Annotated real-time feeds</li>
-                        <li><strong>Flexible video storage</strong> - Instant and deep archive options</li>
+                        <li><strong>Real-time people counters</strong> — Live crowd size monitoring with age and gender demographics</li>
+                        <li><strong>Activity heatmaps</strong> — Visual representation of traffic patterns and advanced crowd behavior metrics</li>
+                        <li><strong>Instant notifications</strong> — Alerts for abnormal crowd activity; facial recognition for persons of interest</li>
+                        <li><strong>Live video streaming</strong> — Annotated real-time feeds with flexible video storage (instant and deep archives)</li>
+                        <li><strong>Mobile integration</strong> — Instant notifications on mobile devices; operational presence reports with full event history</li>
                     </ul>
                 </div>
+
+                <h4>Deployment Modes</h4>
+                <ul>
+                    <li><strong>Gate Mode:</strong> Comprehensive monitoring of entrances, exits, and corridors for traffic analysis</li>
+                </ul>
 
                 <h4>Target Market</h4>
                 <ul>
@@ -2475,33 +2880,38 @@
 
                 <hr>
 
-                <h3>3. Room & Gate Protection</h3>
+                <h3>3. Eyenet Presence</h3>
 
                 <h4>Overview</h4>
-                <p>Comprehensive attendance monitoring and access control for educational, healthcare, and corporate environments with automated reporting.</p>
+                <p>Next-level staff presence with vision-powered two-factor authentication — attendance monitoring and access control with automated reporting.</p>
 
                 <h4>Description</h4>
                 <p>
-                    A versatile solution for monitoring attendance and activity in specific areas such as schools, gyms, or 
-                    industrial spaces. It provides detailed attendance reports and enhanced security by ensuring only authorized 
-                    individuals are present.
+                    A versatile solution for monitoring attendance and activity in specific areas such as schools, gyms, or industrial spaces. 
+                    Provides detailed attendance reports and enhanced security by ensuring only authorized individuals are present.
                 </p>
 
                 <div class="success-box">
                     <h4>Key Features</h4>
                     <ul>
-                        <li><strong>Schedule and member assignment</strong> - Configure room access schedules and authorized personnel</li>
-                        <li><strong>Attendance tracking</strong> - Real-time monitoring of who enters/exits</li>
-                        <li><strong>Comprehensive reporting</strong> - Automated attendance report generation</li>
-                        <li><strong>Unauthorized access alerts</strong> - Instant notifications if unauthorized persons detected</li>
-                        <li><strong>Integration capability</strong> - Collaboration with EyeNet Gate Activity for end-to-end monitoring</li>
-                        <li><strong>Family notifications</strong> - Automated real-time or recurring attendance reports for minors to family/sponsors</li>
+                        <li><strong>Schedule and member assignment</strong> — Assigns schedules and members to rooms, tracks attendance, generates comprehensive reports</li>
+                        <li><strong>Unauthorized access alerts</strong> — Automated alerts if unauthorized persons are detected in restricted areas</li>
+                        <li><strong>End-to-end monitoring</strong> — Collaborates with Eyenet Gate for entrance-to-area monitoring</li>
+                        <li><strong>Family/sponsor notifications</strong> — Automated attendance reports for minors in real time or on a recurring schedule</li>
+                        <li><strong>Dual-factor verification</strong> — Dynamic QR/NFC check-in combined with facial recognition for ironclad verification</li>
+                        <li><strong>Asynchronous two-factor</strong> — Vision applied on fast-moving gate scenarios</li>
                     </ul>
                 </div>
 
+                <h4>Deployment Modes</h4>
+                <ul>
+                    <li><strong>Area Mode:</strong> Wide-area surveillance for rooms, gyms, classrooms</li>
+                    <li><strong>Gate Mode:</strong> Comprehensive monitoring of entrances, exits, and corridors</li>
+                </ul>
+
                 <h4>Target Market</h4>
                 <ul>
-                    <li>Schools and universities</li>
+                    <li>Schools, universities</li>
                     <li>Gyms and fitness centers</li>
                     <li>Industrial facilities</li>
                     <li>Corporate offices</li>
@@ -2510,31 +2920,36 @@
 
                 <div class="info-box">
                     <h4>Market Positioning</h4>
-                    <p>Comprehensive access control and compliance solution targeting regulated industries requiring attendance documentation and minor protection.</p>
+                    <p>Comprehensive access control and compliance solution targeting regulated industries requiring attendance documentation and dual-factor verification.</p>
                 </div>
 
                 <hr>
 
-                <h3>4. Sentinel</h3>
+                <h3>4. Eyenet Sentinel</h3>
 
                 <h4>Overview</h4>
-                <p>Automated security personnel monitoring ensuring vigilant oversight at watch stations with customizable activity detection and alerts.</p>
+                <p>Protect VIPs with instant machine vision eyeware — automated security personnel monitoring ensuring vigilant oversight.</p>
 
                 <h4>Description</h4>
                 <p>
-                    This application ensures security personnel remain vigilant by automatically monitoring their activity at a 
-                    watch station, providing business owners with peace of mind and guaranteeing consistent oversight during all shifts.
+                    Ensures security personnel remain vigilant by automatically monitoring their activity at a watch station, 
+                    providing business owners with peace of mind and guaranteeing consistent oversight during all shifts.
                 </p>
 
                 <div class="info-box">
                     <h4>Key Features</h4>
                     <ul>
-                        <li><strong>Customizable activity detection</strong> - Configure alert criteria for guard activity/inactivity</li>
-                        <li><strong>Instant alerts and notifications</strong> - Real-time notifications based on configured parameters</li>
-                        <li><strong>Live video streams</strong> - Complete people activity annotations</li>
-                        <li><strong>Shift-based monitoring</strong> - Consistent oversight across all shift periods</li>
+                        <li><strong>Customizable activity detection</strong> — Configure alert criteria for guard activity/inactivity</li>
+                        <li><strong>Instant alerts and notifications</strong> — Real-time notifications based on configured parameters</li>
+                        <li><strong>Live video streams</strong> — Complete people activity annotations</li>
+                        <li><strong>Automated shift monitoring</strong> — Ensures no lapse in vigilance across any shift or watch station</li>
                     </ul>
                 </div>
+
+                <h4>Deployment Modes</h4>
+                <ul>
+                    <li><strong>Area Mode:</strong> Wide-area surveillance for watch stations, guard posts, and security zones</li>
+                </ul>
 
                 <h4>Target Market</h4>
                 <ul>
@@ -2551,33 +2966,33 @@
 
                 <hr>
 
-                <h3>5. Security Officer Agent</h3>
+                <h3>5. Eyenet Vradar</h3>
 
                 <h4>Overview</h4>
-                <p>Mobile security enhancement through wearable technology, providing real-time alerts and centralized command integration for field operations.</p>
+                <p>Cover restricted areas with machine vision protective nets and mobile eyewear alerts — wearable and drone-based security for field operations.</p>
 
                 <h4>Description</h4>
                 <p>
-                    An advanced, mobile security solution that operates using wearable camera eyewear (goggles) to empower security 
-                    agents. It provides on-the-go alerts and streams data to a central command unit for collaborative security operations.
+                    An advanced, mobile security solution that operates using wearable camera eyewear (goggles) to empower security agents. 
+                    Provides on-the-go alerts and streams data to a central command unit for collaborative security operations.
                 </p>
 
                 <div class="success-box">
                     <h4>Key Features</h4>
                     <ul>
-                        <li><strong>Wearable camera integration</strong> - Goggles-based eyewear deployment</li>
-                        <li><strong>Instant audio alerts</strong> - Real-time notifications when persons of interest detected</li>
-                        <li><strong>Activity annotations</strong> - Complete activity data sent to central command</li>
-                        <li><strong>Person of interest management</strong> - Team operator can add detected persons to watchlist from live feed</li>
-                        <li><strong>Collaborative operations</strong> - Central team coordination with field agents</li>
-                        <li><strong>Drone compatibility</strong> - Aerial deployment support</li>
+                        <li><strong>Wearable camera integration</strong> — Goggles-based eyewear with instant audio alerts for persons of interest</li>
+                        <li><strong>Activity annotations</strong> — Complete activity data sent to central command; team operator can add POIs from live feed</li>
+                        <li><strong>Instant face recognition</strong> — POI alerts streamed directly to eyewear and mobile</li>
+                        <li><strong>Whitelists & watchlists</strong> — All on-premises, fully private demographic profiling</li>
+                        <li><strong>Parallel detection</strong> — Across entire venues, coordinated through a single dashboard</li>
+                        <li><strong>Drone compatibility</strong> — Aerial deployment support</li>
                     </ul>
                 </div>
 
                 <h4>Deployment Modes</h4>
                 <ul>
-                    <li><strong>Goggles Mode:</strong> Wearable first-person monitoring</li>
-                    <li><strong>Drone Mode:</strong> Aerial surveillance</li>
+                    <li><strong>Goggles Mode:</strong> Mobile, first-person monitoring through wearable camera technology</li>
+                    <li><strong>Drone Mode:</strong> Aerial surveillance providing comprehensive, mobile perspective coverage</li>
                 </ul>
 
                 <h4>Target Market</h4>
@@ -2595,39 +3010,42 @@
 
                 <hr>
 
-                <h3>6. Underage Detector</h3>
+                <h3>6. Eyenet Matrix</h3>
 
                 <h4>Overview</h4>
-                <p>Specialized point-of-sale age verification system ensuring compliance with age-restricted sales through intelligent estimation algorithms.</p>
+                <p>Cross-installation aggregated reporting and centralised management over secure VPN — scales beyond a single location.</p>
 
                 <h4>Description</h4>
                 <p>
-                    A specialized application for point-of-sale (POS) environments that provides real-time age estimation for compliance 
-                    with age-restricted sales. The system is designed to assist staff in complying with age-restricted sales by quickly 
-                    flagging individuals.
+                    Runs alongside the primary installation in a multi-site network, providing centralised management and aggregated reporting 
+                    across all member installations. Designed to operate under VPN, it communicates with member installations via their 
+                    internal VPN node URLs — all cross-installation queries go over the VPN tunnel, transparently within a private network 
+                    without needing public internet exposure.
                 </p>
 
-                <div class="warning-box">
+                <div class="info-box">
                     <h4>Key Features</h4>
                     <ul>
-                        <li><strong>Real-time age estimation</strong> - Instant age detection at POS</li>
-                        <li><strong>Distance-based prioritization</strong> - Organizes detections by proximity (nearest individuals first)</li>
-                        <li><strong>Compliance assistance</strong> - Helps staff verify age-restricted purchase eligibility</li>
-                        <li><strong>Quick flagging system</strong> - Rapid identification of individuals requiring verification</li>
+                        <li><strong>Aggregated Reporting — 6 Report Types:</strong> Summary, Presence, Gate Activity, Camera Events, Demographics, and Logs — each querying all member installations in parallel</li>
+                        <li><strong>Matrix Groups & Installation Membership:</strong> Full CRUD for groups and member installations; multi-install licensing enforcement</li>
+                        <li><strong>User Directory & SSO (JWT-based):</strong> Centralised user management across installations with role-based access control (RBAC)</li>
+                        <li><strong>Degraded Mode:</strong> If some installations are unreachable, reports return partial data — no single point of failure</li>
+                        <li><strong>Result Caching:</strong> 60-second TTL report cache for responsive dashboards across distributed sites</li>
+                        <li><strong>Time-Range Filtering:</strong> All reports support optional ISO-8601 timestamp parameters for precise historical analysis</li>
                     </ul>
                 </div>
 
                 <h4>Target Market</h4>
                 <ul>
-                    <li>Retail shops (age-restricted products)</li>
-                    <li>Supermarkets</li>
-                    <li>Bars and restaurants</li>
-                    <li>Convenience stores</li>
+                    <li>Multi-site enterprise deployments</li>
+                    <li>Franchise networks and chains</li>
+                    <li>Maritime fleets and logistics</li>
+                    <li>Distributed security operations</li>
                 </ul>
 
                 <div class="info-box">
                     <h4>Market Positioning</h4>
-                    <p>Specialized compliance solution for point-of-sale environments, reducing liability and ensuring regulatory adherence for age-restricted products.</p>
+                    <p>Cross-installation management layer enabling unified reporting and control across distributed Eyenet deployments — from single offices to entire fleets.</p>
                 </div>
 
                 <hr>
@@ -2653,31 +3071,31 @@
                             <td><strong>Spot Mode</strong></td>
                             <td>Precise monitoring of fixed, close-range areas</td>
                             <td>POS counters, product displays, entry gates</td>
-                            <td>Intelligent Signage, Underage Detector</td>
+                            <td>Eyenet Signage</td>
                         </tr>
                         <tr>
                             <td><strong>Gate Mode</strong></td>
                             <td>Comprehensive monitoring of entrances, exits, and corridors</td>
                             <td>Building entry points, security checkpoints, transit hubs</td>
-                            <td>Intelligent Signage, Gate Activity, Room & Gate Protection</td>
+                            <td>Eyenet Signage, Eyenet Gate, Eyenet Presence</td>
                         </tr>
                         <tr>
                             <td><strong>Area Mode</strong></td>
                             <td>Wide-area surveillance for large spaces</td>
                             <td>Large retail spaces, gymnasiums, industrial floors, office spaces</td>
-                            <td>Intelligent Signage, Room & Gate Protection, Sentinel</td>
+                            <td>Eyenet Signage, Eyenet Presence, Eyenet Sentinel</td>
                         </tr>
                         <tr>
                             <td><strong>Goggles Mode</strong></td>
                             <td>Mobile, first-person monitoring through wearable camera technology</td>
                             <td>Security field operations, event security, law enforcement</td>
-                            <td>Security Officer Agent</td>
+                            <td>Eyenet Vradar</td>
                         </tr>
                         <tr>
                             <td><strong>Drone Mode</strong></td>
                             <td>Aerial surveillance providing comprehensive, mobile perspective coverage</td>
                             <td>Facility overview, crowd monitoring, outdoor security</td>
-                            <td>Security Officer Agent</td>
+                            <td>Eyenet Vradar</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2734,11 +3152,11 @@
                     than a single generalized platform:
                 </p>
                 <ul>
-                    <li><strong>Retail/Marketing:</strong> Intelligent Signage</li>
-                    <li><strong>Security/Surveillance:</strong> Gate Activity, Security Officer Agent</li>
-                    <li><strong>Compliance/Access Control:</strong> Room & Gate Protection</li>
-                    <li><strong>Personnel Monitoring:</strong> Sentinel</li>
-                    <li><strong>Regulatory/POS:</strong> Underage Detector</li>
+                    <li><strong>Retail/Marketing:</strong> Eyenet Signage</li>
+                    <li><strong>Security/Surveillance:</strong> Eyenet Gate, Eyenet Vradar</li>
+                    <li><strong>Compliance/Access Control:</strong> Eyenet Presence</li>
+                    <li><strong>Personnel Monitoring:</strong> Eyenet Sentinel</li>
+                    <li><strong>Multi-Site Management:</strong> Eyenet Matrix</li>
                 </ul>
 
                 <div style="max-width: 900px; margin: 3rem auto; padding: 2rem; background: #f5f5f5; border-radius: 12px; border: 1px solid #dddddd;">
@@ -2774,12 +3192,12 @@
                     <thead>
                         <tr>
                             <th>Feature</th>
-                            <th>Intelligent Signage</th>
-                            <th>Gate Activity</th>
-                            <th>Room & Gate Protection</th>
-                            <th>Sentinel</th>
-                            <th>Security Officer Agent</th>
-                            <th>Underage Detector</th>
+                            <th>Eyenet Signage</th>
+                            <th>Eyenet Gate</th>
+                            <th>Eyenet Presence</th>
+                            <th>Eyenet Sentinel</th>
+                            <th>Eyenet Vradar</th>
+                            <th>Eyenet Matrix</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -2787,10 +3205,10 @@
                             <td><strong>Primary Use Case</strong></td>
                             <td>Marketing/Engagement</td>
                             <td>Security Monitoring</td>
-                            <td>Access Control</td>
+                            <td>Attendance & Access Control</td>
                             <td>Personnel Monitoring</td>
-                            <td>Mobile Security</td>
-                            <td>Compliance</td>
+                            <td>Mobile & Drone Security</td>
+                            <td>Multi-Site Management</td>
                         </tr>
                         <tr>
                             <td><strong>Demographic Detection</strong></td>
@@ -2799,7 +3217,7 @@
                             <td>Optional</td>
                             <td>Limited</td>
                             <td>Yes</td>
-                            <td>Yes (Age-focused)</td>
+                            <td>Optional (aggregated)</td>
                         </tr>
                         <tr>
                             <td><strong>Real-time Alerts</strong></td>
@@ -2808,7 +3226,7 @@
                             <td>Yes</td>
                             <td>Yes</td>
                             <td>Yes</td>
-                            <td>Limited</td>
+                            <td>Yes (reports)</td>
                         </tr>
                         <tr>
                             <td><strong>Facial Recognition</strong></td>
@@ -2824,18 +3242,18 @@
                             <td>Optional</td>
                             <td>Yes</td>
                             <td>Yes</td>
-                            <td>Limited</td>
+                            <td>Yes (reports)</td>
                             <td>Yes</td>
-                            <td>Limited</td>
+                            <td>No</td>
                         </tr>
                         <tr>
                             <td><strong>Deployment Complexity</strong></td>
                             <td>Low</td>
                             <td>Medium</td>
-                            <td>High</td>
+                            <td>Medium</td>
                             <td>Medium</td>
                             <td>High</td>
-                            <td>Low</td>
+                            <td>Medium</td>
                         </tr>
                         <tr>
                             <td><strong>ROI Focus</strong></td>
@@ -2844,7 +3262,7 @@
                             <td>Compliance</td>
                             <td>Peace of Mind</td>
                             <td>Force Multiplier</td>
-                            <td>Liability Reduction</td>
+                            <td>Operational Visibility</td>
                         </tr>
                         <tr>
                             <td><strong>Integration Potential</strong></td>
@@ -2853,7 +3271,7 @@
                             <td>High</td>
                             <td>Medium</td>
                             <td>High</td>
-                            <td>Low</td>
+                            <td>High</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2881,15 +3299,15 @@
 
                 <h4>Post-Pandemic Security Focus</h4>
                 <ul>
-                    <li><strong>Gate Activity</strong> delivers real-time threat detection, facial recognition for persons of interest, and abnormal crowd behavior alerts</li>
-                    <li><strong>Sentinel</strong> provides automated monitoring of security personnel, ensuring consistent vigilance</li>
-                    <li><strong>Security Officer Agent</strong> with wearable technology extends security capabilities across distributed locations</li>
+                    <li><strong>Eyenet Gate</strong> delivers real-time threat detection, facial recognition for persons of interest, and abnormal crowd behavior alerts</li>
+                    <li><strong>Eyenet Sentinel</strong> provides automated monitoring of security personnel, ensuring consistent vigilance</li>
+                    <li><strong>Eyenet Vradar</strong> with wearable technology extends security capabilities across distributed locations</li>
                     <li>Real-time alerting and video streaming enable rapid incident response</li>
                 </ul>
 
                 <h4>Retail Transformation</h4>
                 <ul>
-                    <li><strong>Intelligent Signage</strong> directly addresses digital transformation with demographic-based content delivery</li>
+                    <li><strong>Eyenet Signage</strong> directly addresses digital transformation with demographic-based content delivery</li>
                     <li>Real-time audience analytics provide conversion optimization data previously unavailable to retailers</li>
                     <li>Supports multiple deployment modes (Spot, Gate, Area) for varied retail environments</li>
                     <li>Web interface enables easy content management for marketing teams</li>
@@ -2897,7 +3315,7 @@
 
                 <h4>Compliance Automation</h4>
                 <ul>
-                    <li><strong>Room & Gate Protection</strong> automates attendance tracking and generates mandatory compliance reports</li>
+                    <li><strong>Eyenet Presence</strong> automates attendance tracking and generates mandatory compliance reports</li>
                     <li>Automated alerts for unauthorized access reduce manual monitoring burden</li>
                     <li>Family notifications for minors provide documented compliance with duty-of-care requirements</li>
                     <li>Audit trails and automated reporting simplify regulatory compliance documentation</li>
@@ -2905,7 +3323,7 @@
 
                 <h4>Remote Operations</h4>
                 <ul>
-                    <li><strong>Security Officer Agent</strong> specifically designed for wearable cameras (Goggles mode) enabling field operations</li>
+                    <li><strong>Eyenet Vradar</strong> specifically designed for wearable cameras (Goggles mode) enabling field operations</li>
                     <li>Drone mode support provides aerial surveillance without on-site personnel</li>
                     <li>Central command integration allows team operators to coordinate from central locations</li>
                     <li>Real-time audio alerts to mobile agents create distributed security network</li>
@@ -2938,7 +3356,7 @@
                 <h4>Privacy Regulations</h4>
                 <ul>
                     <li>Modular application design allows customers to enable/disable demographic features based on local regulations</li>
-                    <li><strong>Underage Detector</strong> operates on age-only detection, minimizing personal data collection</li>
+                    <li><strong>Eyenet Matrix</strong> operates over secure VPN with no public internet exposure, minimizing data collection risks</li>
                     <li>Data can remain on-premises through edge deployment models</li>
                     <li>Multiple applications function without demographic data</li>
                     <li>Flexible video storage options reduce data retention exposure</li>
@@ -2975,16 +3393,16 @@
 
                 <h4>Ethical Concerns</h4>
                 <ul>
-                    <li><strong>Sentinel</strong> and <strong>Security Officer Agent</strong> have clear, defensible compliance purposes</li>
-                    <li><strong>Underage Detector</strong> addresses regulatory compliance, positioning as ethical necessity</li>
-                    <li><strong>Room & Gate Protection</strong> targets authorized access with attendance documentation</li>
-                    <li><strong>Gate Activity</strong> for facility management is more defensible than consumer-facing surveillance</li>
+                    <li><strong>Eyenet Sentinel</strong> and <strong>Eyenet Vradar</strong> have clear, defensible compliance purposes</li>
+                    <li><strong>Eyenet Presence</strong> targets authorized access with attendance documentation and dual-factor verification</li>
+                    <li><strong>Eyenet Gate</strong> for facility management is more defensible than consumer-facing surveillance</li>
+                    <li><strong>Eyenet Matrix</strong> operates privately over VPN, never exposing data to the public internet</li>
                     <li>Transparent use cases and documented ROI metrics counter ethical objections</li>
                 </ul>
 
                 <hr>
 
-                <h2>Strategic Recommendations for PPL Meta</h2>
+                <h2>Strategic Recommendations for the Eyenet Platform</h2>
 
                 <h3>Comparative Positioning</h3>
                 <p>EyeNet Vision's modular, application-specific approach offers a valuable competitive positioning strategy. PPL Meta should consider:</p>
@@ -2994,7 +3412,7 @@
                         <li><strong>Feature Parity Assessment:</strong> Evaluate PPL Meta's capabilities against each EyeNet application</li>
                         <li><strong>Vertical Market Focus:</strong> Identify 2-3 highest-value vertical markets for concentrated effort</li>
                         <li><strong>Integration Strategy:</strong> Develop partnerships with complementary platforms</li>
-                        <li><strong>Compliance Automation:</strong> Expand Room & Gate Protection equivalents to capture regulated market segments</li>
+                        <li><strong>Compliance Automation:</strong> Expand Eyenet Presence equivalents to capture regulated market segments</li>
                         <li><strong>Mobile-First Innovation:</strong> Invest in wearable and drone deployment capabilities</li>
                     </ol>
                 </div>
@@ -3043,7 +3461,7 @@
                 <div class="info-box">
                     <h3>Development Status Overview</h3>
                     <p>
-                        Five of six products are <strong>Beta Testing Ready</strong> for Q2 2026 launch. Security Officer Agent 
+                        Five of six products are <strong>Beta Testing Ready</strong> for Q2 2026 launch. Eyenet Vradar 
                         software is complete, awaiting smart glasses hardware development (Q3/Q4 2026).
                     </p>
                 </div>
@@ -3062,7 +3480,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Intelligent Signage</strong></td>
+                            <td><strong>Eyenet Signage</strong></td>
                             <td>Fixed Installation</td>
                             <td><span class="badge badge-success">Beta Testing Ready</span></td>
                             <td>Q2 2026</td>
@@ -3076,28 +3494,28 @@
                             <td>Mobile Camera + Tablets</td>
                         </tr>
                         <tr>
-                            <td><strong>Underage Detector</strong></td>
+                            <td><strong>Eyenet Matrix</strong></td>
                             <td>Standard</td>
                             <td><span class="badge badge-success">Beta Testing Ready</span></td>
                             <td>Q2 2026</td>
-                            <td>IP Camera (POS)</td>
+                            <td>Standard PC + VPN</td>
                         </tr>
                         <tr>
-                            <td><strong>Gate Activity</strong></td>
+                            <td><strong>Eyenet Gate</strong></td>
                             <td>Standard</td>
                             <td><span class="badge badge-success">Beta Testing Ready</span></td>
                             <td>Q2 2026</td>
                             <td>IP Camera (Gate/Corridor)</td>
                         </tr>
                         <tr>
-                            <td><strong>Room & Gate Protection</strong></td>
+                            <td><strong>Eyenet Presence</strong></td>
                             <td>Standard</td>
                             <td><span class="badge badge-success">Beta Testing Ready</span></td>
                             <td>Q2 2026</td>
                             <td>IP Camera (Room/Gate)</td>
                         </tr>
                         <tr>
-                            <td><strong>Sentinel</strong></td>
+                            <td><strong>Eyenet Sentinel</strong></td>
                             <td>Fixed Station</td>
                             <td><span class="badge badge-success">Beta Testing Ready</span></td>
                             <td>Q2 2026</td>
@@ -3111,7 +3529,7 @@
                             <td>Mobile Camera + Tablets</td>
                         </tr>
                         <tr>
-                            <td><strong>Security Officer Agent</strong></td>
+                            <td><strong>Eyenet Vradar</strong></td>
                             <td>Software Ready</td>
                             <td><span class="badge badge-warning">Hardware Development</span></td>
                             <td>Q3/Q4 2026</td>
@@ -3124,7 +3542,7 @@
 
                 <h2>Detailed Product Maps</h2>
 
-                <h3>1. INTELLIGENT SIGNAGE</h3>
+                <h3>1. EYENET SIGNAGE</h3>
                 <div class="success-box">
                     <p><strong>Status:</strong> Beta Testing Ready | <strong>Target Launch:</strong> Q2 2026</p>
                 </div>
@@ -3177,7 +3595,7 @@
 
                 <hr>
 
-                <h3>2. UNDERAGE DETECTOR</h3>
+                <h3>2. EYENET MATRIX</h3>
                 <div class="success-box">
                     <p><strong>Status:</strong> Beta Testing Ready | <strong>Target Launch:</strong> Q2 2026</p>
                 </div>
@@ -3222,7 +3640,7 @@
 
                 <hr>
 
-                <h3>3. GATE ACTIVITY</h3>
+                <h3>3. EYENET GATE</h3>
                 <div class="success-box">
                     <p><strong>Status:</strong> Beta Testing Ready | <strong>Target Launch:</strong> Q2 2026</p>
                 </div>
@@ -3275,7 +3693,7 @@
 
                 <hr>
 
-                <h3>4. ROOM & GATE PROTECTION</h3>
+                <h3>4. EYENET PRESENCE</h3>
                 <div class="success-box">
                     <p><strong>Status:</strong> Beta Testing Ready | <strong>Target Launch:</strong> Q2 2026</p>
                 </div>
@@ -3326,7 +3744,7 @@
 
                 <hr>
 
-                <h3>5. SENTINEL</h3>
+                <h3>5. EYENET SENTINEL</h3>
                 <div class="success-box">
                     <p><strong>Status:</strong> Beta Testing Ready | <strong>Target Launch:</strong> Q2 2026</p>
                 </div>
@@ -3372,7 +3790,7 @@
 
                 <hr>
 
-                <h3>6. SECURITY OFFICER AGENT</h3>
+                <h3>6. EYENET VRADAR</h3>
                 <div class="warning-box">
                     <p><strong>Status:</strong> Software Complete - Hardware Development Required | <strong>Target Launch:</strong> Q3/Q4 2026</p>
                 </div>
@@ -3474,16 +3892,16 @@
                     <div style="background: rgba(34, 211, 238, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1rem; border-left: 4px solid var(--accent-color);">
                         <h4>Phase 1: Q2 2026 (5 Products Launch)</h4>
                         <ul style="margin-top: 1rem;">
-                            <li>Intelligent Signage (Fixed + Mobile)</li>
-                            <li>Underage Detector</li>
-                            <li>Gate Activity</li>
-                            <li>Room & Gate Protection</li>
-                            <li>Sentinel (Fixed + Mobile)</li>
+                            <li>Eyenet Signage (Fixed + Mobile)</li>
+                            <li>Eyenet Matrix</li>
+                            <li>Eyenet Gate</li>
+                            <li>Eyenet Presence</li>
+                            <li>Eyenet Sentinel (Fixed + Mobile)</li>
                         </ul>
                     </div>
 
                     <div style="background: rgba(34, 211, 238, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1rem; border-left: 4px solid var(--accent-color);">
-                        <h4>Phase 2: Q3/Q4 2026 (Security Officer Agent)</h4>
+                        <h4>Phase 2: Q3/Q4 2026 (Eyenet Vradar)</h4>
                         <ul style="margin-top: 1rem;">
                             <li>Smart glasses prototype completion</li>
                             <li>Field testing with security partners</li>
@@ -3506,37 +3924,37 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Intelligent Signage</td>
+                            <td>Eyenet Signage</td>
                             <td>Complete</td>
                             <td>Ready Now</td>
                             <td>Q2 2026</td>
                         </tr>
                         <tr>
-                            <td>Underage Detector</td>
+                            <td>Eyenet Matrix</td>
                             <td>Complete</td>
                             <td>Ready Now</td>
                             <td>Q2 2026</td>
                         </tr>
                         <tr>
-                            <td>Gate Activity</td>
+                            <td>Eyenet Gate</td>
                             <td>Complete</td>
                             <td>Ready Now</td>
                             <td>Q2 2026</td>
                         </tr>
                         <tr>
-                            <td>Room & Gate Protection</td>
+                            <td>Eyenet Presence</td>
                             <td>Complete</td>
                             <td>Ready Now</td>
                             <td>Q2 2026</td>
                         </tr>
                         <tr>
-                            <td>Sentinel</td>
+                            <td>Eyenet Sentinel</td>
                             <td>Complete</td>
                             <td>Ready Now</td>
                             <td>Q2 2026</td>
                         </tr>
                         <tr>
-                            <td>Security Officer Agent</td>
+                            <td>Eyenet Vradar</td>
                             <td>Software Complete</td>
                             <td>Pending Hardware</td>
                             <td>Q3/Q4 2026</td>
@@ -3549,10 +3967,10 @@
                     <ul>
                         <li>All software development for 5 primary products is complete and ready for beta testing</li>
                         <li>Hardware for first 5 products is assumed to be standard IP camera + network infrastructure</li>
-                        <li>Security Officer Agent hardware development is critical path item for Q3/Q4 launch</li>
+                        <li>Eyenet Vradar hardware development is critical path item for Q3/Q4 launch</li>
                         <li>Custom smart glasses development is recommended over acquisition for IP protection and customization</li>
                         <li>All products require proper deployment site partnerships for realistic beta testing</li>
-                        <li>Regulatory compliance is key consideration for Room & Gate Protection and Underage Detector products</li>
+                        <li>Regulatory compliance is key consideration for Eyenet Presence and Eyenet Matrix products</li>
                     </ul>
                 </div>
 
@@ -3561,168 +3979,9 @@
                 <div class="success-box">
                     <p style="text-align: center; margin: 0;">
                         <strong>Product Roadmap Status: On Track</strong><br>
-                        <em>5 of 6 products ready for Q2 2026 launch | Hardware development timeline for Security Officer Agent: 12-16 weeks</em>
+                        <em>5 of 6 products ready for Q2 2026 launch | Hardware development timeline for Eyenet Vradar: 12-16 weeks</em>
                     </p>
                 </div>
-            </div>
-        </div>
-
-        <!-- Functionalities Page -->
-        <div id="functionalities" class="page">
-            <div class="content-wrapper">
-                <h1>Platform Functionalities</h1>
-                <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">Core capabilities and features powering EyeNet Vision's intelligent automation platform.</p>
-
-                <h2>1. Computer Vision & People Analytics</h2>
-                <h3>People Tracking & Analysis</h3>
-                <ul>
-                    <li>Real-time people tracking and identification</li>
-                    <li>Accurate counting and attendance monitoring</li>
-                    <li>3D route tracking and movement analysis</li>
-                    <li>Demographic analysis (age, gender, etc.)</li>
-                </ul>
-
-                <h2>2. Camera & Hardware Integration</h2>
-                <h3>Multi-Source Camera Support</h3>
-                <ul>
-                    <li>Traditional IP/network cameras</li>
-                    <li>WiFi-enabled cameras</li>
-                    <li>Soft cameras via mobile applications</li>
-                    <li>Comprehensive camera health monitoring</li>
-                </ul>
-
-                <h2>3. Intelligent Triggers & Automated Actions</h2>
-                <h3>Event-Driven Automation</h3>
-                <div class="info-box">
-                    <h4>Camera-Level Trigger Configuration</h4>
-                    <p>Each camera can be independently configured with custom triggers based on machine vision events.</p>
-                </div>
-
-                <div class="info-box">
-                    <h4>Real-Time Event Detection</h4>
-                    <p>Automatic detection of configurable events: person count thresholds, demographics, dwell time, velocity, direction, and more.</p>
-                </div>
-
-                <div class="info-box">
-                    <h4>Complex Condition Logic</h4>
-                    <p>Support for multiple conditions with AND/OR operators for sophisticated trigger rules.</p>
-                </div>
-
-                <h3>Automated Action Execution</h3>
-                <h4>Multi-Channel Notifications</h4>
-                <ul>
-                    <li>Mobile push notifications</li>
-                    <li>In-app alerts</li>
-                    <li>Email notifications</li>
-                    <li>SMS alerts (via integrations)</li>
-                </ul>
-
-                <h4>Advanced Integration Capabilities</h4>
-                <ul>
-                    <li>Digital Signage Integration: Automatic content switching based on demographics or behaviors</li>
-                    <li>Third-Party Application Triggers: Webhook-based actions to external systems</li>
-                    <li>Custom Workflows: Programmable action chains for complex automation scenarios</li>
-                </ul>
-
-                <h2>4. Video & Data Management</h2>
-                <div class="success-box">
-                    <h4>Privacy-First Architecture</h4>
-                    <ul>
-                        <li>Local video storage and management</li>
-                        <li>No cloud services required for video/data storage</li>
-                        <li>Full operational capability without internet connectivity</li>
-                        <li>Minimal internet access needed only for remote notifications</li>
-                    </ul>
-                </div>
-
-                <h2>5. Intelligent Communications</h2>
-                <h3>Multi-Channel Notification System</h3>
-                <ul>
-                    <li>Mobile push notifications</li>
-                    <li>In-app alerts and warnings</li>
-                    <li>Email notifications</li>
-                    <li>Automatic integrations with third-party applications</li>
-                    <li>Webhook support for custom workflows</li>
-                    <li>Audit logging of all communications with delivery tracking</li>
-                </ul>
-
-                <h2>6. Analytics & Insights</h2>
-                <h3>Data Intelligence</h3>
-                <ul>
-                    <li>Real-time analytics dashboards</li>
-                    <li>Historical trend analysis</li>
-                    <li>Behavioral pattern recognition</li>
-                    <li>Actionable insights and reporting</li>
-                    <li>Trigger performance analytics</li>
-                    <li>Action execution monitoring and statistics</li>
-                </ul>
-
-                <h2>7. Security & Access Control</h2>
-                <div class="warning-box">
-                    <h4>Enterprise-Grade Security</h4>
-                    <ul>
-                        <li>Comprehensive user access management with role-based permissions</li>
-                        <li>File-level encryption for sensitive data</li>
-                        <li>Optional private VPN for internet communications</li>
-                        <li>Complete data sovereignty (all data stays on-premises)</li>
-                        <li>Secure trigger and action configuration with user audit trails</li>
-                    </ul>
-                </div>
-
-                <h2>8. Scalability & Expandability</h2>
-                <h3>Flexible Scaling</h3>
-                <ul>
-                    <li>Scales from small installations (homes) to large industrial sites</li>
-                    <li>Hardware-based scalability (software adapts automatically)</li>
-                    <li>Performance scales with available hardware resources</li>
-                    <li>No architectural limits on deployment size</li>
-                    <li>Unlimited camera support based on hardware capacity</li>
-                </ul>
-
-                <h3>Integration & Extensibility</h3>
-                <ul>
-                    <li>Third-party software connectivity via REST APIs</li>
-                    <li>Standard webhook integrations for custom actions</li>
-                    <li>Custom integration support</li>
-                    <li>Modular plugin architecture</li>
-                    <li>Digital signage system integrations</li>
-                </ul>
-
-                <h2>Key Differentiators</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Benefit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Privacy-First</strong></td>
-                            <td>All processing and storage on-premises</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Offline-Capable</strong></td>
-                            <td>Full functionality without internet</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Infinitely Scalable</strong></td>
-                            <td>From single camera to enterprise-wide</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Secure by Design</strong></td>
-                            <td>Encrypted, access-controlled, VPN-ready</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Integration-Ready</strong></td>
-                            <td>REST APIs, webhooks, third-party connectors</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Per-Camera Automation</strong></td>
-                            <td>Independent trigger configuration for each camera</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
 
@@ -5393,7 +5652,7 @@
                 </div>
             </div>
         </div>
-        
+
     </main>
 
     <!-- Footer Navigation -->
@@ -5524,9 +5783,9 @@
         const pages = [
             { id: 'home', title: 'Overview' },
             { id: 'executive', title: 'Executive Summary' },
+            { id: 'services', title: 'Services' },
             { id: 'personas', title: 'Customer Personas' },
             { id: 'competitive', title: 'Competitive Analysis' },
-            { id: 'functionalities', title: 'Platform Functionalities' },
             { id: 'business-better', title: 'Make Business Better' },
             { id: 'revenue', title: 'Financial & Revenue Model' },
             { id: 'investor', title: 'Investor Strategy' },
@@ -7071,7 +7330,7 @@
                 new Chart(platformArchitectureCtx, {
                     type: 'bar',
                     data: {
-                        labels: ['Intelligent Signage', 'Underage Detector', 'Gate Activity', 'Room & Gate Protection', 'Sentinel', 'Security Officer Agent'],
+                        labels: ['Eyenet Signage', 'Eyenet Matrix', 'Eyenet Gate', 'Eyenet Presence', 'Eyenet Sentinel', 'Eyenet Vradar'],
                         datasets: [
                             {
                                 label: 'Spot Deployment',
@@ -7749,7 +8008,7 @@
                 ],
                 datasets: [
                     {
-                        label: 'Intelligent Signage',
+                        label: 'Eyenet Signage',
                         data: [100, 40, 0, 40, 100, 30],
                         backgroundColor: 'rgba(13, 110, 253, 0.2)',
                         borderColor: '#0d6efd',
@@ -7760,7 +8019,7 @@
                         pointHoverBorderColor: '#0d6efd'
                     },
                     {
-                        label: 'Gate Activity',
+                        label: 'Eyenet Gate',
                         data: [100, 100, 100, 100, 50, 100],
                         backgroundColor: 'rgba(25, 135, 84, 0.2)',
                         borderColor: '#198754',
@@ -7771,7 +8030,7 @@
                         pointHoverBorderColor: '#198754'
                     },
                     {
-                        label: 'Room & Gate Protection',
+                        label: 'Eyenet Presence',
                         data: [50, 100, 0, 100, 20, 100],
                         backgroundColor: 'rgba(13, 202, 240, 0.2)',
                         borderColor: '#0dcaf0',
@@ -7782,7 +8041,7 @@
                         pointHoverBorderColor: '#0dcaf0'
                     },
                     {
-                        label: 'Sentinel',
+                        label: 'Eyenet Sentinel',
                         data: [30, 100, 0, 40, 50, 60],
                         backgroundColor: 'rgba(255, 193, 7, 0.2)',
                         borderColor: '#ffc107',
@@ -7793,7 +8052,7 @@
                         pointHoverBorderColor: '#ffc107'
                     },
                     {
-                        label: 'Security Officer Agent',
+                        label: 'Eyenet Vradar',
                         data: [100, 100, 100, 100, 20, 100],
                         backgroundColor: 'rgba(220, 53, 69, 0.2)',
                         borderColor: '#dc3545',
@@ -7804,7 +8063,7 @@
                         pointHoverBorderColor: '#dc3545'
                     },
                     {
-                        label: 'Underage Detector',
+                        label: 'Eyenet Matrix',
                         data: [100, 40, 0, 40, 100, 30],
                         backgroundColor: 'rgba(108, 117, 125, 0.2)',
                         borderColor: '#6c757d',
