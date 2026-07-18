@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyenet — Machine Vision Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== RULES & SEPARATORS ===== */
+        .hairline {
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+            width: 100%;
+        }
+        .hairline-cyan {
+            height: 1px;
+            background: rgba(34,211,238,0.35);
+            width: 100%;
+        }
+        .accent-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #22d3ee;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        /* ===== HEADER — CLASSICAL LEFT-ALIGNED OVER HERO IMAGE ===== */
+        .header-hero {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        .header-hero .header-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .header-hero .header-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(0.75) brightness(0.55) contrast(1.2);
+        }
+        .header-hero .header-veil {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.1) 0%,
+                rgba(0,0,0,0.0) 30%,
+                rgba(0,0,0,0.6) 65%,
+                #000 100%
+            );
+        }
+        .header-hero .header-cyan-wash {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: rgba(34,211,238,0.03);
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+        .header-hero .header-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            padding: 0 4rem 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .header-hero .header-logo {
+            display: block;
+            width: 280px;
+            max-width: 50vw;
+            height: auto;
+            margin: 2.5rem auto 0;
+        }
+        .header-hero .header-headline {
+            font-size: clamp(2rem, 4.5vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            color: #fff;
+            margin: 0 auto 2.5rem;
+        }
+        .header-hero .header-headline em {
+            font-style: normal;
+            color: #22d3ee;
+        }
+        .header-hero .header-accent-line {
+            width: 40px;
+            height: 1px;
+            background: #22d3ee;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* ===== IMAGE STRIP — horizontal, letterboxed, no text overlay ===== */
+        .image-strip {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            min-height: 340px;
+            overflow: hidden;
+        }
+        .image-strip img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(0.75) brightness(0.6) contrast(1.2);
+        }
+        .image-strip::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(34,211,238,0.15);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ===== SECTION LABEL ===== */
+        .section-label {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #22d3ee;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(34,211,238,0.3);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== CONTENT PANEL ===== */
+        .content-panel {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .card-headline {
+            font-size: clamp(2rem, 4.5vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+        }
+        .card-headline em {
+            font-style: normal;
+            color: #22d3ee;
+        }
+        .card-headline.small {
+            font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+        }
+
+        .stat-collection {
+            display: flex;
+            gap: 5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .stat-value {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #fff;
+            line-height: 0.9;
+        }
+        .stat-value.cyan {
+            color: #22d3ee;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .stat-collection.stack {
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            text-align: center;
+        }
+        .feature-head {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+        .feature-desc {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+            padding-left: 0;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #22d3ee;
+            text-decoration: none;
+            letter-spacing: -0.01em;
+            transition: gap 0.3s ease;
+            position: relative;
+        }
+        .cta-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 100%;
+            height: 1px;
+            background: #22d3ee;
+            transform: translateX(-50%) scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+        .cta-link:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+        .cta-link:hover {
+            gap: 1.25rem;
+        }
+        .cta-link svg {
+            width: 1rem;
+            height: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .cta-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .header-hero {
+                height: 70vh;
+                min-height: 450px;
+            }
+            .header-hero .header-content {
+                padding: 0 1.5rem 3rem;
+            }
+            .header-hero .header-logo {
+                width: 200px;
+            }
+            .content-panel {
+                padding: 4rem 1.5rem;
+            }
+            .image-strip {
+                height: 35vh;
+                min-height: 240px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .stat-collection {
+                gap: 3rem;
+            }
+            .stat-value {
+                font-size: 2.5rem;
+            }
+            .card-headline {
+                margin-bottom: 3rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .header-hero {
+                height: 60vh;
+                min-height: 380px;
+            }
+            .header-hero .header-content {
+                padding: 0 1rem 2.5rem;
+            }
+            .header-hero .header-logo {
+                width: 160px;
+            }
+            .content-panel {
+                padding: 3rem 1rem;
+            }
+            .image-strip {
+                height: 28vh;
+                min-height: 200px;
+            }
+            .stat-collection {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================ -->
+    <!-- HEADER — Classical left-aligned over hero image  -->
+    <!-- ================================================ -->
+    <header class="header-hero">
+        <div class="header-bg">
+            <img src="../assets/eyenet-robotic-cyberpunk-eye-01.png" alt="Eyenet Machine Vision" loading="lazy">
+        </div>
+        <div class="header-veil"></div>
+        <div class="header-cyan-wash"></div>
+        <div class="header-content">
+            <!-- Tagline on top -->
+            <h1 class="header-headline">
+                Your business deserves <em>next-gen</em> machine vision tools
+            </h1>
+            <div class="header-accent-line"></div>
+            <!-- Logo at the bottom -->
+            <svg class="header-logo" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="8" height="60" fill="#ffffff" opacity="1"/>
+                <rect x="18" y="10" width="25" height="8" fill="#ffffff" opacity="0.9"/>
+                <rect x="18" y="36" width="20" height="8" fill="#ffffff" opacity="0.8"/>
+                <rect x="18" y="62" width="25" height="8" fill="#ffffff" opacity="1"/>
+                <rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/>
+                <rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/>
+                <rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/>
+                <rect x="95" y="10" width="8" height="60" fill="#ffffff" opacity="1"/>
+                <rect x="103" y="10" width="25" height="8" fill="#ffffff" opacity="0.9"/>
+                <rect x="103" y="36" width="20" height="8" fill="#ffffff" opacity="0.8"/>
+                <rect x="103" y="62" width="25" height="8" fill="#ffffff" opacity="1"/>
+                <rect x="145" y="10" width="8" height="60" fill="#ffffff" opacity="1"/>
+                <rect x="153" y="20" width="8" height="13" fill="#ffffff" opacity="0.9"/>
+                <rect x="161" y="33" width="8" height="14" fill="#ffffff" opacity="0.8"/>
+                <rect x="169" y="47" width="8" height="13" fill="#ffffff" opacity="0.9"/>
+                <rect x="177" y="10" width="8" height="60" fill="#ffffff" opacity="1"/>
+                <rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/>
+                <rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/>
+                <rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/>
+                <rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+                <rect x="250" y="10" width="30" height="8" fill="#ffffff" opacity="1"/>
+                <rect x="261" y="18" width="8" height="52" fill="#ffffff" opacity="0.9"/>
+            </svg>
+        </div>
+    </header>
+
+    <div class="hairline"></div>
+
+    <!-- ================================================ -->
+    <!-- CARD 1: PLATFORM                                 -->
+    <!-- Headline → Image → Content                       -->
+    <!-- ================================================ -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Platform</div>
+
+            <h2 class="card-headline">
+                Transform <em>moderate hardware</em> into powerful machine vision nodes
+            </h2>
+
+            <!-- Image sits between headline and content -->
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="../assets/Platform Hero.png" alt="Eyenet Platform" loading="lazy">
+            </div>
+
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+
+            <div class="stat-collection">
+                <div class="stat-item">
+                    <span class="stat-value cyan">&#8734;</span>
+                    <span class="stat-label">Cameras</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">50</span>
+                    <span class="stat-label">Milliseconds Latency</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">99.7</span>
+                    <span class="stat-label">Percent Uptime</span>
+                </div>
+            </div>
+
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-head">
+                        <span class="accent-dot"></span>
+                        Any Camera
+                    </div>
+                    <p class="feature-desc">Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-head">
+                        <span class="accent-dot"></span>
+                        On-Device AI
+                    </div>
+                    <p class="feature-desc">Face detection, people counting, demographics, and route tracking — processed in real time</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-head">
+                        <span class="accent-dot"></span>
+                        Infinite Scale
+                    </div>
+                    <p class="feature-desc">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</p>
+                </div>
+            </div>
+
+            <a href="#" class="cta-link">
+                See How It Works
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ================================================ -->
+    <!-- CARD 2: PRESENCE                                 -->
+    <!-- Headline → Image → Content                       -->
+    <!-- ================================================ -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Presence</div>
+
+            <h2 class="card-headline small">
+                Enjoy next-level staff presence with <em>vision powered two-factor auth</em>
+            </h2>
+
+            <!-- Image sits between headline and content -->
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="../assets/eyenet-presence-02.png" alt="Eyenet Presence" loading="lazy">
+            </div>
+
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item">
+                    <span class="stat-value cyan">2-Factor</span>
+                    <span class="stat-label">Authentication</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">Sub 1s</span>
+                    <span class="stat-label">Verification Speed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value cyan">&#8734;</span>
+                    <span class="stat-label">Sites</span>
+                </div>
+            </div>
+
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item">
+                    <div class="feature-head">
+                        <span class="accent-dot"></span>
+                        Dynamic QR / NFC
+                    </div>
+                    <p class="feature-desc">Intelligent first level check-in/out with dynamic QR / NFC tech</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-head">
+                        <span class="accent-dot"></span>
+                        Vision 2FA
+                    </div>
+                    <p class="feature-desc">Combine QR/NFC with facial recognition for ironclad dual-factor verification</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-head">
+                        <span class="accent-dot"></span>
+                        Fast Gates
+                    </div>
+                    <p class="feature-desc">Asynchronous two-factor vision applied on fast-moving gate scenarios</p>
+                </div>
+            </div>
+
+            <a href="#" class="cta-link">
+                Discover Eyenet Presence
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- Minimal footer whisper -->
+    <footer style="padding: 4rem; text-align: center;">
+        <p style="font-size: 0.8rem; font-weight: 300; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; text-transform: uppercase;">
+            Eyenet Machine Vision &copy; 2025
+        </p>
+    </footer>
+
+</body>
+</html>

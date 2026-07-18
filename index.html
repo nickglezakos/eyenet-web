@@ -3,492 +3,820 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eyenet Application Suite Infographic</title>
+    <title>Eyenet — Machine Vision Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #060e17 0%, #0b1420 100%);
-            color: #f1f5f9;
-            line-height: 1.6;
-        }
-
-        .professional-card {
-            background: linear-gradient(145deg, #0b1a2a 0%, #0e1f33 100%);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(8, 145, 178, 0.18);
-            box-shadow: 0 25px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(8, 145, 178, 0.08) inset;
-            border-radius: 2rem;
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .professional-card:hover {
-            border-color: rgba(8, 145, 178, 0.4);
-            box-shadow: 0 25px 70px -20px rgba(8, 145, 178, 0.15);
-        }
-
-        /* ===== MODERN HEADER ===== */
-        .header-hero {
-            text-align: center;
-            padding: 5rem 2rem 3.5rem;
-            margin-bottom: 4rem;
-            background: linear-gradient(180deg, #060e17 0%, #0b1420 100%);
-        }
-        .header-hero .header-logo-svg {
-            display: block;
-            max-width: 420px;
-            width: 100%;
-            height: auto;
-            margin: 0 auto 2.25rem;
-            filter: drop-shadow(0 0 25px rgba(8,145,178,0.2));
-            animation: headerFadeIn 0.8s ease-out;
-        }
-        @keyframes headerFadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .header-hero .header-tagline {
-            font-size: 1.5rem;
-            font-weight: 200;
-            color: #94a3b8;
-            letter-spacing: 0.04em;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-            animation: headerFadeIn 0.8s ease-out 0.15s both;
-        }
-        .header-hero .header-tagline em {
-            font-style: normal;
-            font-weight: 600;
-            color: #22d3ee;
-        }
-        .header-hero .header-divider {
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(8,145,178,0.4), transparent);
-            margin: 3rem auto 0;
-            animation: headerFadeIn 0.8s ease-out 0.3s both;
-        }
-        @media (max-width: 767px) {
-            .header-hero { padding: 3.5rem 1.5rem 2.5rem; }
-            .header-hero .header-logo-svg { max-width: 300px; }
-            .header-hero .header-tagline { font-size: 1.1rem; }
-        }
-
-        /* ===== HERO CARD ===== */
-        .hero-card {
-            display: grid;
-            grid-template-rows: auto auto auto auto;
-            width: 100%;
-        }
-        .hero-card .hero-area {
-            position: relative;
-            height: 495px;
-            overflow: hidden;
-            max-width: 100%;
-        }
-        .hero-card .hero-area img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .hero-card .hero-gradient {
-            position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(6,14,23,0.05) 0%, rgba(6,14,23,0.3) 40%, rgba(6,14,23,0.95) 100%);
-        }
-        .hero-card .hero-overlay {
-            position: absolute;
-            bottom: 2.1rem; left: 3.5rem;
-            z-index: 2;
-        }
-        .hero-card .hero-headline {
-            font-size: 2.4rem;
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
+            background: #000;
             color: #fff;
-            max-width: 650px;
-        }
-        .hero-card .hero-headline em {
-            font-style: normal;
-            color: #22d3ee;
-        }
-        .hero-card .hero-stats-bar {
-            border-top: 1px solid rgba(255,255,255,0.06);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            background: rgba(11,26,42,0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 1.8rem 4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero-card .hero-stats {
-            display: flex; flex-direction: row;
-            align-items: center;
-            gap: 1.4rem;
-            background: rgba(6,14,23,0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 1.4rem;
-            padding: 0.75rem 1.6rem;
-        }
-        .hero-card .hero-stat {
-            display: flex; align-items: center;
-            gap: 0.55rem;
-            font-size: 0.88rem;
-            color: #e2e8f0;
-            position: relative;
-            background: none;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border: none;
-            border-radius: 0;
-            padding: 0;
-        }
-        .hero-card .hero-stat:not(:last-child)::after {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 1.3rem;
-            background: rgba(255,255,255,0.13);
-            margin-left: 1.4rem;
-        }
-        .hero-card .hero-stat-val {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #22d3ee;
-            letter-spacing: -0.02em;
-            white-space: nowrap;
-        }
-        .hero-card .hero-body {
-            padding: 4.5rem 4rem 3rem 4rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            gap: 3.5rem;
-            background: rgba(11,26,42,0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        .hero-card .hero-features {
-            display: flex; gap: 3rem;
-            flex-wrap: wrap;
-        }
-        .hero-card .hero-feat {
-            flex: 1; min-width: 180px;
-        }
-        .hero-card .hero-feat-head {
-            display: flex; align-items: center;
-            gap: 0.5rem; margin-bottom: 0.25rem;
-        }
-        .hero-card .hero-feat-dot {
-            width: 0.45rem; height: 0.45rem;
-            border-radius: 50%;
-            background: #22d3ee;
-            box-shadow: 0 0 8px #22d3ee;
-            flex-shrink: 0;
-        }
-        .hero-card .hero-feat-title {
-            font-weight: 700;
-            font-size: 0.97rem;
-            color: #f1f5f9;
-        }
-        .hero-card .hero-feat-desc {
-            font-size: 0.83rem;
-            color: #94a3b8;
-            line-height: 1.55;
-            padding-left: 0.95rem;
-        }
-        .hero-card .hero-cta {
-            display: inline-flex; align-items: center; gap: 0.55rem;
-            padding: 1rem 2.5rem;
-            border-radius: 9999px;
-            background: linear-gradient(135deg, #0891b2, #22d3ee);
-            color: #060e17;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            white-space: nowrap;
-            letter-spacing: -0.01em;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 8px 25px -8px rgba(8, 145, 178, 0.4);
-        }
-        .hero-card .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 35px -8px rgba(8, 145, 178, 0.55); }
-        .hero-card .hero-cta svg { width: 1.1rem; height: 1.1rem; transition: transform 0.2s; }
-        .hero-card .hero-cta:hover svg { transform: translateX(3px); }
-
-        /* Chips bar - full width below hero-body */
-        .hero-card .hero-chips-bar {
-            border-top: 1px solid rgba(255,255,255,0.06);
-            background: rgba(11,26,42,0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 2rem 4rem 3rem 4rem;
-            display: flex;
-            align-items: center;
-        }
-        .hero-card .hero-chips-bar .hero-chips {
-            display: flex; gap: 0.4rem; flex-wrap: wrap;
-        }
-        .hero-card .hero-chips-bar .hero-chips .eyenet-chip {
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 6px !important;
-            padding: 6px 14px 6px 10px !important;
-            background: rgba(11,26,42,0.7) !important;
-            border: 1px solid rgba(255,255,255,0.08) !important;
-            border-radius: 0.5rem !important;
-            color: #cbd5e1 !important;
-            box-shadow: none !important;
-            cursor: default !important;
-            transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
-        }
-        .hero-card .hero-chips-bar .hero-chips .eyenet-chip:hover {
-            border-color: rgba(8, 145, 178, 0.3) !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
-            background: rgba(11,26,42,0.9) !important;
+            line-height: 1.1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .hero-card, .professional-card {
-            max-width: 100%;
-            overflow: hidden;
-        }
-        .hero-card .hero-area img {
-            max-width: 100%;
-        }
-        @media (max-width: 767px) {
-            .hero-card .hero-area { height: 280px; }
-            .hero-card .hero-area img { width: 100%; height: 100%; }
-            .hero-card .hero-headline { font-size: 1.35rem; max-width: none; }
-            .hero-card .hero-stats-bar { padding: 0.75rem 1rem; }
-            .hero-card .hero-stats { gap: 0.45rem; padding: 0.45rem 0.7rem; }
-            .hero-card .hero-stat { font-size: 0.7rem; gap: 0.3rem; }
-            .hero-card .hero-stat:not(:last-child)::after { margin-left: 0.45rem; height: 0.85rem; }
-            .hero-card .hero-stat-val { font-size: 1rem; white-space: normal; }
-            .hero-card .hero-body { grid-template-columns: 1fr; padding: 1.5rem 1.5rem 1rem 1.5rem; }
-            .hero-card .hero-features { flex-direction: column; gap: 1.2rem; }
-            .hero-card .hero-feat-desc { overflow-wrap: break-word; word-break: break-word; }
-            .hero-card .hero-feat { min-width: 0; }
-            .hero-card .hero-overlay { bottom: 1rem; left: 1rem; right: 1rem; }
-            .hero-card .hero-chips-bar { padding: 0 1.5rem 1.5rem 1.5rem; }
+        .hairline { height: 1px; background: rgba(255,255,255,0.08); width: 100%; }
+        .hairline-cyan { height: 1px; background: rgba(34,211,238,0.35); width: 100%; }
+        .accent-dot {
+            display: inline-block; width: 6px; height: 6px;
+            background: #22d3ee; margin-right: 0.75rem; flex-shrink: 0;
         }
 
-        /* ===== SECTION HEADERS ===== */
-        .section-header { position: relative; padding-bottom: 1rem; }
-        .section-header::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background: linear-gradient(to right, #0891b2, #22d3ee); }
-
-        /* ===== FLOWCHART ===== */
-        .flowchart-node {
-            border: 1px solid rgba(8, 145, 178, 0.18);
-            background: linear-gradient(145deg, #0b1a2a 0%, #0e1f33 100%);
-            color: #f1f5f9;
-            box-shadow: 0 25px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(8, 145, 178, 0.08) inset;
-            transition: all 0.2s ease;
-            border-radius: 2rem;
+        /* ===== HEADER HERO ===== */
+        .header-hero {
+            position: relative; width: 100%; height: 90vh; min-height: 600px;
+            overflow: hidden; display: flex; align-items: flex-end;
         }
-        .flowchart-node:hover { border-color: rgba(8, 145, 178, 0.4); transform: translateY(-2px); }
-        .flowchart-connector { position: relative; width: 1px; background: linear-gradient(to bottom, #22d3ee, #0891b2); margin: 0 auto; }
-        .flowchart-connector::after { content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid #22d3ee; }
+        .header-hero .header-bg { position: absolute; inset: 0; z-index: 0; }
+        .header-hero .header-bg img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: grayscale(0.75) brightness(0.55) contrast(1.2);
+        }
+        .header-hero .header-veil {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.6) 65%, #000 100%);
+        }
+        .header-hero .header-cyan-wash {
+            position: absolute; inset: 0; z-index: 2;
+            background: rgba(34,211,238,0.03); mix-blend-mode: screen; pointer-events: none;
+        }
+        .header-hero .header-content {
+            position: relative; z-index: 3; width: 100%; padding: 0 4rem 5rem;
+            max-width: 1400px; margin: 0 auto; text-align: center;
+        }
+        .header-hero .header-logo { display: block; width: 280px; max-width: 50vw; height: auto; margin: 2.5rem auto 0; }
+        .header-hero .header-headline {
+            font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.0;
+            letter-spacing: -0.03em; max-width: 900px; color: #fff; margin: 0 auto 2.5rem;
+        }
+        .header-hero .header-headline em { font-style: normal; color: #22d3ee; }
+        .header-hero .header-accent-line { width: 40px; height: 1px; background: #22d3ee; margin: 0 auto 2.5rem; }
 
-        /* ===== LIGHTBOX ===== */
-        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.98); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; backdrop-filter: blur(4px); }
-        .lightbox.active { opacity: 1; visibility: visible; }
-        .lightbox-content { position: relative; max-width: 90%; max-height: 90%; overflow: auto; background: #1e293b; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); transform: scale(0.9); transition: transform 0.3s ease; }
-        .lightbox.active .lightbox-content { transform: scale(1); }
-        .lightbox-image { width: 100%; height: auto; display: block; border-radius: 2rem 2rem 0 0; }
-        .lightbox-close { position: absolute; top: -15px; right: -15px; width: 40px; height: 40px; background: rgba(30,41,59,0.9); color: white; border: none; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; z-index: 10001; backdrop-filter: blur(10px); }
-        .lightbox-close:hover { background: rgba(71,85,105,0.9); transform: scale(1.1); }
+        /* ===== IMAGE STRIP ===== */
+        .image-strip {
+            position: relative; width: 100%; height: 50vh; min-height: 340px; overflow: hidden;
+        }
+        .image-strip img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: grayscale(0.75) brightness(0.6) contrast(1.2);
+        }
+        .image-strip::after {
+            content: ''; position: absolute; inset: 0;
+            border: 1px solid rgba(34,211,238,0.15); pointer-events: none; z-index: 2;
+        }
+        .image-strip.tall { height: 65vh; min-height: 420px; }
 
-        .gallery-item { cursor: pointer; border-radius: 2rem; overflow: hidden; }
-        .gallery-item:hover { cursor: zoom-in; }
-        .photo-strip::-webkit-scrollbar { display: none; }
+        /* ===== SECTION LABEL ===== */
+        .section-label {
+            display: block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
+            text-transform: uppercase; color: #22d3ee; margin-bottom: 1.5rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid rgba(34,211,238,0.3);
+            width: fit-content; margin-left: auto; margin-right: auto;
+        }
 
-        .minimal-badge { display: inline-flex; align-items: center; padding: 0.25rem 0.75rem; background: rgba(34,211,238,0.2); color: #22d3ee; font-size: 0.75rem; font-weight: 500; border-radius: 9999px; border: 1px solid rgba(34,211,238,0.4); }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .minimal-grid { gap: 1.5rem; }
-        @media (min-width: 768px) { .minimal-grid { gap: 2rem; } }
-        .quote-section { background: linear-gradient(135deg, rgba(8,145,178,0.08) 0%, rgba(8,145,178,0.15) 100%); border-left: 4px solid #22d3ee; }
-        .app-icon { width: 40px; height: 40px; stroke: #22d3ee; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-        .deep-dive-card { background: rgba(11,26,42,0.85); border: 1px solid rgba(8, 145, 178, 0.18); border-radius: 2rem; transition: background 0.3s ease, box-shadow 0.3s ease; }
-        .deep-dive-card .text-gray-600 { color: #94a3b8; }
-        .deep-dive-card .text-gray-700 { color: #cbd5e1; }
-        .deep-dive-headline { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        /* ===== CONTENT PANEL ===== */
+        .content-panel { padding: 8rem 4rem; max-width: 1400px; margin: 0 auto; text-align: center; }
+        .content-panel.narrow { max-width: 1000px; }
+        .content-panel.wide { max-width: 1600px; }
+
+        /* ===== TYPOGRAPHY ===== */
+        .card-headline {
+            font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.0;
+            letter-spacing: -0.03em; max-width: 900px; margin: 0 auto 4rem;
+        }
+        .card-headline em { font-style: normal; color: #22d3ee; }
+        .card-headline.small { font-size: clamp(1.6rem, 3.2vw, 2.8rem); }
+        .card-headline.xs { font-size: clamp(1.2rem, 2.2vw, 2rem); }
+
+        .stat-collection { display: flex; gap: 5rem; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center; }
+        .stat-item { display: flex; flex-direction: column; gap: 0.4rem; }
+        .stat-value {
+            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.03em;
+            color: #fff; line-height: 0.9;
+        }
+        .stat-value.cyan { color: #22d3ee; }
+        .stat-label {
+            font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em;
+            text-transform: uppercase; color: rgba(255,255,255,0.5);
+        }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-bottom: 4rem; }
+        .feature-grid.four { grid-template-columns: repeat(4, 1fr); }
+        .feature-grid.two { grid-template-columns: repeat(2, 1fr); }
+        .feature-item { display: flex; flex-direction: column; gap: 0.75rem; text-align: center; }
+        .feature-head {
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; font-weight: 600; color: #fff; letter-spacing: -0.01em;
+        }
+        .feature-desc {
+            font-size: 0.9rem; font-weight: 300; color: rgba(255,255,255,0.55);
+            line-height: 1.5; padding-left: 0;
+        }
+
+        .cta-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.75rem; font-size: 1.15rem; font-weight: 600; color: #22d3ee;
+            text-decoration: none; letter-spacing: -0.01em; transition: gap 0.3s ease; position: relative;
+        }
+        .cta-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 50%; width: 100%; height: 1px;
+            background: #22d3ee; transform: translateX(-50%) scaleX(0);
+            transform-origin: center; transition: transform 0.3s ease;
+        }
+        .cta-link:hover::after { transform: translateX(-50%) scaleX(1); }
+        .cta-link:hover { gap: 1.25rem; }
+        .cta-link svg { width: 1rem; height: 1rem; transition: transform 0.3s ease; }
+        .cta-link:hover svg { transform: translateX(4px); }
+
+        /* ===== SECTION HEADINGS ===== */
+        .section-heading {
+            font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.0;
+            letter-spacing: -0.03em; margin-bottom: 1.5rem; color: #fff; text-align: center;
+        }
+        .section-heading em { font-style: normal; color: #22d3ee; }
+        .section-subheading {
+            font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.45);
+            line-height: 1.5; max-width: 600px; margin: 0 auto 4rem; text-align: center;
+        }
+        .heading-accent-line { width: 40px; height: 1px; background: #22d3ee; margin: 0 auto 3rem; }
+
+        /* ===== CHIPS (adapted from original, stripped of glassmorphism) ===== */
+        .chip-row { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; }
+        .chip-row .eyenet-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px 6px 10px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+            color: #cbd5e1; font-size: 0.75rem; transition: border-color 0.2s ease;
+        }
+        .chip-row .eyenet-chip:hover { border-color: rgba(34,211,238,0.3); }
+        .chip-row .eyenet-chip .chip-logo-svg { display: block; height: 14px; width: auto; }
+        .chip-row .eyenet-chip .chip-sub-svg { display: block; height: 11px; width: auto; }
+        .chip-row .eyenet-chip .chip-sub-svg rect { fill: #fbbf24 !important; }
+
+        /* ===== APP SUITE CARDS ===== */
+        .app-suite-card {
+            border: 1px solid rgba(255,255,255,0.08); padding: 3rem 2rem;
+            text-align: center; transition: border-color 0.3s ease;
+        }
+        .app-suite-card:hover { border-color: rgba(34,211,238,0.3); }
+        .app-suite-card .app-suite-headline {
+            display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 1rem;
+        }
+        .app-suite-card .app-suite-headline .as-logo-svg { display: block; height: 28px; width: auto; }
+        .app-suite-card .app-suite-headline .as-sub-svg { display: block; height: 22px; width: auto; }
+        .app-suite-card .app-suite-headline .as-sub-svg rect { fill: #fbbf24 !important; }
+        .app-suite-card p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+        .minimal-badge {
+            display: inline-flex; align-items: center; padding: 0.25rem 0.75rem;
+            border: 1px solid rgba(34,211,238,0.4); color: #22d3ee;
+            font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+        }
+
+        /* ===== DEEP DIVE ===== */
+        .deep-dive-card {
+            border: 1px solid rgba(255,255,255,0.08); padding: 3rem;
+            transition: border-color 0.3s ease;
+        }
+        .deep-dive-card:hover { border-color: rgba(34,211,238,0.3); }
+        .deep-dive-headline { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
         .deep-dive-headline .dd-logo-svg { display: block; height: 40px; width: auto; }
         .deep-dive-headline .dd-sub-svg { display: block; height: 30px; width: auto; }
         .deep-dive-headline .dd-sub-svg rect { fill: #fbbf24 !important; }
-        .app-suite-headline { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 16px; }
-        .app-suite-headline .as-logo-svg { display: block; height: 28px; width: auto; }
-        .app-suite-headline .as-sub-svg { display: block; height: 22px; width: auto; }
-        .app-suite-headline .as-sub-svg rect { fill: #fbbf24 !important; }
-        .headline-card-reel { flex-shrink: 0; display: flex; align-items: center; gap: 6px; padding: 6px 14px 6px 10px; background: rgba(11,26,42,0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; box-shadow: none; cursor: default; transition: box-shadow 0.2s ease, border-color 0.2s ease; }
-        .headline-card-reel:hover { border-color: rgba(8,145,178,0.3); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-        .headline-card-reel .reel-logo-svg { display: block; height: 16px; width: auto; }
-        .headline-card-reel .reel-sub-svg { display: block; height: 13px; width: auto; }
-        .headline-card-reel .reel-sub-svg rect { fill: #fbbf24 !important; }
-        .eyenet-chip .chip-logo-svg { display: block; height: 14px; width: auto; }
-        .eyenet-chip .chip-sub-svg { display: block; height: 11px; width: auto; }
-        .chip-sub-svg rect { fill: #fbbf24 !important; }
-        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
-        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .deep-dive-card .text-gray-600 { color: rgba(255,255,255,0.45); }
+        .deep-dive-card .text-gray-700 { color: rgba(255,255,255,0.65); }
+        .deep-dive-card .text-gray-400 { color: rgba(255,255,255,0.35); }
+        .deep-dive-card .text-xl { color: #fff; }
+
+        /* ===== ROLE CARDS ===== */
+        .role-card {
+            border: 1px solid rgba(255,255,255,0.08); padding: 2rem;
+            text-align: center; transition: border-color 0.3s ease;
+        }
+        .role-card:hover { border-color: rgba(34,211,238,0.3); }
+        .role-card img {
+            width: 100%; height: 12rem; object-fit: cover; display: block;
+            filter: grayscale(0.5) brightness(0.7); margin-bottom: 1.5rem;
+        }
+
+        /* ===== FLOWCHART NODES ===== */
+        .flowchart-node {
+            border: 1px solid rgba(255,255,255,0.1); text-align: center; padding: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+        .flowchart-node:hover { border-color: rgba(34,211,238,0.4); }
+        .flowchart-connector {
+            position: relative; width: 1px; background: linear-gradient(to bottom, #22d3ee, rgba(34,211,238,0.2));
+            margin: 0 auto;
+        }
+        .flowchart-connector::after {
+            content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+            border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid #22d3ee;
+        }
+        .app-icon { width: 40px; height: 40px; stroke: #22d3ee; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* ===== QUOTE ===== */
+        .quote-block {
+            border-left: 1px solid #22d3ee; padding: 3rem 4rem; text-align: center;
+        }
+        .quote-block p { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 300; color: #fff; line-height: 1.4; }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.98); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox-content {
+            position: relative; max-width: 90%; max-height: 90%; overflow: auto;
+            background: #111; border: 1px solid rgba(255,255,255,0.1);
+            transform: scale(0.9); transition: transform 0.3s ease;
+        }
+        .lightbox.active .lightbox-content { transform: scale(1); }
+        .lightbox-image { width: 100%; height: auto; display: block; }
+        .lightbox-close {
+            position: absolute; top: -15px; right: -15px; width: 40px; height: 40px;
+            background: #111; color: #22d3ee; border: 1px solid rgba(255,255,255,0.2);
+            font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease; z-index: 10001;
+        }
+        .lightbox-close:hover { background: #222; border-color: #22d3ee; }
+
+        .gallery-item { cursor: pointer; overflow: hidden; }
+        .gallery-item:hover { cursor: zoom-in; }
+        .photo-strip::-webkit-scrollbar { display: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .header-hero { height: 70vh; min-height: 450px; }
+            .header-hero .header-content { padding: 0 1.5rem 3rem; }
+            .header-hero .header-logo { width: 200px; }
+            .content-panel { padding: 4rem 1.5rem; }
+            .image-strip { height: 35vh; min-height: 240px; }
+            .image-strip.tall { height: 45vh; min-height: 300px; }
+            .feature-grid, .feature-grid.four, .feature-grid.two { grid-template-columns: 1fr; gap: 2rem; }
+            .stat-collection { gap: 3rem; }
+            .stat-value { font-size: 2.2rem; }
+            .card-headline { margin-bottom: 3rem; }
+            .quote-block { padding: 2rem 1.5rem; }
+            .deep-dive-card { padding: 2rem 1.5rem; }
+            .section-heading { font-size: 2rem; }
+        }
+
+        @media (max-width: 500px) {
+            .header-hero { height: 60vh; min-height: 380px; }
+            .header-hero .header-content { padding: 0 1rem 2.5rem; }
+            .header-hero .header-logo { width: 160px; }
+            .content-panel { padding: 3rem 1rem; }
+            .image-strip, .image-strip.tall { height: 28vh; min-height: 200px; }
+            .stat-collection { gap: 2rem; }
+            .stat-value { font-size: 1.8rem; }
+            .card-headline { font-size: 1.6rem; }
+            .section-heading { font-size: 1.6rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container mx-auto p-4 md:p-8">
-        <header class="header-hero">
-            <svg class="header-logo-svg" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/>
-              <rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/><rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/>
-              <rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/><rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/>
-              <rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
-              <rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
-              <rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/><rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-hero">
+        <div class="header-bg">
+            <img src="assets/eyenet-robotic-cyberpunk-eye-01.png" alt="Eyenet Machine Vision" loading="lazy">
+        </div>
+        <div class="header-veil"></div>
+        <div class="header-cyan-wash"></div>
+        <div class="header-content">
+            <h1 class="header-headline">
+                Your business deserves <em>next-gen</em> machine vision tools
+            </h1>
+            <div class="header-accent-line"></div>
+            <svg class="header-logo" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="8" height="60" fill="#ffffff" opacity="1"/><rect x="18" y="10" width="25" height="8" fill="#ffffff" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#ffffff" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#ffffff" opacity="1"/><rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/><rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/><rect x="95" y="10" width="8" height="60" fill="#ffffff" opacity="1"/><rect x="103" y="10" width="25" height="8" fill="#ffffff" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#ffffff" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#ffffff" opacity="1"/><rect x="145" y="10" width="8" height="60" fill="#ffffff" opacity="1"/><rect x="153" y="20" width="8" height="13" fill="#ffffff" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#ffffff" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#ffffff" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#ffffff" opacity="1"/><rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/><rect x="250" y="10" width="30" height="8" fill="#ffffff" opacity="1"/><rect x="261" y="18" width="8" height="52" fill="#ffffff" opacity="0.9"/>
             </svg>
-            <p class="header-tagline">Your business deserves <em>next-gen</em> machine vision tools</p>
-            <div class="header-divider"></div>
-        </header>
+        </div>
+    </header>
 
-        <!-- CARD 1: Platform -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/Platform Hero.png" alt="Platform Hero" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Transform <em>moderate hardware</em> into powerful machine vision nodes</div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">∞</span> Cameras</div><div class="hero-stat"><span class="hero-stat-val">Sub 50ms</span> Latency</div><div class="hero-stat"><span class="hero-stat-val">99.7%</span> Uptime</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Any Camera.</span></div><div class="hero-feat-desc">Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">On-Device AI.</span></div><div class="hero-feat-desc">Face detection, people counting, demographics, and route tracking — processed in real time</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Infinite Scale.</span></div><div class="hero-feat-desc">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</div></div></div><div><a href="#card-presence" class="hero-cta">See How It Works <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-platform"></div></div></div></section>
+    <div class="hairline"></div>
 
-        <!-- CARD 2: Presence -->
-        <section class="mb-8" id="card-presence"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/eyenet-presence-02.png" alt="People Analytics" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Enjoy next-level staff presence with <em>vision powered two-factor auth.</em></div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">2-Factor</span> Auth</div><div class="hero-stat"><span class="hero-stat-val">Sub 1s</span> Verify</div><div class="hero-stat"><span class="hero-stat-val">∞</span> Sites</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Dynamic QR/NFC.</span></div><div class="hero-feat-desc">Intelligent first level check-in/out with dynamic QR / NFC tech</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Vision 2FA.</span></div><div class="hero-feat-desc">Combine QR/NFC with facial recognition for ironclad dual-factor verification</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Fast Gates.</span></div><div class="hero-feat-desc">Asynchronous two-factor vision applied on fast-moving gate scenarios</div></div></div><div><a href="#dd-headline-presence" class="hero-cta" style="background:linear-gradient(135deg,#d97706,#f59e0b)">Discover eyenet presence <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-presence"></div></div></div></section>
+    <!-- ===== CARD 1: PLATFORM ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Platform</div>
+            <h2 class="card-headline">Transform <em>moderate hardware</em> into powerful machine vision nodes</h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/Platform Hero.png" alt="Platform" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection">
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Cameras</span></div>
+                <div class="stat-item"><span class="stat-value">50</span><span class="stat-label">Milliseconds Latency</span></div>
+                <div class="stat-item"><span class="stat-value">99.7</span><span class="stat-label">Percent Uptime</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Any Camera</div><p class="feature-desc">Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>On-Device AI</div><p class="feature-desc">Face detection, people counting, demographics, and route tracking — processed in real time</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Infinite Scale</div><p class="feature-desc">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-platform"></div>
+            <div style="margin-top: 2rem;"><a href="#card-presence" class="cta-link">See How It Works <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
 
-        <!-- CARD 3: Digital Signage -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/Digital signage.png" alt="Digital Signage" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Empower Your Digital Signage with <em>Real-Time Vision-Adaptive</em> playlists</div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">Sub 1s</span> Switch</div><div class="hero-stat"><span class="hero-stat-val">∞</span> Displays</div><div class="hero-stat"><span class="hero-stat-val">99.9%</span> Uptime</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Read the Room.</span></div><div class="hero-feat-desc">Cameras read the room — age, gender, group size — and switch content in milliseconds</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Auto-Trigger.</span></div><div class="hero-feat-desc">Trigger playlists, promotions, or emergency messages automatically based on who's watching</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Prove ROI.</span></div><div class="hero-feat-desc">Measure every impression: views, dwell time, engagement rate — prove your signage ROI</div></div></div><div><a href="#dd-headline-signage" class="hero-cta" style="background:linear-gradient(135deg,#c2185b,#ff6f00)">Power Your Displays <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-signage"></div></div></div></section>
+    <div class="hairline"></div>
 
-        <!-- CARD 4: Access Control -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/shipping-presence.jpeg" alt="Access Control" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Track exactly <em>who is in and out</em> of your premises in real time</div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">∞</span> Badges</div><div class="hero-stat"><span class="hero-stat-val">Real-time</span> Alerts</div><div class="hero-stat"><span class="hero-stat-val">24/7</span> Coverage</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Any Badge.</span></div><div class="hero-feat-desc">Support printed tickets or dynamic passes via mobile phone devices — your choice</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Live Alerts.</span></div><div class="hero-feat-desc">Instant notifications on mobile devices and your existing security systems</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Reports.</span></div><div class="hero-feat-desc">Operational presence reports with full event history for compliance</div></div></div><div><a href="#dd-headline-gate" class="hero-cta" style="background:linear-gradient(135deg,#059669,#34d399)">Discover eyenet gate <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-access"></div></div></div></section>
+    <!-- ===== CARD 2: PRESENCE ===== -->
+    <section id="card-presence">
+        <div class="content-panel">
+            <div class="section-label">Presence</div>
+            <h2 class="card-headline small">Enjoy next-level staff presence with <em>vision powered two-factor auth</em></h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/eyenet-presence-02.png" alt="Presence" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">2-Factor</span><span class="stat-label">Authentication</span></div>
+                <div class="stat-item"><span class="stat-value">Sub 1s</span><span class="stat-label">Verification Speed</span></div>
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Sites</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Dynamic QR / NFC</div><p class="feature-desc">Intelligent first level check-in/out with dynamic QR / NFC tech</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Vision 2FA</div><p class="feature-desc">Combine QR/NFC with facial recognition for ironclad dual-factor verification</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Fast Gates</div><p class="feature-desc">Asynchronous two-factor vision applied on fast-moving gate scenarios</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-presence"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-presence" class="cta-link">Discover Eyenet Presence <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
 
-        <!-- CARD 5: Restricted Area Protection -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/Restricted Area Protection.png" alt="Restricted Area Protection" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Cover Restricted Areas with <em>Machine Vision Protective Nets</em></div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">∞</span> Zones</div><div class="hero-stat"><span class="hero-stat-val">Sub 1s</span> Alert</div><div class="hero-stat"><span class="hero-stat-val">24/7</span> Guard</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Virtual Nets.</span></div><div class="hero-feat-desc">Define virtual perimeters around any zone — enforced 24/7 by AI</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Instant Alerts.</span></div><div class="hero-feat-desc">Mobile and email notifications the moment an unauthorised presence is detected</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Built-In Safety.</span></div><div class="hero-feat-desc">Lone-worker monitoring, PPE checks, and automatic incident documentation</div></div></div><div><a href="#dd-headline-vradar" class="hero-cta" style="background:linear-gradient(135deg,#b91c1c,#ef4444)">Deploy Virtual Perimeters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-restricted"></div></div></div></section>
+    <div class="hairline"></div>
 
-        <!-- CARD 6: VIP Protection -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/VIP Protection.png" alt="VIP Protection" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Protect VIPs with <em>Instant Machine Vision Eyeware</em></div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">Sub 100ms</span> Match</div><div class="hero-stat"><span class="hero-stat-val">∞</span> Cameras</div><div class="hero-stat"><span class="hero-stat-val">On-Prem</span> Secure</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Face Match.</span></div><div class="hero-feat-desc">Instant face recognition and POI alerts streamed directly to eyewear and mobile</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">On-Prem.</span></div><div class="hero-feat-desc">Whitelists, watchlists, and demographic profiling — all on-premises, fully private</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Multi-Cam.</span></div><div class="hero-feat-desc">Parallel detection across entire venues, coordinated through a single dashboard</div></div></div><div><a href="#dd-headline-sentinel" class="hero-cta" style="background:linear-gradient(135deg,#92400e,#fbbf24)">Protect What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-vip"></div></div></div></section>
+    <!-- ===== CARD 3: DIGITAL SIGNAGE ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Signage</div>
+            <h2 class="card-headline small">Empower Your Digital Signage with <em>Real-Time Vision-Adaptive</em> playlists</h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/Digital signage.png" alt="Digital Signage" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">Sub 1s</span><span class="stat-label">Switch</span></div>
+                <div class="stat-item"><span class="stat-value">&#8734;</span><span class="stat-label">Displays</span></div>
+                <div class="stat-item"><span class="stat-value cyan">99.9</span><span class="stat-label">Percent Uptime</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Read the Room</div><p class="feature-desc">Cameras read the room — age, gender, group size — and switch content in milliseconds</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Auto-Trigger</div><p class="feature-desc">Trigger playlists, promotions, or emergency messages automatically based on who's watching</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Prove ROI</div><p class="feature-desc">Measure every impression: views, dwell time, engagement rate — prove your signage ROI</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-signage"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-signage" class="cta-link">Power Your Displays <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
 
-        <!-- CARD 7: Remote Operations -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/Remote Operations.jpg" alt="Remote Operations" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Take Full Operational Control <em>Remotely</em> — Even with a Single Mobile Phone</div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">VPN</span> Secure</div><div class="hero-stat"><span class="hero-stat-val">Mobile</span> First</div><div class="hero-stat"><span class="hero-stat-val">Zero</span> Cloud</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">VPN Access.</span></div><div class="hero-feat-desc">Secure VPN-powered remote access to every camera, trigger, and dashboard worldwide</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Pocket Control.</span></div><div class="hero-feat-desc">Live feeds, push alerts, and full configuration — manage an entire site from your phone</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Zero Cloud.</span></div><div class="hero-feat-desc">No cloud dependency for video or data — your footage never leaves your premises</div></div></div><div><a href="#dd-card-matrix" class="hero-cta" style="background:linear-gradient(135deg,#2563eb,#60a5fa)">Manage From Anywhere <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-remote"></div></div></div></section>
+    <div class="hairline"></div>
 
-        <!-- CARD 8: Instant Deployment -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/Instant Deployment.png" alt="Instant Deployment" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Get Started <em>Instantly</em> Using Everyday Hardware</div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">16GB</span> RAM</div><div class="hero-stat"><span class="hero-stat-val">Sub 5min</span> Setup</div><div class="hero-stat"><span class="hero-stat-val">∞</span> Scale</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Lightweight.</span></div><div class="hero-feat-desc">16 GB RAM and a modern CPU — that's all. No GPU servers, no cloud subscriptions, no lock-in</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Plug & Play.</span></div><div class="hero-feat-desc">Connect any IP camera, WiFi cam, or your phone — first detection runs in minutes</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Start Small.</span></div><div class="hero-feat-desc">Begin with one camera and one room; scale to hundreds across multiple sites when ready</div></div></div><div><a href="#application-suite" class="hero-cta" style="background:linear-gradient(135deg,#0284c7,#38bdf8)">Get Started in Minutes <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-instant"></div></div></div></section>
+    <!-- ===== CARD 4: ACCESS CONTROL ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Access Control</div>
+            <h2 class="card-headline small">Track exactly <em>who is in and out</em> of your premises in real time</h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/shipping-presence.jpeg" alt="Access Control" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Badges</span></div>
+                <div class="stat-item"><span class="stat-value">Real-time</span><span class="stat-label">Alerts</span></div>
+                <div class="stat-item"><span class="stat-value cyan">24/7</span><span class="stat-label">Coverage</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Any Badge</div><p class="feature-desc">Support printed tickets or dynamic passes via mobile phone devices — your choice</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Live Alerts</div><p class="feature-desc">Instant notifications on mobile devices and your existing security systems</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Reports</div><p class="feature-desc">Operational presence reports with full event history for compliance</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-access"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-gate" class="cta-link">Discover Eyenet Gate <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
 
-        <section class="mb-24" id="value-across-every-role"><div class="flex justify-center"><img src="assets/operator-robot-eyes.jpg" alt="Robot Vision" class="rounded-2xl shadow-lg max-w-3xl w-full"></div></section>
+    <div class="hairline"></div>
 
-        <section class="mb-24" id="application-suite">
-            <div class="text-center mb-16"><h2 class="text-4xl font-light section-header" style="color:#f8fafc">Eyenet in Action</h2><p class="text-lg max-w-3xl mx-auto mt-6 font-light" style="color:#cbd5e1">Discover how our intelligent vision technology transforms real-world environments across diverse applications and industries</p></div>
+    <!-- ===== CARD 5: RESTRICTED AREA ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Perimeter Protection</div>
+            <h2 class="card-headline small">Cover Restricted Areas with <em>Machine Vision Protective Nets</em></h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/Restricted Area Protection.png" alt="Restricted Area" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Zones</span></div>
+                <div class="stat-item"><span class="stat-value">Sub 1s</span><span class="stat-label">Alert</span></div>
+                <div class="stat-item"><span class="stat-value cyan">24/7</span><span class="stat-label">Guard</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Virtual Nets</div><p class="feature-desc">Define virtual perimeters around any zone — enforced 24/7 by AI</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Instant Alerts</div><p class="feature-desc">Mobile and email notifications the moment an unauthorised presence is detected</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Built-In Safety</div><p class="feature-desc">Lone-worker monitoring, PPE checks, and automatic incident documentation</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-restricted"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-vradar" class="cta-link">Deploy Virtual Perimeters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== CARD 6: VIP PROTECTION ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">VIP Protection</div>
+            <h2 class="card-headline small">Protect VIPs with <em>Instant Machine Vision Eyeware</em></h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/VIP Protection.png" alt="VIP Protection" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">Sub 100ms</span><span class="stat-label">Match</span></div>
+                <div class="stat-item"><span class="stat-value">&#8734;</span><span class="stat-label">Cameras</span></div>
+                <div class="stat-item"><span class="stat-value cyan">On-Prem</span><span class="stat-label">Secure</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Face Match</div><p class="feature-desc">Instant face recognition and POI alerts streamed directly to eyewear and mobile</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>On-Prem</div><p class="feature-desc">Whitelists, watchlists, and demographic profiling — all on-premises, fully private</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Multi-Cam</div><p class="feature-desc">Parallel detection across entire venues, coordinated through a single dashboard</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-vip"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-sentinel" class="cta-link">Protect What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== CARD 7: REMOTE OPERATIONS ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Remote Operations</div>
+            <h2 class="card-headline small">Take Full Operational Control <em>Remotely</em> — Even with a Single Mobile Phone</h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/Remote Operations.jpg" alt="Remote Operations" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">VPN</span><span class="stat-label">Secure</span></div>
+                <div class="stat-item"><span class="stat-value">Mobile</span><span class="stat-label">First</span></div>
+                <div class="stat-item"><span class="stat-value cyan">Zero</span><span class="stat-label">Cloud</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>VPN Access</div><p class="feature-desc">Secure VPN-powered remote access to every camera, trigger, and dashboard worldwide</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Pocket Control</div><p class="feature-desc">Live feeds, push alerts, and full configuration — manage an entire site from your phone</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Zero Cloud</div><p class="feature-desc">No cloud dependency for video or data — your footage never leaves your premises</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-remote"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-card-matrix" class="cta-link">Manage From Anywhere <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== CARD 8: INSTANT DEPLOYMENT ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Instant Deployment</div>
+            <h2 class="card-headline small">Get Started <em>Instantly</em> Using Everyday Hardware</h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/Instant Deployment.png" alt="Instant Deployment" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">16 GB</span><span class="stat-label">RAM</span></div>
+                <div class="stat-item"><span class="stat-value">Sub 5min</span><span class="stat-label">Setup</span></div>
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Scale</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Lightweight</div><p class="feature-desc">16 GB RAM and a modern CPU — that's all. No GPU servers, no cloud subscriptions, no lock-in</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Plug & Play</div><p class="feature-desc">Connect any IP camera, WiFi cam, or your phone — first detection runs in minutes</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Start Small</div><p class="feature-desc">Begin with one camera and one room; scale to hundreds across multiple sites when ready</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-instant"></div>
+            <div style="margin-top: 2rem;"><a href="#application-suite" class="cta-link">Get Started in Minutes <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== QUOTE 1 ===== -->
+    <section><div class="quote-block"><p>Eyenet sees more so you can do more.</p><div class="heading-accent-line" style="margin-bottom: 0;"></div></div></section>
+    <div class="hairline"></div>
+
+    <!-- ===== EYENET IN ACTION (PHOTO STRIP) ===== -->
+    <section id="application-suite">
+        <div class="content-panel wide">
+            <h2 class="section-heading"><em>Eyenet</em> in Action</h2>
+            <p class="section-subheading">Discover how our intelligent vision technology transforms real-world environments across diverse applications and industries</p>
             <div class="photo-strip-wrapper" style="position:relative;overflow:hidden">
-                <div style="position:absolute;top:0;left:0;bottom:0;width:60px;z-index:2;pointer-events:none;background:linear-gradient(to right,#060e17,transparent)"></div>
-                <div style="position:absolute;top:0;right:0;bottom:0;width:60px;z-index:2;pointer-events:none;background:linear-gradient(to left,#060e17,transparent)"></div>
+                <div style="position:absolute;top:0;left:0;bottom:0;width:60px;z-index:2;pointer-events:none;background:linear-gradient(to right,#000,transparent)"></div>
+                <div style="position:absolute;top:0;right:0;bottom:0;width:60px;z-index:2;pointer-events:none;background:linear-gradient(to left,#000,transparent)"></div>
                 <div class="photo-strip" style="display:flex;gap:1rem;overflow-x:auto;scroll-behavior:smooth;padding:1rem 60px;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab">
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/actions-edit.png','Actions Editor','Configure and manage automated actions')"><img src="assets/eyenet-screenshots/actions-edit.png" alt="Actions Editor" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Actions Editor</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/analytics-01.png','Analytics Dashboard','Comprehensive analytics and insights')"><img src="assets/eyenet-screenshots/analytics-01.png" alt="Analytics Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Analytics Dashboard</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/anaytics-02.png','Advanced Analytics','Detailed metrics and trends')"><img src="assets/eyenet-screenshots/anaytics-02.png" alt="Advanced Analytics" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Advanced Analytics</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/anaytics-filters.png','Analytics Filters','Flexible data filtering options')"><img src="assets/eyenet-screenshots/anaytics-filters.png" alt="Analytics Filters" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Analytics Filters</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-01.png','Camera Analytics','Real-time camera performance metrics')"><img src="assets/eyenet-screenshots/camera-analytics-01.png" alt="Camera Analytics" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera Analytics</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-02.png','Camera Stats','Detailed camera statistics')"><img src="assets/eyenet-screenshots/camera-analytics-02.png" alt="Camera Analytics 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera Stats</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-03.png','Detection Analytics','Advanced detection insights')"><img src="assets/eyenet-screenshots/camera-analytics-03.png" alt="Camera Analytics 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Detection Analytics</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-04.png','Event Analytics','Event tracking and analysis')"><img src="assets/eyenet-screenshots/camera-analytics-04.png" alt="Camera Analytics 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Event Analytics</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-05.png','Performance Metrics','Camera performance overview')"><img src="assets/eyenet-screenshots/camera-analytics-05.png" alt="Camera Analytics 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Performance Metrics</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-06.png','Activity Monitor','Real-time activity monitoring')"><img src="assets/eyenet-screenshots/camera-analytics-06.png" alt="Camera Analytics 6" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Activity Monitor</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-07.png','Trend Analysis','Historical trends and patterns')"><img src="assets/eyenet-screenshots/camera-analytics-07.png" alt="Camera Analytics 7" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Trend Analysis</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-08.png','Data Visualization','Interactive data charts')"><img src="assets/eyenet-screenshots/camera-analytics-08.png" alt="Camera Analytics 8" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Data Visualization</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/camera-list.png','Camera List','Manage all connected cameras')"><img src="assets/eyenet-screenshots/camera-list.png" alt="Camera List" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera List</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/digital-signage-01.png','Digital Signage','Content management and display')"><img src="assets/eyenet-screenshots/digital-signage-01.png" alt="Digital Signage" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Digital Signage</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/main-dashboard.png','Main Dashboard','Central control panel')"><img src="assets/eyenet-screenshots/main-dashboard.png" alt="Main Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Main Dashboard</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/multi-camera-streams.png','Multi-Camera View','Monitor multiple cameras simultaneously')"><img src="assets/eyenet-screenshots/multi-camera-streams.png" alt="Multi Camera Streams" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Multi-Camera View</p></div></div></div>
-                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300" style="width:480px;height:330px" onclick="openLightbox('assets/eyenet-screenshots/mvr-group-search.png','MVR Group Search','Search and filter MVR groups')"><img src="assets/eyenet-screenshots/mvr-group-search.png" alt="MVR Group Search" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">MVR Group Search</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/actions-edit.png','Actions Editor','Configure and manage automated actions')"><img src="assets/eyenet-screenshots/actions-edit.png" alt="Actions Editor" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Actions Editor</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/analytics-01.png','Analytics Dashboard','Comprehensive analytics and insights')"><img src="assets/eyenet-screenshots/analytics-01.png" alt="Analytics Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Analytics Dashboard</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/anaytics-02.png','Advanced Analytics','Detailed metrics and trends')"><img src="assets/eyenet-screenshots/anaytics-02.png" alt="Advanced Analytics" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Advanced Analytics</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/anaytics-filters.png','Analytics Filters','Flexible data filtering options')"><img src="assets/eyenet-screenshots/anaytics-filters.png" alt="Analytics Filters" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Analytics Filters</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-01.png','Camera Analytics','Real-time camera performance metrics')"><img src="assets/eyenet-screenshots/camera-analytics-01.png" alt="Camera Analytics" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera Analytics</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-02.png','Camera Stats','Detailed camera statistics')"><img src="assets/eyenet-screenshots/camera-analytics-02.png" alt="Camera Analytics 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera Stats</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-03.png','Detection Analytics','Advanced detection insights')"><img src="assets/eyenet-screenshots/camera-analytics-03.png" alt="Camera Analytics 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Detection Analytics</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-04.png','Event Analytics','Event tracking and analysis')"><img src="assets/eyenet-screenshots/camera-analytics-04.png" alt="Camera Analytics 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Event Analytics</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/camera-analytics-05.png','Performance Metrics','Camera performance overview')"><img src="assets/eyenet-screenshots/camera-analytics-05.png" alt="Camera Analytics 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Performance Metrics</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/camera-list.png','Camera List','Manage all connected cameras')"><img src="assets/eyenet-screenshots/camera-list.png" alt="Camera List" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Camera List</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/digital-signage-01.png','Digital Signage','Content management and display')"><img src="assets/eyenet-screenshots/digital-signage-01.png" alt="Digital Signage" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Digital Signage</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/main-dashboard.png','Main Dashboard','Central control panel')"><img src="assets/eyenet-screenshots/main-dashboard.png" alt="Main Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Main Dashboard</p></div></div></div>
+                    <div class="gallery-item group relative flex-shrink-0 overflow-hidden" style="width:480px;height:330px;border:1px solid rgba(255,255,255,0.06)" onclick="openLightbox('assets/eyenet-screenshots/multi-camera-streams.png','Multi-Camera View','Monitor multiple cameras simultaneously')"><img src="assets/eyenet-screenshots/multi-camera-streams.png" alt="Multi Camera Streams" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"><div class="absolute bottom-3 left-3 text-white"><p class="font-medium text-sm">Multi-Camera View</p></div></div></div>
                 </div>
             </div>
-            <section class="mb-12"><div class="flex flex-wrap justify-center gap-2" id="all-chips-header"></div></section>
-        </section>
+            <section style="margin-top: 2rem;"><div class="chip-row" id="all-chips-header"></div></section>
+        </div>
+    </section>
 
-        <script>(function(){const strip=document.querySelector('.photo-strip');if(!strip)return;let isDown=false,startX,scrollLeft,userInteracting=false,resumeTimer;strip.addEventListener('mousedown',e=>{isDown=true;userInteracting=true;strip.style.cursor='grabbing';startX=e.pageX-strip.offsetLeft;scrollLeft=strip.scrollLeft;clearTimeout(resumeTimer)});strip.addEventListener('mouseleave',()=>{isDown=false;strip.style.cursor='grab';scheduleResume()});strip.addEventListener('mouseup',()=>{isDown=false;strip.style.cursor='grab';scheduleResume()});strip.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-strip.offsetLeft;const walk=(x-startX)*1.5;strip.scrollLeft=scrollLeft-walk});strip.addEventListener('touchstart',()=>{userInteracting=true;clearTimeout(resumeTimer)},{passive:true});strip.addEventListener('touchend',()=>{scheduleResume()},{passive:true});function scheduleResume(){clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>{userInteracting=false},3000)}let speed=0.5;function autoScroll(){if(!userInteracting){strip.scrollLeft+=speed;if(strip.scrollLeft>=strip.scrollWidth-strip.clientWidth-1){strip.scrollLeft=0}}requestAnimationFrame(autoScroll)}strip.style.scrollBehavior='auto';requestAnimationFrame(autoScroll);strip.style.setProperty('-ms-overflow-style','none')})();</script>
+    <div class="hairline"></div>
 
-        <section class="mb-24"><div class="professional-card quote-section rounded-2xl p-8 md:p-12 text-center"><p class="text-3xl md:text-4xl font-light mb-4 leading-relaxed" style="color:#f8fafc">Eyenet sees more so you can do more.</p><div class="w-16 h-0.5 mx-auto" style="background:linear-gradient(to right,#0891b2,#22d3ee)"></div></div></section>
+    <!-- ===== QUOTE 2 ===== -->
+    <section><div class="quote-block"><p>"Don't just protect your assets — see them protected."</p><div class="heading-accent-line" style="margin-bottom: 0;"></div></div></section>
+    <div class="hairline"></div>
 
-        <div id="lightbox" class="lightbox" onclick="closeLightbox(event)"><div class="lightbox-content" onclick="event.stopPropagation()"><button class="lightbox-close" onclick="closeLightbox()">&times;</button><img id="lightbox-image" class="lightbox-image" src="" alt=""><div class="p-4" style="background:#1e293b;color:#e2e8f0"><h3 id="lightbox-title" class="text-xl font-bold mb-2" style="color:#22d3ee"></h3><p id="lightbox-description" class="text-gray-400"></p></div></div></div>
-
-        <!-- CARD 9: Business Owners -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/shipping operations.jpeg" alt="Business Owners" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Secure staff presence compliance from <em>one single office to entire maritime fleets</em></div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">∞</span> Sites</div><div class="hero-stat"><span class="hero-stat-val">Real-time</span> Alerts</div><div class="hero-stat"><span class="hero-stat-val">100%</span> Compliant</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Presence.</span></div><div class="hero-feat-desc">Track staff presence across single offices or entire maritime fleets</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Live Alerts.</span></div><div class="hero-feat-desc">Incident alerts delivered in real time to supervisors and stakeholders</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Analytics.</span></div><div class="hero-feat-desc">Operational analytics for presence compliance across all locations</div></div></div><div><a href="#dd-headline-presence" class="hero-cta" style="background:linear-gradient(135deg,#92400e,#f59e0b)">Monitor Your Business <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-presence"></div></div></div></section>
-
-        <!-- CARD 10: Security -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/security persona.jpg" alt="Security" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Multiply Your Security Team with <em>Always-On AI Surveillance</em></div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">∞</span> Feeds</div><div class="hero-stat"><span class="hero-stat-val">AI</span> Powered</div><div class="hero-stat"><span class="hero-stat-val">24/7</span> Vigilant</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">AI Watch.</span></div><div class="hero-feat-desc">AI watches every feed simultaneously — your team focuses only on verified alerts</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Threat Class.</span></div><div class="hero-feat-desc">Intrusion, loitering, tailgating, crowd density — flagged before they escalate</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Auto-Reports.</span></div><div class="hero-feat-desc">Shift handover reports, timelines, and evidence exports — audit-ready 24/7</div></div></div><div><a href="#dd-headline-vradar" class="hero-cta" style="background:linear-gradient(135deg,#1e40af,#3b82f6)">Upgrade Your Watch Room <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-vip"></div></div></div></section>
-
-        <!-- CARD 11: Marketing -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/marketing persona.jpg" alt="Marketing" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Turn Foot Traffic into <em>Measurable Marketing Intelligence</em></div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">Zero</span> Surveys</div><div class="hero-stat"><span class="hero-stat-val">A/B</span> Real-time</div><div class="hero-stat"><span class="hero-stat-val">100%</span> ROI</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Zero Surveys.</span></div><div class="hero-feat-desc">Know exactly who sees your displays — age, gender, group size, attention time</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">A/B Test.</span></div><div class="hero-feat-desc">Swap content based on live audience data and measure what converts in real time</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Prove ROI.</span></div><div class="hero-feat-desc">Automated impression reports, engagement rates, and footfall-to-sales funnels</div></div></div><div><a href="#dd-headline-signage" class="hero-cta" style="background:linear-gradient(135deg,#be185d,#ec4899)">Measure What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-signage"></div></div></div></section>
-
-        <!-- CARD 12: Facilities -->
-        <section class="mb-8"><div class="professional-card rounded-2xl overflow-hidden hero-card"><div class="hero-area"><img src="assets/facilities manager persona.jpg" alt="Facilities" loading="lazy"><div class="hero-gradient"></div><div class="hero-overlay"><div class="hero-headline">Automate Facility Oversight from <em>Loading Dock to Front Door</em></div></div></div><div class="hero-stats-bar"><div class="hero-stats"><div class="hero-stat"><span class="hero-stat-val">∞</span> Zones</div><div class="hero-stat"><span class="hero-stat-val">Predictive</span> AI</div><div class="hero-stat"><span class="hero-stat-val">Audit</span> Ready</div></div></div><div class="hero-body"><div class="hero-features"><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Auto-Zones.</span></div><div class="hero-feat-desc">Zone monitoring across every floor, gate, and dock — one person sees what ten used to patrol</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Predictive.</span></div><div class="hero-feat-desc">Crowd build-ups, blocked exits, and HVAC triggers based on real-time occupancy</div></div><div class="hero-feat"><div class="hero-feat-head"><span class="hero-feat-dot"></span><span class="hero-feat-title">Audit-Ready.</span></div><div class="hero-feat-desc">Compliance-ready logs with timestamped video, occupancy records, and incident docs</div></div></div><div><a href="#dd-headline-gate" class="hero-cta" style="background:linear-gradient(135deg,#0d9488,#14b8a6)">Streamline Your Facility <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div></div><div class="hero-chips-bar"><div class="hero-chips" id="eyenet-chips-access"></div></div></div></section>
-
-        <section class="mb-24"><div class="flex justify-center"><img src="assets/marketing-executive-01.jpg" alt="Robot Vision" class="rounded-2xl shadow-lg max-w-3xl w-full"></div></section>
-
-        <!-- ===== APPLICATION SUITE OVERVIEW ===== -->
-        <section class="mb-24">
-            <div class="text-center mb-16"><h2 class="text-4xl font-light section-header" style="color:#f8fafc">Application Suite</h2><p class="text-lg max-w-3xl mx-auto mt-6 font-light" style="color:#cbd5e1">Six specialized applications engineered to address distinct operational challenges with precision and intelligence</p></div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 minimal-grid">
-                <div class="professional-card rounded-2xl p-8 flex flex-col group hover:scale-105 transition-transform duration-300"><div class="app-suite-headline" id="as-headline-presence"></div><p class="mb-6 flex-grow leading-relaxed" style="color:#cbd5e1">Comprehensive attendance monitoring and access control for educational, healthcare, and corporate environments with automated reporting.</p><div class="space-y-3"><div><span class="minimal-badge">Access Control</span></div><div class="text-sm" style="color:#94a3b8"><span class="font-medium">Modes:</span> Area • Gate</div></div></div>
-                <div class="professional-card rounded-2xl p-8 flex flex-col group hover:scale-105 transition-transform duration-300"><div class="app-suite-headline" id="as-headline-signage"></div><p class="mb-6 flex-grow leading-relaxed" style="color:#cbd5e1">Transform digital displays into intelligent marketing platforms with demographic-driven content delivery and real-time audience analytics.</p><div class="space-y-3"><div><span class="minimal-badge">Retail & Marketing</span></div><div class="text-sm" style="color:#94a3b8"><span class="font-medium">Modes:</span> Spot • Gate • Area</div></div></div>
-                <div class="professional-card rounded-2xl p-8 flex flex-col group hover:scale-105 transition-transform duration-300"><div class="app-suite-headline" id="as-headline-vradar"></div><p class="mb-6 flex-grow leading-relaxed" style="color:#cbd5e1">Mobile security enhancement through wearable technology, providing real-time alerts and centralized command integration for field operations.</p><div class="space-y-3"><div><span class="minimal-badge">Mobile Security</span></div><div class="text-sm" style="color:#94a3b8"><span class="font-medium">Modes:</span> Goggles • Drone</div></div></div>
-                <div class="professional-card rounded-2xl p-8 flex flex-col group hover:scale-105 transition-transform duration-300"><div class="app-suite-headline" id="as-headline-gate"></div><p class="mb-6 flex-grow leading-relaxed" style="color:#cbd5e1">Advanced security monitoring for entrances and corridors with crowd analytics, threat detection, and comprehensive behavioral insights.</p><div class="space-y-3"><div><span class="minimal-badge">Security & Surveillance</span></div><div class="text-sm" style="color:#94a3b8"><span class="font-medium">Modes:</span> Gate</div></div></div>
-                <div class="professional-card rounded-2xl p-8 flex flex-col group hover:scale-105 transition-transform duration-300"><div class="app-suite-headline" id="as-headline-sentinel"></div><p class="mb-6 flex-grow leading-relaxed" style="color:#cbd5e1">Automated security personnel monitoring ensuring vigilant oversight at watch stations with customizable activity detection and alerts.</p><div class="space-y-3"><div><span class="minimal-badge">Personnel Monitoring</span></div><div class="text-sm" style="color:#94a3b8"><span class="font-medium">Modes:</span> Area</div></div></div>
-                <div class="professional-card rounded-2xl p-8 flex flex-col group hover:scale-105 transition-transform duration-300"><div class="app-suite-headline" id="as-headline-matrix"></div><p class="mb-6 flex-grow leading-relaxed" style="color:#cbd5e1">Cross-installation aggregated reporting and centralised management over secure VPN for multi-site Eyenet deployments.</p><div class="space-y-3"><div><span class="minimal-badge">Enterprise Management</span></div><div class="text-sm" style="color:#94a3b8"><span class="font-medium">Modes:</span> All Modes</div></div></div>
+    <!-- ===== CARD 9: BUSINESS OWNERS ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Business</div>
+            <h2 class="card-headline small">Secure staff presence compliance from <em>one single office to entire maritime fleets</em></h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/shipping operations.jpeg" alt="Business Owners" loading="lazy">
             </div>
-        </section>
-
-        <!-- ===== OPERATING MODES ===== -->
-        <section class="mb-24"><div class="text-center mb-16"><h2 class="text-4xl font-light section-header" style="color:#f8fafc">Operating Modes</h2><p class="text-lg max-w-3xl mx-auto mt-6 font-light" style="color:#cbd5e1">Five specialized deployment configurations designed to optimize performance across diverse operational environments</p></div><div class="flex flex-col items-center"><div class="w-full max-w-md text-center p-8 rounded-2xl flowchart-node mb-8"><svg class="app-icon mx-auto mb-4" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><p class="font-medium text-lg" style="color:#f1f5f9">Camera Input</p><p class="text-sm mt-2" style="color:#94a3b8">Central data acquisition point for all visual intelligence</p></div><div class="flowchart-connector h-12"></div><div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 minimal-grid w-full max-w-7xl"><div class="text-center"><div class="p-6 rounded-2xl flowchart-node h-full flex flex-col justify-center"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><p class="font-medium text-lg mb-2" style="color:#f1f5f9">Spot Mode</p><p class="text-sm leading-relaxed" style="color:#94a3b8">Precise monitoring of fixed, close-range areas such as POS counters and product displays</p></div></div><div class="text-center"><div class="p-6 rounded-2xl flowchart-node h-full flex flex-col justify-center"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg><p class="font-medium text-lg mb-2" style="color:#f1f5f9">Gate Mode</p><p class="text-sm leading-relaxed" style="color:#94a3b8">Comprehensive monitoring of entrances, exits, and corridors for traffic analysis</p></div></div><div class="text-center"><div class="p-6 rounded-2xl flowchart-node h-full flex flex-col justify-center"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><p class="font-medium text-lg mb-2" style="color:#f1f5f9">Area Mode</p><p class="text-sm leading-relaxed" style="color:#94a3b8">Wide-area surveillance for large spaces including rooms and outdoor environments</p></div></div><div class="text-center"><div class="p-6 rounded-2xl flowchart-node h-full flex flex-col justify-center"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><path d="M2 7h5.5L12 2l4.5 5H22v10H2z"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/></svg><p class="font-medium text-lg mb-2" style="color:#f1f5f9">Goggles Mode</p><p class="text-sm leading-relaxed" style="color:#94a3b8">Mobile, first-person monitoring through wearable camera technology</p></div></div><div class="text-center"><div class="p-6 rounded-2xl flowchart-node h-full flex flex-col justify-center"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg><p class="font-medium text-lg mb-2" style="color:#f1f5f9">Drone Mode</p><p class="text-sm leading-relaxed" style="color:#94a3b8">Aerial surveillance providing comprehensive, mobile perspective coverage</p></div></div></div></div></section>
-
-        <section class="mb-24"><div class="professional-card quote-section rounded-2xl p-8 md:p-12 text-center"><p class="text-3xl md:text-4xl font-light mb-4 leading-relaxed" style="color:#f8fafc">"Don't just protect your assets — see them protected."</p><div class="w-16 h-0.5 mx-auto" style="background:linear-gradient(to right,#0891b2,#22d3ee)"></div></div></section>
-
-        <section class="mb-24"><div class="flex justify-center"><img src="assets/operator-touch.jpg" alt="Robot Vision" class="rounded-2xl shadow-lg max-w-3xl w-full"></div></section>
-
-        <!-- ===== APPLICATION DEEP DIVE ===== -->
-        <section class="mb-24">
-            <div class="text-center mb-16"><h2 class="text-4xl font-light section-header" style="color:#f8fafc">Application Deep Dive</h2><p class="text-lg max-w-3xl mx-auto mt-6 font-light" style="color:#cbd5e1">Comprehensive overview of each application's purpose, capabilities, and target markets</p></div>
-            <div class="grid grid-cols-1 gap-8">
-                <div class="deep-dive-card rounded-lg shadow-lg p-6"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-presence"></div><p class="text-gray-600 mb-4">A versatile solution for monitoring attendance and activity in specific areas such as schools, gyms, or industrial spaces. It provides detailed attendance reports and enhanced security by ensuring only authorized individuals are present.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Assigns schedules and members to rooms, then tracks attendance and generates comprehensive reports.</li><li>Sends automated alerts if unauthorized persons are detected in restricted areas.</li><li>Can collaborate with the Eyenet Gate Activity application for end-to-end monitoring.</li><li>Automatically sends attendance reports for minors to family members or sponsors in real time or on a recurring schedule.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Schools, universities, gyms, industrial facilities, corporate offices, and hospitals.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Area, Gate</p></div><div class="rounded-xl p-2" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Presence" style="width:100%;height:760px;border:0;border-radius:10px;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card rounded-lg shadow-lg p-6"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-signage"></div><p class="text-gray-600 mb-4">This application transforms traditional digital signage into a dynamic, data-driven marketing tool. By analyzing the age and gender of people approaching a display, it automatically serves targeted advertisements and media, maximizing engagement and campaign effectiveness.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Automatically displays content based on the demographics of the viewer.</li><li>Owners and marketing collaborators can easily upload and assign targeted media via a user-friendly web interface.</li><li>Optional add-on for comprehensive people activity insights reports, including demographics, traffic counts, and activity heatmaps.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Retail shops, shopping malls, airports, advertising agencies, event venues, and marketing firms.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Spot, Gate, Area</p></div><div class="rounded-xl p-2" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=collections,analytics,automation,signagemanagement,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Signage" style="width:100%;height:760px;border:0;border-radius:10px;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card rounded-lg shadow-lg p-6"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-vradar"></div><p class="text-gray-600 mb-4">An advanced, mobile security solution that operates using wearable camera eyewear (goggles) to empower security agents. It provides on-the-go alerts and streams data to a central command unit for collaborative security operations.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Provides instant audio alerts to the agent if a person of interest is detected in their field of view.</li><li>All activity annotations are sent to a main computing unit, enabling the team operator to issue alerts and share information.</li><li>The team operator can add a recently detected person to the "person of interest" group directly from an agent's live feed.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security agencies, law enforcement, private security firms, and event security teams.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Goggles, Drone</p></div><div class="rounded-xl p-2" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage" title="Quick Actions Widget - Eyenet VRadar" style="width:100%;height:760px;border:0;border-radius:10px;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card rounded-lg shadow-lg p-6"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-gate"></div><p class="text-gray-600 mb-4">A robust security and operational tool designed to monitor people activity in gates, entrances, exits, and corridors. It provides real-time data and security alerts, enabling businesses to understand crowd dynamics and respond to security events proactively.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Provides real-time people counters, age and gender demographics, activity heatmaps, and advanced crowd behavior metrics.</li><li>Triggers instant notifications for abnormal crowd activity and performs facial recognition for persons of interest.</li><li>Offers live video streaming with people activity annotations and flexible video storage solutions (instant and deep archives).</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security agencies, commercial buildings, industrial facilities, airports, public transport hubs, and event organizers.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Gate</p></div><div class="rounded-xl p-2" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Gate Activity" style="width:100%;height:760px;border:0;border-radius:10px;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card rounded-lg shadow-lg p-6"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-sentinel"></div><p class="text-gray-600 mb-4">This application ensures security personnel remain vigilant by automatically monitoring their activity at a watch station, providing business owners with peace of mind and guaranteeing consistent oversight during all shifts.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Delivers instant alerts and notifications based on customizable criteria for a guard's activity or inactivity.</li><li>Provides live video streams with complete people activity annotations.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security firms, corporate offices with dedicated security staff, industrial plants, and government buildings.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Area</p></div><div class="rounded-xl p-2" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,collections,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Sentinel" style="width:100%;height:760px;border:0;border-radius:10px;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card rounded-lg shadow-lg p-6" id="dd-card-matrix"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-matrix"></div><p class="text-gray-600 mb-4">Eyenet Matrix runs alongside the primary installation in a multi-site network, providing centralised management and aggregated reporting across all member installations. Designed to operate under VPN, it communicates with member installations via their internal VPN node URLs — all cross-installation queries go over the VPN tunnel, transparently within a private network without needing public internet exposure.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li><strong>6 Aggregated Report Types:</strong> Summary, Presence, Gate Activity, Camera Events, Demographics, and Logs — querying all member installations in parallel.</li><li><strong>Matrix Groups & Installation Membership:</strong> Full CRUD for groups and member installations with multi-install licensing enforcement.</li><li><strong>User Directory & SSO (JWT-based):</strong> Centralised user management with role-based access control across installations.</li><li><strong>Degraded Mode:</strong> If some installations are unreachable, reports still return partial data — no single point of failure.</li><li><strong>Result Caching:</strong> 60-second TTL report cache for responsive dashboards across distributed sites.</li><li><strong>Time-Range Filtering:</strong> All reports support ISO-8601 timestamp query parameters for precise historical analysis.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Multi-site enterprises, security operations centers, franchise networks, maritime fleet operators, and any organisation managing distributed Eyenet installations.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">All Modes — aggregated across member installations</p></div><div class="rounded-xl p-2" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)" style="background:rgba(11,26,42,0.85);border:1px solid rgba(8,145,178,0.18)"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Matrix" style="width:100%;height:760px;border:0;border-radius:10px;display:block"></iframe></div></div></div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Sites</span></div>
+                <div class="stat-item"><span class="stat-value">Real-time</span><span class="stat-label">Alerts</span></div>
+                <div class="stat-item"><span class="stat-value cyan">100%</span><span class="stat-label">Compliant</span></div>
             </div>
-        </section>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Presence</div><p class="feature-desc">Track staff presence across single offices or entire maritime fleets</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Live Alerts</div><p class="feature-desc">Incident alerts delivered in real time to supervisors and stakeholders</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Analytics</div><p class="feature-desc">Operational analytics for presence compliance across all locations</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-business"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-presence" class="cta-link">Monitor Your Business <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
 
-        <section class="mb-24 mt-24"><div class="professional-card quote-section rounded-2xl p-8 md:p-12"><div class="text-center"><p class="text-3xl md:text-4xl font-light mb-4 leading-relaxed" style="color:#f8fafc">"Eyenet makes the unseen visible."</p><div class="w-16 h-0.5 mx-auto" style="background:linear-gradient(to right,#0891b2,#22d3ee)"></div></div></div></section>
+    <div class="hairline"></div>
 
-        <!-- ===== VALUE ACROSS EVERY ROLE ===== -->
-        <section class="mb-24"><div class="text-center mb-16"><h2 class="text-4xl font-light section-header" style="color:#f8fafc">Value Across Every Role</h2><p class="text-lg max-w-3xl mx-auto mt-6 font-light" style="color:#cbd5e1">Eyenet's intelligent solutions deliver tailored benefits, empowering every stakeholder with actionable insights</p></div><div class="professional-card rounded-2xl p-8"><div class="grid grid-cols-1 md:grid-cols-2 minimal-grid"><div class="p-6"><div class="flex items-center mb-4"><div class="w-3 h-3 rounded-full mr-3" style="background:linear-gradient(to right,#0891b2,#22d3ee)"></div><h3 class="text-xl font-medium" style="color:#f1f5f9">Business Owners & Executives</h3></div><img src="assets/eyenet-executive.jpg" alt="Executive" class="w-full h-48 object-cover rounded-lg mb-4 shadow-sm"><p class="leading-relaxed" style="color:#cbd5e1">Gain unparalleled oversight with comprehensive analytics. Protect assets, ensure compliance, and drive data-informed decisions that boost profitability and operational excellence.</p></div><div class="p-6"><div class="flex items-center mb-4"><div class="w-3 h-3 rounded-full mr-3" style="background:linear-gradient(to right,#0891b2,#22d3ee)"></div><h3 class="text-xl font-medium" style="color:#f1f5f9">Security Managers & Personnel</h3></div><img src="assets/eyenet-security.jpg" alt="Security" class="w-full h-48 object-cover rounded-lg mb-4 shadow-sm"><p class="leading-relaxed" style="color:#cbd5e1">Enhance real-time vigilance through automated threat detection and streamlined incident response. Improve situational awareness with consistent, reliable monitoring.</p></div><div class="p-6"><div class="flex items-center mb-4"><div class="w-3 h-3 rounded-full mr-3" style="background:linear-gradient(to right,#0891b2,#22d3ee)"></div><h3 class="text-xl font-medium" style="color:#f1f5f9">Marketing & Sales Teams</h3></div><img src="assets/eyenet-marketing-02.jpg" alt="Marketing" class="w-full h-48 object-cover rounded-lg mb-4 shadow-sm"><p class="leading-relaxed" style="color:#cbd5e1">Deliver precisely targeted content based on real-time demographic insights. Optimize campaigns and understand customer behavior for enhanced engagement and conversion rates.</p></div><div class="p-6"><div class="flex items-center mb-4"><div class="w-3 h-3 rounded-full mr-3" style="background:linear-gradient(to right,#0891b2,#22d3ee)"></div><h3 class="text-xl font-medium" style="color:#f1f5f9">Operations & Facilities Managers</h3></div><img src="assets/eyenet-industrial.jpg" alt="Industrial" class="w-full h-48 object-cover rounded-lg mb-4 shadow-sm"><p class="leading-relaxed" style="color:#cbd5e1">Monitor attendance, manage access controls, and analyze crowd dynamics. Ensure efficient space utilization, maintain safety standards, and optimize daily operations.</p></div></div></div></section>
+    <!-- ===== CARD 10: SECURITY ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Security</div>
+            <h2 class="card-headline small">Multiply Your Security Team with <em>Always-On AI Surveillance</em></h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/security persona.jpg" alt="Security" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Feeds</span></div>
+                <div class="stat-item"><span class="stat-value">AI</span><span class="stat-label">Powered</span></div>
+                <div class="stat-item"><span class="stat-value cyan">24/7</span><span class="stat-label">Vigilant</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>AI Watch</div><p class="feature-desc">AI watches every feed simultaneously — your team focuses only on verified alerts</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Threat Class</div><p class="feature-desc">Intrusion, loitering, tailgating, crowd density — flagged before they escalate</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Auto-Reports</div><p class="feature-desc">Shift handover reports, timelines, and evidence exports — audit-ready 24/7</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-security"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-vradar" class="cta-link">Upgrade Your Watch Room <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
 
-        <section class="mb-24 mt-24"><div class="flex justify-center items-center"><svg class="mx-auto" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;width:100%"><rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/><rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/><rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/><rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/><rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/><rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/><rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/><rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/></svg></div></section>
+    <div class="hairline"></div>
 
-        <footer class="text-center mt-20 pt-12 border-t border-gray-200/50"><div class="max-w-4xl mx-auto"><p class="text-gray-500 font-light mb-3">&copy; 2025 Eyenet. All rights reserved.</p><p class="text-sm text-gray-400 font-light leading-relaxed"></p></div></footer>
-    </div>
+    <!-- ===== CARD 11: MARKETING ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Marketing</div>
+            <h2 class="card-headline small">Turn Foot Traffic into <em>Measurable Marketing Intelligence</em></h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/marketing persona.jpg" alt="Marketing" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">Zero</span><span class="stat-label">Surveys</span></div>
+                <div class="stat-item"><span class="stat-value">A/B</span><span class="stat-label">Real-time</span></div>
+                <div class="stat-item"><span class="stat-value cyan">100%</span><span class="stat-label">ROI</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Zero Surveys</div><p class="feature-desc">Know exactly who sees your displays — age, gender, group size, attention time</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>A/B Test</div><p class="feature-desc">Swap content based on live audience data and measure what converts in real time</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Prove ROI</div><p class="feature-desc">Automated impression reports, engagement rates, and footfall-to-sales funnels</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-marketing"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-signage" class="cta-link">Measure What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
 
+    <div class="hairline"></div>
+
+    <!-- ===== CARD 12: FACILITIES ===== -->
+    <section>
+        <div class="content-panel">
+            <div class="section-label">Facilities</div>
+            <h2 class="card-headline small">Automate Facility Oversight from <em>Loading Dock to Front Door</em></h2>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="assets/facilities manager persona.jpg" alt="Facilities" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection" style="margin-bottom: 2rem;">
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Zones</span></div>
+                <div class="stat-item"><span class="stat-value">Predictive</span><span class="stat-label">AI</span></div>
+                <div class="stat-item"><span class="stat-value cyan">Audit</span><span class="stat-label">Ready</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid" style="margin-bottom: 2rem;">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Auto-Zones</div><p class="feature-desc">Zone monitoring across every floor, gate, and dock — one person sees what ten used to patrol</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Predictive</div><p class="feature-desc">Crowd build-ups, blocked exits, and HVAC triggers based on real-time occupancy</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Audit-Ready</div><p class="feature-desc">Compliance-ready logs with timestamped video, occupancy records, and incident docs</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-facilities"></div>
+            <div style="margin-top: 2rem;"><a href="#dd-headline-gate" class="cta-link">Streamline Your Facility <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== QUOTE 3 ===== -->
+    <section><div class="quote-block"><p>"Eyenet makes the unseen visible."</p><div class="heading-accent-line" style="margin-bottom: 0;"></div></div></section>
+    <div class="hairline"></div>
+
+    <!-- ===== APPLICATION SUITE ===== -->
+    <section>
+        <div class="content-panel wide">
+            <h2 class="section-heading">Application <em>Suite</em></h2>
+            <p class="section-subheading">Six specialized applications engineered to address distinct operational challenges with precision and intelligence</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap: 1px; background: rgba(255,255,255,0.06);">
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-presence"></div><p class="mb-4">Comprehensive attendance monitoring and access control for educational, healthcare, and corporate environments with automated reporting.</p><div class="space-y-2"><div><span class="minimal-badge">Access Control</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Area &bull; Gate</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-signage"></div><p class="mb-4">Transform digital displays into intelligent marketing platforms with demographic-driven content delivery and real-time audience analytics.</p><div class="space-y-2"><div><span class="minimal-badge">Retail & Marketing</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Spot &bull; Gate &bull; Area</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-vradar"></div><p class="mb-4">Mobile security enhancement through wearable technology, providing real-time alerts and centralized command integration for field operations.</p><div class="space-y-2"><div><span class="minimal-badge">Mobile Security</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Goggles &bull; Drone</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-gate"></div><p class="mb-4">Advanced security monitoring for entrances and corridors with crowd analytics, threat detection, and comprehensive behavioral insights.</p><div class="space-y-2"><div><span class="minimal-badge">Security & Surveillance</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Gate</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-sentinel"></div><p class="mb-4">Automated security personnel monitoring ensuring vigilant oversight at watch stations with customizable activity detection and alerts.</p><div class="space-y-2"><div><span class="minimal-badge">Personnel Monitoring</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Area</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-matrix"></div><p class="mb-4">Cross-installation aggregated reporting and centralised management over secure VPN for multi-site Eyenet deployments.</p><div class="space-y-2"><div><span class="minimal-badge">Enterprise Management</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> All Modes</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== OPERATING MODES ===== -->
+    <section>
+        <div class="content-panel">
+            <h2 class="section-heading">Operating <em>Modes</em></h2>
+            <p class="section-subheading">Five specialized deployment configurations designed to optimize performance across diverse operational environments</p>
+            <div class="flex flex-col items-center">
+                <div class="flowchart-node" style="margin-bottom:1.5rem;width:100%;max-width:320px"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><p style="font-weight:600;color:#fff">Camera Input</p><p style="font-size:0.85rem;color:rgba(255,255,255,0.4)">Central data acquisition point for all visual intelligence</p></div>
+                <div class="flowchart-connector" style="height:2rem"></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5" style="gap:1px;background:rgba(255,255,255,0.06);width:100%">
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><p style="font-weight:600;color:#fff">Spot Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Precise monitoring of fixed, close-range areas</p></div>
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg><p style="font-weight:600;color:#fff">Gate Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Comprehensive monitoring of entrances, exits, corridors</p></div>
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><p style="font-weight:600;color:#fff">Area Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Wide-area surveillance for large spaces</p></div>
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><path d="M2 7h5.5L12 2l4.5 5H22v10H2z"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/></svg><p style="font-weight:600;color:#fff">Goggles Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Mobile, first-person monitoring via wearable tech</p></div>
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg><p style="font-weight:600;color:#fff">Drone Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Aerial surveillance, mobile perspective coverage</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== APPLICATION DEEP DIVE ===== -->
+    <section>
+        <div class="content-panel wide">
+            <h2 class="section-heading">Application <em>Deep Dive</em></h2>
+            <p class="section-subheading">Comprehensive overview of each application's purpose, capabilities, and target markets</p>
+            <div class="grid grid-cols-1" style="gap:1px;background:rgba(255,255,255,0.06)">
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-presence"></div><p class="text-gray-600 mb-4">A versatile solution for monitoring attendance and activity in specific areas such as schools, gyms, or industrial spaces. It provides detailed attendance reports and enhanced security by ensuring only authorized individuals are present.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Assigns schedules and members to rooms, then tracks attendance and generates comprehensive reports.</li><li>Sends automated alerts if unauthorized persons are detected in restricted areas.</li><li>Can collaborate with the Eyenet Gate Activity application for end-to-end monitoring.</li><li>Automatically sends attendance reports for minors to family members or sponsors in real time or on a recurring schedule.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Schools, universities, gyms, industrial facilities, corporate offices, and hospitals.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Area, Gate</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Presence" style="width:100%;height:760px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-signage"></div><p class="text-gray-600 mb-4">This application transforms traditional digital signage into a dynamic, data-driven marketing tool. By analyzing the age and gender of people approaching a display, it automatically serves targeted advertisements and media, maximizing engagement and campaign effectiveness.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Automatically displays content based on the demographics of the viewer.</li><li>Owners and marketing collaborators can easily upload and assign targeted media via a user-friendly web interface.</li><li>Optional add-on for comprehensive people activity insights reports.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Retail shops, shopping malls, airports, advertising agencies, event venues, and marketing firms.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Spot, Gate, Area</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=collections,analytics,automation,signagemanagement,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Signage" style="width:100%;height:760px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-vradar"></div><p class="text-gray-600 mb-4">An advanced, mobile security solution that operates using wearable camera eyewear (goggles) to empower security agents. It provides on-the-go alerts and streams data to a central command unit for collaborative security operations.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Provides instant audio alerts to the agent if a person of interest is detected in their field of view.</li><li>All activity annotations are sent to a main computing unit, enabling the team operator to issue alerts and share information.</li><li>The team operator can add a recently detected person to the "person of interest" group directly from an agent's live feed.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security agencies, law enforcement, private security firms, and event security teams.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Goggles, Drone</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage" title="Quick Actions Widget - Eyenet VRadar" style="width:100%;height:760px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-gate"></div><p class="text-gray-600 mb-4">A robust security and operational tool designed to monitor people activity in gates, entrances, exits, and corridors. It provides real-time data and security alerts, enabling businesses to understand crowd dynamics and respond to security events proactively.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Provides real-time people counters, age and gender demographics, activity heatmaps, and advanced crowd behavior metrics.</li><li>Triggers instant notifications for abnormal crowd activity and performs facial recognition for persons of interest.</li><li>Offers live video streaming with people activity annotations and flexible video storage solutions.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security agencies, commercial buildings, industrial facilities, airports, public transport hubs, and event organizers.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Gate</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Gate Activity" style="width:100%;height:760px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-sentinel"></div><p class="text-gray-600 mb-4">This application ensures security personnel remain vigilant by automatically monitoring their activity at a watch station, providing business owners with peace of mind and guaranteeing consistent oversight during all shifts.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Delivers instant alerts and notifications based on customizable criteria for a guard's activity or inactivity.</li><li>Provides live video streams with complete people activity annotations.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security firms, corporate offices with dedicated security staff, industrial plants, and government buildings.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Area</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,collections,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Sentinel" style="width:100%;height:760px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" id="dd-card-matrix" style="background:#000"><div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-matrix"></div><p class="text-gray-600 mb-4">Eyenet Matrix runs alongside the primary installation in a multi-site network, providing centralised management and aggregated reporting across all member installations. Designed to operate under VPN, it communicates with member installations via their internal VPN node URLs — all cross-installation queries go over the VPN tunnel, transparently within a private network without needing public internet exposure.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li><strong>6 Aggregated Report Types:</strong> Summary, Presence, Gate Activity, Camera Events, Demographics, and Logs — querying all member installations in parallel.</li><li><strong>Matrix Groups & Installation Membership:</strong> Full CRUD for groups and member installations with multi-install licensing enforcement.</li><li><strong>User Directory & SSO (JWT-based):</strong> Centralised user management with role-based access control across installations.</li><li><strong>Degraded Mode:</strong> If some installations are unreachable, reports still return partial data — no single point of failure.</li><li><strong>Result Caching:</strong> 60-second TTL report cache for responsive dashboards across distributed sites.</li><li><strong>Time-Range Filtering:</strong> All reports support ISO-8601 timestamp query parameters for precise historical analysis.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Multi-site enterprises, security operations centers, franchise networks, maritime fleet operators, and any organisation managing distributed Eyenet installations.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">All Modes — aggregated across member installations</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Matrix" style="width:100%;height:760px;border:0;display:block"></iframe></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== VALUE ACROSS EVERY ROLE ===== -->
+    <section>
+        <div class="content-panel wide">
+            <h2 class="section-heading">Value Across <em>Every Role</em></h2>
+            <p class="section-subheading">Eyenet's intelligent solutions deliver tailored benefits, empowering every stakeholder with actionable insights</p>
+            <div class="grid grid-cols-1 md:grid-cols-2" style="gap:1px;background:rgba(255,255,255,0.06)">
+                <div class="role-card" style="background:#000">
+                    <div class="feature-head" style="margin-bottom:1rem"><span class="accent-dot"></span>Business Owners & Executives</div>
+                    <img src="assets/eyenet-executive.jpg" alt="Executive" loading="lazy">
+                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5">Gain unparalleled oversight with comprehensive analytics. Protect assets, ensure compliance, and drive data-informed decisions that boost profitability and operational excellence.</p>
+                </div>
+                <div class="role-card" style="background:#000">
+                    <div class="feature-head" style="margin-bottom:1rem"><span class="accent-dot"></span>Security Managers & Personnel</div>
+                    <img src="assets/eyenet-security.jpg" alt="Security" loading="lazy">
+                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5">Enhance real-time vigilance through automated threat detection and streamlined incident response. Improve situational awareness with consistent, reliable monitoring.</p>
+                </div>
+                <div class="role-card" style="background:#000">
+                    <div class="feature-head" style="margin-bottom:1rem"><span class="accent-dot"></span>Marketing & Sales Teams</div>
+                    <img src="assets/eyenet-marketing-02.jpg" alt="Marketing" loading="lazy">
+                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5">Deliver precisely targeted content based on real-time demographic insights. Optimize campaigns and understand customer behavior for enhanced engagement and conversion rates.</p>
+                </div>
+                <div class="role-card" style="background:#000">
+                    <div class="feature-head" style="margin-bottom:1rem"><span class="accent-dot"></span>Operations & Facilities Managers</div>
+                    <img src="assets/eyenet-industrial.jpg" alt="Industrial" loading="lazy">
+                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5">Monitor attendance, manage access controls, and analyze crowd dynamics. Ensure efficient space utilization, maintain safety standards, and optimize daily operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== FOOTER LOGO ===== -->
+    <section style="padding:6rem 2rem;text-align:center">
+        <svg viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;width:100%">
+            <rect x="10" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="18" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/><rect x="55" y="10" width="8" height="25" fill="#ffffff" opacity="1"/><rect x="63" y="35" width="8" height="35" fill="#ffffff" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#ffffff" opacity="0.8"/><rect x="95" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="103" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/><rect x="145" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="153" y="20" width="8" height="13" fill="#22d3ee" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#22d3ee" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#22d3ee" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="200" y="10" width="8" height="60" fill="#ffffff" opacity="1"/><rect x="208" y="10" width="25" height="8" fill="#ffffff" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#ffffff" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#ffffff" opacity="1"/><rect x="250" y="10" width="30" height="8" fill="#22d3ee" opacity="1"/><rect x="261" y="18" width="8" height="52" fill="#22d3ee" opacity="0.9"/>
+        </svg>
+    </section>
+
+    <!-- Minimal footer -->
+    <footer style="padding:4rem;text-align:center">
+        <p style="font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase">&copy; 2025 Eyenet. All rights reserved.</p>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)"><div class="lightbox-content" onclick="event.stopPropagation()"><button class="lightbox-close" onclick="closeLightbox()">&times;</button><img id="lightbox-image" class="lightbox-image" src="" alt=""><div class="p-4" style="background:#111;color:rgba(255,255,255,0.7)"><h3 id="lightbox-title" class="text-xl font-bold mb-2" style="color:#22d3ee"></h3><p id="lightbox-description" class="text-gray-400"></p></div></div></div>
+
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // ==== Photo Strip Auto-Scroll ====
+        (function(){const strip=document.querySelector('.photo-strip');if(!strip)return;let isDown=false,startX,scrollLeft,userInteracting=false,resumeTimer;strip.addEventListener('mousedown',e=>{isDown=true;userInteracting=true;strip.style.cursor='grabbing';startX=e.pageX-strip.offsetLeft;scrollLeft=strip.scrollLeft;clearTimeout(resumeTimer)});strip.addEventListener('mouseleave',()=>{isDown=false;strip.style.cursor='grab';scheduleResume()});strip.addEventListener('mouseup',()=>{isDown=false;strip.style.cursor='grab';scheduleResume()});strip.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-strip.offsetLeft;const walk=(x-startX)*1.5;strip.scrollLeft=scrollLeft-walk});strip.addEventListener('touchstart',()=>{userInteracting=true;clearTimeout(resumeTimer)},{passive:true});strip.addEventListener('touchend',()=>{scheduleResume()},{passive:true});function scheduleResume(){clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>{userInteracting=false},3000)}let speed=0.5;function autoScroll(){if(!userInteracting){strip.scrollLeft+=speed;if(strip.scrollLeft>=strip.scrollWidth-strip.clientWidth-1){strip.scrollLeft=0}}requestAnimationFrame(autoScroll)}strip.style.scrollBehavior='auto';requestAnimationFrame(autoScroll)})();
+
+        // ==== Lightbox ====
+        function openLightbox(imageSrc,title,description){const lightbox=document.getElementById('lightbox');document.getElementById('lightbox-image').src=imageSrc;document.getElementById('lightbox-title').textContent=title;document.getElementById('lightbox-description').textContent=description;lightbox.classList.add('active');document.body.style.overflow='hidden'}
+        function closeLightbox(event){if(!event||event.target.id==='lightbox'||event.target.classList.contains('lightbox-close')){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}}
+        document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeLightbox()}});
+
+        // ==== Pixel Text Rendering ====
         const FONT={'A':[0b01110,0b10001,0b10001,0b11111,0b10001,0b10001,0b10001],'B':[0b11110,0b10001,0b11110,0b10001,0b10001,0b10001,0b11110],'C':[0b01110,0b10001,0b10000,0b10000,0b10000,0b10001,0b01110],'D':[0b11110,0b10001,0b10001,0b10001,0b10001,0b10001,0b11110],'E':[0b11111,0b10000,0b11110,0b10000,0b10000,0b10000,0b11111],'F':[0b11111,0b10000,0b11110,0b10000,0b10000,0b10000,0b10000],'G':[0b01110,0b10001,0b10000,0b10111,0b10001,0b10001,0b01110],'H':[0b10001,0b10001,0b11111,0b10001,0b10001,0b10001,0b10001],'I':[0b11111,0b00100,0b00100,0b00100,0b00100,0b00100,0b11111],'K':[0b10001,0b10010,0b11100,0b11000,0b11100,0b10010,0b10001],'L':[0b10000,0b10000,0b10000,0b10000,0b10000,0b10000,0b11111],'M':[0b10001,0b11011,0b10101,0b10101,0b10001,0b10001,0b10001],'N':[0b10001,0b11001,0b10101,0b10011,0b10001,0b10001,0b10001],'O':[0b01110,0b10001,0b10001,0b10001,0b10001,0b10001,0b01110],'P':[0b11110,0b10001,0b10001,0b11110,0b10000,0b10000,0b10000],'R':[0b11110,0b10001,0b10001,0b11110,0b11100,0b10010,0b10001],'S':[0b01110,0b10001,0b10000,0b01110,0b00001,0b10001,0b01110],'T':[0b11111,0b00100,0b00100,0b00100,0b00100,0b00100,0b00100],'U':[0b10001,0b10001,0b10001,0b10001,0b10001,0b10001,0b01110],'V':[0b10001,0b10001,0b10001,0b10001,0b10001,0b01010,0b00100],'W':[0b10001,0b10001,0b10001,0b10101,0b10101,0b11011,0b10001],'X':[0b10001,0b10001,0b01010,0b00100,0b01010,0b10001,0b10001],'Y':[0b10001,0b01010,0b00100,0b00100,0b00100,0b00100,0b00100],'Z':[0b11111,0b00001,0b00010,0b00100,0b01000,0b10000,0b11111],' ':[0b00000,0b00000,0b00000,0b00000,0b00000,0b00000,0b00000],'-':[0b00000,0b00000,0b00000,0b11111,0b00000,0b00000,0b00000]};
         const PIXEL=3,GLYPH_W=5,GLYPH_H=7,SPACING=2,VS=1;
         function renderPixelText(text,fillColor,opacity){text=text.toUpperCase();const chars=text.split('');let totalW=0;const glyphData=chars.map(ch=>FONT[ch]||FONT[' ']);for(let i=0;i<chars.length;i++){totalW+=GLYPH_W*PIXEL+(i<chars.length-1?SPACING:0)}const totalH=GLYPH_H*PIXEL+(GLYPH_H-1)*VS;const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox',`0 0 ${totalW} ${totalH}`);svg.setAttribute('width',totalW);svg.setAttribute('height',totalH);let cursorX=0;for(let gi=0;gi<glyphData.length;gi++){const rows=glyphData[gi];for(let row=0;row<GLYPH_H;row++){const mask=rows[row];for(let col=0;col<GLYPH_W;col++){if(mask&(1<<(4-col))){const x=cursorX+col*PIXEL;const y=row*(PIXEL+VS);const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');rect.setAttribute('x',x);rect.setAttribute('y',y);rect.setAttribute('width',PIXEL);rect.setAttribute('height',PIXEL);rect.setAttribute('fill',fillColor);rect.setAttribute('opacity',opacity);svg.appendChild(rect)}}}cursorX+=GLYPH_W*PIXEL+SPACING}return svg}
-        function renderGradientPixelText(text,colorStart,colorEnd,opacity){text=text.toUpperCase();const chars=text.split('');let totalW=0;const glyphData=chars.map(ch=>FONT[ch]||FONT[' ']);for(let i=0;i<chars.length;i++){totalW+=GLYPH_W*PIXEL+(i<chars.length-1?SPACING:0)}const totalH=GLYPH_H*PIXEL+(GLYPH_H-1)*VS;const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox',`0 0 ${totalW} ${totalH}`);svg.setAttribute('width',totalW);svg.setAttribute('height',totalH);const hexToRgb=(h)=>{const r=parseInt(h.slice(1,3),16);const g=parseInt(h.slice(3,5),16);const b=parseInt(h.slice(5,7),16);return[r,g,b]};const rgbToHex=(r,g,b)=>'#'+[r,g,b].map(v=>Math.round(v).toString(16).padStart(2,'0')).join('');const startRgb=hexToRgb(colorStart);const endRgb=hexToRgb(colorEnd);const totalChars=chars.length;let cursorX=0;for(let gi=0;gi<glyphData.length;gi++){const rows=glyphData[gi];const t=totalChars>1?gi/(totalChars-1):0;const r=Math.round(startRgb[0]+(endRgb[0]-startRgb[0])*t);const g=Math.round(startRgb[1]+(endRgb[1]-startRgb[1])*t);const b=Math.round(startRgb[2]+(endRgb[2]-startRgb[2])*t);const charColor=rgbToHex(r,g,b);for(let row=0;row<GLYPH_H;row++){const mask=rows[row];for(let col=0;col<GLYPH_W;col++){if(mask&(1<<(4-col))){const x=cursorX+col*PIXEL;const y=row*(PIXEL+VS);const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');rect.setAttribute('x',x);rect.setAttribute('y',y);rect.setAttribute('width',PIXEL);rect.setAttribute('height',PIXEL);rect.setAttribute('fill',charColor);rect.setAttribute('opacity',opacity);svg.appendChild(rect)}}}cursorX+=GLYPH_W*PIXEL+SPACING}return svg}
-         function renderTagline(){const container=document.getElementById('tagline-gradient');if(!container)return;container.innerHTML='';const startColor='#0891b2';const endColor='#67e8f9';const opacity=0.95;const vw=Math.max(document.documentElement.clientWidth,320);let height;if(vw>=768){height=40}else{height=23}const svg1=renderGradientPixelText('Your business deserves',startColor,endColor,opacity);svg1.style.height=height+'px';svg1.style.width='auto';svg1.style.display='block';svg1.style.marginBottom='8px';container.appendChild(svg1);const svg2=renderGradientPixelText('next-gen machine vision tools',startColor,endColor,opacity);svg2.style.height=height+'px';svg2.style.width='auto';svg2.style.display='block';container.appendChild(svg2)}
-        renderTagline();let taglineResizeTimeout;window.addEventListener('resize',()=>{clearTimeout(taglineResizeTimeout);taglineResizeTimeout=setTimeout(renderTagline,150)});
-        function cloneLogoSvg(height){const svg=document.querySelector('header svg').cloneNode(true);svg.removeAttribute('class');svg.setAttribute('style','display:block;height:'+height+'px;width:auto;margin:0;');return svg}
+
+        function cloneLogoSvg(height){const svg=document.querySelector('.header-hero .header-logo').cloneNode(true);svg.removeAttribute('class');svg.setAttribute('style','display:block;height:'+height+'px;width:auto;margin:0;');return svg}
+
         function addEyenetChips(containerId,chipNames){const container=document.getElementById(containerId);if(!container)return;chipNames.forEach(name=>{const chip=document.createElement('span');chip.className='eyenet-chip';const logoSvg=cloneLogoSvg(14);logoSvg.classList.add('chip-logo-svg');chip.appendChild(logoSvg);const subSvg=renderPixelText(name,'#fbbf24',0.92);subSvg.classList.add('chip-sub-svg');chip.appendChild(subSvg);container.appendChild(chip)})}
-        addEyenetChips('eyenet-chips-platform',['Presence','Signage','VRadar','Gate','Matrix','VProfiles','Logic']);addEyenetChips('eyenet-chips-presence',['Presence','Handshake','Nod','VRadar','VProfiles']);addEyenetChips('eyenet-chips-signage',['Signage','AnonTracking','Insights']);addEyenetChips('eyenet-chips-access',['Presence','Handshake','Nod','Insights','VProfiles']);addEyenetChips('eyenet-chips-restricted',['Presence','AnonTracking','VRadar','Insights','VProfiles']);addEyenetChips('eyenet-chips-vip',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);addEyenetChips('eyenet-chips-remote',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);addEyenetChips('eyenet-chips-instant',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
-        (function buildHeaderChips(){const container=document.getElementById('all-chips-header');if(!container)return;const names=['Presence','Handshake','Nod','Signage','Anonymous','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles','Logic','API'];names.forEach(name=>{const card=document.createElement('div');card.className='headline-card-reel';const logoSvg=cloneLogoSvg(16);logoSvg.classList.add('reel-logo-svg');card.appendChild(logoSvg);const subSvg=renderPixelText(name,'#fbbf24',0.92);subSvg.classList.add('reel-sub-svg');card.appendChild(subSvg);container.appendChild(card)})})();
+
+        // Chips for all cards
+        addEyenetChips('eyenet-chips-platform',['Presence','Signage','VRadar','Gate','Matrix','VProfiles','Logic']);
+        addEyenetChips('eyenet-chips-presence',['Presence','Handshake','Nod','VRadar','VProfiles']);
+        addEyenetChips('eyenet-chips-signage',['Signage','AnonTracking','Insights']);
+        addEyenetChips('eyenet-chips-access',['Presence','Handshake','Nod','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-restricted',['Presence','AnonTracking','VRadar','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-vip',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-remote',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-instant',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-business',['Presence','Handshake','Nod','VRadar','VProfiles']);
+        addEyenetChips('eyenet-chips-security',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-marketing',['Signage','AnonTracking','Insights']);
+        addEyenetChips('eyenet-chips-facilities',['Presence','Handshake','Nod','Insights','VProfiles']);
+
+        // Header chips reel
+        (function buildHeaderChips(){const container=document.getElementById('all-chips-header');if(!container)return;const names=['Presence','Handshake','Nod','Signage','Anonymous','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles','Logic','API'];names.forEach(name=>{const chip=document.createElement('span');chip.className='eyenet-chip';const logoSvg=cloneLogoSvg(14);logoSvg.classList.add('chip-logo-svg');chip.appendChild(logoSvg);const subSvg=renderPixelText(name,'#fbbf24',0.92);subSvg.classList.add('chip-sub-svg');chip.appendChild(subSvg);container.appendChild(chip)})})();
+
+        // App Suite Headlines
         (function buildAppSuiteHeadlines(){const mappings={'as-headline-presence':'Presence','as-headline-signage':'Signage','as-headline-vradar':'VRadar','as-headline-gate':'Gate','as-headline-sentinel':'Sentinel','as-headline-matrix':'Matrix'};Object.entries(mappings).forEach(([id,name])=>{const container=document.getElementById(id);if(!container)return;const logoSvg=cloneLogoSvg(28);logoSvg.classList.add('as-logo-svg');container.appendChild(logoSvg);const subSvg=renderPixelText(name,'#fbbf24',0.92);subSvg.classList.add('as-sub-svg');container.appendChild(subSvg)})})();
+
+        // Deep Dive Headlines
         (function buildDeepDiveHeadlines(){const mappings={'dd-headline-presence':'Presence','dd-headline-signage':'Signage','dd-headline-vradar':'VRadar','dd-headline-gate':'Gate','dd-headline-sentinel':'Sentinel','dd-headline-matrix':'Matrix'};Object.entries(mappings).forEach(([id,name])=>{const container=document.getElementById(id);if(!container)return;const logoSvg=cloneLogoSvg(40);logoSvg.classList.add('dd-logo-svg');container.appendChild(logoSvg);const subSvg=renderPixelText(name,'#fbbf24',0.92);subSvg.classList.add('dd-sub-svg');container.appendChild(subSvg)})})();
-        function openLightbox(imageSrc,title,description){const lightbox=document.getElementById('lightbox');const lightboxImage=document.getElementById('lightbox-image');const lightboxTitle=document.getElementById('lightbox-title');const lightboxDescription=document.getElementById('lightbox-description');lightboxImage.src=imageSrc;lightboxTitle.textContent=title;lightboxDescription.textContent=description;lightbox.classList.add('active');document.body.style.overflow='hidden'}
-        function closeLightbox(event){if(!event||event.target.id==='lightbox'||event.target.classList.contains('lightbox-close')){const lightbox=document.getElementById('lightbox');lightbox.classList.remove('active');document.body.style.overflow=''}}
-        document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeLightbox()}});
+
+        // Quick Action Widget Sizing
         (function initQuickActionWidgetSizing(){const iframes=Array.from(document.querySelectorAll('.qa-widget-iframe'));if(iframes.length===0)return;function setIframeHeight(iframe,height){if(!height||Number.isNaN(height))return;iframe.style.height=`${Math.max(360,Math.ceil(height))}px`}function measureIframe(iframe){try{const doc=iframe.contentDocument||(iframe.contentWindow&&iframe.contentWindow.document);if(!doc)return;const measured=Math.max(doc.documentElement?doc.documentElement.scrollHeight:0,doc.body?doc.body.scrollHeight:0);setIframeHeight(iframe,measured)}catch(e){}}iframes.forEach((iframe)=>{iframe.addEventListener('load',()=>{measureIframe(iframe);setTimeout(()=>measureIframe(iframe),80);setTimeout(()=>measureIframe(iframe),250)})});window.addEventListener('message',(event)=>{const data=event.data;if(!data||data.type!=='quick-actions-height')return;const sourceIframe=iframes.find((iframe)=>iframe.contentWindow===event.source);if(!sourceIframe)return;setIframeHeight(sourceIframe,data.height)});window.addEventListener('resize',()=>{iframes.forEach((iframe)=>measureIframe(iframe))})})();
     </script>
 </body>
