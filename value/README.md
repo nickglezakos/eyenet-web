@@ -20,6 +20,13 @@ After editing brochure sources or `scripts/build_value_wiki.py`:
 python3 scripts/build_value_wiki.py
 ```
 
+## Printable PDF
+
+- EN: `/print/` — browser **Print → Save as PDF**
+- EL: `/el/print/`
+
+Source brochure HTML is cloned from `ppl-meta-code/.../value/how-eyenet-changes-the-machine-vision-landscape*.html`.
+
 ## Deploy
 
-Point the `value.eyenet-vision.com` host document root at this `value/` folder (same pattern as the product wiki). English is at `/`; Greek mirrors under `/el/`.
+Cloudflare Pages project with root directory `value`, custom domain `value.eyenet-vision.com`. English is at `/`; Greek mirrors under `/el/`.

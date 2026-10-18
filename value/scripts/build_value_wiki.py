@@ -17,7 +17,7 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261018b"
+ASSET_V = "20261018c"
 
 
 def strip_section_heads(html: str) -> str:
@@ -70,6 +70,9 @@ UI = {
         "search_ph": "Search value wiki…",
         "search_label": "Search wiki",
         "no_match": "No matching pages",
+        "pdf": "PDF",
+        "pdf_title": "Open printable brochure (Save as PDF)",
+        "pdf_href": "/print/",
         "footer": "EyeNet Vision · Value · Confidential for commercial discussion",
         "sections": {
             "home": "Home",
@@ -149,6 +152,9 @@ UI = {
         "search_ph": "Αναζήτηση…",
         "search_label": "Αναζήτηση",
         "no_match": "Δεν βρέθηκαν σελίδες",
+        "pdf": "PDF",
+        "pdf_title": "Άνοιγμα εκτυπώσιμης έκδοσης (Αποθήκευση ως PDF)",
+        "pdf_href": "/el/print/",
         "footer": "EyeNet Vision · Αξία · Εμπιστευτικό για εμπορική συζήτηση",
         "sections": {
             "home": "Αρχική",
@@ -337,6 +343,7 @@ def render_page(
         </a>
       </div>
       <nav class="header-nav" aria-label="Site sections">{header_nav(lang, section)}
+        <a class="pdf-btn" href="{ui["pdf_href"]}" title="{ui["pdf_title"]}">{ui["pdf"]}</a>
         <div class="lang-switch" aria-label="Language">
           <a href="{en_url}"{" aria-current=\"true\"" if lang == "en" else ""}>EN</a>
           <a href="{el_url}"{" aria-current=\"true\"" if lang == "el" else ""}>EL</a>
