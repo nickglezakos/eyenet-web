@@ -17,7 +17,7 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261018c"
+ASSET_V = "20261018d"
 
 
 def strip_section_heads(html: str) -> str:
@@ -33,7 +33,7 @@ def strip_section_heads(html: str) -> str:
 def extract_sections(html: str) -> dict[str, str]:
     """Map section numbers to concatenated inner HTML of matching sections."""
     parts = re.findall(
-        r'<section class="section[^"]*">(.*?)</section>',
+        r'<section class="section[^"]*"[^>]*>(.*?)</section>',
         html,
         flags=re.S,
     )
@@ -370,7 +370,19 @@ def render_page(
 {body}
       </main>
       <footer class="site-footer">
-        <div class="site-footer-inner">{ui["footer"]}</div>
+        <div class="site-footer-inner">
+          <nav class="footer-nav" aria-label="Footer">
+            <a href="{home_href}">{ui["home"]}</a>
+            <a href="{p}/competition-breaker/">{ui["sections"]["competition-breaker"]}</a>
+            <a href="{p}/freedom/">{ui["sections"]["freedom"]}</a>
+            <a href="{p}/with-eyenet/">{ui["sections"]["with-eyenet"]}</a>
+            <a href="{p}/what/">{ui["sections"]["what"]}</a>
+            <a href="{p}/why/">{ui["sections"]["why"]}</a>
+            <a href="{p}/packages/">{ui["sections"]["packages"]}</a>
+            <a href="{ui["pdf_href"]}">{ui["pdf"]}</a>
+          </nav>
+          <div class="footer-meta">{ui["footer"]}</div>
+        </div>
       </footer>
     </div>
   </div>
