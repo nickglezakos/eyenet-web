@@ -17,7 +17,7 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261018e"
+ASSET_V = "20261018f"
 
 # Reading order for Previous / Next footer links (path relative to lang root).
 PAGE_ORDER = [

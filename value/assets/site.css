@@ -782,7 +782,7 @@ body[data-wide="true"] .page {
   border-top: 1px solid var(--border);
   color: var(--soft);
   font-size: 0.85rem;
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.96);
   margin-top: auto;
 }
 
@@ -862,6 +862,67 @@ body[data-wide="true"] .site-footer-inner {
 
 .footer-meta {
   color: var(--soft);
+}
+
+/* Mobile: compact sticky prev/next bar */
+@media (max-width: 900.98px) {
+  .content-wrap {
+    padding-bottom: 3.25rem;
+  }
+
+  .site-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 25;
+    margin: 0;
+    border-top: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -6px 18px rgba(15, 47, 87, 0.08);
+  }
+
+  .site-footer-inner {
+    max-width: none;
+    padding: 0.35rem 0.5rem calc(0.35rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer-meta {
+    display: none;
+  }
+
+  .pager {
+    gap: 0.35rem;
+    margin: 0;
+  }
+
+  .pager-link {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.55rem;
+    border-radius: 8px;
+    min-height: 2.35rem;
+  }
+
+  .pager-dir {
+    flex: 0 0 auto;
+    font-size: 0.62rem;
+  }
+
+  .pager-title {
+    flex: 1 1 auto;
+    font-size: 0.78rem;
+    font-weight: 650;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pager-next {
+    flex-direction: row-reverse;
+  }
 }
 
 @media (min-width: 560px) {
