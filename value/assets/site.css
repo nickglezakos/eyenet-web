@@ -864,7 +864,7 @@ body[data-wide="true"] .site-footer-inner {
   color: var(--soft);
 }
 
-/* Mobile: compact sticky prev/next bar */
+/* Mobile: compact sticky prev/next bar (dark, cyan arrows) */
 @media (max-width: 900.98px) {
   .content-wrap {
     padding-bottom: 3.25rem;
@@ -877,15 +877,16 @@ body[data-wide="true"] .site-footer-inner {
     bottom: 0;
     z-index: 25;
     margin: 0;
-    border-top: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(11, 18, 32, 0.97);
     backdrop-filter: blur(10px);
-    box-shadow: 0 -6px 18px rgba(15, 47, 87, 0.08);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35);
+    color: #e8eef9;
   }
 
   .site-footer-inner {
     max-width: none;
-    padding: 0.35rem 0.5rem calc(0.35rem + env(safe-area-inset-bottom, 0px));
+    padding: 0.3rem 0.45rem calc(0.3rem + env(safe-area-inset-bottom, 0px));
   }
 
   .footer-meta {
@@ -893,31 +894,62 @@ body[data-wide="true"] .site-footer-inner {
   }
 
   .pager {
-    gap: 0.35rem;
+    gap: 0.3rem;
     margin: 0;
   }
 
   .pager-link {
     flex-direction: row;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.4rem 0.55rem;
+    gap: 0.4rem;
+    padding: 0.35rem 0.5rem;
     border-radius: 8px;
-    min-height: 2.35rem;
+    min-height: 2.2rem;
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(18, 26, 43, 0.95);
+  }
+
+  .pager-link:hover {
+    border-color: rgba(61, 214, 245, 0.45);
   }
 
   .pager-dir {
     flex: 0 0 auto;
-    font-size: 0.62rem;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #3dd6f5;
+  }
+
+  .pager-prev .pager-dir::before,
+  .pager-next .pager-dir::before {
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #3dd6f5;
+  }
+
+  .pager-prev .pager-dir::before {
+    content: "←";
+  }
+
+  .pager-next .pager-dir::before {
+    content: "→";
   }
 
   .pager-title {
     flex: 1 1 auto;
     font-size: 0.78rem;
     font-weight: 650;
+    color: #c5d0e0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .pager-link:hover .pager-title {
+    color: #7adfff;
   }
 
   .pager-next {

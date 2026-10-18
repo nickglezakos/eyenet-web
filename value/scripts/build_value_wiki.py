@@ -17,7 +17,7 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261018f"
+ASSET_V = "20261018g"
 
 # Reading order for Previous / Next footer links (path relative to lang root).
 PAGE_ORDER = [
@@ -357,14 +357,16 @@ def pager_html(lang: str, path: str) -> str:
     prev_path = PAGE_ORDER[idx - 1] if idx > 0 else None
     next_path = PAGE_ORDER[idx + 1] if idx + 1 < len(PAGE_ORDER) else None
     prev = (
-        f'<a class="pager-link pager-prev" href="{href(lang, prev_path)}">'
+        f'<a class="pager-link pager-prev" href="{href(lang, prev_path)}" '
+        f'aria-label="{ui["prev"]}: {page_label(lang, prev_path)}">'
         f'<span class="pager-dir">{ui["prev"]}</span>'
         f'<span class="pager-title">{page_label(lang, prev_path)}</span></a>'
         if prev_path is not None
         else '<span class="pager-link pager-prev is-empty"></span>'
     )
     nxt = (
-        f'<a class="pager-link pager-next" href="{href(lang, next_path)}">'
+        f'<a class="pager-link pager-next" href="{href(lang, next_path)}" '
+        f'aria-label="{ui["next"]}: {page_label(lang, next_path)}">'
         f'<span class="pager-dir">{ui["next"]}</span>'
         f'<span class="pager-title">{page_label(lang, next_path)}</span></a>'
         if next_path is not None
