@@ -798,22 +798,66 @@ body[data-wide="true"] .site-footer-inner {
   max-width: 72rem;
 }
 
-.footer-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem 1rem;
-  margin: 0 0 0.85rem;
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
 }
 
-.footer-nav a {
-  color: var(--brand-dark);
-  font-weight: 600;
+.pager-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  text-decoration: none;
+  min-width: 0;
+}
+
+.pager-link:hover {
+  border-color: var(--brand);
   text-decoration: none;
 }
 
-.footer-nav a:hover {
+.pager-link.is-empty {
+  visibility: hidden;
+  pointer-events: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.pager-prev {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.pager-next {
+  align-items: flex-end;
+  text-align: right;
+  grid-column: 2;
+}
+
+.pager-dir {
+  color: var(--soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pager-title {
+  color: var(--brand-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.pager-link:hover .pager-title {
   color: var(--brand);
-  text-decoration: underline;
 }
 
 .footer-meta {

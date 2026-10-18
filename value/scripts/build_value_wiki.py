@@ -17,7 +17,27 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261018d"
+ASSET_V = "20261018e"
+
+# Reading order for Previous / Next footer links (path relative to lang root).
+PAGE_ORDER = [
+    "",
+    "competition-breaker",
+    "freedom",
+    "with-eyenet",
+    "what",
+    "why",
+    "why/home-care",
+    "why/hr-presence",
+    "why/security",
+    "why/cottage",
+    "why/shipping",
+    "why/mall",
+    "packages",
+    "packages/b2c",
+    "packages/b2b",
+    "packages/enterprise",
+]
 
 
 def strip_section_heads(html: str) -> str:
@@ -73,6 +93,8 @@ UI = {
         "pdf": "PDF",
         "pdf_title": "Open printable brochure (Save as PDF)",
         "pdf_href": "/print/",
+        "prev": "Previous",
+        "next": "Next",
         "footer": "EyeNet Vision · Value · Confidential for commercial discussion",
         "sections": {
             "home": "Home",
@@ -155,6 +177,8 @@ UI = {
         "pdf": "PDF",
         "pdf_title": "Άνοιγμα εκτυπώσιμης έκδοσης (Αποθήκευση ως PDF)",
         "pdf_href": "/el/print/",
+        "prev": "Προηγούμενο",
+        "next": "Επόμενο",
         "footer": "EyeNet Vision · Αξία · Εμπιστευτικό για εμπορική συζήτηση",
         "sections": {
             "home": "Αρχική",
@@ -303,6 +327,52 @@ def header_nav(lang: str, section: str) -> str:
     return "".join(out)
 
 
+def page_label(lang: str, path: str) -> str:
+    ui = UI[lang]
+    path = path.strip("/")
+    if not path:
+        return ui["home"]
+    if path in ui["sections"]:
+        return ui["sections"][path]
+    if path.startswith("why/"):
+        child = path.split("/", 1)[1]
+        for slug, label in ui["why_children"]:
+            if slug == child:
+                return label
+    if path.startswith("packages/"):
+        child = path.split("/", 1)[1]
+        for slug, label in ui["pkg_children"]:
+            if slug == child:
+                return label
+    return path
+
+
+def pager_html(lang: str, path: str) -> str:
+    ui = UI[lang]
+    path = path.strip("/")
+    try:
+        idx = PAGE_ORDER.index(path)
+    except ValueError:
+        return ""
+    prev_path = PAGE_ORDER[idx - 1] if idx > 0 else None
+    next_path = PAGE_ORDER[idx + 1] if idx + 1 < len(PAGE_ORDER) else None
+    prev = (
+        f'<a class="pager-link pager-prev" href="{href(lang, prev_path)}">'
+        f'<span class="pager-dir">{ui["prev"]}</span>'
+        f'<span class="pager-title">{page_label(lang, prev_path)}</span></a>'
+        if prev_path is not None
+        else '<span class="pager-link pager-prev is-empty"></span>'
+    )
+    nxt = (
+        f'<a class="pager-link pager-next" href="{href(lang, next_path)}">'
+        f'<span class="pager-dir">{ui["next"]}</span>'
+        f'<span class="pager-title">{page_label(lang, next_path)}</span></a>'
+        if next_path is not None
+        else '<span class="pager-link pager-next is-empty"></span>'
+    )
+    return f'<nav class="pager" aria-label="Page">{prev}{nxt}</nav>'
+
+
 def render_page(
     *,
     lang: str,
@@ -320,6 +390,7 @@ def render_page(
     el_url = href("el", path)
     html_lang = "el" if lang == "el" else "en"
     home_href = f"{p}/" if p else "/"
+    pager = pager_html(lang, path)
     return f"""<!DOCTYPE html>
 <html lang="{html_lang}">
 <head>
@@ -371,16 +442,7 @@ def render_page(
       </main>
       <footer class="site-footer">
         <div class="site-footer-inner">
-          <nav class="footer-nav" aria-label="Footer">
-            <a href="{home_href}">{ui["home"]}</a>
-            <a href="{p}/competition-breaker/">{ui["sections"]["competition-breaker"]}</a>
-            <a href="{p}/freedom/">{ui["sections"]["freedom"]}</a>
-            <a href="{p}/with-eyenet/">{ui["sections"]["with-eyenet"]}</a>
-            <a href="{p}/what/">{ui["sections"]["what"]}</a>
-            <a href="{p}/why/">{ui["sections"]["why"]}</a>
-            <a href="{p}/packages/">{ui["sections"]["packages"]}</a>
-            <a href="{ui["pdf_href"]}">{ui["pdf"]}</a>
-          </nav>
+          {pager}
           <div class="footer-meta">{ui["footer"]}</div>
         </div>
       </footer>
