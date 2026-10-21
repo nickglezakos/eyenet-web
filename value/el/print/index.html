@@ -441,6 +441,42 @@
     .print-toc-card p {
       margin: 0; font-size: 9pt; color: var(--muted); line-height: 1.4;
     }
+    .wiki-more {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem;
+      margin: 0.55rem 0 1rem; font-size: 8.5pt; color: var(--soft); line-height: 1.4;
+    }
+    .wiki-more-arrow { color: var(--muted); }
+    .wiki-chip {
+      display: inline-flex; align-items: center; gap: 0.28rem;
+      padding: 0.16rem 0.5rem 0.16rem 0.36rem; border-radius: 999px;
+      border: 1px solid rgba(103, 232, 249, 0.28);
+      background: linear-gradient(165deg, #152238 0%, #0b1220 55%, #09101c 100%);
+      color: #e8eef9; text-decoration: none; line-height: 1;
+    }
+    .wiki-chip-logo { display: block; width: 48px; height: 12px; object-fit: contain; }
+    .wiki-chip-label {
+      font-size: 7.5pt; font-weight: 700; letter-spacing: 0.04em; text-transform: lowercase;
+      color: #67e8f9; border-left: 1px solid rgba(103, 232, 249, 0.35); padding-left: 0.3rem;
+    }
+    a.wiki-addr {
+      color: var(--cyan); font-size: 8pt; word-break: break-all; text-decoration: none;
+    }
+    /* Tall package/case cards must split — avoid orphan section titles on blank pages */
+    .persona,
+    .persona .cols-2,
+    .source-block {
+      break-inside: auto;
+      page-break-inside: auto;
+    }
+    .persona > h4,
+    .persona > .who {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    .section.page-start > .section-head + .kicker {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
 
   </style>
 </head>
@@ -684,7 +720,7 @@
         </div>
       </div>
 
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer">What is EyeNet</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">Shared platform</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">User guide</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/</a></p>
 <h2>1. Computer vision &amp; people analytics</h2>
 <div class="panel">
   <h4>Παρακολούθηση &amp; ανάλυση ανθρώπων</h4>
@@ -695,7 +731,7 @@
     <li>Δημογραφική ανάλυση (ηλικία, φύλο κ.λπ.)</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer">Detections, individuals &amp; persons</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">Cameras and detection</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/presence.html" target="_blank" rel="noopener noreferrer">Presence</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/presence.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/presence.html</a></p>
 
 
 <h2>2. Ενσωμάτωση καμερών &amp; hardware</h2>
@@ -708,7 +744,7 @@
     <li>Ολοκληρωμένη παρακολούθηση υγείας καμερών</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">Cameras and detection</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">Hardware &amp; Docker</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a></p>
 
 
 <h2>3. Έξυπνα triggers &amp; αυτοματοποιημένες ενέργειες</h2>
@@ -736,7 +772,7 @@
     <li><strong>Custom workflows</strong> — προγραμματιζόμενες αλυσίδες ενεργειών για σύνθετα σενάρια</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/vradar.html" target="_blank" rel="noopener noreferrer">Vradar overview</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/vradar.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/vradar.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a></p>
 
 
 <h2>4. Διαχείριση βίντεο &amp; δεδομένων</h2>
@@ -749,7 +785,7 @@
     <li>Ελάχιστο internet μόνο για απομακρυσμένες ειδοποιήσεις και email</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer">Media and collections</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">Shared platform</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/media-management.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html</a></p>
 
 
 <h2>5. Έξυπνες επικοινωνίες</h2>
@@ -764,7 +800,7 @@
     <li>Audit logging όλων των επικοινωνιών με παρακολούθηση παράδοσης</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a></p>
 
 
 <h2>6. Analytics &amp; insights</h2>
@@ -779,7 +815,7 @@
     <li>Παρακολούθηση και στατιστικά εκτέλεσης ενεργειών</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">Analytics and reports</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html</a></p>
 
 
 <h2>7. Αρχιτεκτονική ανάπτυξης</h2>
@@ -801,7 +837,7 @@
     <li>Εγκαταστάσεις με επίγνωση περιβάλλοντος για απομακρυσμένη παρακολούθηση λειτουργίας</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">First install</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">Hardware &amp; Docker</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">Remote access &amp; multi-site</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a></p>
 
 
 <h2>8. Ασφάλεια &amp; έλεγχος πρόσβασης</h2>
@@ -815,7 +851,7 @@
     <li>Ασφαλής διαμόρφωση triggers και ενεργειών με audit trails χρηστών</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer">User management</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">Remote access &amp; VPN</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/users-and-roles.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a></p>
 
 
 <h2>9. Κλιμάκωση &amp; επεκτασιμότητα</h2>
@@ -839,7 +875,7 @@
     <li>Integrations digital signage (standalone και δικτυωμένες οθόνες)</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">Hardware &amp; Docker</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/matrix.html" target="_blank" rel="noopener noreferrer">Matrix</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/matrix.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/matrix.html</a></p>
 
 
 <h2>10. Υποστήριξη &amp; παρακολούθηση</h2>
@@ -854,7 +890,7 @@
     <li>Παρακολούθηση παράδοσης ενεργειών και ανάλυση αποτυχιών</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">Remote access &amp; multi-site</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a></p>
 
 
 <h2>Τεχνικά highlights αρχιτεκτονικής</h2>
@@ -887,63 +923,10 @@
 </div>
 
 <div class="kicker">Το EyeNet μετατρέπει συνηθισμένες κάμερες σε επιχειρησιακή νοημοσύνη πραγματικού χρόνου — παρουσία, μετρήσεις, demographics, ζώνες και POI — και αυτοματοποιεί alerts, signage και integrations on-premises, offline και μέσω VPN. Έξι εφαρμογές, πέντε modes, μία πλατφόρμα: από ένα σπίτι home care έως στόλους πολλαπλών σημείων, σε μέτριο hardware, με βίντεο που δεν χρειάζεται cloud.</div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html" target="_blank" rel="noopener noreferrer">Entrances and activity</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/signage.html" target="_blank" rel="noopener noreferrer">Signage overview</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/signage.html</a></p>
 
 
-<h2>Παράρτημα — το EyeNet σε δράση</h2>
-<p class="lead" style="margin-bottom:1rem">Στιγμιότυπα πλατφόρμας</p>
-<div class="func-gallery">
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/main-dashboard.png" alt="Main Dashboard">
-    <figcaption><strong>Main Dashboard</strong> — Κεντρικός πίνακας ελέγχου με επισκόπηση καμερών και alerts σε πραγματικό χρόνο <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer">EyeNet wiki</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/anaytics-filters.png" alt="Analytics Filters">
-    <figcaption><strong>Analytics Filters</strong> — Ευέλικτα φίλτρα δεδομένων για στοχευμένες πληροφορίες και αναφορές <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">Analytics and reports</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/settings.png" alt="System Settings">
-    <figcaption><strong>System Settings</strong> — Πλήρης διαμόρφωση πλατφόρμας με περιβάλλον, δίκτυο και ασφάλεια <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer">User management / Settings</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/analytics-01.png" alt="Analytics Dashboard">
-    <figcaption><strong>Analytics Dashboard</strong> — Ολοκληρωμένα analytics με ιστορικές τάσεις και insights πραγματικού χρόνου <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">Analytics and reports</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/camera-analytics-03.png" alt="Detection Analytics">
-    <figcaption><strong>Detection Analytics</strong> — Προηγμένες μετρήσεις ανίχνευσης με demographic breakdowns <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">Cameras and detection</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/camera-list.png" alt="Camera Management">
-    <figcaption><strong>Camera Management</strong> — Διαχείριση όλων των συνδεδεμένων καμερών με κατάσταση υγείας <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">Cameras and detection</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/triggers-list.png" alt="Triggers Management">
-    <figcaption><strong>Triggers Management</strong> — Διαμόρφωση και παρακολούθηση αυτοματοποιημένων κανόνων <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/actions-edit.png" alt="Actions Editor">
-    <figcaption><strong>Actions Editor</strong> — Ορισμός αυτοματοποιημένων ενεργειών με πολλαπλά κανάλια <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/digital-signage-01.png" alt="Digital Signage">
-    <figcaption><strong>Digital Signage</strong> — Διαχείριση περιεχομένου signage με vision-triggered playlists <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/mvr-groups-details.png" alt="MVR Groups">
-    <figcaption><strong>MVR Group Details</strong> — Λεπτομερής διαμόρφωση ομάδων εγγραφής και playback <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer">Detections, individuals &amp; persons</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/upload-media.png" alt="Media Upload">
-    <figcaption><strong>Media Upload</strong> — Ανέβασμα και διαχείριση πολυμέσων για ανάλυση και signage <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer">Media and collections</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/signage-android-app.jpg" alt="Signage Android App">
-    <figcaption><strong>Signage Android App</strong> — Εφαρμογή player για οθόνες Android <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a></span></figcaption>
-  </figure>
-</div>
-
-    </section>
+</section>
 
 <section class="section flow page-start" id="page-8" data-nav-label="05 · Οικογενειακή προστασία">
       <div class="section-head"><span class="section-num">02</span><h2>Πιο πολύτιμες περιπτώσεις</h2></div>
@@ -1281,19 +1264,6 @@
             <p>Στόχος μεριδίου 1–3% → ευκαιρία ~$5–45M.</p>
             <h4 style="margin-top:12px;">Addressable pockets</h4>
             <ul><li>~52K marketing consulting establishments (<a class="source-link" href="https://naicscodes.org/industry/54161-management-consulting-services/" target="_blank" rel="noopener noreferrer">U.S. Census CBP 2023, NAICS 541613</a>)</li><li>~87M owner-occupied homes (<a class="source-link" href="https://data.census.gov/table/ACSDT1Y2024.C25075" target="_blank" rel="noopener noreferrer">U.S. Census ACS 2024</a>) · ~0.8M U.S. Airbnb hosts (<a class="source-link" href="https://www.credaily.com/briefs/the-political-influence-of-short-term-rentals-is-growing/" target="_blank" rel="noopener noreferrer">industry reports 2024</a>)</li><li>~8K U.S. contract security companies (<a class="source-link" href="https://www.nasco.org/wp-content/uploads/2024/09/2024_White_Paper.pdf" target="_blank" rel="noopener noreferrer">NASCO 2024</a>)</li><li>~1.0M+ retail + ~0.6M restaurant establishments (<a class="source-link" href="https://data.census.gov/table/ECNBASIC2022.EC2244BASIC" target="_blank" rel="noopener noreferrer">Census Economic Census</a> · <a class="source-link" href="https://naicscodes.org/industry-group/7225-restaurants-and-other-eating-places/" target="_blank" rel="noopener noreferrer">CBP / NAICS 7225</a>)</li></ul>
-<div class="source-block">
-<p class="side-note"><strong>Εξωτερικές πηγές pockets</strong> (ελέγχθηκαν Οκτ 2026) — κλικ για επαλήθευση:</p>
-<ul class="source-list">
-<li><a class="source-link" href="https://data.census.gov/table/ACSDT1Y2024.C25075" target="_blank" rel="noopener noreferrer">U.S. Census ACS 2024 — owner-occupied housing</a></li>
-<li><a class="source-link" href="https://www.census.gov/data/datasets/2023/econ/cbp/2023-cbp.html" target="_blank" rel="noopener noreferrer">U.S. Census CBP 2023 datasets</a> · <a class="source-link" href="https://naicscodes.org/industry/54161-management-consulting-services/" target="_blank" rel="noopener noreferrer">marketing consulting (NAICS 54161)</a></li>
-<li><a class="source-link" href="https://data.census.gov/table/ECNBASIC2022.EC2244BASIC" target="_blank" rel="noopener noreferrer">Census Economic Census — retail trade</a> · <a class="source-link" href="https://naicscodes.org/industry-group/7225-restaurants-and-other-eating-places/" target="_blank" rel="noopener noreferrer">restaurants (NAICS 7225)</a></li>
-<li><a class="source-link" href="https://www.nasco.org/wp-content/uploads/2024/09/2024_White_Paper.pdf" target="_blank" rel="noopener noreferrer">NASCO 2024 — U.S. contract security companies (~8K)</a></li>
-<li><a class="source-link" href="https://nces.ed.gov/ccd/tables/202425_summary_3.asp" target="_blank" rel="noopener noreferrer">NCES CCD — public K–12 schools SY 2024–25</a></li>
-<li><a class="source-link" href="https://www.ibisworld.com/united-states/number-of-businesses/general-warehousing-storage/1224/" target="_blank" rel="noopener noreferrer">IBISWorld — general warehousing &amp; storage businesses</a></li>
-<li><a class="source-link" href="https://www.credaily.com/briefs/the-political-influence-of-short-term-rentals-is-growing/" target="_blank" rel="noopener noreferrer">U.S. Airbnb host count (industry reporting)</a></li>
-</ul>
-<p class="side-note"><strong>Εσωτερικά:</strong> TAM και target-share % είναι υποθέσεις του EyeNet Vision business plan (ΗΠΑ, συντηρητικά) — όχι στοιχεία Census/NCES.</p>
-</div>
             <div class="tags">
               <span class="tag mode">Μέσο MRR ~$50</span>
               <span class="tag">CAC $20–30</span>

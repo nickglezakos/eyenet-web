@@ -441,6 +441,42 @@
     .print-toc-card p {
       margin: 0; font-size: 9pt; color: var(--muted); line-height: 1.4;
     }
+    .wiki-more {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem;
+      margin: 0.55rem 0 1rem; font-size: 8.5pt; color: var(--soft); line-height: 1.4;
+    }
+    .wiki-more-arrow { color: var(--muted); }
+    .wiki-chip {
+      display: inline-flex; align-items: center; gap: 0.28rem;
+      padding: 0.16rem 0.5rem 0.16rem 0.36rem; border-radius: 999px;
+      border: 1px solid rgba(103, 232, 249, 0.28);
+      background: linear-gradient(165deg, #152238 0%, #0b1220 55%, #09101c 100%);
+      color: #e8eef9; text-decoration: none; line-height: 1;
+    }
+    .wiki-chip-logo { display: block; width: 48px; height: 12px; object-fit: contain; }
+    .wiki-chip-label {
+      font-size: 7.5pt; font-weight: 700; letter-spacing: 0.04em; text-transform: lowercase;
+      color: #67e8f9; border-left: 1px solid rgba(103, 232, 249, 0.35); padding-left: 0.3rem;
+    }
+    a.wiki-addr {
+      color: var(--cyan); font-size: 8pt; word-break: break-all; text-decoration: none;
+    }
+    /* Tall package/case cards must split — avoid orphan section titles on blank pages */
+    .persona,
+    .persona .cols-2,
+    .source-block {
+      break-inside: auto;
+      page-break-inside: auto;
+    }
+    .persona > h4,
+    .persona > .who {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    .section.page-start > .section-head + .kicker {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
 
   </style>
 </head>
@@ -684,7 +720,7 @@
         </div>
       </div>
 
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer">What is EyeNet</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">Shared platform</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">User guide</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/</a></p>
 <h2>1. Computer vision &amp; people analytics</h2>
 <div class="panel">
   <h4>People tracking &amp; analysis</h4>
@@ -695,7 +731,7 @@
     <li>Demographic analysis (age, gender, etc.)</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer">Detections, individuals &amp; persons</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">Cameras and detection</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/presence.html" target="_blank" rel="noopener noreferrer">Presence</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/presence.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/presence.html</a></p>
 
 
 <h2>2. Camera &amp; hardware integration</h2>
@@ -708,7 +744,7 @@
     <li>Comprehensive camera health monitoring</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">Cameras and detection</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">Hardware &amp; Docker</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a></p>
 
 
 <h2>3. Intelligent triggers &amp; automated actions</h2>
@@ -736,7 +772,7 @@
     <li><strong>Custom workflows</strong> — programmable action chains for complex automation scenarios</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/vradar.html" target="_blank" rel="noopener noreferrer">Vradar overview</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/vradar.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/vradar.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a></p>
 
 
 <h2>4. Video &amp; data management</h2>
@@ -749,7 +785,7 @@
     <li>Minimal internet access needed only for remote notifications and email</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer">Media and collections</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">Shared platform</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/media-management.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html</a></p>
 
 
 <h2>5. Intelligent communications</h2>
@@ -764,7 +800,7 @@
     <li>Audit logging of all communications with delivery tracking</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a></p>
 
 
 <h2>6. Analytics &amp; insights</h2>
@@ -779,7 +815,7 @@
     <li>Action execution monitoring and statistics</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">Analytics and reports</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html</a></p>
 
 
 <h2>7. Deployment architecture</h2>
@@ -801,7 +837,7 @@
     <li>Environment-aware installations for remote operation tracking</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">First install</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">Hardware &amp; Docker</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">Remote access &amp; multi-site</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a></p>
 
 
 <h2>8. Security &amp; access control</h2>
@@ -815,7 +851,7 @@
     <li>Secure trigger and action configuration with user audit trails</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer">User management</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">Remote access &amp; VPN</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/users-and-roles.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a></p>
 
 
 <h2>9. Scalability &amp; expandability</h2>
@@ -839,7 +875,7 @@
     <li>Digital signage system integrations (standalone and networked displays)</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">Hardware &amp; Docker</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/matrix.html" target="_blank" rel="noopener noreferrer">Matrix</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/matrix.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/matrix.html</a></p>
 
 
 <h2>10. Support &amp; monitoring</h2>
@@ -854,7 +890,7 @@
     <li>Action delivery tracking and failure analysis</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">Remote access &amp; multi-site</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a></p>
 
 
 <h2>Technical architecture highlights</h2>
@@ -887,63 +923,10 @@
 </div>
 
 <div class="kicker">EyeNet turns ordinary cameras into real-time operational intelligence — presence, counts, demographics, zones, and POI — then automates alerts, signage, and integrations on-premises, offline, and over VPN. Six apps, five modes, one platform: from a single home-care dwelling to multi-site fleets, on modest hardware, with video that never needs the cloud.</div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html" target="_blank" rel="noopener noreferrer">Entrances and activity</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a> · <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/signage.html" target="_blank" rel="noopener noreferrer">Signage overview</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/signage.html</a></p>
 
 
-<h2>Addendum — EyeNet in action</h2>
-<p class="lead" style="margin-bottom:1rem">Platform screenshots</p>
-<div class="func-gallery">
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/main-dashboard.png" alt="Main Dashboard">
-    <figcaption><strong>Main Dashboard</strong> — Central control panel with real-time overview of all cameras and alerts <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer">EyeNet wiki</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/anaytics-filters.png" alt="Analytics Filters">
-    <figcaption><strong>Analytics Filters</strong> — Flexible data filtering options for targeted insights and custom reports <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">Analytics and reports</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/settings.png" alt="System Settings">
-    <figcaption><strong>System Settings</strong> — Full platform configuration with environment, network, and security preferences <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer">User management / Settings</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/analytics-01.png" alt="Analytics Dashboard">
-    <figcaption><strong>Analytics Dashboard</strong> — Comprehensive analytics with historical trends and real-time insights <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">Analytics and reports</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/camera-analytics-03.png" alt="Detection Analytics">
-    <figcaption><strong>Detection Analytics</strong> — Advanced detection metrics with demographic breakdowns and patterns <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">Cameras and detection</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/camera-list.png" alt="Camera Management">
-    <figcaption><strong>Camera Management</strong> — Manage all connected cameras with health status and configuration <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">Cameras and detection</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/triggers-list.png" alt="Triggers Management">
-    <figcaption><strong>Triggers Management</strong> — Configure and monitor automated trigger rules across cameras <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/actions-edit.png" alt="Actions Editor">
-    <figcaption><strong>Actions Editor</strong> — Define automated actions with multi-channel notifications and integrations <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">Vradar — alerts &amp; automation</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/digital-signage-01.png" alt="Digital Signage">
-    <figcaption><strong>Digital Signage</strong> — Manage signage content with vision-triggered playlist switching <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/mvr-groups-details.png" alt="MVR Groups">
-    <figcaption><strong>MVR Group Details</strong> — Detailed recording group configuration and playback management <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer">Detections, individuals &amp; persons</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/upload-media.png" alt="Media Upload">
-    <figcaption><strong>Media Upload</strong> — Upload and manage video content for analysis and signage distribution <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer">Media and collections</a></span></figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/functionalities/screenshots/signage-android-app.jpg" alt="Signage Android App">
-    <figcaption><strong>Signage Android App</strong> — Dedicated signage player app for Android-powered displays <span class="wiki-more-inline"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021o" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a> <a class="source-link" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">Digital signage</a></span></figcaption>
-  </figure>
-</div>
-
-    </section>
+</section>
 
 <section class="section flow page-start" id="page-8" data-nav-label="05 · HR Presence">
       <div class="section-head"><span class="section-num">02</span><h2>Most Valuable Cases</h2></div>
@@ -1281,19 +1264,6 @@
             <p>Target share 1–3% → ~$5–45M opportunity.</p>
             <h4 style="margin-top:12px;">Addressable pockets</h4>
             <ul><li>~52K marketing consulting establishments (<a class="source-link" href="https://naicscodes.org/industry/54161-management-consulting-services/" target="_blank" rel="noopener noreferrer">U.S. Census CBP 2023, NAICS 541613</a>)</li><li>~87M owner-occupied homes (<a class="source-link" href="https://data.census.gov/table/ACSDT1Y2024.C25075" target="_blank" rel="noopener noreferrer">U.S. Census ACS 2024</a>) · ~0.8M U.S. Airbnb hosts (<a class="source-link" href="https://www.credaily.com/briefs/the-political-influence-of-short-term-rentals-is-growing/" target="_blank" rel="noopener noreferrer">industry reports 2024</a>)</li><li>~8K U.S. contract security companies (<a class="source-link" href="https://www.nasco.org/wp-content/uploads/2024/09/2024_White_Paper.pdf" target="_blank" rel="noopener noreferrer">NASCO 2024</a>)</li><li>~1.0M+ retail + ~0.6M restaurant establishments (<a class="source-link" href="https://data.census.gov/table/ECNBASIC2022.EC2244BASIC" target="_blank" rel="noopener noreferrer">Census Economic Census</a> · <a class="source-link" href="https://naicscodes.org/industry-group/7225-restaurants-and-other-eating-places/" target="_blank" rel="noopener noreferrer">CBP / NAICS 7225</a>)</li></ul>
-<div class="source-block">
-<p class="side-note"><strong>External pocket sources</strong> (checked Oct 2026) — click to verify:</p>
-<ul class="source-list">
-<li><a class="source-link" href="https://data.census.gov/table/ACSDT1Y2024.C25075" target="_blank" rel="noopener noreferrer">U.S. Census ACS 2024 — owner-occupied housing</a></li>
-<li><a class="source-link" href="https://www.census.gov/data/datasets/2023/econ/cbp/2023-cbp.html" target="_blank" rel="noopener noreferrer">U.S. Census CBP 2023 datasets</a> · <a class="source-link" href="https://naicscodes.org/industry/54161-management-consulting-services/" target="_blank" rel="noopener noreferrer">marketing consulting (NAICS 54161)</a></li>
-<li><a class="source-link" href="https://data.census.gov/table/ECNBASIC2022.EC2244BASIC" target="_blank" rel="noopener noreferrer">Census Economic Census — retail trade</a> · <a class="source-link" href="https://naicscodes.org/industry-group/7225-restaurants-and-other-eating-places/" target="_blank" rel="noopener noreferrer">restaurants (NAICS 7225)</a></li>
-<li><a class="source-link" href="https://www.nasco.org/wp-content/uploads/2024/09/2024_White_Paper.pdf" target="_blank" rel="noopener noreferrer">NASCO 2024 — U.S. contract security companies (~8K)</a></li>
-<li><a class="source-link" href="https://nces.ed.gov/ccd/tables/202425_summary_3.asp" target="_blank" rel="noopener noreferrer">NCES CCD — public K–12 schools SY 2024–25</a></li>
-<li><a class="source-link" href="https://www.ibisworld.com/united-states/number-of-businesses/general-warehousing-storage/1224/" target="_blank" rel="noopener noreferrer">IBISWorld — general warehousing &amp; storage businesses</a></li>
-<li><a class="source-link" href="https://www.credaily.com/briefs/the-political-influence-of-short-term-rentals-is-growing/" target="_blank" rel="noopener noreferrer">U.S. Airbnb host count (industry reporting)</a></li>
-</ul>
-<p class="side-note"><strong>Internal:</strong> TAM bands and target-share % are EyeNet Vision business-plan assumptions (U.S., conservative) — not Census/NCES figures.</p>
-</div>
             <div class="tags">
               <span class="tag mode">Avg MRR ~$50</span>
               <span class="tag">CAC $20–30</span>

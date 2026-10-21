@@ -17,7 +17,7 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261021o"
+ASSET_V = "20261021p"
 
 WITH_HEADING = {
     "en": "Who uses EyeNet",
@@ -611,6 +611,15 @@ def _wiki_a(label: str, path: str) -> str:
     )
 
 
+def _wiki_addr(path: str) -> str:
+    """Print-friendly visible wiki host path (still clickable)."""
+    display = f"wiki.eyenet-vision.com{path}"
+    return (
+        f'<a class="wiki-addr" href="{_wiki_href(path)}" '
+        f'target="_blank" rel="noopener noreferrer">{display}</a>'
+    )
+
+
 def _wiki_chip(href: str | None = None) -> str:
     """Minimized EyeNet logo + wiki pill linking to the product wiki."""
     url = href or f"{WIKI_BASE}/"
@@ -623,9 +632,17 @@ def _wiki_chip(href: str | None = None) -> str:
     )
 
 
-def _wiki_more(_lang: str, links: list[tuple[str, str]]) -> str:
-    """EyeNet wiki chip + arrow + deep links."""
-    joined = " · ".join(_wiki_a(label, path) for label, path in links)
+def _wiki_more(
+    _lang: str,
+    links: list[tuple[str, str]],
+    *,
+    print_urls: bool = False,
+) -> str:
+    """EyeNet wiki chip + arrow + deep links (titles) or print addresses."""
+    if print_urls:
+        joined = " · ".join(_wiki_addr(path) for _label, path in links)
+    else:
+        joined = " · ".join(_wiki_a(label, path) for label, path in links)
     return (
         f'<p class="wiki-more">'
         f"{_wiki_chip()}"
@@ -635,7 +652,9 @@ def _wiki_more(_lang: str, links: list[tuple[str, str]]) -> str:
     )
 
 
-def inject_wiki_read_more(html: str, lang: str) -> str:
+def inject_wiki_read_more(
+    html: str, lang: str, *, print_mode: bool = False
+) -> str:
     """Prefer EyeNet wiki deep-links under tech feature set sections."""
     if "EyeNet tech feature set" not in html:
         return html
@@ -656,6 +675,7 @@ def inject_wiki_read_more(html: str, lang: str) -> str:
             ("Shared platform", "/what-is-eyenet/shared-platform.html"),
             ("User guide", "/owners-admins/"),
         ],
+        print_urls=print_mode,
     )
     cols3 = re.search(
         r'<h2>EyeNet tech feature set</h2>\s*'
@@ -765,7 +785,7 @@ def inject_wiki_read_more(html: str, lang: str) -> str:
     ]
 
     for heading_re, links in section_links:
-        more = _wiki_more(lang, links)
+        more = _wiki_more(lang, links, print_urls=print_mode)
         html, n = re.subn(
             rf"(<h2>{heading_re}</h2>)(.*?)(?=\n<h2>|\Z)",
             lambda m, _more=more: m.group(1) + m.group(2).rstrip() + "\n" + _more + "\n",
@@ -775,6 +795,10 @@ def inject_wiki_read_more(html: str, lang: str) -> str:
         )
         if n != 1:
             raise SystemExit(f"Could not inject wiki read-more for heading: {heading_re}")
+
+    if print_mode:
+        # Print brochure: no screenshot caption chips (addendum is stripped).
+        return html
 
     # Screenshot captions — inline wiki prefs where a guide exists.
     caption_links = [
@@ -1720,6 +1744,42 @@ PRINT_EXTRA_CSS = """
     .print-toc-card p {
       margin: 0; font-size: 9pt; color: var(--muted); line-height: 1.4;
     }
+    .wiki-more {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem;
+      margin: 0.55rem 0 1rem; font-size: 8.5pt; color: var(--soft); line-height: 1.4;
+    }
+    .wiki-more-arrow { color: var(--muted); }
+    .wiki-chip {
+      display: inline-flex; align-items: center; gap: 0.28rem;
+      padding: 0.16rem 0.5rem 0.16rem 0.36rem; border-radius: 999px;
+      border: 1px solid rgba(103, 232, 249, 0.28);
+      background: linear-gradient(165deg, #152238 0%, #0b1220 55%, #09101c 100%);
+      color: #e8eef9; text-decoration: none; line-height: 1;
+    }
+    .wiki-chip-logo { display: block; width: 48px; height: 12px; object-fit: contain; }
+    .wiki-chip-label {
+      font-size: 7.5pt; font-weight: 700; letter-spacing: 0.04em; text-transform: lowercase;
+      color: #67e8f9; border-left: 1px solid rgba(103, 232, 249, 0.35); padding-left: 0.3rem;
+    }
+    a.wiki-addr {
+      color: var(--cyan); font-size: 8pt; word-break: break-all; text-decoration: none;
+    }
+    /* Tall package/case cards must split — avoid orphan section titles on blank pages */
+    .persona,
+    .persona .cols-2,
+    .source-block {
+      break-inside: auto;
+      page-break-inside: auto;
+    }
+    .persona > h4,
+    .persona > .who {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    .section.page-start > .section-head + .kicker {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
 """
 
 
@@ -1823,7 +1883,9 @@ def sync_print_pages() -> None:
             html = inject_wiki_read_more(
                 relocate_what_edge_cards(relocate_what_lead_kicker(updated)),
                 lang,
+                print_mode=True,
             )
+            html = strip_print_addendum(html)
 
         heading = WHAT_HEADING[lang]
         html, n_title = re.subn(
@@ -1948,6 +2010,32 @@ def inject_print_case_overrides(html: str, lang: str) -> str:
         html, n = re.subn(pattern, body, html, count=1, flags=re.S)
         if n != 1:
             raise SystemExit(f"Could not inject print override {fname} ({lang})")
+    return html
+
+
+def strip_print_addendum(html: str) -> str:
+    """Omit Addendum — EyeNet in action (screenshot gallery) from print PDFs."""
+    html, n = re.subn(
+        r"<h2>(?:Addendum — EyeNet in action|Παράρτημα — το EyeNet σε δράση)</h2>"
+        r".*?(?=<h2>|</section>|\Z)",
+        "",
+        html,
+        count=1,
+        flags=re.S,
+    )
+    if n != 1:
+        raise SystemExit("Could not strip EyeNet in action addendum from print")
+    # Drop orphaned gallery CSS noise is fine; content must be gone.
+    if re.search(
+        r"Addendum — EyeNet in action|Παράρτημα — το EyeNet σε δράση|func-gallery",
+        html,
+    ):
+        # Gallery class may still appear in CSS — only fail if heading remains.
+        if re.search(
+            r"Addendum — EyeNet in action|Παράρτημα — το EyeNet σε δράση",
+            html,
+        ):
+            raise SystemExit("Addendum still present after strip")
     return html
 
 
