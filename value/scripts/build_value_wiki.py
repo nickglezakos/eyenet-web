@@ -1685,6 +1685,41 @@ PRINT_EXTRA_CSS = """
       display: block; color: var(--ink); margin-bottom: 2px; font-size: 8.5pt;
     }
     .lead { color: var(--muted); }
+    .print-home .eyebrow {
+      margin: 0 0 8px; color: var(--soft); font-size: 9pt; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .print-home-meta {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      margin: 16px 0 18px; padding: 14px 0;
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .print-home-meta span {
+      display: block; margin-bottom: 4px;
+      color: var(--soft); font-size: 8.5pt; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .print-home-meta strong {
+      font-size: 10pt; font-weight: 600; color: var(--ink);
+    }
+    .print-toc {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px;
+    }
+    .print-toc-card {
+      background: var(--band); padding: 14px 14px;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .print-toc-card:nth-child(even) { background: var(--band-alt); }
+    .print-toc-card .num {
+      display: block; margin-bottom: 6px;
+      color: var(--brand); font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
+    }
+    .print-toc-card strong {
+      display: block; margin-bottom: 6px; font-size: 10.5pt; color: var(--ink); line-height: 1.3;
+    }
+    .print-toc-card p {
+      margin: 0; font-size: 9pt; color: var(--muted); line-height: 1.4;
+    }
 """
 
 
@@ -1729,8 +1764,30 @@ def sync_print_pages() -> None:
             flags=re.S,
         )
 
-        if "</style>" in html and ".func-gallery" not in html:
-            html = html.replace("</style>", PRINT_EXTRA_CSS + "\n  </style>", 1)
+        if "</style>" in html:
+            # Refresh print extras (gallery + home/cover helpers) on every rebuild.
+            html = re.sub(
+                r"\n    /\* value-print-extras \*/.*?(?=\n  </style>)",
+                "",
+                html,
+                count=1,
+                flags=re.S,
+            )
+            if ".func-gallery" in html and "/* value-print-extras */" not in html:
+                # Legacy extras without marker — strip known blocks once.
+                html = re.sub(
+                    r"\n    \.breaker-grid \{ grid-template-columns: 1fr 1fr; \}.*?"
+                    r"(?=\n  </style>)",
+                    "\n",
+                    html,
+                    count=1,
+                    flags=re.S,
+                )
+            html = html.replace(
+                "</style>",
+                "\n    /* value-print-extras */" + PRINT_EXTRA_CSS + "\n  </style>",
+                1,
+            )
 
         extra_path = CONTENT_DIR / f"what-functionalities-{lang}.html"
         if extra_path.exists():
@@ -1894,8 +1951,49 @@ def inject_print_case_overrides(html: str, lang: str) -> str:
     return html
 
 
+def print_home_section(lang: str) -> str:
+    """Wiki Home contents page for the printable brochure (after cover)."""
+    ui = UI[lang]
+    nav_label = ui["sections"]["home"]
+    meta = "".join(
+        f"<div><span>{k}</span><strong>{v}</strong></div>" for k, v in ui["meta"]
+    )
+    cards = "".join(
+        f'<div class="print-toc-card">'
+        f'<span class="num">{num}</span>'
+        f"<strong>{title}</strong>"
+        f"<p>{desc}</p>"
+        f"</div>"
+        for num, _slug, title, desc in ui["cards"]
+    )
+    return f"""<section class="section flow page-start print-home" id="page-home" data-nav-label="{nav_label}">
+      <div class="section-head"><span class="section-num">00</span><h2>{ui["home_title"]}</h2></div>
+      <p class="eyebrow">{ui["hero_eyebrow"]}</p>
+      <p class="lead" style="font-size:12pt;color:var(--ink);font-weight:600">{ui["hero_h1"]}</p>
+      <p class="lead">{ui["hero_lead"]}</p>
+      <div class="print-home-meta">{meta}</div>
+      <p class="lead">{ui["home_lead"]}</p>
+      <div class="print-toc">{cards}</div>
+    </section>"""
+
+
+def _refresh_print_cover(block: str, lang: str) -> str:
+    """Keep cover, but sync Structure meta to the current wiki reading order."""
+    ui = UI[lang]
+    structure = next(v for k, v in ui["meta"] if k in ("Structure", "Δομή"))
+    block, n = re.subn(
+        r"(<div><span>(?:Structure|Δομή)</span><strong>)[^<]+(</strong></div>)",
+        rf"\1{structure}\2",
+        block,
+        count=1,
+    )
+    if n != 1:
+        raise SystemExit(f"Could not refresh cover Structure meta ({lang})")
+    return block
+
+
 def reorder_print_sections(html: str, lang: str) -> str:
-    """Reorder print sections to wiki reading order, then renumber 01–05."""
+    """Keep cover + Home, then wiki reading order body sections (renumbered 01–05)."""
     section_re = re.compile(r"<section\b[^>]*>.*?</section>", flags=re.S)
     sections = list(section_re.finditer(html))
     if not sections:
@@ -1904,6 +2002,14 @@ def reorder_print_sections(html: str, lang: str) -> str:
     def sec_num(m: re.Match[str]) -> str | None:
         n = re.search(r'<span class="section-num">(\d+)</span>', m.group(0))
         return n.group(1) if n else None
+
+    covers = [
+        m
+        for m in sections
+        if re.search(r'\bclass="[^"]*\bcover\b', m.group(0))
+    ]
+    if not covers:
+        raise SystemExit(f"Missing print cover section ({lang})")
 
     # Brochure keys after innovation merge (§02→§01): desired order before renumber.
     # what=04, why=05, who=03, packages=06, innovation=01
@@ -1943,9 +2049,11 @@ def reorder_print_sections(html: str, lang: str) -> str:
             )
         rebuilt.append(block)
 
+    front = [_refresh_print_cover(m.group(0), lang) for m in covers]
+    front.append(print_home_section(lang))
     start = sections[0].start()
     end = sections[-1].end()
-    return html[:start] + "\n\n".join(rebuilt) + html[end:]
+    return html[:start] + "\n\n".join(front + rebuilt) + html[end:]
 
 
 if __name__ == "__main__":

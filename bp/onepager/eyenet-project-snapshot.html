@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyeNet Vision — Project Snapshot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --dark: #1a1a1a;
+            --text: #1a1a1a;
+            --text-secondary: #333333;
+            --text-muted: #666666;
+            --border: #dddddd;
+            --bg-light: #f5f5f5;
+            --green: #198754;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2.5rem;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            border-bottom: 3px solid var(--black);
+            padding-bottom: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-svg {
+            height: 50px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--black);
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .header-text .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .header-text .subtitle a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+            border-bottom: 2px solid var(--black);
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.75rem;
+            margin-top: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--black);
+            font-size: 0.75rem;
+            top: 0.1rem;
+        }
+
+        .highlight-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--green);
+            border-radius: 6px;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box ul li {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-note {
+            border-top: 2px solid var(--border);
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @media print {
+            body { background: #fff; }
+            .page { max-width: 100%; padding: 0.5in; }
+        }
+
+        @media (max-width: 768px) {
+            .page { padding: 1.25rem; }
+            .header { flex-direction: column; gap: 0.75rem; }
+            .header-text h1 { font-size: 1.4rem; }
+            p, ul li { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- Header -->
+        <div class="header">
+            <svg class="logo-svg" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+                <rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/>
+                <rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/>
+                <rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/>
+                <rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/>
+                <rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/>
+                <rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/>
+                <rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/>
+                <rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/>
+                <rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/>
+                <rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/>
+                <rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+                <rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/>
+                <rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/>
+                <rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/>
+                <rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+                <rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/>
+                <rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/>
+                <rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/>
+                <rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+                <rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/>
+                <rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
+            </svg>
+            <div class="header-text">
+                <h1>EyeNet Vision — Project Snapshot</h1>
+                <div class="subtitle">July 2026 &middot; <a href="https://eyenet-vision.com/">eyenet-vision.com</a></div>
+            </div>
+        </div>
+
+        <!-- What is EyeNet? -->
+        <p>
+            <strong>EyeNet Vision</strong> is AI software that turns regular cameras (such as ip, wifi, security, mobile embedded, IOT, etc) into smart cameras — running entirely on a standard PC with no cloud dependency, no expensive GPU servers, and all video kept on-premises. It handles people counting, facial recognition, age/gender detection, and automated actions (alerts, digital signage, access control, attendance logging).
+        </p>
+
+        <!-- Key Highlights -->
+        <h2>Key Highlights</h2>
+        <ul>
+            <li>
+                <strong>Six products on one platform:</strong> Presence (attendance), Signage (smart screens), Vradar (alert rules engine), Gate (entrance monitoring), Sentinel (VIP bodyguard wearables/drones), Matrix (multi-site dashboard).
+                <br>Same underlying AI engine, packaged for different use cases — customers can start with one module and add more later.
+                <br>All six share a unified microservices architecture, so features built for one product benefit the entire platform.
+            </li>
+            <li>
+                <strong>5 of 6 products beta-ready today</strong>, working prototype delivered within 6 months (July 2024).
+                <br>The core computer vision, facial recognition, and alert automation engines are fully functional and tested.
+                <br>Seed capital goes to sales, marketing, and customer onboarding — not to finishing half-built software.
+            </li>
+            <li>
+                <strong>Two distribution partners signed:</strong> TMA and NewGen Group, both pursuing early-stage enterprise & maritime leads.
+                <br>TMA is positioning EyeNet for a European municipality and has identified a hot lead with LG International.
+                <br>NewGen Group has laid the groundwork for a demo with Deloitte Greece, targeting enterprise and government buyers.
+            </li>
+            <li>
+                <strong>Deloitte & LG International pipeline:</strong> Enterprise validation already in motion.
+                <br>Deloitte EMEA Cyber Security Committee presentation tentatively scheduled for September 2026 — a powerful reference in waiting.
+                <br>LG International (LG's trading and investment arm) represents a global-scale opportunity across manufacturing, logistics, retail, and government supply chains worldwide.
+            </li>
+            <li>
+                <strong>Raising $2.5M Seed</strong> (Q3–Q4 2026) → $5–7M Series A → target ~$1M revenue (2027) → ~$26M (2029) → $500M–$1B exit by 2030–2031.
+                <br>Enterprise contracts average $12,000/month with 80–85% gross margins; consumer subscriptions add volume at $20–30/month.
+                <br>Breakeven projected by 2028, with the development team's burn rate covered by Q1 2027 from existing leads alone.
+            </li>
+            <li>
+                <strong>Privacy-first, runs on-prem:</strong> All video stays local, works offline, runs on any standard PC with 16 GB RAM.
+                <br>No cloud dependency, no expensive GPU servers, no internet required for core operation — internet is only needed for remote phone notifications.
+                <br>Infinitely scalable microservices architecture: from a single camera in a small warehouse to hundreds of cameras across enterprise campuses, all managed from one central dashboard.
+            </li>
+            <li>
+                <strong>Target markets:</strong> Retail chains, schools/universities, security companies, commercial buildings/airports, shipping/maritime fleets, government/law enforcement.
+                <br>Total addressable market estimated at $2–4 billion — EyeNet needs just 1–2% market capture to hit its 2029 revenue targets.
+                <br>The offline-capable, on-premises architecture is specifically designed for regulated industries (government, education, maritime) where cloud-based AI is a non-starter.
+            </li>
+        </ul>
+
+        <!-- Why This Is Seed-Ready -->
+        <h2>Why This Is Seed-Ready</h2>
+        <p>
+            EyeNet isn't a concept deck — it's a working platform with tangible proof points that de-risk the investment:
+        </p>
+        <ul>
+            <li><strong>Product, not prototype:</strong> A functional system was delivered in under 6 months (July 2024). Today, 5 of the 6 products are beta-ready. The heavy engineering — computer vision, facial recognition, alert automation — is already done. Seed capital goes to selling what exists, not building from scratch.</li>
+            <li><strong>Distribution is already in motion:</strong> Two signed partners (TMA and NewGen Group) are actively pursuing live leads across municipalities, enterprises, and maritime clients. Getting distribution locked in this early eliminates the riskiest phase of any startup: finding the first paying customers.</li>
+            <li><strong>Enterprise validation in the pipeline:</strong> A presentation to the Deloitte EMEA Cyber Security Committee is on the calendar for September 2026. LG International — a global conglomerate with reach across manufacturing, logistics, retail, and government supply chains — is an active, high-potential lead.</li>
+            <li><strong>Massive market, conservative ask:</strong> The total addressable market is $2–4 billion. EyeNet's plan requires capturing just 1–2% of that to hit its targets — a beachhead, not a moonshot.</li>
+        </ul>
+
+        <!-- Path to Self-Sustainability -->
+        <h2>Path to Self-Sustainability</h2>
+        <div class="highlight-box">
+            <p style="margin-bottom: 0;">
+                Based on the present pipeline of leads — including municipalities, maritime fleets, and enterprise accounts already in discussion through TMA and NewGen Group — EyeNet is projected to <strong>cover the development team's entire burn rate by Q1 2027</strong> without requiring any additional capital injection beyond the current Seed round. The first enterprise contracts, averaging $12,000/month at 80–85% gross margins, provide enough near-term revenue density to reach operational self-sufficiency within two quarters of closing.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <strong>Confidential — For Investor Review Only</strong><br>
+            This document contains proprietary and confidential information of EyeNet Vision.
+        </div>
+
+    </div>
+</body>
+</html>

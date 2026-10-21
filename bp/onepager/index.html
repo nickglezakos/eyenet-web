@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EyeNet Vision — Executive Summary Onepager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --dark: #1a1a1a;
+            --text: #1a1a1a;
+            --text-secondary: #333333;
+            --text-muted: #666666;
+            --border: #dddddd;
+            --bg-light: #f5f5f5;
+            --accent: #0d6efd;
+            --green: #198754;
+            --orange: #fd7e14;
+            --cyan: #0dcaf0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 2.5rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 3px solid var(--black);
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-svg {
+            height: 50px;
+            width: auto;
+        }
+
+        .header-left h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
+
+        .header-left .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .header-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .badge-blue { background: #0d6efd; color: #fff; }
+        .badge-dark { background: #1a1a1a; color: #fff; }
+        .badge-green { background: #198754; color: #fff; }
+        .badge-yellow { background: #ffc107; color: #212529; }
+
+        /* Hero Stats */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-stat {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .hero-stat .number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--black);
+            line-height: 1.1;
+        }
+
+        .hero-stat .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Two-column layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            border-bottom: 2px solid var(--black);
+            padding-bottom: 0.35rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Bullet lists */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--black);
+            font-size: 0.7rem;
+            top: 0.15rem;
+        }
+
+        /* Box cards */
+        .box {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+        }
+
+        .box h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .box p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .box .big-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--black);
+            margin: 0.25rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        th {
+            background: var(--black);
+            color: #ffffff;
+            padding: 0.45rem 0.6rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 0.4rem 0.6rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Milestone timeline */
+        .milestone-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+
+        .milestone-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.85rem;
+            text-align: center;
+        }
+
+        .milestone-card .quarter {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .milestone-card .event {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 0.3rem;
+        }
+
+        .milestone-card .detail {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        /* Risk pairs */
+        .risk-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.82rem;
+        }
+
+        .risk-item:last-child {
+            border-bottom: none;
+        }
+
+        .risk-label {
+            font-weight: 700;
+            color: var(--black);
+            min-width: 160px;
+            flex-shrink: 0;
+        }
+
+        .risk-detail {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer-note {
+            border-top: 2px solid var(--border);
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Print */
+        @media print {
+            body { background: #fff; }
+            .page { max-width: 100%; padding: 0.5in; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+            .three-col { grid-template-columns: 1fr; }
+            .milestone-row { grid-template-columns: repeat(2, 1fr); }
+            .header { flex-direction: column; gap: 0.75rem; }
+            .page { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <svg class="logo-svg" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+                    <rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/>
+                    <rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/>
+                    <rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/>
+                    <rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/>
+                    <rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/>
+                    <rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/>
+                    <rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/>
+                    <rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/>
+                    <rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/>
+                    <rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/>
+                    <rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+                    <rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/>
+                    <rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/>
+                    <rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/>
+                    <rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/>
+                    <rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/>
+                    <rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/>
+                    <rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/>
+                    <rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/>
+                    <rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/>
+                    <rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
+                </svg>
+            </div>
+            <div class="header-left">
+                <h1>EyeNet Vision</h1>
+                <div class="subtitle">Executive Summary &middot; July 2026 &middot; <a href="https://eyenet-vision.com/" style="color: var(--primary-cyan, #000); text-decoration: none; font-weight: 600;">eyenet-vision.com</a></div>
+            </div>
+            <div class="header-badges">
+                <span class="badge badge-blue">B2B + B2C</span>
+                <span class="badge badge-dark">Seed Round</span>
+            </div>
+        </div>
+
+        <!-- Hero Stats -->
+        <div class="hero-grid">
+            <div class="hero-stat">
+                <div class="number">$2.5M</div>
+                <div class="label">Immediate Seed Ask</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">$5–7M</div>
+                <div class="label">Series A Target</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">$1M→$26M</div>
+                <div class="label">ARR Growth (2027→2029)</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">$500M–$1B</div>
+                <div class="label">Target Exit Valuation</div>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="section">
+            <h2>Overview</h2>
+            <p style="font-size:0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                EyeNet Vision is an intelligent vision technology platform delivering <strong>six specialized applications</strong> across security, marketing, compliance, and operations verticals. Built on the EyeNet platform, it combines proprietary computer vision, demographic analysis, and event-driven automation to transform passive surveillance into active, responsive operational intelligence.
+            </p>
+            <div class="box">
+                <p style="font-weight:700; color:var(--black);">
+                    Core Value Proposition
+                </p>
+                <p>
+                    Privacy-first, on-premises vision analytics with real-time automated actions — no cloud dependency, full offline capability, infinitely scalable from single camera to enterprise-wide deployment.
+                </p>
+            </div>
+        </div>
+
+        <!-- Services & Verticals -->
+        <div class="section">
+            <h2>Services & Verticals</h2>
+            <div class="box" style="margin-bottom: 1rem;">
+                <p style="font-weight:700; color:var(--black); margin-bottom: 0.3rem;">About EyeNet</p>
+                <p style="margin-bottom: 0;">On-premises, edge-computing computer vision platform that transforms standard cameras into intelligent machine vision nodes — no GPU servers, no cloud subscriptions, no proprietary hardware lock-in. Runs on standard business hardware (16 GB RAM, modern multi-core CPU); connect any IP camera, WiFi cam, or mobile phone and the first detection runs in minutes. Scales from a single lens to facility-wide mesh, from one office to entire maritime fleets, all connected securely over VPN with zero cloud dependency for video or data.</p>
+            </div>
+
+            <h3 style="margin-bottom: 0.5rem;">Six Applications</h3>
+            <table>
+                <thead>
+                    <tr><th>Product</th><th>Tagline</th><th>Modes</th><th>Target Users</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Eyenet Presence</strong></td>
+                        <td>Vision-powered two-factor auth & attendance tracking</td>
+                        <td>Area, Gate</td>
+                        <td>Schools, universities, gyms, industrial facilities, hospitals</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Signage</strong></td>
+                        <td>Real-time demographic-adaptive digital signage</td>
+                        <td>Spot, Gate, Area</td>
+                        <td>Retail, malls, airports, ad agencies, event venues</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Vradar</strong></td>
+                        <td>Core alert automation engine — multi-condition triggers & actions</td>
+                        <td>Spot, Gate, Area, Goggles, Drone</td>
+                        <td>All customers (intelligence layer powering every app)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Gate</strong></td>
+                        <td>Real-time entrance/exit monitoring with crowd analytics</td>
+                        <td>Gate</td>
+                        <td>Security agencies, commercial buildings, airports, events</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Sentinel</strong></td>
+                        <td>Wearable eyewear & drone-based VIP protection</td>
+                        <td>Goggles, Drone</td>
+                        <td>Executive protection, law enforcement, private security</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Matrix</strong></td>
+                        <td>Cross-installation aggregated reporting over VPN</td>
+                        <td>Multi-site</td>
+                        <td>Franchises, maritime fleets, multi-location enterprises</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-bottom: 0.5rem;">Use Cases</h3>
+            <div class="two-col" style="margin-bottom: 0.75rem;">
+                <ul>
+                    <li><strong>Staff Presence & Attendance</strong> — QR/NFC + facial recognition dual-factor verification with automated reporting <em>(Presence, Gate)</em></li>
+                    <li><strong>Audience-Aware Digital Signage</strong> — Displays adapt content in milliseconds based on viewer age, gender, group size <em>(Signage)</em></li>
+                    <li><strong>Entrance & Gate Monitoring</strong> — Real-time people counters, demographics, heatmaps, facial recognition at all entry points <em>(Gate, Presence)</em></li>
+                    <li><strong>Restricted Area Protection</strong> — AI-enforced virtual perimeters with instant unauthorised presence alerts and lone-worker monitoring <em>(Vradar, Presence)</em></li>
+                </ul>
+                <ul>
+                    <li><strong>VIP & Personnel Protection</strong> — On-premises face recognition with POI alerts streamed to eyewear and mobile devices <em>(Sentinel, Vradar)</em></li>
+                    <li><strong>Remote Operational Control</strong> — VPN-powered access to every camera, trigger, and dashboard worldwide from a single phone <em>(Matrix, Gate)</em></li>
+                    <li><strong>Maritime & Fleet Compliance</strong> — Offline-capable staff presence tracking across entire fleets with real-time incident alerts <em>(Presence, Matrix)</em></li>
+                    <li><strong>Multi-Site Aggregated Reporting</strong> — Consolidated dashboards with degraded mode when sites are unreachable <em>(Matrix)</em></li>
+                </ul>
+            </div>
+
+            <h3 style="margin-bottom: 0.5rem;">Core Platform Functionalities</h3>
+            <div class="two-col" style="margin-bottom: 0.75rem;">
+                <div>
+                    <ul>
+                        <li><strong>Computer Vision & People Analytics:</strong> Real-time tracking, counting, 3D route analysis, demographic detection (age, gender)</li>
+                        <li><strong>Camera & Hardware Integration:</strong> IP cameras, WiFi cams, soft cameras via mobile apps, full camera health monitoring</li>
+                        <li><strong>Intelligent Triggers & Automated Actions:</strong> Per-camera configurable triggers with AND/OR logic; multi-channel actions (push, email, SMS, signage switching, gate control, webhooks)</li>
+                        <li><strong>Privacy-First Video & Data Management:</strong> Local storage, no cloud required, full offline operation — internet needed only for remote notifications</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>Multi-Channel Notifications:</strong> Mobile push, in-app alerts, email, SMS, webhook integrations with delivery audit logging</li>
+                        <li><strong>Analytics & Insights:</strong> Real-time dashboards, historical trends, behavioral pattern recognition, trigger performance stats</li>
+                        <li><strong>Enterprise-Grade Security:</strong> Role-based access control, file-level encryption, optional private VPN, complete data sovereignty</li>
+                        <li><strong>Scalability & Extensibility:</strong> Scales from home to industrial sites; REST APIs, webhooks, modular plugin architecture, unlimited cameras</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 0.5rem;">Key Differentiators</h3>
+            <table>
+                <thead>
+                    <tr><th>Feature</th><th>Benefit</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Privacy-First</strong></td><td>All processing and storage on-premises — no cloud dependency for video or data</td></tr>
+                    <tr><td><strong>Offline-Capable</strong></td><td>Full functionality without internet; connectivity needed only for remote notifications</td></tr>
+                    <tr><td><strong>Infinitely Scalable</strong></td><td>From single camera to enterprise-wide deployment across multiple sites</td></tr>
+                    <tr><td><strong>Secure by Design</strong></td><td>File-level encryption, role-based access control, VPN-ready architecture</td></tr>
+                    <tr><td><strong>Integration-Ready</strong></td><td>REST APIs, webhooks, third-party connectors, modular plugin architecture</td></tr>
+                    <tr><td><strong>Per-Camera Automation</strong></td><td>Independent trigger and action configuration for each individual camera</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Key Milestones & Status -->
+        <div class="section">
+            <h2>Key Milestones & Current Status</h2>
+            <ul>
+                <li><strong>July 2024:</strong> EyeNet Vision conceived; working prototype delivered within two months</li>
+                <li><strong>Q3 2026:</strong> Five of six products beta-ready; company at intersection of Phase 3 (Product-Market Fit) and Phase 4 (Market Deployment)</li>
+                <li><strong>Distribution Partners:</strong> TMA (EyeNet-branded) and NewGen Group (white-label) actively building pipeline across municipal, enterprise, and maritime verticals</li>
+                <li><strong>Imminent:</strong> TMA positioning EyeNet for a European municipality and LG International pitch</li>
+                <li><strong>September 2026:</strong> Deloitte EMEA Cyber Security Committee presentation (NewGen Group engagement, demo installation in progress)</li>
+            </ul>
+        </div>
+
+        <!-- Funding Phases -->
+        <div class="section">
+            <h2>Funding Phases</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Funding Round</th>
+                        <th>Duration</th>
+                        <th>FTE</th>
+                        <th>Key Metric</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Concept & Prototype</td>
+                        <td>Preseed</td>
+                        <td>6–12 mos</td>
+                        <td>2–5</td>
+                        <td>Validated problem + prototype</td>
+                    </tr>
+                    <tr>
+                        <td>2. Technical Development</td>
+                        <td>Preseed / Angel</td>
+                        <td>12–18 mos</td>
+                        <td>5–12</td>
+                        <td>Beta product with design partners</td>
+                    </tr>
+                    <tr style="background: #e8f5e9;">
+                        <td><strong>3. Product-Market Fit</strong></td>
+                        <td><strong>Seed</strong></td>
+                        <td>6–12 mos</td>
+                        <td>8–15</td>
+                        <td>Retention & NPS signals</td>
+                    </tr>
+                    <tr>
+                        <td>4. Market Deployment</td>
+                        <td>Seed / Series A</td>
+                        <td>12–18 mos</td>
+                        <td>14–35</td>
+                        <td>Repeatable GTM + pipeline</td>
+                    </tr>
+                    <tr>
+                        <td>5. Scale & Company Building</td>
+                        <td>Series B+</td>
+                        <td>24–36+ mos</td>
+                        <td>35–100+</td>
+                        <td>Sustainable growth & profitability</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Financial Projections -->
+        <div class="section">
+            <h2>Financial Projections (2027–2029)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>2027</th>
+                        <th>2028</th>
+                        <th>2029</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Total Revenue</strong></td>
+                        <td>$1.04M</td>
+                        <td>$8.09M</td>
+                        <td>$26.15M</td>
+                    </tr>
+                    <tr>
+                        <td>B2B Revenue</td>
+                        <td>$600K</td>
+                        <td>$4.5M</td>
+                        <td>$14.5M</td>
+                    </tr>
+                    <tr>
+                        <td>B2C Revenue</td>
+                        <td>$440K</td>
+                        <td>$3.59M</td>
+                        <td>$11.65M</td>
+                    </tr>
+                    <tr>
+                        <td>B2B Customers</td>
+                        <td>50</td>
+                        <td>200</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>B2C Paid Users</td>
+                        <td>600</td>
+                        <td>6,000+</td>
+                        <td>20,000+</td>
+                    </tr>
+                    <tr>
+                        <td>Gross Margin</td>
+                        <td>65%</td>
+                        <td>62%</td>
+                        <td>60%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EBITDA</strong></td>
+                        <td>-$360K</td>
+                        <td>$2.4M</td>
+                        <td>$6.7M</td>
+                    </tr>
+                    <tr>
+                        <td>YoY Growth</td>
+                        <td>—</td>
+                        <td><strong>776%</strong></td>
+                        <td><strong>223%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Product Portfolio -->
+        <div class="section">
+            <h2>Product Portfolio (6 Applications)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Target Market</th>
+                        <th>Status</th>
+                        <th>Launch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Eyenet Signage</strong></td>
+                        <td>Retail, Marketing, Events</td>
+                        <td><span class="badge badge-green">Beta Ready</span></td>
+                        <td>Q4 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Gate</strong></td>
+                        <td>Security, Commercial, Transport</td>
+                        <td><span class="badge badge-green">Beta Ready</span></td>
+                        <td>Q4 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Presence</strong></td>
+                        <td>Education, Healthcare, Corporate</td>
+                        <td><span class="badge badge-green">Beta Ready</span></td>
+                        <td>Q4 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Matrix</strong></td>
+                        <td>Multi-Site, Maritime, Franchise</td>
+                        <td><span class="badge badge-green">Beta Ready</span></td>
+                        <td>Q4 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Vradar</strong></td>
+                        <td>Law Enforcement, Private Security</td>
+                        <td><span class="badge badge-green">Beta Ready</span></td>
+                        <td>Q4 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eyenet Sentinel</strong></td>
+                        <td>VIP Protection, Executive Security</td>
+                        <td><span class="badge badge-yellow">Alpha</span></td>
+                        <td>Q1 2027</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Investment Opportunity -->
+        <div class="section">
+            <h2>Investment Opportunity</h2>
+            <div class="two-col">
+                <div class="box">
+                    <h4>Immediate Seed Ask</h4>
+                    <div class="big-number">$2.5M</div>
+                    <p>Timing: Q3–Q4 2026 (before Series A)</p>
+                </div>
+                <div class="box">
+                    <h4>Series A Ask</h4>
+                    <div class="big-number">$5–7M</div>
+                    <p>Valuation: $20–30M pre-money</p>
+                </div>
+            </div>
+            <div class="two-col" style="margin-top: -0.5rem;">
+                <div class="box" style="border-left: 4px solid var(--green);">
+                    <h4>Target Exit</h4>
+                    <div class="big-number">$500M–$1B</div>
+                    <p>IPO or Strategic Acquisition (2030–2031)</p>
+                </div>
+                <div class="box" style="border-left: 4px solid var(--orange);">
+                    <h4>Series A Return</h4>
+                    <div class="big-number">13x</div>
+                    <p>65% IRR over 5 years</p>
+                </div>
+            </div>
+            <table style="margin-top: 0.75rem;">
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Investment</th>
+                        <th>Return Multiple</th>
+                        <th>IRR (5-year)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Seed</strong></td>
+                        <td>$2.5M</td>
+                        <td><strong>18x</strong></td>
+                        <td><strong>78%</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Series A</strong></td>
+                        <td>$6M</td>
+                        <td><strong>13x</strong></td>
+                        <td><strong>65%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Series B</td>
+                        <td>$6M</td>
+                        <td>15x</td>
+                        <td>65%</td>
+                    </tr>
+                    <tr>
+                        <td>Series C</td>
+                        <td>$20M</td>
+                        <td>4.9x</td>
+                        <td>40%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Competitive Advantages -->
+        <div class="section">
+            <h2>Competitive Advantages</h2>
+            <div class="three-col">
+                <div class="box">
+                    <h4>Technical</h4>
+                    <ul>
+                        <li>Privacy-first architecture</li>
+                        <li>Offline capability</li>
+                        <li>Event-driven intelligence</li>
+                        <li>Infinitely scalable</li>
+                    </ul>
+                </div>
+                <div class="box" style="border-left: 4px solid var(--green);">
+                    <h4>Market</h4>
+                    <ul>
+                        <li>Vertical specialization (6 apps)</li>
+                        <li>Modular deployment (5 modes)</li>
+                        <li>Dual B2B/B2C model</li>
+                        <li>Mobile innovation</li>
+                    </ul>
+                </div>
+                <div class="box" style="border-left: 4px solid var(--orange);">
+                    <h4>Operational</h4>
+                    <ul>
+                        <li>Affordable hardware</li>
+                        <li>Fast deployment</li>
+                        <li>Integration-ready APIs</li>
+                        <li>Remote support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit Economics & Market Opportunity -->
+        <div class="two-col">
+            <div class="section">
+                <h2>Unit Economics</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>B2B Enterprise</th>
+                            <th>B2C Consumer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Customer Acquisition Cost (CAC)</td>
+                            <td>$3,000–$5,000</td>
+                            <td>$20–$30</td>
+                        </tr>
+                        <tr>
+                            <td>Lifetime Value (LTV)</td>
+                            <td>$144,000</td>
+                            <td>$600–$1,200</td>
+                        </tr>
+                        <tr style="background: #d4edda;">
+                            <td><strong>LTV:CAC Ratio</strong></td>
+                            <td><strong>40:1</strong></td>
+                            <td><strong>30:1</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Payback Period</td>
+                            <td>3–4 months</td>
+                            <td>1–2 months</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Margin</td>
+                            <td>80–85%</td>
+                            <td>70–75%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Market Opportunity</h2>
+                <div class="box">
+                    <h4>Total Addressable Market: $2–4 Billion</h4>
+                    <ul>
+                        <li><strong>Large Retail Chains:</strong> 5,000+ locations (Target: 1,000–2,000 accounts)</li>
+                        <li><strong>Security Agencies:</strong> 20,000+ firms (Target: 500–1,000 accounts)</li>
+                        <li><strong>Educational Institutions:</strong> 130,000+ schools (Target: 500–1,000 accounts)</li>
+                        <li><strong>Commercial Real Estate:</strong> 50,000+ buildings (Target: 1,000–2,000 accounts)</li>
+                        <li><strong>Government/Law Enforcement:</strong> 15,000+ agencies (Target: 200–500 accounts)</li>
+                    </ul>
+                    <p style="margin-top: 0.5rem;"><strong>Target Market Share:</strong> 1–2% = $20–80 million revenue opportunity</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Use of Funds -->
+        <div class="section">
+            <h2>Use of Funds (Series A: $5–7M)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Allocation</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sales Team Expansion</td>
+                        <td>$2.5M (42%)</td>
+                        <td>4 enterprise Account Executives, 2 Sales Development Representatives, Solution Consultants, Salesforce Reps</td>
+                    </tr>
+                    <tr>
+                        <td>Marketing Acceleration</td>
+                        <td>$1.5M (25%)</td>
+                        <td>Demand gen, content marketing, events, SEO/SEM</td>
+                    </tr>
+                    <tr>
+                        <td>Product Engineering</td>
+                        <td>$1.2M (20%)</td>
+                        <td>Engineering expansion, mobile apps, customer success tools</td>
+                    </tr>
+                    <tr>
+                        <td>Working Capital</td>
+                        <td>$800K (13%)</td>
+                        <td>Runway buffer</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Key Milestones Timeline -->
+        <div class="section">
+            <h2>Growth Trajectory</h2>
+            <div class="milestone-row">
+                <div class="milestone-card">
+                    <div class="quarter" style="color: #0d6efd;">Q4 2027</div>
+                    <div class="event">Launch 5 Products</div>
+                    <div class="detail">50 Customers &middot; $1M ARR</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="quarter" style="color: #198754;">Q4 2028</div>
+                    <div class="event">EBITDA Breakeven</div>
+                    <div class="detail">200 Customers &middot; $8M ARR</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="quarter" style="color: #fd7e14;">2029</div>
+                    <div class="event">Profitability</div>
+                    <div class="detail">500 Customers &middot; $26M ARR</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="quarter" style="color: #0dcaf0;">2030–31</div>
+                    <div class="event">Exit Event</div>
+                    <div class="detail">IPO or Acquisition &middot; $500M–$1B</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Mitigation -->
+        <div class="section">
+            <h2>Risk Mitigation</h2>
+            <div class="box">
+                <div class="risk-item">
+                    <span class="risk-label">Regulatory / Privacy</span>
+                    <span class="risk-detail">Modular design allows disabling features by jurisdiction; on-premises deployment ensures data sovereignty</span>
+                </div>
+                <div class="risk-item">
+                    <span class="risk-label">Market Competition</span>
+                    <span class="risk-detail">Vertical specialization across 6 applications spreads risk; proprietary algorithms create defensible moat</span>
+                </div>
+                <div class="risk-item">
+                    <span class="risk-label">Technology Execution</span>
+                    <span class="risk-detail">Software-first approach; 5 of 6 products ready Q4 2026; hardware partnerships de-risk supply chain</span>
+                </div>
+                <div class="risk-item">
+                    <span class="risk-label">Market Adoption</span>
+                    <span class="risk-detail">Conservative penetration assumptions (0.5–3%); diversified customer base across verticals and geographies</span>
+                </div>
+                <div class="risk-item">
+                    <span class="risk-label">Economic Downturn</span>
+                    <span class="risk-detail">Compliance products are non-discretionary; security spending remains stable through economic cycles</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Invest -->
+        <div class="section">
+            <h2>Why Invest in EyeNet Vision?</h2>
+            <div class="box" style="border-left: 4px solid var(--green);">
+                <ul>
+                    <li><strong>Large Market:</strong> $2–4B TAM with growing post-pandemic demand for intelligent vision solutions</li>
+                    <li><strong>Proven Technology:</strong> Beta-ready products powered by proprietary computer vision and AI/ML algorithms</li>
+                    <li><strong>Compelling Unit Economics:</strong> 40:1 B2B and 30:1 B2C LTV:CAC ratios with 3–4 month payback periods</li>
+                    <li><strong>Diversified Revenue Model:</strong> B2B enterprise stability combined with B2C consumer volume</li>
+                    <li><strong>Clear Path to Exit:</strong> IPO or strategic acquisition targeting $500M–$1B valuation (2030–2031)</li>
+                    <li><strong>Attractive Investor Returns:</strong> Series A investors target 13x return at 65% IRR over 5 years</li>
+                    <li><strong>Experienced Team:</strong> Proven track record with the EyeNet platform</li>
+                    <li><strong>Defensible Moat:</strong> Vertical specialization, proprietary AI/ML, privacy-first on-premises architecture</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="section">
+            <h2>Next Steps</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>Investment Deck:</strong> Available upon request</li>
+                    <li><strong>Financial Model:</strong> Detailed 5-year projections available</li>
+                    <li><strong>Product Demo:</strong> Live beta demonstration can be arranged</li>
+                    <li><strong>Due Diligence:</strong> Full documentation package ready for review</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <strong>Confidential — For Investor Review Only</strong><br>
+            This document contains proprietary and confidential information of EyeNet Vision.
+        </div>
+
+        <!-- Glossary of Terms -->
+        <div class="section">
+            <h2>Glossary of Terms</h2>
+            <table>
+                <thead>
+                    <tr><th>Abbreviation</th><th>Full Term</th><th>Definition</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>FTE</strong></td><td>Full-Time Equivalent</td><td>A unit measuring employee hours — 1.0 FTE equals one full-time worker</td></tr>
+                    <tr><td><strong>LTV:CAC Ratio</strong></td><td>Lifetime Value to Customer Acquisition Cost Ratio</td><td>Measures the return on customer acquisition spend; higher ratios indicate stronger unit economics</td></tr>
+                    <tr><td><strong>ARR</strong></td><td>Annual Recurring Revenue</td><td>Yearly value of recurring subscription or contract revenue</td></tr>
+                    <tr><td><strong>IRR</strong></td><td>Internal Rate of Return</td><td>The annualized rate of return an investor can expect from an investment</td></tr>
+                    <tr><td><strong>TAM</strong></td><td>Total Addressable Market</td><td>The total revenue opportunity available if a product/service captures 100% of its target market</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

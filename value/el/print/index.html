@@ -386,6 +386,7 @@
     .breaker-vs .panel h4 { margin-bottom: 8px; }
     .breaker-vs ul { margin: 0; font-size: 9pt; }
   
+    /* value-print-extras */
     .breaker-grid { grid-template-columns: 1fr 1fr; }
     .notify > p + p { margin-top: 8px; }
     .func-gallery {
@@ -405,6 +406,41 @@
       display: block; color: var(--ink); margin-bottom: 2px; font-size: 8.5pt;
     }
     .lead { color: var(--muted); }
+    .print-home .eyebrow {
+      margin: 0 0 8px; color: var(--soft); font-size: 9pt; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .print-home-meta {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      margin: 16px 0 18px; padding: 14px 0;
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .print-home-meta span {
+      display: block; margin-bottom: 4px;
+      color: var(--soft); font-size: 8.5pt; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .print-home-meta strong {
+      font-size: 10pt; font-weight: 600; color: var(--ink);
+    }
+    .print-toc {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px;
+    }
+    .print-toc-card {
+      background: var(--band); padding: 14px 14px;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .print-toc-card:nth-child(even) { background: var(--band-alt); }
+    .print-toc-card .num {
+      display: block; margin-bottom: 6px;
+      color: var(--brand); font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
+    }
+    .print-toc-card strong {
+      display: block; margin-bottom: 6px; font-size: 10.5pt; color: var(--ink); line-height: 1.3;
+    }
+    .print-toc-card p {
+      margin: 0; font-size: 9pt; color: var(--muted); line-height: 1.4;
+    }
 
   </style>
 </head>
@@ -421,7 +457,41 @@
   </div>
 
   <div class="sheet">
-    <section class="section flow page-start" id="page-6" data-nav-label="04 · Τι">
+    <section class="cover" id="page-0" data-nav-label="Εξώφυλλο">
+      <div>
+        <div class="cover-top">
+          <div class="cover-brand">
+            <img src="/assets/eyenet-dark.svg" alt="EyeNet" />
+            <span class="cover-chip">Θέση αξίας</span>
+          </div>
+        </div>
+        <p class="cover-eyebrow">Machine Vision · Edge Intelligence · Λειτουργική δράση</p>
+        <h1>Πώς το EyeNet αλλάζει το τοπίο του machine vision</h1>
+        <p class="cover-lead">Από παθητικές κάμερες σε on-premises όραση που ανιχνεύει, αποφασίζει και ενεργεί — σε home care, SME, enterprise, βιομηχανία και στόλους.</p>
+        <div class="cover-meta">
+          <div><span>Τύπος</span><strong>Value Brochure</strong></div>
+          <div><span>Ημερομηνία</span><strong>18 Οκτωβρίου 2026</strong></div>
+          <div><span>Δομή</span><strong>Τι · Περιπτώσεις · Ποιος · Εμπορικά πακέτα · Καινοτομία</strong></div>
+          <div><span>Ανάπτυξη</span><strong>On-Premises / VPN</strong></div>
+        </div>
+      </div>
+      <div class="cover-foot">
+        <span>eyenet-vision.com</span>
+        <span>nick@eyenet-vision.com</span>
+      </div>
+    </section>
+
+<section class="section flow page-start print-home" id="page-home" data-nav-label="Αρχική">
+      <div class="section-head"><span class="section-num">00</span><h2>EyeNet Αξία</h2></div>
+      <p class="eyebrow">Machine Vision · Edge Intelligence · Λειτουργική δράση</p>
+      <p class="lead" style="font-size:12pt;color:var(--ink);font-weight:600">Πώς το EyeNet αλλάζει το τοπίο του machine vision</p>
+      <p class="lead">Από παθητικές κάμερες σε on-premises όραση που ανιχνεύει, αποφασίζει και ενεργεί — σε home care, SME, enterprise, βιομηχανία και στόλους.</p>
+      <div class="print-home-meta"><div><span>Τύπος</span><strong>Value Brochure</strong></div><div><span>Ημερομηνία</span><strong>18 Οκτωβρίου 2026</strong></div><div><span>Δομή</span><strong>Τι · Περιπτώσεις · Ποιος · Εμπορικά πακέτα · Καινοτομία</strong></div><div><span>Ανάπτυξη</span><strong>On-Premises / VPN</strong></div></div>
+      <p class="lead">Πώς το EyeNet αλλάζει το τοπίο του machine vision — από παθητικές κάμερες σε on-premises όραση που ανιχνεύει, αποφασίζει και ενεργεί.</p>
+      <div class="print-toc"><div class="print-toc-card"><span class="num">01</span><strong>Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα</strong><p>Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware.</p></div><div class="print-toc-card"><span class="num">02</span><strong>Πιο πολύτιμες περιπτώσεις</strong><p>Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία.</p></div><div class="print-toc-card"><span class="num">03</span><strong>Ποιος χρησιμοποιεί το EyeNet</strong><p>Δυνατά αποτελέσματα για στόλο, βιομηχανικούς χώρους, φροντίδα, HR, ασφάλεια, οικογένεια και signage.</p></div><div class="print-toc-card"><span class="num">04</span><strong>Εμπορικά πακέτα</strong><p>B2C Light, B2B Starter & Professional και Enterprise.</p></div><div class="print-toc-card"><span class="num">05</span><strong>Απλή κι όμως ισχυρή καινοτομία</strong><p>On-premises όραση που αποφασίζει και ενεργεί — και ελευθερία από το camera wall με στοχευμένα alerts.</p></div></div>
+    </section>
+
+<section class="section flow page-start" id="page-6" data-nav-label="04 · Τι">
       <div class="section-head"><span class="section-num">01</span><h2>Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα</h2></div>
       <div class="notify" style="margin-top:1.5rem">
   <h5>Καθημερινοί άνθρωποι, προηγμένη όραση</h5>
