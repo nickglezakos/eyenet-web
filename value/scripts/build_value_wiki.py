@@ -17,15 +17,37 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261021d"
+ASSET_V = "20261021i"
+
+WITH_HEADING = {
+    "en": "Who uses EyeNet",
+    "el": "Ποιος χρησιμοποιεί το EyeNet",
+}
 CONTENT_DIR = ROOT / "content"
+
+INNOVATION_HEADING = {
+    "en": "Simple yet powerful innovation",
+    "el": "Απλή κι όμως ισχυρή καινοτομία",
+}
+
+WHAT_HEADING = {
+    "en": "EyeNet understands what it sees and acts on it automatically",
+    "el": "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
+}
+
+WHY_HEADING = {
+    "en": "Most Valuable Cases",
+    "el": "Πιο πολύτιμες περιπτώσεις",
+}
+
+PACKAGES_HEADING = {
+    "en": "Commercial Packages — B2C · B2B · Enterprise",
+    "el": "Εμπορικά πακέτα — B2C · B2B · Enterprise",
+}
 
 # Reading order for Previous / Next footer links (path relative to lang root).
 PAGE_ORDER = [
     "",
-    "competition-breaker",
-    "freedom",
-    "with-eyenet",
     "what",
     "why",
     "why/home-care",
@@ -34,10 +56,12 @@ PAGE_ORDER = [
     "why/cottage",
     "why/shipping",
     "why/mall",
+    "with-eyenet",
     "packages",
     "packages/b2c",
     "packages/b2b",
     "packages/enterprise",
+    "innovation",
 ]
 
 
@@ -99,12 +123,11 @@ UI = {
         "footer": "EyeNet Vision · Value · Confidential for commercial discussion",
         "sections": {
             "home": "Home",
-            "competition-breaker": "Competition breaker",
-            "freedom": "Freedom from the feed",
-            "with-eyenet": "With EyeNet",
-            "what": "What",
-            "why": "Why",
-            "packages": "Packages",
+            "innovation": "Simple yet powerful innovation",
+            "with-eyenet": "Who uses EyeNet",
+            "what": "What is EyeNet",
+            "why": "Most Valuable Cases",
+            "packages": "Commercial Packages",
         },
         "why_children": [
             ("home-care", "Home care · Virtual Ward"),
@@ -133,30 +156,27 @@ UI = {
         "meta": [
             ("Type", "Value Brochure"),
             ("Date", "18 October 2026"),
-            ("Structure", "Breaker · Freedom · Intro · What · Why · Packages"),
+            ("Structure", "What · Cases · Who · Commercial Packages · Innovation"),
             ("Deployment", "On-Premises / VPN"),
         ],
         "cards": [
-            ("01", "competition-breaker", "Competition breaker",
-             "Why EyeNet decides, acts, and stays on premises where competitors cannot follow."),
-            ("02", "freedom", "Freedom from the feed",
-             "You don’t watch cameras — they watch for you with targeted alerts."),
-            ("03", "with-eyenet", "With EyeNet…",
-             "Strong outcomes for fleet, care, HR, security, family, and mall operators."),
-            ("04", "what", "What",
+            ("01", "what", "EyeNet understands what it sees and acts on it automatically",
              "Edge intelligence, action automation, and hardware-bound scale."),
-            ("05", "why", "Why",
+            ("02", "why", "Most Valuable Cases",
              "Featured use cases across home care, HR, security, cottage, shipping, and malls."),
-            ("06", "packages", "Packages",
+            ("03", "with-eyenet", "Who uses EyeNet",
+             "Strong outcomes for fleet, care, HR, security, family, and mall operators."),
+            ("04", "packages", "Commercial Packages",
              "B2C Light, B2B Starter & Professional, and Enterprise motions."),
+            ("05", "innovation", "Simple yet powerful innovation",
+             "On-premises vision that decides and acts — plus freedom from the camera wall with targeted alerts."),
         ],
         "page_titles": {
-            "competition-breaker": "Why EyeNet is a competition breaker",
-            "freedom": "You don’t watch cameras — they watch for you",
-            "with-eyenet": "With EyeNet…",
-            "what": "What",
-            "why": "Why",
-            "packages": "Packages — B2C · B2B · Enterprise",
+            "innovation": "Simple yet powerful innovation",
+            "with-eyenet": "Who uses EyeNet",
+            "what": "EyeNet understands what it sees and acts on it automatically",
+            "why": "Most Valuable Cases",
+            "packages": "Commercial Packages — B2C · B2B · Enterprise",
         },
         "why_index_kicker": (
             "Featured use cases — where EyeNet replaces manual presence, "
@@ -183,12 +203,11 @@ UI = {
         "footer": "EyeNet Vision · Αξία · Εμπιστευτικό για εμπορική συζήτηση",
         "sections": {
             "home": "Αρχική",
-            "competition-breaker": "Σπάσιμο ανταγωνισμού",
-            "freedom": "Ελευθερία από το feed",
-            "with-eyenet": "Με το EyeNet",
-            "what": "Τι",
-            "why": "Γιατί",
-            "packages": "Πακέτα",
+            "innovation": "Απλή κι όμως ισχυρή καινοτομία",
+            "with-eyenet": "Ποιος χρησιμοποιεί το EyeNet",
+            "what": "Τι είναι το EyeNet",
+            "why": "Πιο πολύτιμες περιπτώσεις",
+            "packages": "Εμπορικά πακέτα",
         },
         "why_children": [
             ("home-care", "Home care · Virtual Ward"),
@@ -217,30 +236,27 @@ UI = {
         "meta": [
             ("Τύπος", "Value Brochure"),
             ("Ημερομηνία", "18 Οκτωβρίου 2026"),
-            ("Δομή", "Breaker · Ελευθερία · Intro · Τι · Γιατί · Πακέτα"),
+            ("Δομή", "Τι · Περιπτώσεις · Ποιος · Εμπορικά πακέτα · Καινοτομία"),
             ("Ανάπτυξη", "On-Premises / VPN"),
         ],
         "cards": [
-            ("01", "competition-breaker", "Σπάσιμο ανταγωνισμού",
-             "Γιατί το EyeNet αποφασίζει, ενεργεί και μένει στις εγκαταστάσεις σας."),
-            ("02", "freedom", "Ελευθερία από το feed",
-             "Δεν κοιτάτε κάμερες — αυτές κοιτάνε για εσάς με στοχευμένα alerts."),
-            ("03", "with-eyenet", "Με το EyeNet…",
-             "Δυνατά αποτελέσματα για στόλο, φροντίδα, HR, ασφάλεια, οικογένεια και mall."),
-            ("04", "what", "Τι",
+            ("01", "what", "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
              "Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware."),
-            ("05", "why", "Γιατί",
+            ("02", "why", "Πιο πολύτιμες περιπτώσεις",
              "Επιλεγμένες περιπτώσεις χρήσης σε home care, HR, ασφάλεια, εξοχικό, ναυτιλία και mall."),
-            ("06", "packages", "Πακέτα",
+            ("03", "with-eyenet", "Ποιος χρησιμοποιεί το EyeNet",
+             "Δυνατά αποτελέσματα για στόλο, φροντίδα, HR, ασφάλεια, οικογένεια και mall."),
+            ("04", "packages", "Εμπορικά πακέτα",
              "B2C Light, B2B Starter & Professional και Enterprise."),
+            ("05", "innovation", "Απλή κι όμως ισχυρή καινοτομία",
+             "On-premises όραση που αποφασίζει και ενεργεί — και ελευθερία από το camera wall με στοχευμένα alerts."),
         ],
         "page_titles": {
-            "competition-breaker": "Γιατί το EyeNet σπάει τον ανταγωνισμό",
-            "freedom": "Δεν κοιτάτε κάμερες — αυτές κοιτάνε για εσάς",
-            "with-eyenet": "Με το EyeNet…",
-            "what": "Τι",
-            "why": "Γιατί",
-            "packages": "Πακέτα — B2C · B2B · Enterprise",
+            "innovation": "Απλή κι όμως ισχυρή καινοτομία",
+            "with-eyenet": "Ποιος χρησιμοποιεί το EyeNet",
+            "what": "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
+            "why": "Πιο πολύτιμες περιπτώσεις",
+            "packages": "Εμπορικά πακέτα — B2C · B2B · Enterprise",
         },
         "why_index_kicker": (
             "Επιλεγμένες περιπτώσεις χρήσης — όπου το EyeNet αντικαθιστά χειροκίνητη παρουσία, "
@@ -300,12 +316,11 @@ def sidebar_html(lang: str, current: str) -> str:
     home = f"{p}/" if p else "/"
     links = [
         f'<a href="{home}" data-home="true" data-title="{sections["home"]}"{cur("home")}>{sections["home"]}</a>',
-        f'<a href="{p}/competition-breaker/" data-title="{sections["competition-breaker"]}"{cur("competition-breaker")}>{sections["competition-breaker"]}</a>',
-        f'<a href="{p}/freedom/" data-title="{sections["freedom"]}"{cur("freedom")}>{sections["freedom"]}</a>',
-        f'<a href="{p}/with-eyenet/" data-title="{sections["with-eyenet"]}"{cur("with-eyenet")}>{sections["with-eyenet"]}</a>',
         f'<a href="{p}/what/" data-title="{sections["what"]}"{cur("what")}>{sections["what"]}</a>',
         group("why", ui["why_children"], sections["why"]),
+        f'<a href="{p}/with-eyenet/" data-title="{sections["with-eyenet"]}"{cur("with-eyenet")}>{sections["with-eyenet"]}</a>',
         group("packages", ui["pkg_children"], sections["packages"]),
+        f'<a href="{p}/innovation/" data-title="{sections["innovation"]}"{cur("innovation")}>{sections["innovation"]}</a>',
     ]
     return "\n".join(links)
 
@@ -315,9 +330,9 @@ def header_nav(lang: str, section: str) -> str:
     p = prefix(lang)
     items = [
         ("home", ui["home"], f"{p}/" if p else "/"),
-        ("competition-breaker", ui["sections"]["competition-breaker"], f"{p}/competition-breaker/"),
         ("why", ui["sections"]["why"], f"{p}/why/"),
         ("packages", ui["sections"]["packages"], f"{p}/packages/"),
+        ("innovation", ui["sections"]["innovation"], f"{p}/innovation/"),
     ]
     out = []
     for slug, label, url in items:
@@ -522,15 +537,45 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
         }
     )
 
+    # Merged innovation page (brochure §01 + §02) — last in reading order
+    innov_title = ui["page_titles"]["innovation"]
+    innov_body = (
+        page_shell_title(lang, "05", innov_title)
+        + fix_asset_paths(sections["01"])
+        + "\n"
+        + fix_asset_paths(sections["02"])
+    )
+    write(
+        base / "innovation" / "index.html",
+        render_page(
+            lang=lang,
+            path="innovation",
+            title=innov_title,
+            body=innov_body,
+            audience="innovation",
+            section="innovation",
+            wide=True,
+        ),
+    )
+    search_entries.append(
+        {
+            "lang": lang,
+            "url": f"{pfx}/innovation/",
+            "title": innov_title,
+            "section": ui["sections"]["innovation"],
+            "sectionSlug": "innovation",
+            "text": re.sub(r"<[^>]+>", " ", innov_body),
+        }
+    )
+
+    # Remaining single pages: (brochure section key, slug, display num, wide)
     mapping = [
-        ("01", "competition-breaker", True),
-        ("02", "freedom", False),
-        ("03", "with-eyenet", True),
-        ("04", "what", True),
+        ("04", "what", "01", True),
+        ("03", "with-eyenet", "03", True),
     ]
-    for num, slug, wide in mapping:
+    for src_num, slug, display_num, wide in mapping:
         title = ui["page_titles"][slug]
-        body = page_shell_title(lang, num, title) + fix_asset_paths(sections[num])
+        body = page_shell_title(lang, display_num, title) + fix_asset_paths(sections[src_num])
         if slug == "what":
             extra = CONTENT_DIR / f"what-functionalities-{lang}.html"
             if extra.exists():
@@ -572,7 +617,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
     if sm:
         summary = sm.group(1)
     why_body = (
-        page_shell_title(lang, "05", ui["page_titles"]["why"])
+        page_shell_title(lang, "02", ui["page_titles"]["why"])
         + f'<div class="kicker">{ui["why_index_kicker"]}</div>'
         + f'<div class="landing-cards">{why_cards}</div>'
         + summary
@@ -602,7 +647,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
 
     for i, ((child, label), persona_html) in enumerate(zip(ui["why_children"], personas)):
         body = (
-            page_shell_title(lang, "05", label)
+            page_shell_title(lang, "02", label)
             + fix_asset_paths(persona_html)
         )
         write(
@@ -656,7 +701,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
         footer_note = fn.group(1)
 
     pkg_body = (
-        page_shell_title(lang, "06", ui["page_titles"]["packages"])
+        page_shell_title(lang, "04", ui["page_titles"]["packages"])
         + f'<div class="kicker">{ui["pkg_index_kicker"]}</div>'
         + f'<div class="landing-cards">{pkg_cards}</div>'
         + pkg_summary
@@ -696,7 +741,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
         raise SystemExit(f"Expected 3 package blocks for {lang}, got {len(pkg_blocks)}")
 
     for (child, label), block in zip(ui["pkg_children"], pkg_blocks[:3]):
-        body = page_shell_title(lang, "06", label) + fix_asset_paths(block)
+        body = page_shell_title(lang, "04", label) + fix_asset_paths(block)
         write(
             base / "packages" / child / "index.html",
             render_page(
@@ -759,6 +804,234 @@ def main() -> None:
 
     write(ROOT / "assets" / "search-index.json", json.dumps(search, ensure_ascii=False, indent=2))
     print(f"search index entries: {len(search)}")
+    sync_print_pages()
+    write_legacy_redirects()
+
+
+def write_legacy_redirects() -> None:
+    """Point old Competition breaker / Freedom URLs at the merged innovation page."""
+    targets = [
+        (ROOT / "competition-breaker" / "index.html", "/innovation/"),
+        (ROOT / "freedom" / "index.html", "/innovation/"),
+        (ROOT / "el" / "competition-breaker" / "index.html", "/el/innovation/"),
+        (ROOT / "el" / "freedom" / "index.html", "/el/innovation/"),
+    ]
+    for path, dest in targets:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        write(
+            path,
+            (
+                "<!DOCTYPE html><html lang=\"en\"><head>"
+                f'<meta charset="utf-8"><meta http-equiv="refresh" content="0;url={dest}">'
+                f'<link rel="canonical" href="{dest}">'
+                f"<title>Redirect</title></head><body>"
+                f'<p><a href="{dest}">Continue to Simple yet powerful innovation</a></p>'
+                "</body></html>\n"
+            ),
+        )
+
+
+PRINT_EXTRA_CSS = """
+    .breaker-grid { grid-template-columns: 1fr 1fr; }
+    .notify > p + p { margin-top: 8px; }
+    .func-gallery {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 18px;
+    }
+    .func-gallery figure {
+      margin: 0; background: var(--band); break-inside: avoid; page-break-inside: avoid;
+    }
+    .func-gallery img {
+      display: block; width: 100%; height: 110px; object-fit: cover; object-position: top center;
+      background: #0f172a;
+    }
+    .func-gallery figcaption {
+      padding: 8px 10px 10px; font-size: 8pt; color: var(--muted); line-height: 1.35;
+    }
+    .func-gallery figcaption strong {
+      display: block; color: var(--ink); margin-bottom: 2px; font-size: 8.5pt;
+    }
+    .lead { color: var(--muted); }
+"""
+
+
+def sync_print_pages() -> None:
+    """Rebuild printable brochure pages from source + inject What functionalities."""
+    for lang, src in (("en", SRC_EN), ("el", SRC_EL)):
+        html = src.read_text(encoding="utf-8")
+        html = html.replace(
+            'src="../../../product/logos/svg/eyenet-dark.svg"',
+            'src="/assets/eyenet-dark.svg"',
+        )
+        html = html.replace('src="assets/', 'src="/assets/images/')
+
+        if lang == "en":
+            toolbar = """  <div class="no-print toolbar">
+    <div>
+      <p><a href="/">← Back to EyeNet Value</a> · Printable EN brochure</p>
+      <p style="margin-top:4px">Use your browser’s Print dialog and choose <strong>Save as PDF</strong>.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <a href="/el/print/" style="color:var(--brand);font-weight:600;text-decoration:none">EL version</a>
+      <button type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </div>"""
+        else:
+            toolbar = """  <div class="no-print toolbar">
+    <div>
+      <p><a href="/el/">← Πίσω στο EyeNet Αξία</a> · Εκτυπώσιμη έκδοση EL</p>
+      <p style="margin-top:4px">Χρησιμοποιήστε Print και επιλέξτε <strong>Save as PDF</strong>.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <a href="/print/" style="color:var(--brand);font-weight:600;text-decoration:none">EN version</a>
+      <button type="button" onclick="window.print()">Εκτύπωση / Αποθήκευση PDF</button>
+    </div>
+  </div>"""
+
+        html = re.sub(
+            r'  <div class="no-print(?: toolbar)?">.*?</div>\n',
+            toolbar + "\n",
+            html,
+            count=1,
+            flags=re.S,
+        )
+
+        if "</style>" in html and ".func-gallery" not in html:
+            html = html.replace("</style>", PRINT_EXTRA_CSS + "\n  </style>", 1)
+
+        extra_path = CONTENT_DIR / f"what-functionalities-{lang}.html"
+        if extra_path.exists():
+            extra = extra_path.read_text(encoding="utf-8")
+            # Expand What section before it closes (after Edge/Action/Scale cols).
+            pattern = (
+                r'(<section[^>]*(?:04 · What|04 · Τι)[^>]*>'
+                r'.*?<div class="cols-3">.*?</div>\s*)'
+                r'(</section>)'
+            )
+            updated, n = re.subn(
+                pattern,
+                rf"\1\n{extra}\n    \2",
+                html,
+                count=1,
+                flags=re.S,
+            )
+            if n != 1:
+                # Fallback: first section-num 04 block
+                pattern2 = (
+                    r'(<span class="section-num">04</span>.*?<div class="cols-3">.*?</div>\s*)'
+                    r'(</section>)'
+                )
+                updated, n = re.subn(
+                    pattern2,
+                    rf"\1\n{extra}\n    \2",
+                    html,
+                    count=1,
+                    flags=re.S,
+                )
+            if n != 1:
+                raise SystemExit(f"Could not inject What functionalities into print ({lang})")
+            html = updated
+
+        heading = WHAT_HEADING[lang]
+        html, n_title = re.subn(
+            r'(<span class="section-num">04</span>\s*<h2>)(?:What|Τι)(</h2>)',
+            rf"\1{heading}\2",
+            html,
+            count=1,
+        )
+        if n_title != 1:
+            raise SystemExit(f"Could not rename What heading in print ({lang})")
+
+        why_heading = WHY_HEADING[lang]
+        html, n_why = re.subn(
+            r'(<span class="section-num">05</span>\s*<h2>)(?:Why|Γιατί)(</h2>)',
+            rf"\1{why_heading}\2",
+            html,
+        )
+        if n_why < 1:
+            raise SystemExit(f"Could not rename Why headings in print ({lang})")
+
+        with_heading = WITH_HEADING[lang]
+        html, n_with = re.subn(
+            r'(<span class="section-num">03</span>\s*<h2>)(?:With EyeNet…|Με το EyeNet…)(</h2>)',
+            rf"\1{with_heading}\2",
+            html,
+        )
+        if n_with < 1:
+            raise SystemExit(f"Could not rename With EyeNet headings in print ({lang})")
+
+        pkg_heading = PACKAGES_HEADING[lang]
+        html, n_pkg = re.subn(
+            r'(<span class="section-num">06</span>\s*<h2>)(?:Packages — B2C · B2B · Enterprise|Πακέτα — B2C · B2B · Enterprise)(</h2>)',
+            rf"\1{pkg_heading}\2",
+            html,
+        )
+        if n_pkg < 1:
+            raise SystemExit(f"Could not rename Packages headings in print ({lang})")
+
+        innov_heading = INNOVATION_HEADING[lang]
+        html, n_innov1 = re.subn(
+            r'(<span class="section-num">01</span>\s*<h2>)(?:Why EyeNet is a competition breaker|Γιατί το EyeNet σπάει τον ανταγωνισμό)(</h2>)',
+            rf"\1{innov_heading}\2",
+            html,
+        )
+        if n_innov1 < 1:
+            raise SystemExit(f"Could not rename Competition breaker headings in print ({lang})")
+        html, n_innov2 = re.subn(
+            r'<span class="section-num">02</span>\s*<h2>(?:You don.t watch cameras — they watch for you|Δεν κοιτάτε κάμερες — αυτές κοιτάνε για εσάς)</h2>',
+            f'<span class="section-num">01</span><h2>{innov_heading}</h2>',
+            html,
+        )
+        if n_innov2 < 1:
+            raise SystemExit(f"Could not merge Freedom headings into innovation in print ({lang})")
+
+        # Reading order: What · Cases · Who · Packages · Innovation
+        html = reorder_print_sections(html, lang)
+
+        out = ROOT / ("el/print/index.html" if lang == "el" else "print/index.html")
+        write(out, html)
+
+
+def reorder_print_sections(html: str, lang: str) -> str:
+    """Reorder print sections to wiki reading order, then renumber 01–05."""
+    section_re = re.compile(r"<section\b[^>]*>.*?</section>", flags=re.S)
+    sections = list(section_re.finditer(html))
+    if not sections:
+        raise SystemExit(f"No print sections found ({lang})")
+
+    def sec_num(m: re.Match[str]) -> str | None:
+        n = re.search(r'<span class="section-num">(\d+)</span>', m.group(0))
+        return n.group(1) if n else None
+
+    # Brochure keys after innovation merge (§02→§01): desired order before renumber.
+    # what=04, why=05, who=03, packages=06, innovation=01
+    order_keys = ["04", "05", "03", "06", "01"]
+    by_num: dict[str, list[re.Match[str]]] = {}
+    for m in sections:
+        n = sec_num(m)
+        if n:
+            by_num.setdefault(n, []).append(m)
+    for key in order_keys:
+        if key not in by_num:
+            raise SystemExit(f"Missing print section {key} ({lang})")
+
+    ordered = [m for key in order_keys for m in by_num[key]]
+    # Display: what→01, why→02, who→03, packages→04, innovation→05
+    renumber = {"04": "01", "05": "02", "03": "03", "06": "04", "01": "05"}
+    rebuilt: list[str] = []
+    for m in ordered:
+        block = m.group(0)
+        n = sec_num(m)
+        if n in renumber:
+            block = block.replace(
+                f'<span class="section-num">{n}</span>',
+                f'<span class="section-num">{renumber[n]}</span>',
+                1,
+            )
+        rebuilt.append(block)
+
+    start = sections[0].start()
+    end = sections[-1].end()
+    return html[:start] + "\n\n".join(rebuilt) + html[end:]
 
 
 if __name__ == "__main__":

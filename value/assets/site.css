@@ -268,6 +268,11 @@ body.sidebar-open .sidebar-backdrop {
   line-height: 1.35;
 }
 
+/* Match weight of expandable section titles (Most Valuable Cases, Packages). */
+.sidebar-nav > a {
+  font-weight: 600;
+}
+
 .sidebar-nav a:hover {
   background: rgba(25, 118, 210, 0.08);
   text-decoration: none;
@@ -412,9 +417,14 @@ body[data-wide="true"] .page {
 }
 
 .page h1 {
-  font-size: clamp(1.55rem, 4.5vw, 2rem);
+  font-size: clamp(1.35rem, 4vw, 1.85rem);
   margin: 0 0 0.75rem;
   letter-spacing: -0.02em;
+  max-width: 22ch;
+}
+
+body[data-audience="what"] .page h1 {
+  max-width: 28ch;
 }
 
 .page > .lead {
