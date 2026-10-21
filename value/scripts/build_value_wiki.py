@@ -17,7 +17,8 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261018g"
+ASSET_V = "20261021a"
+CONTENT_DIR = ROOT / "content"
 
 # Reading order for Previous / Next footer links (path relative to lang root).
 PAGE_ORDER = [
@@ -525,11 +526,15 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
         ("01", "competition-breaker", True),
         ("02", "freedom", False),
         ("03", "with-eyenet", True),
-        ("04", "what", False),
+        ("04", "what", True),
     ]
     for num, slug, wide in mapping:
         title = ui["page_titles"][slug]
         body = page_shell_title(lang, num, title) + fix_asset_paths(sections[num])
+        if slug == "what":
+            extra = CONTENT_DIR / f"what-functionalities-{lang}.html"
+            if extra.exists():
+                body += "\n" + extra.read_text(encoding="utf-8")
         write(
             base / slug / "index.html",
             render_page(
