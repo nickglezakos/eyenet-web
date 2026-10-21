@@ -17,7 +17,7 @@ SRC_EL = Path(
     "how-eyenet-changes-the-machine-vision-landscape-el.html"
 )
 
-ASSET_V = "20261021i"
+ASSET_V = "20261021o"
 
 WITH_HEADING = {
     "en": "Who uses EyeNet",
@@ -50,12 +50,12 @@ PAGE_ORDER = [
     "",
     "what",
     "why",
-    "why/home-care",
     "why/hr-presence",
-    "why/security",
-    "why/cottage",
-    "why/shipping",
     "why/mall",
+    "why/cottage",
+    "why/home-care",
+    "why/security",
+    "why/shipping",
     "with-eyenet",
     "packages",
     "packages/b2c",
@@ -63,6 +63,16 @@ PAGE_ORDER = [
     "packages/enterprise",
     "innovation",
 ]
+
+# Brochure §05 persona index → why child slug (source order, not display order).
+WHY_PERSONA_INDEX = {
+    "home-care": 0,
+    "hr-presence": 1,
+    "security": 2,
+    "cottage": 3,
+    "shipping": 4,
+    "mall": 5,
+}
 
 
 def strip_section_heads(html: str) -> str:
@@ -94,6 +104,791 @@ def extract_sections(html: str) -> dict[str, str]:
 
 def fix_asset_paths(html: str) -> str:
     return html.replace('src="assets/', 'src="/assets/images/')
+
+
+def _ext(label: str, url: str) -> str:
+    """External citation link (new tab)."""
+    return (
+        f'<a class="source-link" href="{url}" target="_blank" rel="noopener noreferrer">'
+        f"{label}</a>"
+    )
+
+
+def normalize_package_addressable_pockets(html: str, lang: str) -> str:
+    """Normalize package pocket headings with cite-backed, linked market metrics."""
+    # Primary / public sources (checked Oct 2026).
+    url_census_acs = "https://data.census.gov/table/ACSDT1Y2024.C25075"
+    url_census_cbp = "https://www.census.gov/data/datasets/2023/econ/cbp/2023-cbp.html"
+    url_marketing = "https://naicscodes.org/industry/54161-management-consulting-services/"
+    url_retail = "https://data.census.gov/table/ECNBASIC2022.EC2244BASIC"
+    url_restaurants = "https://naicscodes.org/industry-group/7225-restaurants-and-other-eating-places/"
+    url_nasco = "https://www.nasco.org/wp-content/uploads/2024/09/2024_White_Paper.pdf"
+    url_nces = "https://nces.ed.gov/ccd/tables/202425_summary_3.asp"
+    url_ibis_wh = (
+        "https://www.ibisworld.com/united-states/number-of-businesses/"
+        "general-warehousing-storage/1224/"
+    )
+    url_airbnb_hosts = (
+        "https://www.credaily.com/briefs/the-political-influence-of-short-term-rentals-is-growing/"
+    )
+
+    b2c_list_en = (
+        "<li>~52K marketing consulting establishments "
+        f"({_ext('U.S. Census CBP 2023, NAICS 541613', url_marketing)})</li>"
+        "<li>~87M owner-occupied homes "
+        f"({_ext('U.S. Census ACS 2024', url_census_acs)}) · "
+        "~0.8M U.S. Airbnb hosts "
+        f"({_ext('industry reports 2024', url_airbnb_hosts)})</li>"
+        "<li>~8K U.S. contract security companies "
+        f"({_ext('NASCO 2024', url_nasco)})</li>"
+        "<li>~1.0M+ retail + ~0.6M restaurant establishments "
+        f"({_ext('Census Economic Census', url_retail)} · "
+        f"{_ext('CBP / NAICS 7225', url_restaurants)})</li>"
+    )
+    b2b_list_en = (
+        "<li>Multi-location retail &amp; offices · ACV path $12–36K "
+        "(EyeNet plan unit economics)</li>"
+        "<li>~8K U.S. contract security companies "
+        f"({_ext('NASCO 2024', url_nasco)}) · Starter → Pro</li>"
+        "<li>~99K public K–12 schools "
+        f"({_ext('NCES SY 2024–25', url_nces)}) · campus pilot to roll-out</li>"
+        "<li>~38K general warehousing &amp; storage businesses "
+        f"({_ext('IBISWorld 2024', url_ibis_wh)})</li>"
+    )
+    b2c_list_el = (
+        "<li>~52K marketing consulting establishments "
+        f"({_ext('U.S. Census CBP 2023, NAICS 541613', url_marketing)})</li>"
+        "<li>~87M owner-occupied homes "
+        f"({_ext('U.S. Census ACS 2024', url_census_acs)}) · "
+        "~0.8M U.S. Airbnb hosts "
+        f"({_ext('industry reports 2024', url_airbnb_hosts)})</li>"
+        "<li>~8K U.S. contract security companies "
+        f"({_ext('NASCO 2024', url_nasco)})</li>"
+        "<li>~1.0M+ retail + ~0.6M restaurant establishments "
+        f"({_ext('Census Economic Census', url_retail)} · "
+        f"{_ext('CBP / NAICS 7225', url_restaurants)})</li>"
+    )
+    b2b_list_el = (
+        "<li>Πολυτοπικό retail &amp; γραφεία · ACV path $12–36K "
+        "(EyeNet plan unit economics)</li>"
+        "<li>~8K U.S. contract security companies "
+        f"({_ext('NASCO 2024', url_nasco)}) · Starter → Pro</li>"
+        "<li>~99K δημόσια σχολεία K–12 "
+        f"({_ext('NCES SY 2024–25', url_nces)}) · campus pilot έως roll-out</li>"
+        "<li>~38K general warehousing &amp; storage businesses "
+        f"({_ext('IBISWorld 2024', url_ibis_wh)})</li>"
+    )
+
+    sources_en = f"""<div class="source-block">
+<p class="side-note"><strong>External pocket sources</strong> (checked Oct 2026) — click to verify:</p>
+<ul class="source-list">
+<li>{_ext('U.S. Census ACS 2024 — owner-occupied housing', url_census_acs)}</li>
+<li>{_ext('U.S. Census CBP 2023 datasets', url_census_cbp)} · {_ext('marketing consulting (NAICS 54161)', url_marketing)}</li>
+<li>{_ext('Census Economic Census — retail trade', url_retail)} · {_ext('restaurants (NAICS 7225)', url_restaurants)}</li>
+<li>{_ext('NASCO 2024 — U.S. contract security companies (~8K)', url_nasco)}</li>
+<li>{_ext('NCES CCD — public K–12 schools SY 2024–25', url_nces)}</li>
+<li>{_ext('IBISWorld — general warehousing &amp; storage businesses', url_ibis_wh)}</li>
+<li>{_ext('U.S. Airbnb host count (industry reporting)', url_airbnb_hosts)}</li>
+</ul>
+<p class="side-note"><strong>Internal:</strong> TAM bands and target-share % are EyeNet Vision business-plan assumptions (U.S., conservative) — not Census/NCES figures.</p>
+</div>"""
+    sources_el = f"""<div class="source-block">
+<p class="side-note"><strong>Εξωτερικές πηγές pockets</strong> (ελέγχθηκαν Οκτ 2026) — κλικ για επαλήθευση:</p>
+<ul class="source-list">
+<li>{_ext('U.S. Census ACS 2024 — owner-occupied housing', url_census_acs)}</li>
+<li>{_ext('U.S. Census CBP 2023 datasets', url_census_cbp)} · {_ext('marketing consulting (NAICS 54161)', url_marketing)}</li>
+<li>{_ext('Census Economic Census — retail trade', url_retail)} · {_ext('restaurants (NAICS 7225)', url_restaurants)}</li>
+<li>{_ext('NASCO 2024 — U.S. contract security companies (~8K)', url_nasco)}</li>
+<li>{_ext('NCES CCD — public K–12 schools SY 2024–25', url_nces)}</li>
+<li>{_ext('IBISWorld — general warehousing &amp; storage businesses', url_ibis_wh)}</li>
+<li>{_ext('U.S. Airbnb host count (industry reporting)', url_airbnb_hosts)}</li>
+</ul>
+<p class="side-note"><strong>Εσωτερικά:</strong> TAM και target-share % είναι υποθέσεις του EyeNet Vision business plan (ΗΠΑ, συντηρητικά) — όχι στοιχεία Census/NCES.</p>
+</div>"""
+
+    # Drop any prior sources footnotes before re-injecting.
+    html = re.sub(
+        r'<p class="side-note"[^>]*>.*?(?:Pocket counts|Μετρήσεις pockets|External pocket|Εξωτερικές πηγές).*?</p>\s*',
+        "",
+        html,
+        flags=re.S,
+    )
+    html = re.sub(r'<div class="source-block">.*?</div>\s*', "", html, flags=re.S)
+
+    if lang == "en":
+        html = re.sub(
+            r"(<h4(?:\s+style=\"[^\"]*\")?>)(?:Who buys|Segment map)(</h4>)",
+            r"\1Addressable pockets\2",
+            html,
+        )
+        html = re.sub(
+            r"(<h4(?:\s+style=\"[^\"]*\")?>Addressable pockets</h4>\s*<ul>)\s*"
+            r"(?:<li>(?:100,000\+|~52K marketing|140M|~87M owner|50,000\+|~8K U\.S\. contract|"
+            r"1\.5M\+|~1\.0M\+).*?</li>\s*){4}"
+            r"</ul>",
+            r"\1" + b2c_list_en + r"</ul>",
+            html,
+            count=1,
+            flags=re.S,
+        )
+        html = re.sub(
+            r"(<span class=\"stat-label\">B2B / Enterprise TAM \(U\.S\.\)</span>\s*)"
+            r"(?:<p>Target share 1–2% of mid-market wedge → ~\$20–80M opportunity\.</p>\s*)?"
+            r"(?:<p[^>]*>Primary commercial wedge before full Enterprise\.</p>)",
+            r"\1"
+            r"<p>Target share 1–2% of mid-market wedge → ~$20–80M opportunity.</p>"
+            r'<p style="font-size:0.9rem;color:var(--muted)">Primary commercial wedge before full Enterprise.</p>',
+            html,
+            count=1,
+        )
+        html = re.sub(
+            r"(<h4(?:\s+style=\"[^\"]*\")?>Addressable pockets</h4>\s*<ul>)\s*"
+            r"(?:<li>(?:Multi-location retail|Regional security|Schools / campuses|Warehouses|"
+            r"~8K U\.S\. contract security|~99K public|~38K general).*?</li>\s*){4}"
+            r"</ul>",
+            r"\1" + b2b_list_en + r"</ul>",
+            html,
+            count=1,
+            flags=re.S,
+        )
+        if "source-block" not in html and "Addressable pockets" in html:
+            html = re.sub(
+                r"(Addressable pockets</h4>\s*<ul>.*?</ul>)",
+                r"\1\n" + sources_en,
+                html,
+                count=1,
+                flags=re.S,
+            )
+    else:
+        html = re.sub(
+            r"(<h4(?:\s+style=\"[^\"]*\")?>)(?:Ποιος αγοράζει|Χάρτης τμημάτων|Διευθυνόμενες τσέπες)(</h4>)",
+            r"\1Addressable pockets\2",
+            html,
+        )
+        html = re.sub(
+            r"(<h4(?:\s+style=\"[^\"]*\")?>Addressable pockets</h4>\s*<ul>)\s*"
+            r"(?:<li>(?:100,000\+|~52K marketing|140M|~87M owner|50,000\+|~8K U\.S\. contract|"
+            r"1\.5M\+|~1\.0M\+|ανεξάρτητοι).*?</li>\s*){4}"
+            r"</ul>",
+            r"\1" + b2c_list_el + r"</ul>",
+            html,
+            count=1,
+            flags=re.S,
+        )
+        html = re.sub(
+            r"(<span class=\"stat-label\">B2B / Enterprise TAM \(ΗΠΑ\)</span>\s*)"
+            r"(?:<p>Target share 1–2% του mid-market wedge → ~\$20–80M opportunity\.</p>\s*)?"
+            r"(?:<p[^>]*>Κύρια εμπορική σφήνα πριν το πλήρες Enterprise\.</p>)",
+            r"\1"
+            r"<p>Target share 1–2% του mid-market wedge → ~$20–80M opportunity.</p>"
+            r'<p style="font-size:0.9rem;color:var(--muted)">Κύρια εμπορική σφήνα πριν το πλήρες Enterprise.</p>',
+            html,
+            count=1,
+        )
+        html = re.sub(
+            r"(<h4(?:\s+style=\"[^\"]*\")?>Addressable pockets</h4>\s*<ul>)\s*"
+            r"(?:<li>(?:Πολυτοπικό retail|Multi-location retail|Regional security|Schools / campuses|Warehouses|"
+            r"Περιφερειακές|Σχολεία|Αποθήκες|~8K U\.S\. contract|~99K|~38K general).*?</li>\s*){4}"
+            r"</ul>",
+            r"\1" + b2b_list_el + r"</ul>",
+            html,
+            count=1,
+            flags=re.S,
+        )
+        if "source-block" not in html and "Addressable pockets" in html:
+            html = re.sub(
+                r"(Addressable pockets</h4>\s*<ul>.*?</ul>)",
+                r"\1\n" + sources_el,
+                html,
+                count=1,
+                flags=re.S,
+            )
+    return html
+
+
+def relocate_what_lead_kicker(html: str) -> str:
+    """Move the What lead kicker to sit just before Addendum — EyeNet in action."""
+    m = re.search(
+        r'<div class="kicker">(?:EyeNet turns ordinary cameras|Το EyeNet μετατρέπει συνηθισμένες κάμερες).*?</div>\s*',
+        html,
+        flags=re.S,
+    )
+    if not m:
+        return html
+    kicker = m.group(0).rstrip() + "\n\n"
+    html = html[: m.start()] + html[m.end() :]
+    html, n = re.subn(
+        r"(<h2>(?:Addendum — EyeNet in action|Παράρτημα — το EyeNet σε δράση)</h2>)",
+        kicker + r"\1",
+        html,
+        count=1,
+    )
+    if n != 1:
+        raise SystemExit("Could not place What lead kicker before Addendum")
+    return html
+
+
+def apply_case_label_copy(html: str, lang: str) -> str:
+    """Rename Security and Mall marketing studio case labels / related cards."""
+    if lang == "en":
+        repls = [
+            (
+                r"Security personnel — night &amp; perimeter",
+                "Security: night and Perimeter",
+            ),
+            (r"Security night &amp; perimeter", "Security: night and Perimeter"),
+            (r"Security night & perimeter", "Security: night and Perimeter"),
+            (
+                r'data-nav-label="05 · Security"',
+                'data-nav-label="05 · Security: night and Perimeter"',
+            ),
+            (
+                r"Mall marketing studio — foot traffic → intelligence",
+                "Vision-adaptive Intelligent Signage",
+            ),
+            (
+                r"Mall marketing studio — κίνηση → νοημοσύνη",
+                "Vision-adaptive Intelligent Signage",
+            ),
+            (r"Mall marketing studio", "Vision-adaptive Intelligent Signage"),
+            (
+                r'data-nav-label="05 · Mall"',
+                'data-nav-label="05 · Vision-adaptive Intelligent Signage"',
+            ),
+            (r"<h5>Mall marketer</h5>", "<h5>Signage marketer</h5>"),
+            (
+                r"With EyeNet, a mall marketer gets foot traffic turned into measurable studio ROI",
+                "With EyeNet, a signage marketer gets foot traffic turned into measurable studio ROI",
+            ),
+            (
+                r"Mall operators · retail marketing · agencies · brand studios",
+                "Retail · venues · agencies · brand studios · digital signage operators",
+            ),
+            (
+                r"<li><strong>Mall as studio</strong> — digital signage network becomes a measurable marketing studio across concourses, shops, and spots</li>",
+                "<li><strong>Signage as studio</strong> — every screen becomes a measurable marketing surface across concourses, shops, and spots</li>",
+            ),
+            (
+                r"Vision-adaptive Signage turns mall foot traffic into measurable marketing intelligence",
+                "Vision-adaptive Intelligent Signage turns foot traffic into measurable marketing intelligence",
+            ),
+            (
+                r'alt="EyeNet digital signage marketing"',
+                'alt="EyeNet Vision-adaptive Intelligent Signage"',
+            ),
+            (
+                r"Shipping — crew where they should be",
+                "Shipping and industrial",
+            ),
+            (r">Shipping<", ">Shipping and industrial<"),
+            (
+                r'data-nav-label="05 · Shipping"',
+                'data-nav-label="05 · Shipping and industrial"',
+            ),
+            (
+                r"<h5>Fleet manager</h5>",
+                "<h5>Fleet &amp; industrial ops</h5>",
+            ),
+            (
+                r"With EyeNet, a fleet manager gets a clear operational outlook of every ship — who is onboard, where they should be — with a few targeted mobile notifications even on thin connectivity\.",
+                "With EyeNet, a fleet or plant manager gets a clear operational outlook of every ship or industrial site — who is onboard or on site, where they should be — with a few targeted mobile notifications even on thin connectivity.",
+            ),
+        ]
+    else:
+        repls = [
+            (
+                r"Προσωπικό ασφαλείας — νύχτα &amp; περίμετρος",
+                "Ασφάλεια: νύχτα και περίμετρος",
+            ),
+            (r"Ασφάλεια νύχτα &amp; περίμετρος", "Ασφάλεια: νύχτα και περίμετρος"),
+            (r"Ασφάλεια νύχτα & περίμετρος", "Ασφάλεια: νύχτα και περίμετρος"),
+            (
+                r'data-nav-label="05 · [^"]*[Αα]σφάλ[^"]*"',
+                'data-nav-label="05 · Ασφάλεια: νύχτα και περίμετρος"',
+            ),
+            (
+                r"Mall marketing studio — κίνηση → νοημοσύνη",
+                "Vision-adaptive Intelligent Signage",
+            ),
+            (
+                r"Mall marketing studio — foot traffic → intelligence",
+                "Vision-adaptive Intelligent Signage",
+            ),
+            (r"Mall marketing studio", "Vision-adaptive Intelligent Signage"),
+            (
+                r'data-nav-label="05 · Mall"',
+                'data-nav-label="05 · Vision-adaptive Intelligent Signage"',
+            ),
+            (
+                r"Operators mall · retail marketing · agencies · brand studios",
+                "Retail · χώροι · agencies · brand studios · operators digital signage",
+            ),
+            (
+                r"<li><strong>Mall ως studio</strong> — το δίκτυο digital signage γίνεται μετρήσιμο marketing studio σε διαδρόμους, καταστήματα και spots</li>",
+                "<li><strong>Signage ως studio</strong> — κάθε οθόνη γίνεται μετρήσιμη marketing επιφάνεια σε διαδρόμους, καταστήματα και spots</li>",
+            ),
+            (
+                r"Το vision-adaptive Signage μετατρέπει την κίνηση στο mall σε μετρήσιμη marketing νοημοσύνη",
+                "Το Vision-adaptive Intelligent Signage μετατρέπει την κίνηση σε μετρήσιμη marketing νοημοσύνη",
+            ),
+            (
+                r'alt="EyeNet digital signage marketing"',
+                'alt="EyeNet Vision-adaptive Intelligent Signage"',
+            ),
+            (
+                r"Ναυτιλία — πλήρωμα εκεί που πρέπει",
+                "Ναυτιλία και βιομηχανία",
+            ),
+            (r">Ναυτιλία<", ">Ναυτιλία και βιομηχανία<"),
+            (
+                r'data-nav-label="05 · Ναυτιλία"',
+                'data-nav-label="05 · Ναυτιλία και βιομηχανία"',
+            ),
+            (
+                r"<h5>Διαχειριστής στόλου</h5>",
+                "<h5>Λειτουργίες στόλου &amp; βιομηχανίας</h5>",
+            ),
+            (
+                r"Με το EyeNet, ένας διαχειριστής στόλου αποκτά καθαρή επιχειρησιακή εικόνα κάθε πλοίου — ποιος είναι επί του σκάφους, πού πρέπει να είναι — με λίγες στοχευμένες mobile ειδοποιήσεις ακόμη και με λεπτή συνδεσιμότητα\.",
+                "Με το EyeNet, ένας διαχειριστής στόλου ή εργοστασίου αποκτά καθαρή επιχειρησιακή εικόνα κάθε πλοίου ή βιομηχανικού χώρου — ποιος είναι επί του σκάφους ή στον χώρο, πού πρέπει να είναι — με λίγες στοχευμένες mobile ειδοποιήσεις ακόμη και με λεπτή συνδεσιμότητα.",
+            ),
+        ]
+    for pattern, repl in repls:
+        html = re.sub(pattern, repl, html)
+    return html
+
+
+def apply_family_protection_copy(html: str, lang: str) -> str:
+    """Rename/rephrase Cottage & remote living → Family protection at home and remote."""
+    if lang == "en":
+        repls = [
+            (
+                r'(<h4><span class="n">4</span>\s*)Cottage &amp; remote living(</h4>)',
+                r"\1Family protection at home and remote\2",
+            ),
+            (
+                r'<p class="who">Families · cottage owners · undergraduates away from home</p>',
+                '<p class="who">Families · parents · households · students living away</p>',
+            ),
+            (
+                r"<li><strong>Cottage / second-home protection</strong> — intrusion and unknown-person alerts when empty</li>",
+                "<li><strong>Home protection</strong> — intrusion and unknown-person alerts when the house is empty</li>",
+            ),
+            (
+                r"<li><strong>Remote students</strong> — undergraduates living away; family peace of mind without cloud video</li>",
+                "<li><strong>Family away / remote students</strong> — peace of mind when loved ones live away, without cloud video</li>",
+            ),
+            (
+                r"<li><strong>Presence check</strong> — confirm someone is \(or should be\) in the dwelling</li>",
+                "<li><strong>Presence check</strong> — confirm someone is (or should be) at home</li>",
+            ),
+            (
+                r"<li>Owner / family \(mobile push · email\)</li>",
+                "<li>Parents / family (mobile push · email)</li>",
+            ),
+            (
+                r"<li>Resident \(student / occupant\)</li>",
+                "<li>Resident (student / household member)</li>",
+            ),
+            (
+                r"Protect people and places that sit far from family — lightly, privately, without a full security team\.",
+                "Protect family at home and when someone is away — lightly, privately, without a full security team.",
+            ),
+            (
+                r'data-nav-label="05 · Cottage"',
+                'data-nav-label="05 · Family protection"',
+            ),
+            (
+                r"Cottage / remote → family peace of mind",
+                "Family protection → peace of mind at home and remote",
+            ),
+            (
+                r"<h5>Family · cottage &amp; remote living</h5>",
+                "<h5>Family protection at home and remote</h5>",
+            ),
+            (
+                r"With EyeNet, a parent gets peace of mind for a cottage or a student living away — intrusion and presence events as a few targeted phone notifications, video never forced to the cloud\.",
+                "With EyeNet, a parent gets peace of mind for the family home and for loved ones living away — intrusion and presence events as a few targeted phone notifications, video never forced to the cloud.",
+            ),
+            (
+                r'alt="EyeNet remote operations"',
+                'alt="EyeNet family protection at home and remote"',
+            ),
+        ]
+    else:
+        repls = [
+            (
+                r'(<h4><span class="n">4</span>\s*)Εξοχικό &amp; απομακρυσμένη διαβίωση(</h4>)',
+                r"\1Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως\2",
+            ),
+            (
+                r"<p class=\"who\">Οικογένειες · ιδιοκτήτες εξοχικών · προπτυχιακοί μακριά από το σπίτι</p>",
+                '<p class="who">Οικογένειες · γονείς · νοικοκυριά · φοιτητές μακριά από το σπίτι</p>',
+            ),
+            (
+                r"<li><strong>Προστασία εξοχικού / δεύτερης κατοικίας</strong> — alerts εισβολής και αγνώστων όταν είναι κενό</li>",
+                "<li><strong>Προστασία σπιτιού</strong> — alerts εισβολής και αγνώστων όταν το σπίτι είναι κενό</li>",
+            ),
+            (
+                r"<li><strong>Απομακρυσμένοι φοιτητές</strong> — προπτυχιακοί μακριά· ηρεμία οικογένειας χωρίς cloud video</li>",
+                "<li><strong>Οικογένεια μακριά / φοιτητές</strong> — ηρεμία όταν αγαπημένα πρόσωπα ζουν μακριά, χωρίς cloud video</li>",
+            ),
+            (
+                r"<li><strong>Έλεγχος παρουσίας</strong> — επιβεβαίωση ότι κάποιος είναι \(ή πρέπει να είναι\) στην κατοικία</li>",
+                "<li><strong>Έλεγχος παρουσίας</strong> — επιβεβαίωση ότι κάποιος είναι (ή πρέπει να είναι) στο σπίτι</li>",
+            ),
+            (
+                r"<li>Ιδιοκτήτης / οικογένεια \(mobile push · email\)</li>",
+                "<li>Γονείς / οικογένεια (mobile push · email)</li>",
+            ),
+            (
+                r"<li>Κάτοικος \(φοιτητής / ένοικος\)</li>",
+                "<li>Κάτοικος (φοιτητής / μέλος νοικοκυριού)</li>",
+            ),
+            (
+                r"Προστασία ανθρώπων και χώρων μακριά από την οικογένεια — ελαφρά, ιδιωτικά, χωρίς πλήρη ομάδα ασφαλείας\.",
+                "Προστασία της οικογένειας στο σπίτι και όταν κάποιος είναι μακριά — ελαφρά, ιδιωτικά, χωρίς πλήρη ομάδα ασφαλείας.",
+            ),
+            (
+                r'data-nav-label="05 · [^"]*"',
+                'data-nav-label="05 · Οικογενειακή προστασία"',
+            ),
+            (
+                r"<h5>Οικογένεια · εξοχικό &amp; απομακρυσμένη διαβίωση</h5>",
+                "<h5>Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως</h5>",
+            ),
+            (
+                r"Με το EyeNet, ένας γονέας αποκτά ηρεμία για εξοχικό ή φοιτητή μακριά από το σπίτι — γεγονότα εισβολής και παρουσίας ως λίγες στοχευμένες ειδοποιήσεις τηλεφώνου, χωρίς υποχρεωτικό cloud video\.",
+                "Με το EyeNet, ένας γονέας αποκτά ηρεμία για το οικογενειακό σπίτι και για αγαπημένα πρόσωπα μακριά — γεγονότα εισβολής και παρουσίας ως λίγες στοχευμένες ειδοποιήσεις τηλεφώνου, χωρίς υποχρεωτικό cloud video.",
+            ),
+            (
+                r'alt="EyeNet απομακρυσμένες λειτουργίες"',
+                'alt="EyeNet οικογενειακή προστασία στο σπίτι και εξ αποστάσεως"',
+            ),
+        ]
+    for pattern, repl in repls:
+        html = re.sub(pattern, repl, html, count=0)
+    return html
+
+
+def relocate_what_edge_cards(html: str) -> str:
+    """Move Edge / Action / Scale cards to just after EyeNet tech feature set."""
+    m = re.search(
+        r'<div class="cols-3">\s*'
+        r'<div class="panel">\s*<span class="stat cyan">Edge</span>.*?</div>\s*'
+        r'<div class="panel alt">\s*<span class="stat brand">(?:Action|Δράση)</span>.*?</div>\s*'
+        r'<div class="panel">\s*<span class="stat ok">(?:Scale|Κλίμακα)</span>.*?</div>\s*'
+        r"</div>\s*",
+        html,
+        flags=re.S,
+    )
+    if not m:
+        raise SystemExit("Could not find Edge / Action / Scale cards")
+    cards = m.group(0).rstrip() + "\n\n"
+    html = html[: m.start()] + html[m.end() :]
+    html, n = re.subn(
+        r"(<h2>EyeNet tech feature set</h2>\s*)",
+        r"\1" + cards,
+        html,
+        count=1,
+    )
+    if n != 1:
+        raise SystemExit("Could not place Edge / Action / Scale after tech feature set")
+    return html
+
+
+WIKI_BASE = "https://wiki.eyenet-vision.com"
+
+
+def _wiki_href(path: str) -> str:
+    return f'{WIKI_BASE}{path}'
+
+
+def _wiki_a(label: str, path: str) -> str:
+    return (
+        f'<a class="source-link" href="{_wiki_href(path)}" '
+        f'target="_blank" rel="noopener noreferrer">{label}</a>'
+    )
+
+
+def _wiki_chip(href: str | None = None) -> str:
+    """Minimized EyeNet logo + wiki pill linking to the product wiki."""
+    url = href or f"{WIKI_BASE}/"
+    return (
+        f'<a class="wiki-chip" href="{url}" target="_blank" rel="noopener noreferrer" '
+        f'title="EyeNet wiki">'
+        f'<img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v={ASSET_V}" alt="" width="52" height="13" decoding="async">'
+        f'<span class="wiki-chip-label">wiki</span>'
+        f"</a>"
+    )
+
+
+def _wiki_more(_lang: str, links: list[tuple[str, str]]) -> str:
+    """EyeNet wiki chip + arrow + deep links."""
+    joined = " · ".join(_wiki_a(label, path) for label, path in links)
+    return (
+        f'<p class="wiki-more">'
+        f"{_wiki_chip()}"
+        f'<span class="wiki-more-arrow" aria-hidden="true">→</span>'
+        f"{joined}"
+        f"</p>\n"
+    )
+
+
+def inject_wiki_read_more(html: str, lang: str) -> str:
+    """Prefer EyeNet wiki deep-links under tech feature set sections."""
+    if "EyeNet tech feature set" not in html:
+        return html
+    # Idempotent: strip prior injections.
+    html = re.sub(r'<p class="wiki-more">.*?</p>\s*', "", html, flags=re.S)
+    html = re.sub(
+        r'\s*<span class="wiki-more-inline">.*?</span>',
+        "",
+        html,
+        flags=re.S,
+    )
+
+    # Intro after Edge / Action / Scale cards (or directly under the heading).
+    intro = _wiki_more(
+        lang,
+        [
+            ("What is EyeNet", "/what-is-eyenet/"),
+            ("Shared platform", "/what-is-eyenet/shared-platform.html"),
+            ("User guide", "/owners-admins/"),
+        ],
+    )
+    cols3 = re.search(
+        r'<h2>EyeNet tech feature set</h2>\s*'
+        r'<div class="cols-3">\s*'
+        r'<div class="panel">.*?</div>\s*'
+        r'<div class="panel alt">.*?</div>\s*'
+        r'<div class="panel">.*?</div>\s*'
+        r"</div>\s*",
+        html,
+        flags=re.S,
+    )
+    if cols3:
+        html = html[: cols3.end()] + intro + html[cols3.end() :]
+    else:
+        html, n = re.subn(
+            r"(<h2>EyeNet tech feature set</h2>\s*)",
+            r"\1" + intro,
+            html,
+            count=1,
+        )
+        if n != 1:
+            raise SystemExit("Could not inject wiki intro under tech feature set")
+
+    # (heading regex, wiki links) — EN + EL heading variants.
+    section_links: list[tuple[str, list[tuple[str, str]]]] = [
+        (
+            r"1\. Computer vision &amp; people analytics",
+            [
+                ("Detections, individuals &amp; persons", "/owners-admins/detections-individuals-persons.html"),
+                ("Cameras and detection", "/owners-admins/cameras-and-detection.html"),
+                ("Presence", "/what-is-eyenet/presence.html"),
+            ],
+        ),
+        (
+            r"2\. (?:Camera &amp; hardware integration|Ενσωμάτωση καμερών &amp; hardware)",
+            [
+                ("Cameras and detection", "/owners-admins/cameras-and-detection.html"),
+                ("Hardware &amp; Docker", "/owners-admins/hardware.html"),
+            ],
+        ),
+        (
+            r"3\. (?:Intelligent triggers &amp; automated actions|Έξυπνα triggers &amp; αυτοματοποιημένες ενέργειες)",
+            [
+                ("Vradar — alerts &amp; automation", "/owners-admins/alerts-and-automation.html"),
+                ("Vradar overview", "/what-is-eyenet/vradar.html"),
+                ("Digital signage", "/owners-admins/digital-signage.html"),
+            ],
+        ),
+        (
+            r"4\. (?:Video &amp; data management|Διαχείριση βίντεο &amp; δεδομένων)",
+            [
+                ("Media and collections", "/owners-admins/media-management.html"),
+                ("Shared platform", "/what-is-eyenet/shared-platform.html"),
+            ],
+        ),
+        (
+            r"5\. (?:Intelligent communications|Έξυπνες επικοινωνίες)",
+            [
+                ("Vradar — alerts &amp; automation", "/owners-admins/alerts-and-automation.html"),
+            ],
+        ),
+        (
+            r"6\. Analytics &amp; insights",
+            [
+                ("Analytics and reports", "/owners-admins/analytics-and-reports.html"),
+            ],
+        ),
+        (
+            r"7\. (?:Deployment architecture|Αρχιτεκτονική ανάπτυξης)",
+            [
+                ("First install", "/owners-admins/"),
+                ("Hardware &amp; Docker", "/owners-admins/hardware.html"),
+                ("Remote access &amp; multi-site", "/owners-admins/multi-site-and-remote.html"),
+            ],
+        ),
+        (
+            r"8\. (?:Security &amp; access control|Ασφάλεια &amp; έλεγχος πρόσβασης)",
+            [
+                ("User management", "/owners-admins/users-and-roles.html"),
+                ("Remote access &amp; VPN", "/owners-admins/multi-site-and-remote.html"),
+            ],
+        ),
+        (
+            r"9\. (?:Scalability &amp; expandability|Κλιμάκωση &amp; επεκτασιμότητα)",
+            [
+                ("Hardware &amp; Docker", "/owners-admins/hardware.html"),
+                ("Digital signage", "/owners-admins/digital-signage.html"),
+                ("Matrix", "/what-is-eyenet/matrix.html"),
+            ],
+        ),
+        (
+            r"10\. (?:Support &amp; monitoring|Υποστήριξη &amp; παρακολούθηση)",
+            [
+                ("Remote access &amp; multi-site", "/owners-admins/multi-site-and-remote.html"),
+                ("Vradar — alerts &amp; automation", "/owners-admins/alerts-and-automation.html"),
+            ],
+        ),
+        (
+            r"(?:Technical architecture highlights|Τεχνικά highlights αρχιτεκτονικής)",
+            [
+                ("Vradar — alerts &amp; automation", "/owners-admins/alerts-and-automation.html"),
+                ("Entrances and activity", "/owners-admins/entrances-and-activity.html"),
+                ("Digital signage", "/owners-admins/digital-signage.html"),
+                ("Signage overview", "/what-is-eyenet/signage.html"),
+            ],
+        ),
+    ]
+
+    for heading_re, links in section_links:
+        more = _wiki_more(lang, links)
+        html, n = re.subn(
+            rf"(<h2>{heading_re}</h2>)(.*?)(?=\n<h2>|\Z)",
+            lambda m, _more=more: m.group(1) + m.group(2).rstrip() + "\n" + _more + "\n",
+            html,
+            count=1,
+            flags=re.S,
+        )
+        if n != 1:
+            raise SystemExit(f"Could not inject wiki read-more for heading: {heading_re}")
+
+    # Screenshot captions — inline wiki prefs where a guide exists.
+    caption_links = [
+        (
+            r"(<figcaption><strong>Main Dashboard</strong> — [^<]+)",
+            "/what-is-eyenet/",
+            "EyeNet wiki",
+        ),
+        (
+            r"(<figcaption><strong>Analytics Filters</strong> — [^<]+)",
+            "/owners-admins/analytics-and-reports.html",
+            "Analytics and reports",
+        ),
+        (
+            r"(<figcaption><strong>System Settings</strong> — [^<]+)",
+            "/owners-admins/users-and-roles.html",
+            "User management / Settings",
+        ),
+        (
+            r"(<figcaption><strong>Analytics Dashboard</strong> — [^<]+)",
+            "/owners-admins/analytics-and-reports.html",
+            "Analytics and reports",
+        ),
+        (
+            r"(<figcaption><strong>Detection Analytics</strong> — [^<]+)",
+            "/owners-admins/cameras-and-detection.html",
+            "Cameras and detection",
+        ),
+        (
+            r"(<figcaption><strong>Camera Management</strong> — [^<]+)",
+            "/owners-admins/cameras-and-detection.html",
+            "Cameras and detection",
+        ),
+        (
+            r"(<figcaption><strong>Triggers Management</strong> — [^<]+)",
+            "/owners-admins/alerts-and-automation.html",
+            "Vradar — alerts &amp; automation",
+        ),
+        (
+            r"(<figcaption><strong>Actions Editor</strong> — [^<]+)",
+            "/owners-admins/alerts-and-automation.html",
+            "Vradar — alerts &amp; automation",
+        ),
+        (
+            r"(<figcaption><strong>Digital Signage</strong> — [^<]+)",
+            "/owners-admins/digital-signage.html",
+            "Digital signage",
+        ),
+        (
+            r"(<figcaption><strong>MVR Group Details</strong> — [^<]+)",
+            "/owners-admins/detections-individuals-persons.html",
+            "Detections, individuals &amp; persons",
+        ),
+        (
+            r"(<figcaption><strong>Media Upload</strong> — [^<]+)",
+            "/owners-admins/media-management.html",
+            "Media and collections",
+        ),
+        (
+            r"(<figcaption><strong>Signage Android App</strong> — [^<]+)",
+            "/owners-admins/digital-signage.html",
+            "Digital signage",
+        ),
+    ]
+    def _caption_inline(path: str, label: str) -> str:
+        return (
+            f' <span class="wiki-more-inline">'
+            f"{_wiki_chip(_wiki_href(path))} "
+            f"{_wiki_a(label, path)}"
+            f"</span>"
+        )
+
+    for cap_re, path, label in caption_links:
+        html, n = re.subn(
+            cap_re + r"(</figcaption>)",
+            r"\1" + _caption_inline(path, label) + r"\2",
+            html,
+            count=1,
+        )
+        if n != 1:
+            pass
+
+    # EL captions keep English <strong> titles; retry any still missing wiki chip.
+    for strong, path, label in [
+        ("Main Dashboard", "/what-is-eyenet/", "What is EyeNet"),
+        ("Analytics Filters", "/owners-admins/analytics-and-reports.html", "Analytics and reports"),
+        ("System Settings", "/owners-admins/users-and-roles.html", "User management / Settings"),
+        ("Analytics Dashboard", "/owners-admins/analytics-and-reports.html", "Analytics and reports"),
+        ("Detection Analytics", "/owners-admins/cameras-and-detection.html", "Cameras and detection"),
+        ("Camera Management", "/owners-admins/cameras-and-detection.html", "Cameras and detection"),
+        ("Triggers Management", "/owners-admins/alerts-and-automation.html", "Vradar — alerts &amp; automation"),
+        ("Actions Editor", "/owners-admins/alerts-and-automation.html", "Vradar — alerts &amp; automation"),
+        ("Digital Signage", "/owners-admins/digital-signage.html", "Digital signage"),
+        ("MVR Group Details", "/owners-admins/detections-individuals-persons.html", "Detections, individuals &amp; persons"),
+        ("Media Upload", "/owners-admins/media-management.html", "Media and collections"),
+        ("Signage Android App", "/owners-admins/digital-signage.html", "Digital signage"),
+    ]:
+        if f"<strong>{strong}</strong>" not in html:
+            continue
+        if re.search(
+            rf"<figcaption><strong>{re.escape(strong)}</strong>.*?class=\"wiki-chip\"",
+            html,
+            flags=re.S,
+        ):
+            continue
+        html = re.sub(
+            rf"(<figcaption><strong>{re.escape(strong)}</strong>.*?)(</figcaption>)",
+            r"\1" + _caption_inline(path, label) + r"\2",
+            html,
+            count=1,
+            flags=re.S,
+        )
+
+    return html
 
 
 def notify_cards(items: list[tuple[str, str]]) -> str:
@@ -130,18 +925,23 @@ UI = {
             "packages": "Commercial Packages",
         },
         "why_children": [
-            ("home-care", "Home care · Virtual Ward"),
             ("hr-presence", "HR Presence"),
-            ("security", "Security night & perimeter"),
-            ("cottage", "Cottage & remote living"),
-            ("shipping", "Shipping"),
-            ("mall", "Mall marketing studio"),
+            ("mall", "Vision-adaptive Intelligent Signage"),
+            ("cottage", "Family protection at home and remote"),
+            ("home-care", "Home care · Virtual Ward"),
+            ("security", "Security: night and Perimeter"),
+            ("shipping", "Shipping and industrial"),
         ],
         "pkg_children": [
             ("b2c", "B2C Light"),
             ("b2b", "B2B Starter & Professional"),
             ("enterprise", "Enterprise"),
         ],
+        "pkg_card_blurb": {
+            "b2c": "Freemium + self-serve · $20–$300/month · event options $200–$1,200",
+            "b2b": "Sales-assisted SaaS · $500–$3,000/month · multi-site ready",
+            "enterprise": "Strategic accounts · $5,000+/month · unlimited scale · custom integrations",
+        },
         "home_title": "EyeNet Value",
         "home_lead": (
             "How EyeNet changes the machine vision landscape — "
@@ -163,9 +963,9 @@ UI = {
             ("01", "what", "EyeNet understands what it sees and acts on it automatically",
              "Edge intelligence, action automation, and hardware-bound scale."),
             ("02", "why", "Most Valuable Cases",
-             "Featured use cases across home care, HR, security, cottage, shipping, and malls."),
+             "Featured use cases across HR, signage, family protection, home care, security, shipping, and industrial sites."),
             ("03", "with-eyenet", "Who uses EyeNet",
-             "Strong outcomes for fleet, care, HR, security, family, and mall operators."),
+             "Strong outcomes for fleet, industrial sites, care, HR, security, family, and signage operators."),
             ("04", "packages", "Commercial Packages",
              "B2C Light, B2B Starter & Professional, and Enterprise motions."),
             ("05", "innovation", "Simple yet powerful innovation",
@@ -183,8 +983,8 @@ UI = {
             "blind nights, and disconnected sites with automatic vision."
         ),
         "pkg_index_kicker": (
-            "Dual go-to-market from the business plan: self-serve consumer volume, "
-            "mid-market B2B contracts, and enterprise-scale deployments."
+            "Self-serve consumer volume, mid-market B2B contracts, "
+            "and enterprise-scale deployments."
         ),
     },
     "el": {
@@ -210,18 +1010,23 @@ UI = {
             "packages": "Εμπορικά πακέτα",
         },
         "why_children": [
-            ("home-care", "Home care · Virtual Ward"),
             ("hr-presence", "HR Presence"),
-            ("security", "Ασφάλεια νύχτα & περίμετρος"),
-            ("cottage", "Εξοχικό & απομακρυσμένη διαβίωση"),
-            ("shipping", "Ναυτιλία"),
-            ("mall", "Mall marketing studio"),
+            ("mall", "Vision-adaptive Intelligent Signage"),
+            ("cottage", "Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως"),
+            ("home-care", "Home care · Virtual Ward"),
+            ("security", "Ασφάλεια: νύχτα και περίμετρος"),
+            ("shipping", "Ναυτιλία και βιομηχανία"),
         ],
         "pkg_children": [
             ("b2c", "B2C Light"),
             ("b2b", "B2B Starter & Professional"),
             ("enterprise", "Enterprise"),
         ],
+        "pkg_card_blurb": {
+            "b2c": "Freemium + self-serve · $20–$300/μήνα · event options $200–$1,200",
+            "b2b": "Sales-assisted SaaS · $500–$3,000/μήνα · έτοιμο για multi-site",
+            "enterprise": "Strategic accounts · $5,000+/μήνα · απεριόριστη κλίμακα · custom integrations",
+        },
         "home_title": "EyeNet Αξία",
         "home_lead": (
             "Πώς το EyeNet αλλάζει το τοπίο του machine vision — "
@@ -243,9 +1048,9 @@ UI = {
             ("01", "what", "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
              "Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware."),
             ("02", "why", "Πιο πολύτιμες περιπτώσεις",
-             "Επιλεγμένες περιπτώσεις χρήσης σε home care, HR, ασφάλεια, εξοχικό, ναυτιλία και mall."),
+             "Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία."),
             ("03", "with-eyenet", "Ποιος χρησιμοποιεί το EyeNet",
-             "Δυνατά αποτελέσματα για στόλο, φροντίδα, HR, ασφάλεια, οικογένεια και mall."),
+             "Δυνατά αποτελέσματα για στόλο, βιομηχανικούς χώρους, φροντίδα, HR, ασφάλεια, οικογένεια και signage."),
             ("04", "packages", "Εμπορικά πακέτα",
              "B2C Light, B2B Starter & Professional και Enterprise."),
             ("05", "innovation", "Απλή κι όμως ισχυρή καινοτομία",
@@ -263,8 +1068,8 @@ UI = {
             "τυφλές νύχτες και αποσυνδεδεμένους χώρους με αυτόματη όραση."
         ),
         "pkg_index_kicker": (
-            "Διπλό go-to-market από το business plan: self-serve καταναλωτικός όγκος, "
-            "mid-market B2B συμβόλαια και enterprise κλίμακα."
+            "Self-serve καταναλωτικός όγκος, mid-market B2B συμβόλαια "
+            "και enterprise κλίμακα."
         ),
     },
 }
@@ -580,6 +1385,12 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
             extra = CONTENT_DIR / f"what-functionalities-{lang}.html"
             if extra.exists():
                 body += "\n" + extra.read_text(encoding="utf-8")
+            body = inject_wiki_read_more(
+                relocate_what_edge_cards(relocate_what_lead_kicker(body)),
+                lang,
+            )
+        if slug == "with-eyenet":
+            body = apply_case_label_copy(apply_family_protection_copy(body, lang), lang)
         write(
             base / slug / "index.html",
             render_page(
@@ -615,7 +1426,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
     summary = ""
     sm = re.search(r'(<div class="panel summary-panel">.*?</div>)', sections["05"], flags=re.S)
     if sm:
-        summary = sm.group(1)
+        summary = apply_family_protection_copy(sm.group(1), lang)
     why_body = (
         page_shell_title(lang, "02", ui["page_titles"]["why"])
         + f'<div class="kicker">{ui["why_index_kicker"]}</div>'
@@ -645,7 +1456,28 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
         }
     )
 
-    for i, ((child, label), persona_html) in enumerate(zip(ui["why_children"], personas)):
+    for i, (child, label) in enumerate(ui["why_children"]):
+        persona_html = personas[WHY_PERSONA_INDEX[child]]
+        override_name = {
+            "cottage": f"why-cottage-{lang}.html",
+            "mall": f"why-mall-{lang}.html",
+            "shipping": f"why-shipping-{lang}.html",
+        }.get(child)
+        if override_name:
+            override = CONTENT_DIR / override_name
+            if override.exists():
+                persona_html = override.read_text(encoding="utf-8")
+            elif child == "cottage":
+                persona_html = apply_family_protection_copy(persona_html, lang)
+        else:
+            persona_html = apply_case_label_copy(persona_html, lang)
+            # Keep display numbers aligned with reading order.
+            persona_html = re.sub(
+                r'(<h4><span class="n">)\d+(</span>)',
+                rf"\g<1>{i + 1}\2",
+                persona_html,
+                count=1,
+            )
         body = (
             page_shell_title(lang, "02", label)
             + fix_asset_paths(persona_html)
@@ -688,7 +1520,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
     pkg_cards = "".join(
         f'<a class="landing-card" href="{pfx}/packages/{child}/">'
         f'<span class="num">{i+1:02d}</span><strong>{label}</strong>'
-        f"<span>{ui['pkg_index_kicker']}</span></a>"
+        f"<span>{ui['pkg_card_blurb'][child]}</span></a>"
         for i, (child, label) in enumerate(ui["pkg_children"])
     )
     pkg_summary = ""
@@ -741,7 +1573,9 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
         raise SystemExit(f"Expected 3 package blocks for {lang}, got {len(pkg_blocks)}")
 
     for (child, label), block in zip(ui["pkg_children"], pkg_blocks[:3]):
-        body = page_shell_title(lang, "04", label) + fix_asset_paths(block)
+        body = page_shell_title(lang, "04", label) + normalize_package_addressable_pockets(
+            fix_asset_paths(block), lang
+        )
         write(
             base / "packages" / child / "index.html",
             render_page(
@@ -929,7 +1763,10 @@ def sync_print_pages() -> None:
                 )
             if n != 1:
                 raise SystemExit(f"Could not inject What functionalities into print ({lang})")
-            html = updated
+            html = inject_wiki_read_more(
+                relocate_what_edge_cards(relocate_what_lead_kicker(updated)),
+                lang,
+            )
 
         heading = WHAT_HEADING[lang]
         html, n_title = re.subn(
@@ -986,9 +1823,75 @@ def sync_print_pages() -> None:
 
         # Reading order: What · Cases · Who · Packages · Innovation
         html = reorder_print_sections(html, lang)
+        html = apply_case_label_copy(apply_family_protection_copy(html, lang), lang)
+        html = inject_print_case_overrides(html, lang)
+        html = normalize_package_addressable_pockets(html, lang)
+        html = re.sub(
+            r"(Dual go-to-market from the business plan:\s*|Διπλό go-to-market από το business plan:\s*)",
+            "",
+            html,
+        )
 
         out = ROOT / ("el/print/index.html" if lang == "el" else "print/index.html")
         write(out, html)
+
+
+def sort_why_print_sections(
+    matches: list[re.Match[str]], lang: str
+) -> list[re.Match[str]]:
+    """HR → Vision signage → Family → Homecare → Security → Shipping and industrial."""
+    patterns = [
+        r"HR Presence",
+        r"Mall marketing|Vision-adaptive Intelligent Signage",
+        r"Cottage|Family protection|Εξοχικό|Οικογενειακή προστασία",
+        r"Home care",
+        r"Security personnel|Security: night|Προσωπικό ασφαλείας|Ασφάλεια:",
+        r"Shipping|Ναυτιλία",
+    ]
+    remaining = list(matches)
+    ordered: list[re.Match[str]] = []
+    for pat in patterns:
+        found = next((m for m in remaining if re.search(pat, m.group(0))), None)
+        if not found:
+            raise SystemExit(f"Missing why print persona for /{pat}/ ({lang})")
+        ordered.append(found)
+        remaining.remove(found)
+    return ordered + remaining
+
+
+def inject_print_case_overrides(html: str, lang: str) -> str:
+    """Replace cottage/mall personas in print with content overrides when present."""
+    overrides = [
+        (
+            f"why-cottage-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:Family protection at home and remote|Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως|"
+            r"Cottage &amp; remote living|Εξοχικό &amp; απομακρυσμένη διαβίωση)</h4>.*?"
+            r"(?=</section>)",
+        ),
+        (
+            f"why-mall-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:Vision-adaptive Intelligent Signage|Mall marketing studio[^<]*)</h4>.*?"
+            r"(?=</section>)",
+        ),
+        (
+            f"why-shipping-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:Shipping and industrial|Shipping — crew where they should be|"
+            r"Ναυτιλία και βιομηχανία|Ναυτιλία — πλήρωμα εκεί που πρέπει)</h4>.*?"
+            r"(?=</section>)",
+        ),
+    ]
+    for fname, pattern in overrides:
+        path = CONTENT_DIR / fname
+        if not path.exists():
+            continue
+        body = path.read_text(encoding="utf-8").rstrip() + "\n"
+        html, n = re.subn(pattern, body, html, count=1, flags=re.S)
+        if n != 1:
+            raise SystemExit(f"Could not inject print override {fname} ({lang})")
+    return html
 
 
 def reorder_print_sections(html: str, lang: str) -> str:
@@ -1014,10 +1917,13 @@ def reorder_print_sections(html: str, lang: str) -> str:
         if key not in by_num:
             raise SystemExit(f"Missing print section {key} ({lang})")
 
+    by_num["05"] = sort_why_print_sections(by_num["05"], lang)
+
     ordered = [m for key in order_keys for m in by_num[key]]
     # Display: what→01, why→02, who→03, packages→04, innovation→05
     renumber = {"04": "01", "05": "02", "03": "03", "06": "04", "01": "05"}
     rebuilt: list[str] = []
+    why_persona_i = 0
     for m in ordered:
         block = m.group(0)
         n = sec_num(m)
@@ -1026,6 +1932,14 @@ def reorder_print_sections(html: str, lang: str) -> str:
                 f'<span class="section-num">{n}</span>',
                 f'<span class="section-num">{renumber[n]}</span>',
                 1,
+            )
+        if n == "05" and re.search(r'<h4><span class="n">\d+</span>', block):
+            why_persona_i += 1
+            block = re.sub(
+                r'(<h4><span class="n">)\d+(</span>)',
+                rf"\g<1>{why_persona_i}\2",
+                block,
+                count=1,
             )
         rebuilt.append(block)
 

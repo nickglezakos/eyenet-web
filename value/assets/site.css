@@ -583,6 +583,131 @@ body[data-audience="what"] .page h1 {
   color: var(--soft);
 }
 
+.source-block {
+  margin-top: 0.85rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+
+.source-block .side-note {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.source-list {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--soft);
+  line-height: 1.45;
+}
+
+.source-list li {
+  margin: 0.2rem 0;
+}
+
+a.source-link {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+a.source-link:hover {
+  color: var(--ink);
+}
+
+.wiki-more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  margin: 0.65rem 0 1.1rem;
+  font-size: 0.88rem;
+  color: var(--soft);
+  line-height: 1.45;
+}
+
+.wiki-more-arrow {
+  color: var(--muted);
+  font-size: 1.05em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.wiki-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  padding: 0.22rem 0.58rem 0.22rem 0.42rem;
+  border-radius: 999px;
+  border: 1px solid rgba(103, 232, 249, 0.28);
+  background:
+    linear-gradient(165deg, #152238 0%, #0b1220 55%, #09101c 100%);
+  color: #e8eef9;
+  text-decoration: none;
+  vertical-align: middle;
+  line-height: 1;
+  box-shadow: 0 1px 2px rgba(9, 16, 28, 0.35);
+  flex-shrink: 0;
+}
+
+.wiki-chip:hover {
+  text-decoration: none;
+  border-color: rgba(103, 232, 249, 0.5);
+  background:
+    linear-gradient(165deg, #1a2b44 0%, #0e1626 55%, #0b1220 100%);
+}
+
+.wiki-chip-logo {
+  display: block;
+  width: 52px;
+  height: 13px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.wiki-chip-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: #67e8f9;
+  border-left: 1px solid rgba(103, 232, 249, 0.35);
+  padding-left: 0.35rem;
+  line-height: 1.1;
+}
+
+.wiki-more-inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.4rem;
+  margin-left: 0.35rem;
+  font-size: 0.85em;
+  color: var(--soft);
+  vertical-align: middle;
+}
+
+.wiki-more-inline .wiki-chip {
+  padding: 0.12rem 0.45rem 0.12rem 0.32rem;
+  transform: translateY(-1px);
+}
+
+.wiki-more-inline .wiki-chip-logo {
+  width: 44px;
+  height: 11px;
+}
+
+.wiki-more-inline .wiki-chip-label {
+  font-size: 0.66rem;
+  padding-left: 0.28rem;
+}
+
+.wiki-more-inline a.source-link {
+  white-space: nowrap;
+}
+
 .card-visual {
   display: block;
   width: 100%;
