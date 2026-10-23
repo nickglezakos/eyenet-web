@@ -12,11 +12,13 @@ python3 -m http.server 8767
 
 ## Rebuild pages
 
-After editing `content/eyenet-investor-primer.html` or `scripts/build_invest_wiki.py`:
+After editing `content/eyenet-investor-primer.html`, `content/market-validation.html`, `content/reference-market-validation.html`, or `scripts/build_invest_wiki.py`:
 
 ```bash
 python3 scripts/build_invest_wiki.py
 ```
+
+**Market validation** (`/market-validation/`, section 07) is built from `content/market-validation.html`. FootfallCam source links live under **Addendum — Reference** (`/addendum-b/`).
 
 ## Printable PDF
 

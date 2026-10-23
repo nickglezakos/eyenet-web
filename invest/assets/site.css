@@ -1265,6 +1265,114 @@ a.ref {
 
 a.ref:hover { text-decoration: underline; }
 
+/* Featured competition — FootfallCam financial charts */
+.ffc-charts {
+  display: grid;
+  gap: 1.1rem;
+  margin: 0.9rem 0 1.2rem;
+}
+
+@media (min-width: 900px) {
+  .ffc-charts { grid-template-columns: 1fr 1fr; }
+}
+
+.chart-block {
+  background: var(--band);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.9rem 1rem 1rem;
+}
+
+.chart-block h4 {
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.bar-chart { display: flex; flex-direction: column; gap: 0.45rem; }
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr 3.4rem;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.bar-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.bar-track {
+  height: 1.05rem;
+  background: rgba(15, 40, 70, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-dark), var(--brand));
+  min-width: 2px;
+}
+
+.bar-fill.is-peak {
+  background: linear-gradient(90deg, #0b6e4f, #1faa6e);
+}
+
+.bar-fill.is-dip {
+  background: linear-gradient(90deg, #9a3412, #ea580c);
+}
+
+.bar-chart-accent .bar-fill {
+  background: linear-gradient(90deg, #1e3a5f, #3b82c4);
+}
+
+.bar-chart-accent .bar-fill.is-peak {
+  background: linear-gradient(90deg, #0b6e4f, #1faa6e);
+}
+
+.bar-value {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.ffc-geo { margin: 0.7rem 0 1.2rem; }
+
+.ffc-geo-track {
+  display: flex;
+  height: 2.4rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.ffc-geo-uk,
+.ffc-geo-abroad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.ffc-geo-uk { background: var(--brand-dark); }
+.ffc-geo-abroad { background: linear-gradient(90deg, var(--brand), #3b82c4); }
+
+.ffc-geo-caption {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .addendum-list {
   margin: 0;
   padding-left: 0;

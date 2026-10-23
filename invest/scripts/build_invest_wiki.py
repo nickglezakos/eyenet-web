@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "eyenet-investor-primer.html"
-ASSET_V = "20261021q"
+ASSET_V = "20261023d"
 
 PAGE_ORDER = [
     "",
@@ -20,6 +20,7 @@ PAGE_ORDER = [
     "how-it-is-sold",
     "seed-ladder",
     "footprint",
+    "market-validation",
     "addendum-a",
     "addendum-b",
 ]
@@ -75,22 +76,37 @@ SECTIONS = [
         "card": "What each seed step funds: product, GTM, and footprint.",
     },
     {
+        "id": None,
+        "slug": "market-validation",
+        "num": "07",
+        "nav": "Market validation",
+        "title": "Market validation",
+        "card": "FootfallCam proves paid people-analytics demand — without covering EyeNet’s six wedges.",
+        "content": "market-validation.html",
+    },
+    {
         "id": "page-7",
         "slug": "addendum-a",
-        "num": "07",
+        "num": "08",
         "nav": "Project status",
-        "title": "Addendum A — Project status",
+        "title": "Project status",
         "card": "Readiness, partners, and growth path.",
-        "group": "addenda",
     },
     {
         "id": "page-8",
         "slug": "addendum-b",
-        "num": "08",
-        "nav": "Market sources",
-        "title": "Addendum B — Market sources",
-        "card": "Public URLs behind commercial addressable-pocket counts.",
+        "num": "09",
+        "nav": "Reference",
+        "title": "Addendum — Reference",
+        "card": "Sources for addressable pockets and market validation.",
         "group": "addenda",
+        "append": "reference-market-validation.html",
+        "kicker_override": (
+            "Public references for How it is sold (addressable pockets) and for "
+            "Market validation (FootfallCam). Enterprise segment dollars are EyeNet "
+            "plan targets, not external census counts."
+        ),
+        "title_override": "Addendum — Reference",
     },
 ]
 
@@ -122,7 +138,7 @@ UI = {
     "meta": [
         ("Type", "Investor Primer"),
         ("Date", "21 October 2026"),
-        ("Structure", "Bet · Wedges · Motions · Seed · Footprint"),
+        ("Structure", "Bet · Wedges · Motions · Seed · Footprint · Validation"),
         ("Seed ladder", "$0.5M → $1M → $2.5M"),
     ],
 }
@@ -167,6 +183,10 @@ def wiki_links(html: str) -> str:
     for i in range(1, 9):
         html = html.replace(f'href="#ref-{i}"', f'href="/addendum-b/#ref-{i}"')
     return html
+
+
+def strip_existing_kicker(html: str) -> str:
+    return re.sub(r'<div class="kicker">.*?</div>\s*', "", html, count=1, flags=re.S)
 
 
 def page_label(path: str) -> str:
@@ -222,23 +242,25 @@ def sidebar_html(current: str) -> str:
             f'{cur(sec["slug"])}>{sec["nav"]}</a>'
         )
 
-    kids = "\n".join(
-        f'<a class="nav-child" href="/{sec["slug"]}/" data-title="{sec["nav"]}"'
-        f'{cur(sec["slug"])}>{sec["nav"]}</a>'
-        for sec in addenda
-    )
-    links.append(
-        f"""
+    if addenda:
+        first_add = addenda[0]["slug"]
+        kids = "\n".join(
+            f'<a class="nav-child" href="/{sec["slug"]}/" data-title="{sec["nav"]}"'
+            f'{cur(sec["slug"])}>{sec["nav"]}</a>'
+            for sec in addenda
+        )
+        links.append(
+            f"""
 <div class="nav-group is-open" data-nav-group="addenda">
 <div class="nav-group-head">
-<a class="nav-group-link" href="/addendum-a/" data-title="Addenda"{cur("addendum-a")}>Addenda</a>
+<a class="nav-group-link" href="/{first_add}/" data-title="Addenda"{cur(first_add)}>Addenda</a>
 <button type="button" class="nav-group-toggle" aria-expanded="true" aria-controls="nav-group-addenda" aria-label="Toggle Addenda">▾</button>
 </div>
 <div class="nav-group-body" id="nav-group-addenda">
 {kids}
 </div>
 </div>"""
-    )
+        )
     return "\n".join(links)
 
 
@@ -248,6 +270,7 @@ def header_nav(section: str) -> str:
         ("the-bet", "The bet", "/the-bet/"),
         ("seed-ladder", "Seed ladder", "/seed-ladder/"),
         ("footprint", "Footprint", "/footprint/"),
+        ("market-validation", "Market validation", "/market-validation/"),
     ]
     out = []
     for slug, label, url in items:
@@ -334,14 +357,172 @@ def page_shell_title(num: str, title: str) -> str:
     )
 
 
+PRINT_EXTRA_CSS = """
+    /* market-validation print extras */
+    .persona {
+      background: var(--band);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 0;
+    }
+    .persona.alt { background: var(--band-alt); }
+    .persona h4 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .persona .n {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--brand-dark);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .persona .who {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .persona ul { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: 12px; }
+    .intro-kickers { display: grid; gap: 12px; margin: 14px 0; }
+    @media (min-width: 700px) {
+      .intro-kickers.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+    .breaker-vs { display: grid; gap: 12px; }
+    @media (min-width: 700px) {
+      .breaker-vs.cols-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .ffc-charts { display: grid; gap: 12px; margin: 12px 0 16px; }
+    @media (min-width: 700px) {
+      .ffc-charts { grid-template-columns: 1fr 1fr; }
+    }
+    .chart-block {
+      background: var(--band);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .chart-block h4 { margin: 0 0 10px; font-size: 12px; }
+    .bar-chart { display: flex; flex-direction: column; gap: 6px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr 3.2rem;
+      gap: 6px;
+      align-items: center;
+    }
+    .bar-label { font-size: 10px; font-weight: 700; color: var(--muted); }
+    .bar-track {
+      height: 12px;
+      background: rgba(15, 40, 70, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--brand-dark), var(--brand));
+      min-width: 2px;
+    }
+    .bar-fill.is-peak { background: linear-gradient(90deg, #0b6e4f, #1faa6e); }
+    .bar-fill.is-dip { background: linear-gradient(90deg, #9a3412, #ea580c); }
+    .bar-chart-accent .bar-fill { background: linear-gradient(90deg, #1e3a5f, #3b82c4); }
+    .bar-chart-accent .bar-fill.is-peak { background: linear-gradient(90deg, #0b6e4f, #1faa6e); }
+    .bar-value { font-size: 10px; font-weight: 700; text-align: right; }
+    .ffc-geo { margin: 8px 0 14px; }
+    .ffc-geo-track {
+      display: flex;
+      height: 28px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .ffc-geo-uk, .ffc-geo-abroad {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .ffc-geo-uk { background: var(--brand-dark); }
+    .ffc-geo-abroad { background: linear-gradient(90deg, var(--brand), #3b82c4); }
+    .ffc-geo-caption { margin: 6px 0 0; font-size: 11px; color: var(--muted); }
+"""
+
+
 def build_print(src_html: str) -> None:
-    """Write printable primer under /print/ with deploy-root asset paths."""
+    """Write printable primer under /print/ with Market validation + current numbering."""
     html = src_html
     html = html.replace('src="assets/eyenet-dark.svg"', 'src="/assets/eyenet-dark.svg"')
     html = html.replace(
         'src="../../../product/logos/svg/eyenet-dark.svg"',
         'src="/assets/eyenet-dark.svg"',
     )
+
+    if "/* market-validation print extras */" not in html:
+        html = html.replace("  </style>", PRINT_EXTRA_CSS + "\n  </style>")
+
+    mv_body = (ROOT / "content" / "market-validation.html").read_text(encoding="utf-8")
+    mv_body = mv_body.replace(
+        'href="/addendum-b/#market-validation-refs"',
+        'href="#market-validation-refs"',
+    )
+    mv_section = f"""
+    <section class="section flow page-start" id="page-mv" data-nav-label="07 · Market validation">
+      <div class="section-head"><span class="section-num">07</span><h2>Market validation</h2></div>
+{mv_body}
+    </section>
+"""
+    if 'id="page-mv"' not in html:
+        html = html.replace(
+            "    <!-- 07 ADDENDUM A — PROJECT STATUS -->",
+            mv_section + "\n    <!-- 08 PROJECT STATUS -->",
+        )
+
+    html = html.replace(
+        'id="page-7" data-nav-label="07 · Addendum A"',
+        'id="page-7" data-nav-label="08 · Project status"',
+    )
+    html = html.replace(
+        '<span class="section-num">07</span><h2>Addendum A — Project status</h2>',
+        '<span class="section-num">08</span><h2>Project status</h2>',
+    )
+    html = html.replace(
+        'id="page-8" data-nav-label="08 · Addendum B"',
+        'id="page-8" data-nav-label="09 · Reference"',
+    )
+    html = html.replace(
+        '<span class="section-num">08</span><h2>Addendum B — Market sources (commercial packages)</h2>',
+        '<span class="section-num">09</span><h2>Addendum — Reference</h2>',
+    )
+    html = html.replace(
+        '<div class="kicker">Public references used for addressable pockets in How it is sold (B2C Light and B2B Starter / Pro). Same links as the value site commercial packages. Enterprise segment dollars are EyeNet plan targets, not external census counts.</div>',
+        '<div class="kicker">Public references for How it is sold (addressable pockets) and for Market validation (FootfallCam). Enterprise segment dollars are EyeNet plan targets, not external census counts.</div>',
+    )
+
+    ref_extra = (ROOT / "content" / "reference-market-validation.html").read_text(
+        encoding="utf-8"
+    )
+    if 'id="market-validation-refs"' not in html:
+        html = html.replace(
+            '      <p class="side-note">Cited from value site commercial packages',
+            ref_extra
+            + '\n      <p class="side-note">Cited from value site commercial packages',
+        )
+
+    html = html.replace(
+        "Project status: <a href=\"#page-7\">Addendum A</a>. Commercial addressable-pocket links: <a href=\"#page-8\">Addendum B</a>.",
+        'Market validation: <a href="#page-mv">§07</a>. Project status: <a href="#page-7">§08</a>. Reference: <a href="#page-8">§09</a>.',
+    )
+
     old_tb = re.search(r'<div class="no-print toolbar">.*?</div>\s*', html, flags=re.S)
     toolbar = """  <div class="no-print toolbar">
     <div>
@@ -363,7 +544,7 @@ def main() -> None:
         raise SystemExit(f"Missing source primer: {SRC}")
     src_html = SRC.read_text(encoding="utf-8")
     _cover, by_id = extract_cover_and_sections(src_html)
-    missing = [s["id"] for s in SECTIONS if s["id"] not in by_id]
+    missing = [s["id"] for s in SECTIONS if s.get("id") and s["id"] not in by_id]
     if missing:
         raise SystemExit(f"Missing primer sections: {missing}")
 
@@ -411,7 +592,22 @@ def main() -> None:
     )
 
     for sec in SECTIONS:
-        body = page_shell_title(sec["num"], sec["title"]) + wiki_links(by_id[sec["id"]])
+        page_title = sec.get("title_override") or sec["title"]
+        if sec.get("content"):
+            frag = (ROOT / "content" / sec["content"]).read_text(encoding="utf-8")
+            body = page_shell_title(sec["num"], page_title) + frag
+        else:
+            body = page_shell_title(sec["num"], page_title) + wiki_links(
+                by_id[sec["id"]]
+            )
+            if sec.get("kicker_override"):
+                body = (
+                    page_shell_title(sec["num"], page_title)
+                    + f'<div class="kicker">{sec["kicker_override"]}</div>\n'
+                    + strip_existing_kicker(wiki_links(by_id[sec["id"]]))
+                )
+            if sec.get("append"):
+                body += (ROOT / "content" / sec["append"]).read_text(encoding="utf-8")
         write(
             ROOT / sec["slug"] / "index.html",
             render_page(
