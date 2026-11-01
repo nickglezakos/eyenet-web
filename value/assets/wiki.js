@@ -8,6 +8,24 @@
   const hits = document.getElementById("searchHits");
   const lang = body.dataset.lang || "en";
 
+  const whyFilter = document.querySelector(".why-filter");
+  if (whyFilter) {
+    const cards = [...document.querySelectorAll(".landing-card[data-categories]")];
+    whyFilter.addEventListener("click", (event) => {
+      const btn = event.target.closest(".why-filter-btn");
+      if (!btn || !whyFilter.contains(btn)) return;
+      const filter = btn.dataset.filter || "all";
+      whyFilter.querySelectorAll(".why-filter-btn").forEach((el) => {
+        el.setAttribute("aria-pressed", el === btn ? "true" : "false");
+      });
+      for (const card of cards) {
+        const cats = (card.dataset.categories || "").split(/\s+/).filter(Boolean);
+        const show = filter === "all" || cats.includes(filter);
+        card.classList.toggle("is-filtered-out", !show);
+      }
+    });
+  }
+
   function setSidebarOpen(open) {
     body.classList.toggle("sidebar-open", open);
     if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");

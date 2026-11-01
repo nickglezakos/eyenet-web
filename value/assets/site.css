@@ -576,6 +576,46 @@ body[data-audience="what"] .page h1 {
 .tag.user { color: var(--warn); }
 .tag.safety { color: var(--danger); }
 .tag.ok { color: var(--ok); }
+.tag.category {
+  color: #1a2a3a;
+  background: #e8eef4;
+  border-color: #c5d0db;
+}
+
+.why-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.85rem 0 1.1rem;
+}
+
+.why-filter-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--soft);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.why-filter-btn[aria-pressed="true"] {
+  background: #e8eef4;
+  color: #1a2a3a;
+  border-color: #c5d0db;
+}
+
+.landing-card-tags {
+  margin-top: 0.55rem;
+  pointer-events: none;
+}
+
+.landing-card.is-filtered-out {
+  display: none;
+}
 
 .side-note {
   margin-top: 0.75rem;

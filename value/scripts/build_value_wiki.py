@@ -65,6 +65,136 @@ PAGE_ORDER = [
     "innovation",
 ]
 
+
+# Domain categories per case (EN slug keys; labels localized).
+# data-categories on cards always use EN tokens for filter matching.
+WHY_CASE_TAXONOMY = {
+    "hr-presence": {
+        "keys": ["home", "office", "warehouse", "industrial", "shipping", "security"],
+        "en": ["home", "office", "warehouse", "industrial", "shipping", "security"],
+        "el": ["σπίτι", "γραφείο", "αποθήκη", "βιομηχανία", "ναυτιλία", "ασφάλεια"],
+    },
+    "mall": {
+        "keys": ["shop", "marketing"],
+        "en": ["shop", "marketing"],
+        "el": ["κατάστημα", "marketing"],
+    },
+    "shop-floor": {
+        "keys": ["shop"],
+        "en": ["shop"],
+        "el": ["κατάστημα"],
+    },
+    "cottage": {
+        "keys": ["home"],
+        "en": ["home"],
+        "el": ["σπίτι"],
+    },
+    "home-care": {
+        "keys": ["home", "care"],
+        "en": ["home", "care"],
+        "el": ["σπίτι", "φροντίδα"],
+    },
+    "security": {
+        "keys": ["security"],
+        "en": ["security"],
+        "el": ["ασφάλεια"],
+    },
+    "shipping": {
+        "keys": ["shipping", "industrial"],
+        "en": ["shipping", "industrial"],
+        "el": ["ναυτιλία", "βιομηχανία"],
+    },
+}
+
+CATEGORY_FILTER_ORDER = [
+    "home",
+    "care",
+    "office",
+    "shop",
+    "warehouse",
+    "industrial",
+    "shipping",
+    "security",
+    "marketing",
+]
+
+CATEGORY_FILTER_LABELS = {
+    "en": {
+        "all": "All",
+        "home": "home",
+        "care": "care",
+        "office": "office",
+        "shop": "shop",
+        "warehouse": "warehouse",
+        "industrial": "industrial",
+        "shipping": "shipping",
+        "security": "security",
+        "marketing": "marketing",
+    },
+    "el": {
+        "all": "Όλα",
+        "home": "σπίτι",
+        "care": "φροντίδα",
+        "office": "γραφείο",
+        "shop": "κατάστημα",
+        "warehouse": "αποθήκη",
+        "industrial": "βιομηχανία",
+        "shipping": "ναυτιλία",
+        "security": "ασφάλεια",
+        "marketing": "marketing",
+    },
+}
+
+
+def category_chips_html(child: str, lang: str) -> str:
+    tax = WHY_CASE_TAXONOMY[child]
+    labels = tax[lang]
+    return "".join(f'<span class="tag category">{label}</span>' for label in labels)
+
+
+def ensure_persona_category_chips(persona_html: str, child: str, lang: str) -> str:
+    """Prepend category chips into the first .tags block if missing."""
+    chips = category_chips_html(child, lang)
+    if 'class="tag category"' in persona_html:
+        return persona_html
+
+    def inject(match: re.Match[str]) -> str:
+        return match.group(1) + chips + match.group(2)
+
+    updated, n = re.subn(
+        r'(<div class="tags">\s*)(.*?</div>)',
+        inject,
+        persona_html,
+        count=1,
+        flags=re.S,
+    )
+    if n != 1:
+        # Append a tags block before closing persona if none
+        updated = persona_html.replace(
+            "</div>\n</div>",
+            f'<div class="tags">{chips}</div>\n</div>\n</div>',
+            1,
+        )
+    return updated
+
+
+def why_filter_bar(lang: str) -> str:
+    labels = CATEGORY_FILTER_LABELS[lang]
+    used = []
+    for key in CATEGORY_FILTER_ORDER:
+        if any(key in WHY_CASE_TAXONOMY[c]["keys"] for c in WHY_CASE_TAXONOMY):
+            used.append(key)
+    buttons = [
+        f'<button type="button" class="why-filter-btn" data-filter="all" aria-pressed="true">{labels["all"]}</button>'
+    ]
+    for key in used:
+        buttons.append(
+            f'<button type="button" class="why-filter-btn" data-filter="{key}" aria-pressed="false">{labels[key]}</button>'
+        )
+    aria = "Filter use cases by category" if lang == "en" else "Φίλτρο περιπτώσεων ανά κατηγορία"
+    return f'<div class="why-filter" role="group" aria-label="{aria}">' + "".join(buttons) + "</div>"
+
+
 # Brochure §05 persona index → why child slug (source order, not display order).
 WHY_PERSONA_INDEX = {
     "home-care": 0,
@@ -1444,10 +1574,17 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
 
     # Why index + children
     personas = split_personas(sections["05"])
+    def why_card(i: int, child: str, label: str) -> str:
+        keys = " ".join(WHY_CASE_TAXONOMY[child]["keys"])
+        chips = category_chips_html(child, lang)
+        return (
+            f'<a class="landing-card" href="{pfx}/why/{child}/" data-categories="{keys}">'
+            f'<span class="num">{i+1:02d}</span><strong>{label}</strong>'
+            f'<span class="landing-card-tags tags">{chips}</span></a>'
+        )
+
     why_cards = "".join(
-        f'<a class="landing-card" href="{pfx}/why/{child}/">'
-        f'<span class="num">{i+1:02d}</span><strong>{label}</strong>'
-        f"<span>{ui['why_index_kicker']}</span></a>"
+        why_card(i, child, label)
         for i, (child, label) in enumerate(ui["why_children"])
     )
     # keep summary panel from section if present
@@ -1458,6 +1595,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
     why_body = (
         page_shell_title(lang, "02", ui["page_titles"]["why"])
         + f'<div class="kicker">{ui["why_index_kicker"]}</div>'
+        + why_filter_bar(lang)
         + f'<div class="landing-cards">{why_cards}</div>'
         + summary
     )
@@ -1506,6 +1644,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
                 persona_html,
                 count=1,
             )
+        persona_html = ensure_persona_category_chips(persona_html, child, lang)
         body = (
             page_shell_title(lang, "02", label)
             + fix_asset_paths(persona_html)
