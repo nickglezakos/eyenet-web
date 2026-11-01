@@ -659,36 +659,6 @@
 
     <div class="hairline"></div>
 
-    <!-- ===== CARD 1: PLATFORM ===== -->
-    <section>
-        <div class="content-panel">
-            <div class="section-label">Platform</div>
-            <h2 class="card-headline">Transform <em>moderate hardware</em> into powerful machine vision nodes</h2>
-            <div class="image-strip" style="margin-bottom: 4rem;">
-                <img src="assets/Platform Hero.png" alt="Platform" loading="lazy">
-            </div>
-            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
-            <div class="stat-collection">
-                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Cameras</span></div>
-                <div class="stat-item"><span class="stat-value">50</span><span class="stat-label">Milliseconds Latency</span></div>
-                <div class="stat-item"><span class="stat-value">99.7</span><span class="stat-label">Percent Uptime</span></div>
-            </div>
-            <div class="hairline" style="margin-bottom: 2rem;"></div>
-            <div class="feature-grid">
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Any Camera</div><p class="feature-desc">Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>On-Device AI</div><p class="feature-desc">Face detection, people counting, demographics, and route tracking — processed in real time</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Infinite Scale</div><p class="feature-desc">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</p></div>
-            </div>
-            <div class="chip-row" id="eyenet-chips-platform"></div>
-            <div class="cta-pair">
-                <a href="#card-presence" class="cta-link">See How It Works <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-                <a href="marketing/web/" class="cta-link cta-link-case">Explore use cases <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-            </div>
-        </div>
-    </section>
-
-    <div class="hairline"></div>
-
     <!-- ===== CARD 2: PRESENCE ===== -->
     <section id="card-presence">
         <div class="content-panel">
@@ -1152,7 +1122,6 @@
         function addEyenetChips(containerId,chipNames){const container=document.getElementById(containerId);if(!container)return;chipNames.forEach(name=>{const chip=document.createElement('span');chip.className='eyenet-chip';const logoSvg=cloneLogoSvg(14);logoSvg.classList.add('chip-logo-svg');chip.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('chip-sub-svg');chip.appendChild(subSvg);container.appendChild(chip)})}
 
         // Chips for all cards
-        addEyenetChips('eyenet-chips-platform',['Presence','Signage','VRadar','Gate','Matrix','VProfiles','Logic']);
         addEyenetChips('eyenet-chips-presence',['Presence','Handshake','Nod','VRadar','VProfiles']);
         addEyenetChips('eyenet-chips-signage',['Signage','AnonTracking','Insights']);
         addEyenetChips('eyenet-chips-access',['Presence','Handshake','Nod','Insights','VProfiles']);

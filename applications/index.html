@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applications — Eyenet</title>
+    <title>Platform & Applications — Eyenet</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -398,13 +398,37 @@
       <span class="nav-sep" aria-hidden="true"></span>
       <a href="../marketing/web/">Microsites</a>
     </nav>
-<div class="page-hero-mini">
-  <div class="section-label">Eyenet</div>
-  <h1 class="section-heading" style="margin-bottom:0.75rem">Application <em>deep dive</em></h1>
-</div>
-<div class="hairline"></div>
+<!-- ===== PLATFORM HERO ===== -->
+    <section id="platform" class="platform-hero">
+        <div class="content-panel">
+            <div class="section-label">Platform</div>
+            <h1 class="card-headline">Transform <em>moderate hardware</em> into powerful machine vision nodes</h1>
+            <div class="image-strip" style="margin-bottom: 4rem;">
+                <img src="../assets/Platform Hero.png" alt="Platform" loading="lazy">
+            </div>
+            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
+            <div class="stat-collection">
+                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Cameras</span></div>
+                <div class="stat-item"><span class="stat-value">50</span><span class="stat-label">Milliseconds Latency</span></div>
+                <div class="stat-item"><span class="stat-value">99.7</span><span class="stat-label">Percent Uptime</span></div>
+            </div>
+            <div class="hairline" style="margin-bottom: 2rem;"></div>
+            <div class="feature-grid">
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Any Camera</div><p class="feature-desc">Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>On-Device AI</div><p class="feature-desc">Face detection, people counting, demographics, and route tracking — processed in real time</p></div>
+                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Infinite Scale</div><p class="feature-desc">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</p></div>
+            </div>
+            <div class="chip-row" id="eyenet-chips-platform"></div>
+            <div class="cta-pair">
+                <a href="#application-suite" class="cta-link">See the application suite <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="../#primary-use-cases" class="cta-link cta-link-case">Explore use cases <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
     <!-- ===== APPLICATION SUITE ===== -->
-    <section>
+    <section id="application-suite">
         <div class="content-panel wide">
             <h2 class="section-heading">Application <em>Suite</em></h2>
             <p class="section-subheading">Six specialized applications engineered to address distinct operational challenges with precision and intelligence</p>
@@ -502,17 +526,6 @@
 
         // Chips for all cards
         addEyenetChips('eyenet-chips-platform',['Presence','Signage','VRadar','Gate','Matrix','VProfiles','Logic']);
-        addEyenetChips('eyenet-chips-presence',['Presence','Handshake','Nod','VRadar','VProfiles']);
-        addEyenetChips('eyenet-chips-signage',['Signage','AnonTracking','Insights']);
-        addEyenetChips('eyenet-chips-access',['Presence','Handshake','Nod','Insights','VProfiles']);
-        addEyenetChips('eyenet-chips-restricted',['Presence','AnonTracking','VRadar','Insights','VProfiles']);
-        addEyenetChips('eyenet-chips-vip',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);
-        addEyenetChips('eyenet-chips-remote',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
-        addEyenetChips('eyenet-chips-instant',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
-        addEyenetChips('eyenet-chips-business',['Presence','Handshake','Nod','VRadar','VProfiles']);
-        addEyenetChips('eyenet-chips-security',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);
-        addEyenetChips('eyenet-chips-marketing',['Signage','AnonTracking','Insights']);
-        addEyenetChips('eyenet-chips-facilities',['Presence','Handshake','Nod','Insights','VProfiles']);
 
         // Header chips reel
         (function buildHeaderChips(){const container=document.getElementById('all-chips-header');if(!container)return;const names=['Presence','Handshake','Nod','Signage','Anonymous','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles','Logic','API'];names.forEach(name=>{const chip=document.createElement('span');chip.className='eyenet-chip';const logoSvg=cloneLogoSvg(14);logoSvg.classList.add('chip-logo-svg');chip.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('chip-sub-svg');chip.appendChild(subSvg);container.appendChild(chip)})})();
