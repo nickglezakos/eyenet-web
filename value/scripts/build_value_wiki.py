@@ -1081,7 +1081,7 @@ UI = {
             "packages": "Commercial Packages",
         },
         "why_children": [
-            ("hr-presence", "Know who’s there — everywhere"),
+            ("hr-presence", "Know who is present and who is not"),
             ("mall", "Screens that sell themselves"),
             ("shop-floor", "See how shoppers move"),
             ("cottage", "Peace of mind at home — and away"),
@@ -1167,7 +1167,7 @@ UI = {
             "packages": "Εμπορικά πακέτα",
         },
         "why_children": [
-            ("hr-presence", "Ξέρετε ποιος είναι εκεί — παντού"),
+            ("hr-presence", "Ξέρετε ποιός είναι παρόν και ποιος όχι"),
             ("mall", "Οθόνες που πουλάνε μόνες τους"),
             ("shop-floor", "Δείτε πώς κινούνται οι πελάτες"),
             ("cottage", "Ηρεμία στο σπίτι — και μακριά"),
@@ -2103,7 +2103,7 @@ def sort_why_print_sections(
 ) -> list[re.Match[str]]:
     """HR → Vision signage → Shop floor → Family → Homecare → Security → Who’s onboard. Who’s on site. Who fell.."""
     patterns = [
-        r"HR Presence|Know who.s there|Ξέρετε ποιος είναι εκεί",
+        r"HR Presence|Know who is present and who is not|Ξέρετε ποιός είναι παρόν και ποιος όχι",
         r"Mall marketing|Vision-adaptive Intelligent Signage|Screens that sell|Οθόνες που πουλάνε",
         r"Shop floor|See how shoppers|Κατάστημα — κίνηση|Δείτε πώς κινούνται",
         r"Cottage|Family protection|Peace of mind at home|Εξοχικό|Οικογενειακή προστασία|Ηρεμία στο σπίτι",
