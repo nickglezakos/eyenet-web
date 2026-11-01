@@ -52,6 +52,7 @@ PAGE_ORDER = [
     "why",
     "why/hr-presence",
     "why/mall",
+    "why/shop-floor",
     "why/cottage",
     "why/home-care",
     "why/security",
@@ -72,6 +73,7 @@ WHY_PERSONA_INDEX = {
     "cottage": 3,
     "shipping": 4,
     "mall": 5,
+    "shop-floor": 6,
 }
 
 
@@ -951,6 +953,7 @@ UI = {
         "why_children": [
             ("hr-presence", "HR Presence"),
             ("mall", "Vision-adaptive Intelligent Signage"),
+            ("shop-floor", "Shop floor — customer movement"),
             ("cottage", "Family protection at home and remote"),
             ("home-care", "Home care · Virtual Ward"),
             ("security", "Security: night and Perimeter"),
@@ -987,9 +990,9 @@ UI = {
             ("01", "what", "EyeNet understands what it sees and acts on it automatically",
              "Edge intelligence, action automation, and hardware-bound scale."),
             ("02", "why", "Most Valuable Cases",
-             "Featured use cases across HR, signage, family protection, home care, security, shipping, and industrial sites."),
+             "Featured use cases across HR, signage, shop floor, family protection, home care, security, shipping, and industrial sites."),
             ("03", "with-eyenet", "Who uses EyeNet",
-             "Strong outcomes for fleet, industrial sites, care, HR, security, family, and signage operators."),
+             "Strong outcomes for fleet, industrial sites, care, HR, security, family, signage, and shop-floor operators."),
             ("04", "packages", "Commercial Packages",
              "B2C Light, B2B Starter & Professional, and Enterprise motions."),
             ("05", "innovation", "Simple yet powerful innovation",
@@ -1036,6 +1039,7 @@ UI = {
         "why_children": [
             ("hr-presence", "HR Presence"),
             ("mall", "Vision-adaptive Intelligent Signage"),
+            ("shop-floor", "Κατάστημα — κίνηση πελατών"),
             ("cottage", "Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως"),
             ("home-care", "Home care · Virtual Ward"),
             ("security", "Ασφάλεια: νύχτα και περίμετρος"),
@@ -1072,9 +1076,9 @@ UI = {
             ("01", "what", "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
              "Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware."),
             ("02", "why", "Πιο πολύτιμες περιπτώσεις",
-             "Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία."),
+             "Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, κατάστημα, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία."),
             ("03", "with-eyenet", "Ποιος χρησιμοποιεί το EyeNet",
-             "Δυνατά αποτελέσματα για στόλο, βιομηχανικούς χώρους, φροντίδα, HR, ασφάλεια, οικογένεια και signage."),
+             "Δυνατά αποτελέσματα για στόλο, βιομηχανικούς χώρους, φροντίδα, HR, ασφάλεια, οικογένεια, signage και κατάστημα."),
             ("04", "packages", "Εμπορικά πακέτα",
              "B2C Light, B2B Starter & Professional και Enterprise."),
             ("05", "innovation", "Απλή κι όμως ισχυρή καινοτομία",
@@ -1644,8 +1648,8 @@ def main() -> None:
     global split_personas
     en_personas = personas(en_sections["05"])
     el_personas = personas(el_sections["05"])
-    if len(en_personas) != 6 or len(el_personas) != 6:
-        raise SystemExit(f"Expected 6 personas, got EN={len(en_personas)} EL={len(el_personas)}")
+    if len(en_personas) != 7 or len(el_personas) != 7:
+        raise SystemExit(f"Expected 7 personas, got EN={len(en_personas)} EL={len(el_personas)}")
 
     def split_personas_fixed(section_html: str) -> list[str]:
         return personas(section_html)
@@ -1958,10 +1962,11 @@ def sync_print_pages() -> None:
 def sort_why_print_sections(
     matches: list[re.Match[str]], lang: str
 ) -> list[re.Match[str]]:
-    """HR → Vision signage → Family → Homecare → Security → Shipping and industrial."""
+    """HR → Vision signage → Shop floor → Family → Homecare → Security → Shipping and industrial."""
     patterns = [
         r"HR Presence",
         r"Mall marketing|Vision-adaptive Intelligent Signage",
+        r"Shop floor — customer movement|Κατάστημα — κίνηση πελατών",
         r"Cottage|Family protection|Εξοχικό|Οικογενειακή προστασία",
         r"Home care",
         r"Security personnel|Security: night|Προσωπικό ασφαλείας|Ασφάλεια:",
