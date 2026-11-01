@@ -582,6 +582,13 @@ body[data-audience="what"] .page h1 {
   border-color: #c5d0db;
 }
 
+.case-intro {
+  margin: 0 0 0.85rem;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--ink, #1a2a3a);
+}
+
 .why-filter {
   display: flex;
   flex-wrap: wrap;
