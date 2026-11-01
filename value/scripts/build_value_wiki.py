@@ -466,26 +466,26 @@ def apply_case_label_copy(html: str, lang: str) -> str:
         repls = [
             (
                 r"Security personnel — night &amp; perimeter",
-                "Security: night and Perimeter",
+                "Night shifts that never blink",
             ),
-            (r"Security night &amp; perimeter", "Security: night and Perimeter"),
-            (r"Security night & perimeter", "Security: night and Perimeter"),
+            (r"Security night &amp; perimeter", "Night shifts that never blink"),
+            (r"Security night & perimeter", "Night shifts that never blink"),
             (
                 r'data-nav-label="05 · Security"',
-                'data-nav-label="05 · Security: night and Perimeter"',
+                'data-nav-label="05 · Night shifts that never blink"',
             ),
             (
                 r"Mall marketing studio — foot traffic → intelligence",
-                "Vision-adaptive Intelligent Signage",
+                "Screens that sell themselves",
             ),
             (
                 r"Mall marketing studio — κίνηση → νοημοσύνη",
-                "Vision-adaptive Intelligent Signage",
+                "Screens that sell themselves",
             ),
-            (r"Mall marketing studio", "Vision-adaptive Intelligent Signage"),
+            (r"Mall marketing studio", "Screens that sell themselves"),
             (
                 r'data-nav-label="05 · Mall"',
-                'data-nav-label="05 · Vision-adaptive Intelligent Signage"',
+                'data-nav-label="05 · Screens that sell themselves"',
             ),
             (r"<h5>Mall marketer</h5>", "<h5>Signage marketer</h5>"),
             (
@@ -510,12 +510,12 @@ def apply_case_label_copy(html: str, lang: str) -> str:
             ),
             (
                 r"Shipping — crew where they should be",
-                "Shipping and industrial",
+                "Who’s onboard. Who’s on site. Who fell.",
             ),
-            (r">Shipping<", ">Shipping and industrial<"),
+            (r">Shipping<", ">Who’s onboard. Who’s on site. Who fell.<"),
             (
                 r'data-nav-label="05 · Shipping"',
-                'data-nav-label="05 · Shipping and industrial"',
+                'data-nav-label="05 · Who’s onboard. Who’s on site. Who fell."',
             ),
             (
                 r"<h5>Fleet manager</h5>",
@@ -530,26 +530,26 @@ def apply_case_label_copy(html: str, lang: str) -> str:
         repls = [
             (
                 r"Προσωπικό ασφαλείας — νύχτα &amp; περίμετρος",
-                "Ασφάλεια: νύχτα και περίμετρος",
+                "Νυχτερινές βάρδιες που δεν ανοιγοκλείνουν",
             ),
-            (r"Ασφάλεια νύχτα &amp; περίμετρος", "Ασφάλεια: νύχτα και περίμετρος"),
-            (r"Ασφάλεια νύχτα & περίμετρος", "Ασφάλεια: νύχτα και περίμετρος"),
+            (r"Ασφάλεια νύχτα &amp; περίμετρος", "Νυχτερινές βάρδιες που δεν ανοιγοκλείνουν"),
+            (r"Ασφάλεια νύχτα & περίμετρος", "Νυχτερινές βάρδιες που δεν ανοιγοκλείνουν"),
             (
                 r'data-nav-label="05 · [^"]*[Αα]σφάλ[^"]*"',
-                'data-nav-label="05 · Ασφάλεια: νύχτα και περίμετρος"',
+                'data-nav-label="05 · Νυχτερινές βάρδιες που δεν ανοιγοκλείνουν"',
             ),
             (
                 r"Mall marketing studio — κίνηση → νοημοσύνη",
-                "Vision-adaptive Intelligent Signage",
+                "Screens that sell themselves",
             ),
             (
                 r"Mall marketing studio — foot traffic → intelligence",
-                "Vision-adaptive Intelligent Signage",
+                "Screens that sell themselves",
             ),
-            (r"Mall marketing studio", "Vision-adaptive Intelligent Signage"),
+            (r"Mall marketing studio", "Screens that sell themselves"),
             (
                 r'data-nav-label="05 · Mall"',
-                'data-nav-label="05 · Vision-adaptive Intelligent Signage"',
+                'data-nav-label="05 · Screens that sell themselves"',
             ),
             (
                 r"Operators mall · retail marketing · agencies · brand studios",
@@ -569,12 +569,12 @@ def apply_case_label_copy(html: str, lang: str) -> str:
             ),
             (
                 r"Ναυτιλία — πλήρωμα εκεί που πρέπει",
-                "Ναυτιλία και βιομηχανία",
+                "Ποιος είναι onboard. Ποιος στον χώρο. Ποιος έπεσε.",
             ),
-            (r">Ναυτιλία<", ">Ναυτιλία και βιομηχανία<"),
+            (r">Ναυτιλία<", ">Ποιος είναι onboard. Ποιος στον χώρο. Ποιος έπεσε.<"),
             (
                 r'data-nav-label="05 · Ναυτιλία"',
-                'data-nav-label="05 · Ναυτιλία και βιομηχανία"',
+                'data-nav-label="05 · Ποιος είναι onboard. Ποιος στον χώρο. Ποιος έπεσε."',
             ),
             (
                 r"<h5>Διαχειριστής στόλου</h5>",
@@ -596,7 +596,7 @@ def apply_family_protection_copy(html: str, lang: str) -> str:
         repls = [
             (
                 r'(<h4><span class="n">4</span>\s*)Cottage &amp; remote living(</h4>)',
-                r"\1Family protection at home and remote\2",
+                r"\1Peace of mind at home — and away\2",
             ),
             (
                 r'<p class="who">Families · cottage owners · undergraduates away from home</p>',
@@ -651,7 +651,7 @@ def apply_family_protection_copy(html: str, lang: str) -> str:
         repls = [
             (
                 r'(<h4><span class="n">4</span>\s*)Εξοχικό &amp; απομακρυσμένη διαβίωση(</h4>)',
-                r"\1Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως\2",
+                r"\1Ηρεμία στο σπίτι — και μακριά\2",
             ),
             (
                 r"<p class=\"who\">Οικογένειες · ιδιοκτήτες εξοχικών · προπτυχιακοί μακριά από το σπίτι</p>",
@@ -1081,13 +1081,13 @@ UI = {
             "packages": "Commercial Packages",
         },
         "why_children": [
-            ("hr-presence", "HR Presence"),
-            ("mall", "Vision-adaptive Intelligent Signage"),
-            ("shop-floor", "Shop floor — customer movement"),
-            ("cottage", "Family protection at home and remote"),
-            ("home-care", "Home care · Virtual Ward"),
-            ("security", "Security: night and Perimeter"),
-            ("shipping", "Shipping and industrial"),
+            ("hr-presence", "Know who’s there — everywhere"),
+            ("mall", "Screens that sell themselves"),
+            ("shop-floor", "See how shoppers move"),
+            ("cottage", "Peace of mind at home — and away"),
+            ("home-care", "Hospital-grade care at home"),
+            ("security", "Night shifts that never blink"),
+            ("shipping", "Who’s onboard. Who’s on site. Who fell."),
         ],
         "pkg_children": [
             ("b2c", "B2C Light"),
@@ -1167,13 +1167,13 @@ UI = {
             "packages": "Εμπορικά πακέτα",
         },
         "why_children": [
-            ("hr-presence", "HR Presence"),
-            ("mall", "Vision-adaptive Intelligent Signage"),
-            ("shop-floor", "Κατάστημα — κίνηση πελατών"),
-            ("cottage", "Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως"),
-            ("home-care", "Home care · Virtual Ward"),
-            ("security", "Ασφάλεια: νύχτα και περίμετρος"),
-            ("shipping", "Ναυτιλία και βιομηχανία"),
+            ("hr-presence", "Ξέρετε ποιος είναι εκεί — παντού"),
+            ("mall", "Οθόνες που πουλάνε μόνες τους"),
+            ("shop-floor", "Δείτε πώς κινούνται οι πελάτες"),
+            ("cottage", "Ηρεμία στο σπίτι — και μακριά"),
+            ("home-care", "Νοσοκομειακή φροντίδα στο σπίτι"),
+            ("security", "Νυχτερινές βάρδιες που δεν ανοιγοκλείνουν"),
+            ("shipping", "Ποιος είναι onboard. Ποιος στον χώρο. Ποιος έπεσε."),
         ],
         "pkg_children": [
             ("b2c", "B2C Light"),
@@ -2101,15 +2101,15 @@ def sync_print_pages() -> None:
 def sort_why_print_sections(
     matches: list[re.Match[str]], lang: str
 ) -> list[re.Match[str]]:
-    """HR → Vision signage → Shop floor → Family → Homecare → Security → Shipping and industrial."""
+    """HR → Vision signage → Shop floor → Family → Homecare → Security → Who’s onboard. Who’s on site. Who fell.."""
     patterns = [
-        r"HR Presence",
-        r"Mall marketing|Vision-adaptive Intelligent Signage",
-        r"Shop floor — customer movement|Κατάστημα — κίνηση πελατών",
-        r"Cottage|Family protection|Εξοχικό|Οικογενειακή προστασία",
-        r"Home care",
-        r"Security personnel|Security: night|Προσωπικό ασφαλείας|Ασφάλεια:",
-        r"Shipping|Ναυτιλία",
+        r"HR Presence|Know who.s there|Ξέρετε ποιος είναι εκεί",
+        r"Mall marketing|Vision-adaptive Intelligent Signage|Screens that sell|Οθόνες που πουλάνε",
+        r"Shop floor|See how shoppers|Κατάστημα — κίνηση|Δείτε πώς κινούνται",
+        r"Cottage|Family protection|Peace of mind at home|Εξοχικό|Οικογενειακή προστασία|Ηρεμία στο σπίτι",
+        r"Home care|Hospital-grade care|Νοσοκομειακή φροντίδα",
+        r"Security personnel|Security: night|Night shifts that never|Προσωπικό ασφαλείας|Ασφάλεια:|Νυχτερινές βάρδιες",
+        r"Shipping|Who.s onboard|Ναυτιλία|Ποιος είναι onboard",
     ]
     remaining = list(matches)
     ordered: list[re.Match[str]] = []
@@ -2128,21 +2128,22 @@ def inject_print_case_overrides(html: str, lang: str) -> str:
         (
             f"why-cottage-{lang}.html",
             r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
-            r"(?:Family protection at home and remote|Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως|"
+            r"(?:Peace of mind at home — and away|Ηρεμία στο σπίτι — και μακριά|"
+            r"Family protection at home and remote|Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως|"
             r"Cottage &amp; remote living|Εξοχικό &amp; απομακρυσμένη διαβίωση)</h4>.*?"
             r"(?=</section>)",
         ),
         (
             f"why-mall-{lang}.html",
             r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
-            r"(?:Vision-adaptive Intelligent Signage|Mall marketing studio[^<]*)</h4>.*?"
+            r"(?:Screens that sell themselves|Οθόνες που πουλάνε μόνες τους|Vision-adaptive Intelligent Signage|Mall marketing studio[^<]*)</h4>.*?"
             r"(?=</section>)",
         ),
         (
             f"why-shipping-{lang}.html",
             r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
-            r"(?:Shipping and industrial|Shipping — crew where they should be|"
-            r"Ναυτιλία και βιομηχανία|Ναυτιλία — πλήρωμα εκεί που πρέπει)</h4>.*?"
+            r"(?:Who.?s onboard\. Who.?s on site\. Who fell\.|Shipping[^<]*|"
+            r"Ποιος είναι onboard\. Ποιος στον χώρο\. Ποιος έπεσε\.|Ναυτιλία[^<]*)</h4>.*?"
             r"(?=</section>)",
         ),
     ]
