@@ -364,13 +364,279 @@
             .site-fab { right: 0.75rem; bottom: 0.75rem; }
             .site-fab a { padding: 0.6rem 0.85rem; font-size: 0.65rem; }
         }
+    
+        /* ===== HUB USE-CASE CHAPTERS ===== */
+/* ===== HUB USE-CASE CHAPTERS ===== */
+.hub-cases-intro {
+  padding-bottom: 3.5rem;
+}
+.hub-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.hub-entry {
+  --hub-accent: #22d3ee;
+  --hub-wash: rgba(34, 211, 238, 0.07);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  text-decoration: none;
+  color: inherit;
+  background: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: clamp(420px, 72vh, 720px);
+  isolation: isolate;
+  transition: background 0.35s ease;
+}
+.hub-entry + .hub-entry {
+  margin-top: 1.75rem;
+  box-shadow: 0 -1.75rem 0 #000;
+}
+.hub-entry:hover {
+  background: #080808;
+}
+.hub-entry--flip {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+}
+.hub-entry--flip .hub-entry-media {
+  order: 2;
+}
+.hub-entry--flip .hub-entry-copy {
+  order: 1;
+}
+
+/* Per-case accent so chapters read as separate worlds */
+.hub-entry--presence { --hub-accent: #22d3ee; --hub-wash: rgba(34, 211, 238, 0.08); }
+.hub-entry--signage  { --hub-accent: #67e8f9; --hub-wash: rgba(103, 232, 249, 0.07); }
+.hub-entry--shop     { --hub-accent: #2dd4bf; --hub-wash: rgba(45, 212, 191, 0.08); }
+.hub-entry--home     { --hub-accent: #38bdf8; --hub-wash: rgba(56, 189, 248, 0.08); }
+.hub-entry--care     { --hub-accent: #5eead4; --hub-wash: rgba(94, 234, 212, 0.08); }
+.hub-entry--security { --hub-accent: #94a3b8; --hub-wash: rgba(148, 163, 184, 0.08); }
+.hub-entry--shipping { --hub-accent: #38bdf8; --hub-wash: rgba(14, 165, 233, 0.1); }
+
+.hub-entry-media {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  background: #0a0a0a;
+}
+.hub-entry-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent 42%),
+    var(--hub-wash);
+  mix-blend-mode: normal;
+}
+.hub-entry-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.35) brightness(0.72) contrast(1.12) saturate(0.85);
+  transition: transform 0.7s ease, filter 0.45s ease;
+}
+.hub-entry:hover .hub-entry-media img {
+  transform: scale(1.045);
+  filter: grayscale(0.12) brightness(0.86) contrast(1.14) saturate(1);
+}
+
+.hub-entry-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: clamp(2rem, 4vw, 3.75rem) clamp(1.5rem, 4vw, 3.5rem);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.03), transparent 42%),
+    #050505;
+}
+.hub-entry--flip .hub-entry-copy {
+  border-left: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.hub-entry-copy::before {
+  content: '';
+  position: absolute;
+  top: clamp(2rem, 4vw, 3.75rem);
+  left: 0;
+  width: 3px;
+  height: 3.5rem;
+  background: var(--hub-accent);
+}
+.hub-entry--flip .hub-entry-copy::before {
+  left: auto;
+  right: 0;
+}
+
+.hub-entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+.hub-entry-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hub-accent);
+}
+.hub-entry-domain {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+.hub-entry-audience {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.4;
+  max-width: 34rem;
+}
+.hub-entry-title {
+  font-size: clamp(1.55rem, 3.1vw, 2.55rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: #fff;
+  max-width: 18ch;
+}
+.hub-entry-title em {
+  font-style: normal;
+  color: var(--hub-accent);
+}
+.hub-entry-tease {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.55;
+  max-width: 36rem;
+}
+.hub-entry-points {
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0.25rem;
+  padding: 0;
+}
+.hub-entry-points li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.35;
+}
+.hub-entry-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--hub-accent);
+}
+.hub-entry-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+  width: fit-content;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--hub-accent);
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, gap 0.25s ease;
+}
+.hub-entry-cta::after {
+  content: '→';
+  transition: transform 0.25s ease;
+}
+.hub-entry:hover .hub-entry-cta {
+  border-bottom-color: var(--hub-accent);
+  gap: 0.85rem;
+}
+.hub-entry:hover .hub-entry-cta::after {
+  transform: translateX(3px);
+}
+.hub-entry:focus-visible {
+  outline: 2px solid var(--hub-accent);
+  outline-offset: -2px;
+}
+
+@media (max-width: 900px) {
+  .hub-entry,
+  .hub-entry--flip {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .hub-entry--flip .hub-entry-media,
+  .hub-entry--flip .hub-entry-copy {
+    order: initial;
+  }
+  .hub-entry-media {
+    min-height: 240px;
+    max-height: 320px;
+  }
+  .hub-entry-copy,
+  .hub-entry--flip .hub-entry-copy {
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem 1.5rem 2.4rem;
+  }
+  .hub-entry-copy::before,
+  .hub-entry--flip .hub-entry-copy::before {
+    top: 0;
+    left: 1.5rem;
+    right: auto;
+    width: 2.75rem;
+    height: 3px;
+  }
+  .hub-entry-title {
+    max-width: none;
+  }
+  .hub-entry + .hub-entry {
+    margin-top: 1.25rem;
+    box-shadow: 0 -1.25rem 0 #000;
+  }
+  .closing-hero { height: 60vh !important; min-height: 380px !important; }
+}
+
+.close-cta-panel {
+  text-align: center; padding: 6rem 2rem;
+}
+.close-cta-panel .cta-row {
+  display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top: 2.5rem;
+}
+.cta-pair {
+  margin-top: 2rem;
+  display: flex; flex-wrap: wrap; gap: 1.75rem 2.5rem;
+  justify-content: center; align-items: center;
+}
+.cta-pair .cta-link { font-size: 1.05rem; }
+.cta-link-case { color: #67e8f9; }
+.cta-link-case::after { background: #67e8f9; }
     </style>
 </head>
 <body>
 
     <aside class="site-fab" aria-label="Quick links">
-        <a class="site-fab-primary" href="marketing/web/">Use cases</a>
-        <a href="#primary-use-cases">Jump to cases</a>
+        <a class="site-fab-primary" href="#primary-use-cases">Use cases</a>
+        <a href="business/">Business</a>
+        <a href="applications/">Applications</a>
     </aside>
 
     <!-- ===== HEADER ===== -->
@@ -445,7 +711,7 @@
             </div>
             <div class="chip-row" id="eyenet-chips-presence"></div>
             <div class="cta-pair">
-                <a href="#dd-headline-presence" class="cta-link">Discover Eyenet Presence <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="applications/#dd-headline-presence" class="cta-link">Discover Eyenet Presence <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 <a href="marketing/web/hr-presence/" class="cta-link cta-link-case">Presence use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
             </div>
         </div>
@@ -475,7 +741,7 @@
             </div>
             <div class="chip-row" id="eyenet-chips-signage"></div>
             <div class="cta-pair">
-                <a href="#dd-headline-signage" class="cta-link">Power Your Displays <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="applications/#dd-headline-signage" class="cta-link">Power Your Displays <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 <a href="marketing/web/mall/" class="cta-link cta-link-case">Signage use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
             </div>
         </div>
@@ -505,7 +771,7 @@
             </div>
             <div class="chip-row" id="eyenet-chips-access"></div>
             <div class="cta-pair">
-                <a href="#dd-headline-gate" class="cta-link">Discover Eyenet Gate <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="applications/#dd-headline-gate" class="cta-link">Discover Eyenet Gate <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 <a href="marketing/web/shipping/" class="cta-link cta-link-case">Onboard / on-site use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
             </div>
         </div>
@@ -535,7 +801,7 @@
             </div>
             <div class="chip-row" id="eyenet-chips-restricted"></div>
             <div class="cta-pair">
-                <a href="#dd-headline-vradar" class="cta-link">Deploy Virtual Perimeters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="applications/#dd-headline-vradar" class="cta-link">Deploy Virtual Perimeters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 <a href="marketing/web/security/" class="cta-link cta-link-case">Security use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
             </div>
         </div>
@@ -565,7 +831,7 @@
             </div>
             <div class="chip-row" id="eyenet-chips-vip"></div>
             <div class="cta-pair">
-                <a href="#dd-headline-sentinel" class="cta-link">Protect What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="applications/#dd-headline-sentinel" class="cta-link">Protect What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 <a href="marketing/web/cottage/" class="cta-link cta-link-case">Home protection use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
             </div>
         </div>
@@ -595,7 +861,7 @@
             </div>
             <div class="chip-row" id="eyenet-chips-remote"></div>
             <div class="cta-pair">
-                <a href="#dd-card-matrix" class="cta-link">Manage From Anywhere <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="applications/#dd-card-matrix" class="cta-link">Manage From Anywhere <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 <a href="marketing/web/home-care/" class="cta-link cta-link-case">Home care use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
             </div>
         </div>
@@ -633,36 +899,12 @@
 
     <div class="hairline"></div>
 
-    <!-- ===== PRIMARY USE CASES ===== -->
-    <section id="primary-use-cases">
-        <div class="content-panel wide">
-            <div class="section-label">Primary use cases</div>
-            <h2 class="section-heading">Choose your <em>wedge</em></h2>
-            <p class="section-subheading">Seven operational stories on the same platform — open a microsite, then come back to the product deep dive.</p>
-            <div class="use-case-strip">
-                <a class="use-case-chip" href="marketing/web/hr-presence/"><span class="use-case-chip-num">01 · Presence</span><span class="use-case-chip-title">Know who is present — and who is not</span><span class="use-case-chip-go">Open microsite →</span></a>
-                <a class="use-case-chip" href="marketing/web/mall/"><span class="use-case-chip-num">02 · Signage</span><span class="use-case-chip-title">Screens that sell themselves</span><span class="use-case-chip-go">Open microsite →</span></a>
-                <a class="use-case-chip" href="marketing/web/shop-floor/"><span class="use-case-chip-num">03 · Shop floor</span><span class="use-case-chip-title">See how shoppers move</span><span class="use-case-chip-go">Open microsite →</span></a>
-                <a class="use-case-chip" href="marketing/web/cottage/"><span class="use-case-chip-num">04 · Home</span><span class="use-case-chip-title">Peace of mind at home — and away</span><span class="use-case-chip-go">Open microsite →</span></a>
-                <a class="use-case-chip" href="marketing/web/home-care/"><span class="use-case-chip-num">05 · Home care</span><span class="use-case-chip-title">Hospital-grade care at home</span><span class="use-case-chip-go">Open microsite →</span></a>
-                <a class="use-case-chip" href="marketing/web/security/"><span class="use-case-chip-num">06 · Security</span><span class="use-case-chip-title">Night shifts that never blink</span><span class="use-case-chip-go">Open microsite →</span></a>
-                <a class="use-case-chip" href="marketing/web/shipping/"><span class="use-case-chip-num">07 · Shipping</span><span class="use-case-chip-title">Who’s onboard. Who’s on site. Who fell.</span><span class="use-case-chip-go">Open microsite →</span></a>
-            </div>
-            <div class="cta-pair">
-                <a href="marketing/web/" class="cta-link cta-link-case">All use-case microsites <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-                <a href="https://value.eyenet-vision.com/why/" class="cta-link" rel="noopener">Value analysis <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-            </div>
-        </div>
-    </section>
-
-    <div class="hairline"></div>
-
     <!-- ===== QUOTE 1 ===== -->
     <section><div class="quote-block"><p>Eyenet sees more so you can do more.</p><div class="heading-accent-line" style="margin-bottom: 0;"></div></div></section>
     <div class="hairline"></div>
 
     <!-- ===== EYENET IN ACTION (PHOTO STRIP) ===== -->
-    <section id="application-suite">
+    <section id="eyenet-in-action">
         <div class="content-panel wide">
             <h2 class="section-heading"><em>Eyenet</em> in Action</h2>
             <p class="section-subheading">Discover how our intelligent vision technology transforms real-world environments across diverse applications and industries</p>
@@ -695,231 +937,192 @@
     <section><div class="quote-block"><p>"Don't just protect your assets — see them protected."</p><div class="heading-accent-line" style="margin-bottom: 0;"></div></div></section>
     <div class="hairline"></div>
 
-    <!-- ===== CARD 9: BUSINESS OWNERS ===== -->
-    <section>
-        <div class="content-panel">
-            <div class="section-label">Business</div>
-            <h2 class="card-headline small">Secure staff presence compliance from <em>one single office to entire maritime fleets</em></h2>
-            <div class="image-strip" style="margin-bottom: 4rem;">
-                <img src="assets/shipping operations.jpeg" alt="Business Owners" loading="lazy">
-            </div>
-            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
-            <div class="stat-collection" style="margin-bottom: 2rem;">
-                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Sites</span></div>
-                <div class="stat-item"><span class="stat-value">Real-time</span><span class="stat-label">Alerts</span></div>
-                <div class="stat-item"><span class="stat-value cyan">100%</span><span class="stat-label">Compliant</span></div>
-            </div>
-            <div class="hairline" style="margin-bottom: 2rem;"></div>
-            <div class="feature-grid" style="margin-bottom: 2rem;">
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Presence</div><p class="feature-desc">Track staff presence across single offices or entire maritime fleets</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Live Alerts</div><p class="feature-desc">Incident alerts delivered in real time to supervisors and stakeholders</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Analytics</div><p class="feature-desc">Operational analytics for presence compliance across all locations</p></div>
-            </div>
-            <div class="chip-row" id="eyenet-chips-business"></div>
-            <div class="cta-pair">
-                <a href="#dd-headline-presence" class="cta-link">Monitor Your Business <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-                <a href="marketing/web/hr-presence/" class="cta-link cta-link-case">Presence use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-            </div>
+    <!-- ===== PRIMARY USE CASES (chapters) ===== -->
+    <section class="hub-cases" id="primary-use-cases" aria-labelledby="hub-cases-heading">
+        <div class="content-panel hub-cases-intro">
+            <div class="section-label">Primary use cases</div>
+            <h2 class="section-heading" id="hub-cases-heading">Choose your <em>story</em></h2>
+            <p class="section-subheading">Each case is its own story and microsite — same EyeNet platform, separate operational world. Enter the story that matches your world.</p>
         </div>
-    </section>
 
-    <div class="hairline"></div>
-
-    <!-- ===== CARD 10: SECURITY ===== -->
-    <section>
-        <div class="content-panel">
-            <div class="section-label">Security</div>
-            <h2 class="card-headline small">Multiply Your Security Team with <em>Always-On AI Surveillance</em></h2>
-            <div class="image-strip" style="margin-bottom: 4rem;">
-                <img src="assets/security persona.jpg" alt="Security" loading="lazy">
-            </div>
-            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
-            <div class="stat-collection" style="margin-bottom: 2rem;">
-                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Feeds</span></div>
-                <div class="stat-item"><span class="stat-value">AI</span><span class="stat-label">Powered</span></div>
-                <div class="stat-item"><span class="stat-value cyan">24/7</span><span class="stat-label">Vigilant</span></div>
-            </div>
-            <div class="hairline" style="margin-bottom: 2rem;"></div>
-            <div class="feature-grid" style="margin-bottom: 2rem;">
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>AI Watch</div><p class="feature-desc">AI watches every feed simultaneously — your team focuses only on verified alerts</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Threat Class</div><p class="feature-desc">Intrusion, loitering, tailgating, crowd density — flagged before they escalate</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Auto-Reports</div><p class="feature-desc">Shift handover reports, timelines, and evidence exports — audit-ready 24/7</p></div>
-            </div>
-            <div class="chip-row" id="eyenet-chips-security"></div>
-            <div class="cta-pair">
-                <a href="#dd-headline-vradar" class="cta-link">Upgrade Your Watch Room <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-                <a href="marketing/web/security/" class="cta-link cta-link-case">Security use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-            </div>
-        </div>
-    </section>
-
-    <div class="hairline"></div>
-
-    <!-- ===== CARD 11: MARKETING ===== -->
-    <section>
-        <div class="content-panel">
-            <div class="section-label">Marketing</div>
-            <h2 class="card-headline small">Turn Foot Traffic into <em>Measurable Marketing Intelligence</em></h2>
-            <div class="image-strip" style="margin-bottom: 4rem;">
-                <img src="assets/marketing persona.jpg" alt="Marketing" loading="lazy">
-            </div>
-            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
-            <div class="stat-collection" style="margin-bottom: 2rem;">
-                <div class="stat-item"><span class="stat-value cyan">Zero</span><span class="stat-label">Surveys</span></div>
-                <div class="stat-item"><span class="stat-value">A/B</span><span class="stat-label">Real-time</span></div>
-                <div class="stat-item"><span class="stat-value cyan">100%</span><span class="stat-label">ROI</span></div>
-            </div>
-            <div class="hairline" style="margin-bottom: 2rem;"></div>
-            <div class="feature-grid" style="margin-bottom: 2rem;">
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Zero Surveys</div><p class="feature-desc">Know exactly who sees your displays — age, gender, group size, attention time</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>A/B Test</div><p class="feature-desc">Swap content based on live audience data and measure what converts in real time</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Prove ROI</div><p class="feature-desc">Automated impression reports, engagement rates, and footfall-to-sales funnels</p></div>
-            </div>
-            <div class="chip-row" id="eyenet-chips-marketing"></div>
-            <div class="cta-pair">
-                <a href="#dd-headline-signage" class="cta-link">Measure What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-                <a href="marketing/web/mall/" class="cta-link cta-link-case">Signage use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-            </div>
-        </div>
-    </section>
-
-    <div class="hairline"></div>
-
-    <!-- ===== CARD 12: FACILITIES ===== -->
-    <section>
-        <div class="content-panel">
-            <div class="section-label">Facilities</div>
-            <h2 class="card-headline small">Automate Facility Oversight from <em>Loading Dock to Front Door</em></h2>
-            <div class="image-strip" style="margin-bottom: 4rem;">
-                <img src="assets/facilities manager persona.jpg" alt="Facilities" loading="lazy">
-            </div>
-            <div class="hairline-cyan" style="margin-bottom: 2rem;"></div>
-            <div class="stat-collection" style="margin-bottom: 2rem;">
-                <div class="stat-item"><span class="stat-value cyan">&#8734;</span><span class="stat-label">Zones</span></div>
-                <div class="stat-item"><span class="stat-value">Predictive</span><span class="stat-label">AI</span></div>
-                <div class="stat-item"><span class="stat-value cyan">Audit</span><span class="stat-label">Ready</span></div>
-            </div>
-            <div class="hairline" style="margin-bottom: 2rem;"></div>
-            <div class="feature-grid" style="margin-bottom: 2rem;">
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Auto-Zones</div><p class="feature-desc">Zone monitoring across every floor, gate, and dock — one person sees what ten used to patrol</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Predictive</div><p class="feature-desc">Crowd build-ups, blocked exits, and HVAC triggers based on real-time occupancy</p></div>
-                <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Audit-Ready</div><p class="feature-desc">Compliance-ready logs with timestamped video, occupancy records, and incident docs</p></div>
-            </div>
-            <div class="chip-row" id="eyenet-chips-facilities"></div>
-            <div class="cta-pair">
-                <a href="#dd-headline-gate" class="cta-link">Streamline Your Facility <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-                <a href="marketing/web/shop-floor/" class="cta-link cta-link-case">Shop floor use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-            </div>
-        </div>
-    </section>
-
-    <div class="hairline"></div>
-
-    <!-- ===== QUOTE 3 ===== -->
-    <section><div class="quote-block"><p>"Eyenet makes the unseen visible."</p><div class="heading-accent-line" style="margin-bottom: 0;"></div></div></section>
-    <div class="hairline"></div>
-
-    <!-- ===== APPLICATION SUITE ===== -->
-    <section>
-        <div class="content-panel wide">
-            <h2 class="section-heading">Application <em>Suite</em></h2>
-            <p class="section-subheading">Six specialized applications engineered to address distinct operational challenges with precision and intelligence</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap: 1px; background: rgba(255,255,255,0.06);">
-                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-presence"></div><p class="mb-4">Comprehensive attendance monitoring and access control for educational, healthcare, and corporate environments with automated reporting.</p><div class="space-y-2"><div><span class="minimal-badge">Access Control</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Area &bull; Gate</div></div></div>
-                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-signage"></div><p class="mb-4">Transform digital displays into intelligent marketing platforms with demographic-driven content delivery and real-time audience analytics.</p><div class="space-y-2"><div><span class="minimal-badge">Retail & Marketing</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Spot &bull; Gate &bull; Area</div></div></div>
-                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-vradar"></div><p class="mb-4">Mobile security enhancement through wearable technology, providing real-time alerts and centralized command integration for field operations.</p><div class="space-y-2"><div><span class="minimal-badge">Mobile Security</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Goggles &bull; Drone</div></div></div>
-                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-gate"></div><p class="mb-4">Advanced security monitoring for entrances and corridors with crowd analytics, threat detection, and comprehensive behavioral insights.</p><div class="space-y-2"><div><span class="minimal-badge">Security & Surveillance</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Gate</div></div></div>
-                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-sentinel"></div><p class="mb-4">Automated security personnel monitoring ensuring vigilant oversight at watch stations with customizable activity detection and alerts.</p><div class="space-y-2"><div><span class="minimal-badge">Personnel Monitoring</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Area</div></div></div>
-                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-matrix"></div><p class="mb-4">Cross-installation aggregated reporting and centralised management over secure VPN for multi-site Eyenet deployments.</p><div class="space-y-2"><div><span class="minimal-badge">Enterprise Management</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> All Modes</div></div></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="hairline"></div>
-
-    <!-- ===== OPERATING MODES ===== -->
-    <section>
-        <div class="content-panel">
-            <h2 class="section-heading">Operating <em>Modes</em></h2>
-            <p class="section-subheading">Five specialized deployment configurations designed to optimize performance across diverse operational environments</p>
-            <div class="flex flex-col items-center">
-                <div class="flowchart-node" style="margin-bottom:1.5rem;width:100%;max-width:320px"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><p style="font-weight:600;color:#fff">Camera Input</p><p style="font-size:0.85rem;color:rgba(255,255,255,0.4)">Central data acquisition point for all visual intelligence</p></div>
-                <div class="flowchart-connector" style="height:2rem"></div>
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5" style="gap:1px;background:rgba(255,255,255,0.06);width:100%">
-                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><p style="font-weight:600;color:#fff">Spot Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Precise monitoring of fixed, close-range areas</p></div>
-                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg><p style="font-weight:600;color:#fff">Gate Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Comprehensive monitoring of entrances, exits, corridors</p></div>
-                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><p style="font-weight:600;color:#fff">Area Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Wide-area surveillance for large spaces</p></div>
-                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><path d="M2 7h5.5L12 2l4.5 5H22v10H2z"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/></svg><p style="font-weight:600;color:#fff">Goggles Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Mobile, first-person monitoring via wearable tech</p></div>
-                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg><p style="font-weight:600;color:#fff">Drone Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Aerial surveillance, mobile perspective coverage</p></div>
+        <div class="hub-entries">
+            <a class="hub-entry hub-entry--presence" href="marketing/web/hr-presence/" data-case="01">
+                <div class="hub-entry-media" aria-hidden="true">
+                    <img src="marketing/web/assets/images/cases/hr-presence.png" alt="" loading="lazy">
                 </div>
-            </div>
+                <div class="hub-entry-copy">
+                    <div class="hub-entry-meta">
+                        <span class="hub-entry-num">01</span>
+                        <span class="hub-entry-domain">Presence</span>
+                    </div>
+                    <p class="hub-entry-audience">Home · office · warehouse · industrial · shipping · security</p>
+                    <h2 class="hub-entry-title">Know who is <em>present</em> — and who is not</h2>
+                    <p class="hub-entry-tease">One flexible Presence tool from doorbell to fleet post. Who is in, where, and when — without badge chase or cloud video.</p>
+                    <ul class="hub-entry-points">
+                        <li>Entrance / exit stations</li>
+                        <li>Vprofile cameras &amp; Presence apps</li>
+                        <li>HubSpot grants in real time</li>
+                    </ul>
+                    <span class="hub-entry-cta">Enter Presence story</span>
+                </div>
+            </a>
+
+            <a class="hub-entry hub-entry--signage hub-entry--flip" href="marketing/web/mall/" data-case="02">
+                <div class="hub-entry-media" aria-hidden="true">
+                    <img src="marketing/web/assets/images/cases/mall-signage.png" alt="" loading="lazy">
+                </div>
+                <div class="hub-entry-copy">
+                    <div class="hub-entry-meta">
+                        <span class="hub-entry-num">02</span>
+                        <span class="hub-entry-domain">Signage</span>
+                    </div>
+                    <p class="hub-entry-audience">Mall · retail marketing · agencies · brand studios</p>
+                    <h2 class="hub-entry-title">Screens that <em>sell themselves</em></h2>
+                    <p class="hub-entry-tease">Audience signals drive playlists in milliseconds. Views, dwell, and engagement turn concourses into a measurable studio.</p>
+                    <ul class="hub-entry-points">
+                        <li>Read the room — age, gender, group</li>
+                        <li>A/B content on live audiences</li>
+                        <li>Prove ROI with impression reports</li>
+                    </ul>
+                    <span class="hub-entry-cta">Enter Signage story</span>
+                </div>
+            </a>
+
+            <a class="hub-entry hub-entry--shop" href="marketing/web/shop-floor/" data-case="03">
+                <div class="hub-entry-media" aria-hidden="true">
+                    <img src="marketing/web/assets/images/cases/shop-floor.jpg" alt="" loading="lazy">
+                </div>
+                <div class="hub-entry-copy">
+                    <div class="hub-entry-meta">
+                        <span class="hub-entry-num">03</span>
+                        <span class="hub-entry-domain">Shop floor</span>
+                    </div>
+                    <p class="hub-entry-audience">Shop managers · store ops · multi-site retail</p>
+                    <h2 class="hub-entry-title">See how shoppers <em>move</em></h2>
+                    <p class="hub-entry-tease">Counts, paths, heatmaps, dwell, and behavioural alerts — managers get digests; video never has to leave the store.</p>
+                    <ul class="hub-entry-points">
+                        <li>People counting Face / Body / Both</li>
+                        <li>Occupancy &amp; peak hours by zone</li>
+                        <li>Behavioural alerts to ops</li>
+                    </ul>
+                    <span class="hub-entry-cta">Enter Shop Floor story</span>
+                </div>
+            </a>
+
+            <a class="hub-entry hub-entry--home hub-entry--flip" href="marketing/web/cottage/" data-case="04">
+                <div class="hub-entry-media" aria-hidden="true">
+                    <img src="marketing/web/assets/images/cases/family-protection-home.jpg" alt="" loading="lazy">
+                </div>
+                <div class="hub-entry-copy">
+                    <div class="hub-entry-meta">
+                        <span class="hub-entry-num">04</span>
+                        <span class="hub-entry-domain">Home</span>
+                    </div>
+                    <p class="hub-entry-audience">Families · cottage owners · students away from home</p>
+                    <h2 class="hub-entry-title">Peace of mind at home — <em>and away</em></h2>
+                    <p class="hub-entry-tease">Light protection without a full security team or forced cloud video. A few phone alerts; footage stays local.</p>
+                    <ul class="hub-entry-points">
+                        <li>Presence check for the dwelling</li>
+                        <li>Unknown-person zone alerts</li>
+                        <li>On-prem privacy by default</li>
+                    </ul>
+                    <span class="hub-entry-cta">Enter Home story</span>
+                </div>
+            </a>
+
+            <a class="hub-entry hub-entry--care" href="marketing/web/home-care/" data-case="05">
+                <div class="hub-entry-media" aria-hidden="true">
+                    <img src="marketing/web/assets/images/cases/homecare-caregiver-presence.jpg" alt="" loading="lazy">
+                </div>
+                <div class="hub-entry-copy">
+                    <div class="hub-entry-meta">
+                        <span class="hub-entry-num">05</span>
+                        <span class="hub-entry-domain">Home care</span>
+                    </div>
+                    <p class="hub-entry-audience">Care providers · MDT clinicians · family · eHealth partners</p>
+                    <h2 class="hub-entry-title">Hospital-grade care <em>at home</em></h2>
+                    <p class="hub-entry-tease">Falls, visits, zones, and help events into the clinical stack — video stays on-prem for Virtual Ward workflows.</p>
+                    <ul class="hub-entry-points">
+                        <li>Caregiver visit assurance</li>
+                        <li>Fall &amp; zone automation</li>
+                        <li>Tokenized events to eHealth</li>
+                    </ul>
+                    <span class="hub-entry-cta">Enter Home Care story</span>
+                </div>
+            </a>
+
+            <a class="hub-entry hub-entry--security hub-entry--flip" href="marketing/web/security/" data-case="06">
+                <div class="hub-entry-media" aria-hidden="true">
+                    <img src="marketing/web/assets/images/cases/security.jpg" alt="" loading="lazy">
+                </div>
+                <div class="hub-entry-copy">
+                    <div class="hub-entry-meta">
+                        <span class="hub-entry-num">06</span>
+                        <span class="hub-entry-domain">Security</span>
+                    </div>
+                    <p class="hub-entry-audience">Security firms · corporate · industrial · government guard ops</p>
+                    <h2 class="hub-entry-title">Night shifts that <em>never blink</em></h2>
+                    <p class="hub-entry-tease">Stations and fences watched continuously. Escalate when a post goes quiet — timestamped evidence ready.</p>
+                    <ul class="hub-entry-points">
+                        <li>Presence at watch posts</li>
+                        <li>Perimeter + Vradar motion</li>
+                        <li>Forensics recording</li>
+                    </ul>
+                    <span class="hub-entry-cta">Enter Security story</span>
+                </div>
+            </a>
+
+            <a class="hub-entry hub-entry--shipping" href="marketing/web/shipping/" data-case="07">
+                <div class="hub-entry-media" aria-hidden="true">
+                    <img src="marketing/web/assets/images/cases/shipping.jpg" alt="" loading="lazy">
+                </div>
+                <div class="hub-entry-copy">
+                    <div class="hub-entry-meta">
+                        <span class="hub-entry-num">07</span>
+                        <span class="hub-entry-domain">Shipping</span>
+                    </div>
+                    <p class="hub-entry-audience">Captain · fleet manager · shore HQ · industrial sites</p>
+                    <h2 class="hub-entry-title">Who’s onboard. Who’s on site. <em>Who fell.</em></h2>
+                    <p class="hub-entry-tease">Local truth when links are thin. Headcount, Presence, fall alerts in special areas, and shore packs over Matrix.</p>
+                    <ul class="hub-entry-points">
+                        <li>Exact onboard / on-site count</li>
+                        <li>Fall detection in special zones</li>
+                        <li>Offline ops · Matrix reports</li>
+                    </ul>
+                    <span class="hub-entry-cta">Enter Shipping story</span>
+                </div>
+            </a>
         </div>
     </section>
 
     <div class="hairline"></div>
 
-    <!-- ===== APPLICATION DEEP DIVE ===== -->
-    <section>
-        <div class="content-panel wide">
-            <h2 class="section-heading">Application <em>Deep Dive</em></h2>
-            <p class="section-subheading">Comprehensive overview of each application's purpose, capabilities, and target markets</p>
-            <div class="grid grid-cols-1" style="gap:1px;background:rgba(255,255,255,0.06)">
-                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-presence"></div><p class="text-gray-600 mb-4">A versatile solution for monitoring attendance and activity in specific areas such as schools, gyms, or industrial spaces. It provides detailed attendance reports and enhanced security by ensuring only authorized individuals are present.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Assigns schedules and members to rooms, then tracks attendance and generates comprehensive reports.</li><li>Sends automated alerts if unauthorized persons are detected in restricted areas.</li><li>Can collaborate with the Eyenet Gate Activity application for end-to-end monitoring.</li><li>Automatically sends attendance reports for minors to family members or sponsors in real time or on a recurring schedule.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Schools, universities, gyms, industrial facilities, corporate offices, and hospitals.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Area, Gate</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Presence" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-signage"></div><p class="text-gray-600 mb-4">This application transforms traditional digital signage into a dynamic, data-driven marketing tool. By analyzing the age and gender of people approaching a display, it automatically serves targeted advertisements and media, maximizing engagement and campaign effectiveness.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Automatically displays content based on the demographics of the viewer.</li><li>Owners and marketing collaborators can easily upload and assign targeted media via a user-friendly web interface.</li><li>Optional add-on for comprehensive people activity insights reports.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Retail shops, shopping malls, airports, advertising agencies, event venues, and marketing firms.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Spot, Gate, Area</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=collections,analytics,automation,signagemanagement,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Signage" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-vradar"></div><p class="text-gray-600 mb-4">An advanced, mobile security solution that operates using wearable camera eyewear (goggles) to empower security agents. It provides on-the-go alerts and streams data to a central command unit for collaborative security operations.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Provides instant audio alerts to the agent if a person of interest is detected in their field of view.</li><li>All activity annotations are sent to a main computing unit, enabling the team operator to issue alerts and share information.</li><li>The team operator can add a recently detected person to the "person of interest" group directly from an agent's live feed.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security agencies, law enforcement, private security firms, and event security teams.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Goggles, Drone</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage" title="Quick Actions Widget - Eyenet VRadar" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-gate"></div><p class="text-gray-600 mb-4">A robust security and operational tool designed to monitor people activity in gates, entrances, exits, and corridors. It provides real-time data and security alerts, enabling businesses to understand crowd dynamics and respond to security events proactively.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Provides real-time people counters, age and gender demographics, activity heatmaps, and advanced crowd behavior metrics.</li><li>Triggers instant notifications for abnormal crowd activity and performs facial recognition for persons of interest.</li><li>Offers live video streaming with people activity annotations and flexible video storage solutions.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security agencies, commercial buildings, industrial facilities, airports, public transport hubs, and event organizers.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Gate</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Gate Activity" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-sentinel"></div><p class="text-gray-600 mb-4">This application ensures security personnel remain vigilant by automatically monitoring their activity at a watch station, providing business owners with peace of mind and guaranteeing consistent oversight during all shifts.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Delivers instant alerts and notifications based on customizable criteria for a guard's activity or inactivity.</li><li>Provides live video streams with complete people activity annotations.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security firms, corporate offices with dedicated security staff, industrial plants, and government buildings.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Area</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,collections,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Sentinel" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
-                <div class="deep-dive-card" id="dd-card-matrix" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-matrix"></div><p class="text-gray-600 mb-4">Eyenet Matrix runs alongside the primary installation in a multi-site network, providing centralised management and aggregated reporting across all member installations. Designed to operate under VPN, it communicates with member installations via their internal VPN node URLs — all cross-installation queries go over the VPN tunnel, transparently within a private network without needing public internet exposure.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li><strong>6 Aggregated Report Types:</strong> Summary, Presence, Gate Activity, Camera Events, Demographics, and Logs — querying all member installations in parallel.</li><li><strong>Matrix Groups & Installation Membership:</strong> Full CRUD for groups and member installations with multi-install licensing enforcement.</li><li><strong>User Directory & SSO (JWT-based):</strong> Centralised user management with role-based access control across installations.</li><li><strong>Degraded Mode:</strong> If some installations are unreachable, reports still return partial data — no single point of failure.</li><li><strong>Result Caching:</strong> 60-second TTL report cache for responsive dashboards across distributed sites.</li><li><strong>Time-Range Filtering:</strong> All reports support ISO-8601 timestamp query parameters for precise historical analysis.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Multi-site enterprises, security operations centers, franchise networks, maritime fleet operators, and any organisation managing distributed Eyenet installations.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">All Modes — aggregated across member installations</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Matrix" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
+    <!-- ===== CLOSING HERO ===== -->
+    <header class="header-hero closing-hero" style="height:72vh;min-height:480px" aria-label="Closing">
+        <div class="header-bg">
+            <img src="assets/eyenet-robotic-cyberpunk-eye-01.png" alt="" loading="lazy">
+        </div>
+        <div class="header-veil"></div>
+        <div class="header-cyan-wash"></div>
+        <div class="header-content">
+            <h2 class="header-headline">EyeNet for the <em>moments that matter</em></h2>
+            <div class="header-accent-line"></div>
+            <p style="margin-top:0.5rem;font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.55);max-width:560px;margin-left:auto;margin-right:auto;line-height:1.5">Seven primary stories. Same machine vision platform. Explore roles, applications, or enter a use-case microsite.</p>
+            <div class="cta-pair" style="margin-top:2.25rem">
+                <a href="business/" class="cta-link">Business roles</a>
+                <a href="applications/" class="cta-link">Applications</a>
+                <a href="marketing/web/" class="cta-link cta-link-case">Use-case hub</a>
             </div>
         </div>
-    </section>
-
-    <div class="hairline"></div>
-
-    <!-- ===== VALUE ACROSS EVERY ROLE ===== -->
-    <section>
-        <div class="content-panel wide">
-            <h2 class="section-heading">Value Across <em>Every Role</em></h2>
-            <p class="section-subheading">Eyenet's intelligent solutions deliver tailored benefits, empowering every stakeholder with actionable insights</p>
-            <div class="grid grid-cols-1 md:grid-cols-2" style="gap:1px;background:rgba(255,255,255,0.06)">
-                <div class="role-card" style="background:#000">
-                    <div class="feature-head" style="margin-bottom:1rem"><span class="accent-dot"></span>Business Owners & Executives</div>
-                    <img src="assets/eyenet-executive.jpg" alt="Executive" loading="lazy">
-                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5">Gain unparalleled oversight with comprehensive analytics. Protect assets, ensure compliance, and drive data-informed decisions that boost profitability and operational excellence.</p>
-                </div>
-                <div class="role-card" style="background:#000">
-                    <div class="feature-head" style="margin-bottom:1rem"><span class="accent-dot"></span>Security Managers & Personnel</div>
-                    <img src="assets/eyenet-security.jpg" alt="Security" loading="lazy">
-                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5">Enhance real-time vigilance through automated threat detection and streamlined incident response. Improve situational awareness with consistent, reliable monitoring.</p>
-                </div>
-                <div class="role-card" style="background:#000">
-                    <div class="feature-head" style="margin-bottom:1rem"><span class="accent-dot"></span>Marketing & Sales Teams</div>
-                    <img src="assets/eyenet-marketing-02.jpg" alt="Marketing" loading="lazy">
-                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5">Deliver precisely targeted content based on real-time demographic insights. Optimize campaigns and understand customer behavior for enhanced engagement and conversion rates.</p>
-                </div>
-                <div class="role-card" style="background:#000">
-                    <div class="feature-head" style="margin-bottom:1rem"><span class="accent-dot"></span>Operations & Facilities Managers</div>
-                    <img src="assets/eyenet-industrial.jpg" alt="Industrial" loading="lazy">
-                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:1.5">Monitor attendance, manage access controls, and analyze crowd dynamics. Ensure efficient space utilization, maintain safety standards, and optimize daily operations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="hairline"></div>
-
-    <!-- ===== FOOTER LOGO ===== -->
-    <section style="padding:6rem 2rem;text-align:center">
-        <svg viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;width:100%">
-            <rect x="10" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#0891b2" opacity="1"/><rect x="55" y="10" width="8" height="25" fill="#22d3ee" opacity="1"/><rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/><rect x="95" y="10" width="8" height="60" fill="#06b6d4" opacity="1"/><rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#06b6d4" opacity="1"/><rect x="145" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#0891b2" opacity="1"/><rect x="200" y="10" width="8" height="60" fill="#22d3ee" opacity="1"/><rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#22d3ee" opacity="1"/><rect x="250" y="10" width="30" height="8" fill="#06b6d4" opacity="1"/><rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
-        </svg>
-    </section>
+    </header>
 
     <!-- Minimal footer -->
-    <footer style="padding:4rem;text-align:center">
+    <footer style="padding:3rem 1.5rem 4rem;text-align:center">
         <div class="footer-links">
-            <a href="marketing/web/">Use cases</a>
-            <a href="#primary-use-cases">Case index</a>
+            <a href="#primary-use-cases">Use cases</a>
+            <a href="business/">Business</a>
+            <a href="applications/">Applications</a>
+            <a href="marketing/web/">Microsites</a>
             <a href="https://value.eyenet-vision.com/why/" rel="noopener">Value</a>
             <a href="https://wiki.eyenet-vision.com/" rel="noopener">Wiki</a>
         </div>
@@ -957,19 +1160,10 @@
         addEyenetChips('eyenet-chips-vip',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);
         addEyenetChips('eyenet-chips-remote',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
         addEyenetChips('eyenet-chips-instant',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
-        addEyenetChips('eyenet-chips-business',['Presence','Handshake','Nod','VRadar','VProfiles']);
-        addEyenetChips('eyenet-chips-security',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);
-        addEyenetChips('eyenet-chips-marketing',['Signage','AnonTracking','Insights']);
-        addEyenetChips('eyenet-chips-facilities',['Presence','Handshake','Nod','Insights','VProfiles']);
-
+                                
         // Header chips reel
         (function buildHeaderChips(){const container=document.getElementById('all-chips-header');if(!container)return;const names=['Presence','Handshake','Nod','Signage','Anonymous','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles','Logic','API'];names.forEach(name=>{const chip=document.createElement('span');chip.className='eyenet-chip';const logoSvg=cloneLogoSvg(14);logoSvg.classList.add('chip-logo-svg');chip.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('chip-sub-svg');chip.appendChild(subSvg);container.appendChild(chip)})})();
 
-        // App Suite Headlines
-        (function buildAppSuiteHeadlines(){const mappings={'as-headline-presence':'Presence','as-headline-signage':'Signage','as-headline-vradar':'VRadar','as-headline-gate':'Gate','as-headline-sentinel':'Sentinel','as-headline-matrix':'Matrix'};Object.entries(mappings).forEach(([id,name])=>{const container=document.getElementById(id);if(!container)return;const logoSvg=cloneLogoSvg(28);logoSvg.classList.add('as-logo-svg');container.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('as-sub-svg');container.appendChild(subSvg)})})();
-
-        // Deep Dive Headlines
-        (function buildDeepDiveHeadlines(){const mappings={'dd-headline-presence':'Presence','dd-headline-signage':'Signage','dd-headline-vradar':'VRadar','dd-headline-gate':'Gate','dd-headline-sentinel':'Sentinel','dd-headline-matrix':'Matrix'};Object.entries(mappings).forEach(([id,name])=>{const container=document.getElementById(id);if(!container)return;const logoSvg=cloneLogoSvg(40);logoSvg.classList.add('dd-logo-svg');container.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('dd-sub-svg');container.appendChild(subSvg)})})();
 
         // Quick Action Widget Sizing
         (function initQuickActionWidgetSizing(){const iframes=Array.from(document.querySelectorAll('.qa-widget-iframe'));if(iframes.length===0)return;function setIframeHeight(iframe,height){if(!height||Number.isNaN(height))return;iframe.style.height=`${Math.max(360,Math.ceil(height))}px`}function measureIframe(iframe){try{const doc=iframe.contentDocument||(iframe.contentWindow&&iframe.contentWindow.document);if(!doc)return;const measured=Math.max(doc.documentElement?doc.documentElement.scrollHeight:0,doc.body?doc.body.scrollHeight:0);setIframeHeight(iframe,measured)}catch(e){}}iframes.forEach((iframe)=>{iframe.addEventListener('load',()=>{measureIframe(iframe);setTimeout(()=>measureIframe(iframe),80);setTimeout(()=>measureIframe(iframe),250)})});window.addEventListener('message',(event)=>{const data=event.data;if(!data||data.type!=='quick-actions-height')return;const sourceIframe=iframes.find((iframe)=>iframe.contentWindow===event.source);if(!sourceIframe)return;setIframeHeight(sourceIframe,data.height)});window.addEventListener('resize',()=>{iframes.forEach((iframe)=>measureIframe(iframe))})})();

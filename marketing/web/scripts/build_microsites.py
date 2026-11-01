@@ -766,12 +766,15 @@ def fab_html(*, product: bool = True, hub_href: str = "../index.html") -> str:
     bits = ['<aside class="site-fab" aria-label="Quick links">']
     if product:
         bits.append(
-            '<a class="site-fab-primary" href="https://eyenet-vision.com/" rel="noopener">Product site</a>'
+            '<a class="site-fab-primary" href="https://eyenet-vision.com/#primary-use-cases" rel="noopener">Use cases</a>'
         )
         bits.append(
-            '<a href="https://eyenet-vision.com/#primary-use-cases" rel="noopener">Case index</a>'
+            '<a href="https://eyenet-vision.com/business/" rel="noopener">Business</a>'
         )
-    bits.append(f'<a href="{hub_href}">All use cases</a>')
+        bits.append(
+            '<a href="https://eyenet-vision.com/applications/" rel="noopener">Applications</a>'
+        )
+    bits.append(f'<a href="{hub_href}">All stories</a>')
     bits.append("</aside>")
     return "\n    ".join(bits)
 
@@ -932,7 +935,7 @@ def render_case(case: dict) -> str:
     <section>
         <div class="content-panel wide">
             <h2 class="section-heading">Value Across <em>Every Role</em></h2>
-            <p class="section-subheading">Stakeholders who win when this wedge is live</p>
+            <p class="section-subheading">Stakeholders who win when this story is live</p>
             <div class="roles-grid">{roles}</div>
         </div>
     </section>
@@ -950,7 +953,7 @@ def render_case(case: dict) -> str:
     <section id="operating-modes">
         <div class="content-panel">
             <h2 class="section-heading">Operating <em>Modes</em></h2>
-            <p class="section-subheading">Deployment configurations for this wedge</p>
+            <p class="section-subheading">Deployment configurations for this story</p>
             <div style="display:flex;flex-direction:column;align-items:center">
                 <div class="flowchart-node" style="margin-bottom:1.5rem;width:100%;max-width:320px">
                     <svg class="app-icon" style="margin:0 auto 0.75rem;display:block" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -967,7 +970,7 @@ def render_case(case: dict) -> str:
     <section>
         <div class="content-panel wide">
             <h2 class="section-heading">Application <em>Deep Dive</em></h2>
-            <p class="section-subheading">Capabilities and target users for this wedge</p>
+            <p class="section-subheading">Capabilities and target users for this story</p>
             <div class="deep-dive-card" style="background:#000">
                 <div class="deep-dive-headline" data-dd-name="{esc(deep["app"])}"></div>
                 <p style="color:rgba(255,255,255,0.45);margin:1rem 0 1.5rem;line-height:1.5;text-align:left">{esc(deep["blurb"])}</p>
@@ -984,11 +987,13 @@ def render_case(case: dict) -> str:
 
     <section class="close-cta-panel">
         <div class="section-label">Next</div>
-        <h2 class="section-heading">Ready to <em>deploy</em> this wedge?</h2>
+        <h2 class="section-heading">Ready to <em>deploy</em> this story?</h2>
         <p class="section-subheading" style="margin-bottom:0">Jump to the product site, the cite-backed value page, or the full use-case hub.</p>
         <div class="cta-row">
             <a class="cta-link" href="https://eyenet-vision.com/" rel="noopener">Product site</a>
-            <a class="cta-link" href="https://eyenet-vision.com/#primary-use-cases" rel="noopener">Case index on product</a>
+            <a class="cta-link" href="https://eyenet-vision.com/business/" rel="noopener">Business roles</a>
+            <a class="cta-link" href="https://eyenet-vision.com/applications/" rel="noopener">Applications</a>
+            <a class="cta-link" href="https://eyenet-vision.com/#primary-use-cases" rel="noopener">Case chapters</a>
             <a class="cta-link" href="https://value.eyenet-vision.com/why/{case["slug"]}/" rel="noopener">Value analysis</a>
             <a class="cta-link" href="../index.html">All use cases</a>
         </div>
@@ -1046,7 +1051,7 @@ def render_hub() -> str:
             <h1 class="header-headline">EyeNet for the <em>moments that matter</em></h1>
             <div class="header-accent-line"></div>
             {LOGO_SVG}
-            <p style="margin-top:1.75rem;font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.55);max-width:560px;margin-left:auto;margin-right:auto;line-height:1.5">Seven primary use cases. Same machine vision platform. Enter the wedge that matches your world.</p>
+            <p style="margin-top:1.75rem;font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.55);max-width:560px;margin-left:auto;margin-right:auto;line-height:1.5">Seven primary use cases. Same machine vision platform. Enter the story that matches your world.</p>
         </div>
     </header>
 
@@ -1055,7 +1060,7 @@ def render_hub() -> str:
     <section>
         <div class="content-panel" style="padding-bottom:3rem">
             <div class="section-label">Use Cases</div>
-            <h2 class="section-heading">Choose your <em>wedge</em></h2>
+            <h2 class="section-heading">Choose your <em>story</em></h2>
             <p class="section-subheading">Each microsite mirrors the product site structure — remapped to one daring operational story.</p>
         </div>
         <div class="hub-entries">{''.join(entries)}</div>
@@ -1066,7 +1071,7 @@ def render_hub() -> str:
     <section class="close-cta-panel">
         <div class="section-label">Platform</div>
         <h2 class="section-heading">See the full <em>product</em></h2>
-        <p class="section-subheading" style="margin-bottom:0">The complete EyeNet platform narrative, or the cite-backed value wiki behind these wedges.</p>
+        <p class="section-subheading" style="margin-bottom:0">The complete EyeNet platform narrative, or the cite-backed value wiki behind these stories.</p>
         <div class="cta-row">
             <a class="cta-link" href="https://eyenet-vision.com/" rel="noopener">Product site</a>
             <a class="cta-link" href="https://eyenet-vision.com/#primary-use-cases" rel="noopener">Case index on product</a>

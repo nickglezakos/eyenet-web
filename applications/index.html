@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications — Eyenet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .hairline { height: 1px; background: rgba(255,255,255,0.08); width: 100%; }
+        .hairline-cyan { height: 1px; background: rgba(34,211,238,0.35); width: 100%; }
+        .accent-dot {
+            display: inline-block; width: 6px; height: 6px;
+            background: #22d3ee; margin-right: 0.75rem; flex-shrink: 0;
+        }
+
+        /* ===== HEADER HERO ===== */
+        .header-hero {
+            position: relative; width: 100%; height: 90vh; min-height: 600px;
+            overflow: hidden; display: flex; align-items: flex-end;
+        }
+        .header-hero .header-bg { position: absolute; inset: 0; z-index: 0; }
+        .header-hero .header-bg img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: grayscale(0.75) brightness(0.55) contrast(1.2);
+        }
+        .header-hero .header-veil {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.6) 65%, #000 100%);
+        }
+        .header-hero .header-cyan-wash {
+            position: absolute; inset: 0; z-index: 2;
+            background: rgba(34,211,238,0.03); mix-blend-mode: screen; pointer-events: none;
+        }
+        .header-hero .header-content {
+            position: relative; z-index: 3; width: 100%; padding: 0 4rem 5rem;
+            max-width: 1400px; margin: 0 auto; text-align: center;
+        }
+        .header-hero .header-logo { display: block; width: 280px; max-width: 50vw; height: auto; margin: 2.5rem auto 0; }
+        .header-hero .header-headline {
+            font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.0;
+            letter-spacing: -0.03em; max-width: 900px; color: #fff; margin: 0 auto 2.5rem;
+        }
+        .header-hero .header-headline em { font-style: normal; color: #22d3ee; }
+        .header-hero .header-accent-line { width: 40px; height: 1px; background: #22d3ee; margin: 0 auto 2.5rem; }
+
+        /* ===== IMAGE STRIP ===== */
+        .image-strip {
+            position: relative; width: 100%; height: 50vh; min-height: 340px; overflow: hidden;
+        }
+        .image-strip img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: grayscale(0.75) brightness(0.6) contrast(1.2);
+        }
+        .image-strip::after {
+            content: ''; position: absolute; inset: 0;
+            border: 1px solid rgba(34,211,238,0.15); pointer-events: none; z-index: 2;
+        }
+        .image-strip.tall { height: 65vh; min-height: 420px; }
+
+        /* ===== SECTION LABEL ===== */
+        .section-label {
+            display: block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
+            text-transform: uppercase; color: #22d3ee; margin-bottom: 1.5rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid rgba(34,211,238,0.3);
+            width: fit-content; margin-left: auto; margin-right: auto;
+        }
+
+        /* ===== CONTENT PANEL ===== */
+        .content-panel { padding: 8rem 4rem; max-width: 1400px; margin: 0 auto; text-align: center; }
+        .content-panel.narrow { max-width: 1000px; }
+        .content-panel.wide { max-width: 1600px; }
+
+        /* ===== TYPOGRAPHY ===== */
+        .card-headline {
+            font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.0;
+            letter-spacing: -0.03em; max-width: 900px; margin: 0 auto 4rem;
+        }
+        .card-headline em { font-style: normal; color: #22d3ee; }
+        .card-headline.small { font-size: clamp(1.6rem, 3.2vw, 2.8rem); }
+        .card-headline.xs { font-size: clamp(1.2rem, 2.2vw, 2rem); }
+
+        .stat-collection { display: flex; gap: 5rem; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center; }
+        .stat-item { display: flex; flex-direction: column; gap: 0.4rem; }
+        .stat-value {
+            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.03em;
+            color: #fff; line-height: 0.9;
+        }
+        .stat-value.cyan { color: #22d3ee; }
+        .stat-label {
+            font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em;
+            text-transform: uppercase; color: rgba(255,255,255,0.5);
+        }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-bottom: 4rem; }
+        .feature-grid.four { grid-template-columns: repeat(4, 1fr); }
+        .feature-grid.two { grid-template-columns: repeat(2, 1fr); }
+        .feature-item { display: flex; flex-direction: column; gap: 0.75rem; text-align: center; }
+        .feature-head {
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; font-weight: 600; color: #fff; letter-spacing: -0.01em;
+        }
+        .feature-desc {
+            font-size: 0.9rem; font-weight: 300; color: rgba(255,255,255,0.55);
+            line-height: 1.5; padding-left: 0;
+        }
+
+        .cta-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.75rem; font-size: 1.15rem; font-weight: 600; color: #22d3ee;
+            text-decoration: none; letter-spacing: -0.01em; transition: gap 0.3s ease; position: relative;
+        }
+        .cta-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 50%; width: 100%; height: 1px;
+            background: #22d3ee; transform: translateX(-50%) scaleX(0);
+            transform-origin: center; transition: transform 0.3s ease;
+        }
+        .cta-link:hover::after { transform: translateX(-50%) scaleX(1); }
+        .cta-link:hover { gap: 1.25rem; }
+        .cta-link svg { width: 1rem; height: 1rem; transition: transform 0.3s ease; }
+        .cta-link:hover svg { transform: translateX(4px); }
+        .cta-pair {
+            margin-top: 2rem;
+            display: flex; flex-wrap: wrap; gap: 1.75rem 2.5rem;
+            justify-content: center; align-items: center;
+        }
+        .cta-pair .cta-link { font-size: 1.05rem; }
+        .cta-link-case { color: #67e8f9; }
+        .cta-link-case::after { background: #67e8f9; }
+
+        /* Sticky FAB — product ↔ use cases */
+        .site-fab {
+            position: fixed; z-index: 40;
+            right: 1.25rem; bottom: 1.25rem;
+            display: flex; flex-direction: column; gap: 0.55rem;
+            align-items: flex-end;
+        }
+        .site-fab a {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.7rem 1.05rem;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; text-decoration: none;
+            border: 1px solid rgba(34, 211, 238, 0.45);
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(10px);
+            color: #22d3ee;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+            transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+        .site-fab a:hover {
+            border-color: #22d3ee;
+            background: rgba(8, 20, 28, 0.96);
+            color: #fff;
+        }
+        .site-fab a.site-fab-primary {
+            background: #0891b2;
+            border-color: #22d3ee;
+            color: #041018;
+        }
+        .site-fab a.site-fab-primary:hover {
+            background: #22d3ee;
+            color: #000;
+        }
+
+        .use-case-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            width: 100%;
+            margin-top: 2.5rem;
+        }
+        .use-case-chip {
+            display: flex; flex-direction: column; gap: 0.55rem;
+            padding: 1.5rem 1.25rem;
+            background: #000;
+            text-decoration: none; color: inherit;
+            min-height: 9.5rem;
+            transition: background 0.25s ease;
+        }
+        .use-case-chip:hover { background: #080808; }
+        .use-case-chip-num {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; color: #22d3ee;
+        }
+        .use-case-chip-title {
+            font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em;
+            line-height: 1.2; color: #fff;
+        }
+        .use-case-chip-go {
+            margin-top: auto;
+            font-size: 0.8rem; font-weight: 600; color: #67e8f9;
+        }
+        .footer-links {
+            display: flex; flex-wrap: wrap; gap: 1.25rem 1.75rem;
+            justify-content: center; margin-bottom: 1.5rem;
+        }
+        .footer-links a {
+            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+            text-transform: uppercase; color: rgba(255, 255, 255, 0.45);
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: #22d3ee; }
+
+        /* ===== SECTION HEADINGS ===== */
+        .section-heading {
+            font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.0;
+            letter-spacing: -0.03em; margin-bottom: 1.5rem; color: #fff; text-align: center;
+        }
+        .section-heading em { font-style: normal; color: #22d3ee; }
+        .section-subheading {
+            font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.45);
+            line-height: 1.5; max-width: 600px; margin: 0 auto 4rem; text-align: center;
+        }
+        .heading-accent-line { width: 40px; height: 1px; background: #22d3ee; margin: 0 auto 3rem; }
+
+        /* ===== CHIPS (adapted from original, stripped of glassmorphism) ===== */
+        .chip-row { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; }
+        .chip-row .eyenet-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px 6px 10px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+            color: #cbd5e1; font-size: 0.75rem; transition: border-color 0.2s ease;
+        }
+        .chip-row .eyenet-chip:hover { border-color: rgba(34,211,238,0.3); }
+        .chip-row .eyenet-chip .chip-logo-svg { display: block; height: 14px; width: auto; }
+        .chip-row .eyenet-chip .chip-sub-svg { display: block; height: 11px; width: auto; }
+        .chip-row .eyenet-chip .chip-sub-svg rect { fill: #ecfeff !important; }
+
+        /* ===== APP SUITE CARDS ===== */
+        .app-suite-card {
+            border: 1px solid rgba(255,255,255,0.08); padding: 3rem 2rem;
+            text-align: center; transition: border-color 0.3s ease;
+        }
+        .app-suite-card:hover { border-color: rgba(34,211,238,0.3); }
+        .app-suite-card .app-suite-headline {
+            display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 1rem;
+        }
+        .app-suite-card .app-suite-headline .as-logo-svg { display: block; height: 28px; width: auto; }
+        .app-suite-card .app-suite-headline .as-sub-svg { display: block; height: 22px; width: auto; }
+        .app-suite-card .app-suite-headline .as-sub-svg rect { fill: #ecfeff !important; }
+        .app-suite-card p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+        .minimal-badge {
+            display: inline-flex; align-items: center; padding: 0.25rem 0.75rem;
+            border: 1px solid rgba(34,211,238,0.4); color: #22d3ee;
+            font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+        }
+
+        /* ===== DEEP DIVE ===== */
+        .deep-dive-card {
+            border: 1px solid rgba(255,255,255,0.08); padding: 3rem;
+            transition: border-color 0.3s ease;
+        }
+        .deep-dive-card:hover { border-color: rgba(34,211,238,0.3); }
+        .deep-dive-headline { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+        .deep-dive-headline .dd-logo-svg { display: block; height: 40px; width: auto; }
+        .deep-dive-headline .dd-sub-svg { display: block; height: 30px; width: auto; }
+        .deep-dive-headline .dd-sub-svg rect { fill: #ecfeff !important; }
+        .deep-dive-card .text-gray-600 { color: rgba(255,255,255,0.45); }
+        .deep-dive-card .text-gray-700 { color: rgba(255,255,255,0.65); }
+        .deep-dive-card .text-gray-400 { color: rgba(255,255,255,0.35); }
+        .deep-dive-card .text-xl { color: #fff; }
+
+        /* ===== ROLE CARDS ===== */
+        .role-card {
+            border: 1px solid rgba(255,255,255,0.08); padding: 2rem;
+            text-align: center; transition: border-color 0.3s ease;
+        }
+        .role-card:hover { border-color: rgba(34,211,238,0.3); }
+        .role-card img {
+            width: 100%; height: 12rem; object-fit: cover; display: block;
+            filter: grayscale(0.5) brightness(0.7); margin-bottom: 1.5rem;
+        }
+
+        /* ===== FLOWCHART NODES ===== */
+        .flowchart-node {
+            border: 1px solid rgba(255,255,255,0.1); text-align: center; padding: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+        .flowchart-node:hover { border-color: rgba(34,211,238,0.4); }
+        .flowchart-connector {
+            position: relative; width: 1px; background: linear-gradient(to bottom, #22d3ee, rgba(34,211,238,0.2));
+            margin: 0 auto;
+        }
+        .flowchart-connector::after {
+            content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+            border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid #22d3ee;
+        }
+        .app-icon { width: 40px; height: 40px; stroke: #22d3ee; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* ===== QUOTE ===== */
+        .quote-block {
+            border-left: 1px solid #22d3ee; padding: 3rem 4rem; text-align: center;
+        }
+        .quote-block p { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 300; color: #fff; line-height: 1.4; }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.98); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox-content {
+            position: relative; max-width: 90%; max-height: 90%; overflow: auto;
+            background: #111; border: 1px solid rgba(255,255,255,0.1);
+            transform: scale(0.9); transition: transform 0.3s ease;
+        }
+        .lightbox.active .lightbox-content { transform: scale(1); }
+        .lightbox-image { width: 100%; height: auto; display: block; }
+        .lightbox-close {
+            position: absolute; top: -15px; right: -15px; width: 40px; height: 40px;
+            background: #111; color: #22d3ee; border: 1px solid rgba(255,255,255,0.2);
+            font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease; z-index: 10001;
+        }
+        .lightbox-close:hover { background: #222; border-color: #22d3ee; }
+
+        .gallery-item { cursor: pointer; overflow: hidden; }
+        .gallery-item:hover { cursor: zoom-in; }
+        .photo-strip::-webkit-scrollbar { display: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .header-hero { height: 70vh; min-height: 450px; }
+            .header-hero .header-content { padding: 0 1.5rem 3rem; }
+            .header-hero .header-logo { width: 200px; }
+            .content-panel { padding: 4rem 1.5rem; }
+            .image-strip { height: 35vh; min-height: 240px; }
+            .image-strip.tall { height: 45vh; min-height: 300px; }
+            .feature-grid, .feature-grid.four, .feature-grid.two { grid-template-columns: 1fr; gap: 2rem; }
+            .stat-collection { gap: 3rem; }
+            .stat-value { font-size: 2.2rem; }
+            .card-headline { margin-bottom: 3rem; }
+            .quote-block { padding: 2rem 1.5rem; }
+            .deep-dive-card { padding: 2rem 1.5rem; }
+            .section-heading { font-size: 2rem; }
+        }
+
+        @media (max-width: 500px) {
+            .header-hero { height: 60vh; min-height: 380px; }
+            .header-hero .header-content { padding: 0 1rem 2.5rem; }
+            .header-hero .header-logo { width: 160px; }
+            .content-panel { padding: 3rem 1rem; }
+            .image-strip, .image-strip.tall { height: 28vh; min-height: 200px; }
+            .stat-collection { gap: 2rem; }
+            .stat-value { font-size: 1.8rem; }
+            .card-headline { font-size: 1.6rem; }
+            .section-heading { font-size: 1.6rem; }
+            .site-fab { right: 0.75rem; bottom: 0.75rem; }
+            .site-fab a { padding: 0.6rem 0.85rem; font-size: 0.65rem; }
+        }
+    
+        .page-topnav {
+            display:flex; flex-wrap:wrap; gap:0.75rem 1.25rem; align-items:center; justify-content:center;
+            padding:1rem 1.25rem; border-bottom:1px solid rgba(255,255,255,0.08);
+            position:sticky; top:0; z-index:20; background:rgba(0,0,0,0.92); backdrop-filter:blur(8px);
+        }
+        .page-topnav a {
+            font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+            color:rgba(255,255,255,0.45); text-decoration:none;
+        }
+        .page-topnav a:hover, .page-topnav a.is-active { color:#22d3ee; }
+        .page-topnav .nav-sep { width:1px; height:12px; background:rgba(255,255,255,0.12); }
+        .page-hero-mini {
+            padding:4rem 2rem 2rem; text-align:center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header-hero" style="display:none" aria-hidden="true"><svg class="header-logo" viewBox="5 5 285 70" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="8" height="60" fill="#0891b2"/><rect x="18" y="10" width="25" height="8" fill="#0891b2" opacity="0.9"/><rect x="18" y="36" width="20" height="8" fill="#0891b2" opacity="0.8"/><rect x="18" y="62" width="25" height="8" fill="#0891b2"/><rect x="55" y="10" width="8" height="25" fill="#22d3ee"/><rect x="63" y="35" width="8" height="35" fill="#22d3ee" opacity="0.9"/><rect x="71" y="10" width="8" height="25" fill="#22d3ee" opacity="0.8"/><rect x="95" y="10" width="8" height="60" fill="#06b6d4"/><rect x="103" y="10" width="25" height="8" fill="#06b6d4" opacity="0.9"/><rect x="103" y="36" width="20" height="8" fill="#06b6d4" opacity="0.8"/><rect x="103" y="62" width="25" height="8" fill="#06b6d4"/><rect x="145" y="10" width="8" height="60" fill="#0891b2"/><rect x="153" y="20" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="161" y="33" width="8" height="14" fill="#0891b2" opacity="0.8"/><rect x="169" y="47" width="8" height="13" fill="#0891b2" opacity="0.9"/><rect x="177" y="10" width="8" height="60" fill="#0891b2"/><rect x="200" y="10" width="8" height="60" fill="#22d3ee"/><rect x="208" y="10" width="25" height="8" fill="#22d3ee" opacity="0.9"/><rect x="208" y="36" width="20" height="8" fill="#22d3ee" opacity="0.8"/><rect x="208" y="62" width="25" height="8" fill="#22d3ee"/><rect x="250" y="10" width="30" height="8" fill="#06b6d4"/><rect x="261" y="18" width="8" height="52" fill="#06b6d4" opacity="0.9"/>
+</svg></div>
+    <aside class="site-fab" aria-label="Quick links">
+        <a class="site-fab-primary" href="../#primary-use-cases">Use cases</a>
+        <a href="../business/">Business</a>
+        <a href="../">Home</a>
+    </aside>
+    <nav class="page-topnav" aria-label="Site">
+      <a href="../">Home</a>
+      <a href="../#primary-use-cases">Use cases</a>
+      <a href="../business/">Business</a>
+      <a class="is-active" href="./">Applications</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="../marketing/web/">Microsites</a>
+    </nav>
+<div class="page-hero-mini">
+  <div class="section-label">Eyenet</div>
+  <h1 class="section-heading" style="margin-bottom:0.75rem">Application <em>deep dive</em></h1>
+</div>
+<div class="hairline"></div>
+    <!-- ===== APPLICATION SUITE ===== -->
+    <section>
+        <div class="content-panel wide">
+            <h2 class="section-heading">Application <em>Suite</em></h2>
+            <p class="section-subheading">Six specialized applications engineered to address distinct operational challenges with precision and intelligence</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap: 1px; background: rgba(255,255,255,0.06);">
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-presence"></div><p class="mb-4">Comprehensive attendance monitoring and access control for educational, healthcare, and corporate environments with automated reporting.</p><div class="space-y-2"><div><span class="minimal-badge">Access Control</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Area &bull; Gate</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-signage"></div><p class="mb-4">Transform digital displays into intelligent marketing platforms with demographic-driven content delivery and real-time audience analytics.</p><div class="space-y-2"><div><span class="minimal-badge">Retail & Marketing</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Spot &bull; Gate &bull; Area</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-vradar"></div><p class="mb-4">Mobile security enhancement through wearable technology, providing real-time alerts and centralized command integration for field operations.</p><div class="space-y-2"><div><span class="minimal-badge">Mobile Security</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Goggles &bull; Drone</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-gate"></div><p class="mb-4">Advanced security monitoring for entrances and corridors with crowd analytics, threat detection, and comprehensive behavioral insights.</p><div class="space-y-2"><div><span class="minimal-badge">Security & Surveillance</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Gate</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-sentinel"></div><p class="mb-4">Automated security personnel monitoring ensuring vigilant oversight at watch stations with customizable activity detection and alerts.</p><div class="space-y-2"><div><span class="minimal-badge">Personnel Monitoring</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> Area</div></div></div>
+                <div class="app-suite-card"><div class="app-suite-headline" id="as-headline-matrix"></div><p class="mb-4">Cross-installation aggregated reporting and centralised management over secure VPN for multi-site Eyenet deployments.</p><div class="space-y-2"><div><span class="minimal-badge">Enterprise Management</span></div><div class="text-sm" style="color:rgba(255,255,255,0.35)"><span style="font-weight:600">Modes:</span> All Modes</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== OPERATING MODES ===== -->
+    <section>
+        <div class="content-panel">
+            <h2 class="section-heading">Operating <em>Modes</em></h2>
+            <p class="section-subheading">Five specialized deployment configurations designed to optimize performance across diverse operational environments</p>
+            <div class="flex flex-col items-center">
+                <div class="flowchart-node" style="margin-bottom:1.5rem;width:100%;max-width:320px"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><p style="font-weight:600;color:#fff">Camera Input</p><p style="font-size:0.85rem;color:rgba(255,255,255,0.4)">Central data acquisition point for all visual intelligence</p></div>
+                <div class="flowchart-connector" style="height:2rem"></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5" style="gap:1px;background:rgba(255,255,255,0.06);width:100%">
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><p style="font-weight:600;color:#fff">Spot Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Precise monitoring of fixed, close-range areas</p></div>
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg><p style="font-weight:600;color:#fff">Gate Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Comprehensive monitoring of entrances, exits, corridors</p></div>
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><p style="font-weight:600;color:#fff">Area Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Wide-area surveillance for large spaces</p></div>
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><path d="M2 7h5.5L12 2l4.5 5H22v10H2z"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/></svg><p style="font-weight:600;color:#fff">Goggles Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Mobile, first-person monitoring via wearable tech</p></div>
+                    <div class="flowchart-node" style="background:#000"><svg class="app-icon mx-auto mb-3" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg><p style="font-weight:600;color:#fff">Drone Mode</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Aerial surveillance, mobile perspective coverage</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== APPLICATION DEEP DIVE ===== -->
+    <section>
+        <div class="content-panel wide">
+            <h2 class="section-heading">Application <em>Deep Dive</em></h2>
+            <p class="section-subheading">Comprehensive overview of each application's purpose, capabilities, and target markets</p>
+            <div class="grid grid-cols-1" style="gap:1px;background:rgba(255,255,255,0.06)">
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-presence"></div><p class="text-gray-600 mb-4">A versatile solution for monitoring attendance and activity in specific areas such as schools, gyms, or industrial spaces. It provides detailed attendance reports and enhanced security by ensuring only authorized individuals are present.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Assigns schedules and members to rooms, then tracks attendance and generates comprehensive reports.</li><li>Sends automated alerts if unauthorized persons are detected in restricted areas.</li><li>Can collaborate with the Eyenet Gate Activity application for end-to-end monitoring.</li><li>Automatically sends attendance reports for minors to family members or sponsors in real time or on a recurring schedule.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Schools, universities, gyms, industrial facilities, corporate offices, and hospitals.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Area, Gate</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="/proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Presence" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-signage"></div><p class="text-gray-600 mb-4">This application transforms traditional digital signage into a dynamic, data-driven marketing tool. By analyzing the age and gender of people approaching a display, it automatically serves targeted advertisements and media, maximizing engagement and campaign effectiveness.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Automatically displays content based on the demographics of the viewer.</li><li>Owners and marketing collaborators can easily upload and assign targeted media via a user-friendly web interface.</li><li>Optional add-on for comprehensive people activity insights reports.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Retail shops, shopping malls, airports, advertising agencies, event venues, and marketing firms.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Spot, Gate, Area</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="/proposals/blocks/quick-actions-cards.html?embed=1&highlights=collections,analytics,automation,signagemanagement,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Signage" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-vradar"></div><p class="text-gray-600 mb-4">An advanced, mobile security solution that operates using wearable camera eyewear (goggles) to empower security agents. It provides on-the-go alerts and streams data to a central command unit for collaborative security operations.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Provides instant audio alerts to the agent if a person of interest is detected in their field of view.</li><li>All activity annotations are sent to a main computing unit, enabling the team operator to issue alerts and share information.</li><li>The team operator can add a recently detected person to the "person of interest" group directly from an agent's live feed.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security agencies, law enforcement, private security firms, and event security teams.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Goggles, Drone</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="/proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage" title="Quick Actions Widget - Eyenet VRadar" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-gate"></div><p class="text-gray-600 mb-4">A robust security and operational tool designed to monitor people activity in gates, entrances, exits, and corridors. It provides real-time data and security alerts, enabling businesses to understand crowd dynamics and respond to security events proactively.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Provides real-time people counters, age and gender demographics, activity heatmaps, and advanced crowd behavior metrics.</li><li>Triggers instant notifications for abnormal crowd activity and performs facial recognition for persons of interest.</li><li>Offers live video streaming with people activity annotations and flexible video storage solutions.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security agencies, commercial buildings, industrial facilities, airports, public transport hubs, and event organizers.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Gate</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="/proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Gate Activity" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-sentinel"></div><p class="text-gray-600 mb-4">This application ensures security personnel remain vigilant by automatically monitoring their activity at a watch station, providing business owners with peace of mind and guaranteeing consistent oversight during all shifts.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li>Delivers instant alerts and notifications based on customizable criteria for a guard's activity or inactivity.</li><li>Provides live video streams with complete people activity annotations.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Security firms, corporate offices with dedicated security staff, industrial plants, and government buildings.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">Area</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="/proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,collections,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Sentinel" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
+                <div class="deep-dive-card" id="dd-card-matrix" style="background:#000"><div class="grid grid-cols-1 gap-6 items-stretch"><div><div class="deep-dive-headline" id="dd-headline-matrix"></div><p class="text-gray-600 mb-4">Eyenet Matrix runs alongside the primary installation in a multi-site network, providing centralised management and aggregated reporting across all member installations. Designed to operate under VPN, it communicates with member installations via their internal VPN node URLs — all cross-installation queries go over the VPN tunnel, transparently within a private network without needing public internet exposure.</p><p class="font-semibold text-gray-700 mb-2">Key Features:</p><ul class="list-disc list-inside text-gray-600 mb-4"><li><strong>6 Aggregated Report Types:</strong> Summary, Presence, Gate Activity, Camera Events, Demographics, and Logs — querying all member installations in parallel.</li><li><strong>Matrix Groups & Installation Membership:</strong> Full CRUD for groups and member installations with multi-install licensing enforcement.</li><li><strong>User Directory & SSO (JWT-based):</strong> Centralised user management with role-based access control across installations.</li><li><strong>Degraded Mode:</strong> If some installations are unreachable, reports still return partial data — no single point of failure.</li><li><strong>Result Caching:</strong> 60-second TTL report cache for responsive dashboards across distributed sites.</li><li><strong>Time-Range Filtering:</strong> All reports support ISO-8601 timestamp query parameters for precise historical analysis.</li></ul><p class="font-semibold text-gray-700 mb-2">Target Users:</p><p class="text-sm text-gray-600 mb-2">Multi-site enterprises, security operations centers, franchise networks, maritime fleet operators, and any organisation managing distributed Eyenet installations.</p><p class="font-semibold text-gray-700 mb-2">Available Modes:</p><p class="text-sm text-gray-600">All Modes — aggregated across member installations</p></div><div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:0.5rem"><iframe class="qa-widget-iframe" src="/proposals/blocks/quick-actions-cards.html?embed=1&highlights=cameras,presence,individualgroups,analytics,automation,storage,mymedia,uploadmedia" title="Quick Actions Widget - Eyenet Matrix" style="width:100%;height:380px;border:0;display:block"></iframe></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+<section class="close-cta-panel" style="text-align:center;padding:5rem 2rem">
+  <div class="section-label">Next</div>
+  <h2 class="section-heading">Continue on the <em>platform</em></h2>
+  <div class="cta-pair">
+    <a class="cta-link" href="../">Home</a>
+    <a class="cta-link cta-link-case" href="../#primary-use-cases">Use cases</a>
+    <a class="cta-link" href="../applications/">Applications</a>
+    <a class="cta-link" href="../business/">Business</a>
+  </div>
+</section>
+<footer style="padding:3rem;text-align:center">
+  <div class="footer-links">
+    <a href="../">Home</a>
+    <a href="../#primary-use-cases">Use cases</a>
+    <a href="../business/">Business</a>
+    <a href="../applications/">Applications</a>
+    <a href="../marketing/web/">Microsites</a>
+    <a href="https://value.eyenet-vision.com/why/" rel="noopener">Value</a>
+  </div>
+  <p style="font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase">&copy; 2026 Eyenet. All rights reserved.</p>
+</footer>
+<script>
+
+        // ==== Photo Strip Auto-Scroll ====
+        (function(){const strip=document.querySelector('.photo-strip');if(!strip)return;let isDown=false,startX,scrollLeft,userInteracting=false,resumeTimer;strip.addEventListener('mousedown',e=>{isDown=true;userInteracting=true;strip.style.cursor='grabbing';startX=e.pageX-strip.offsetLeft;scrollLeft=strip.scrollLeft;clearTimeout(resumeTimer)});strip.addEventListener('mouseleave',()=>{isDown=false;strip.style.cursor='grab';scheduleResume()});strip.addEventListener('mouseup',()=>{isDown=false;strip.style.cursor='grab';scheduleResume()});strip.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-strip.offsetLeft;const walk=(x-startX)*1.5;strip.scrollLeft=scrollLeft-walk});strip.addEventListener('touchstart',()=>{userInteracting=true;clearTimeout(resumeTimer)},{passive:true});strip.addEventListener('touchend',()=>{scheduleResume()},{passive:true});function scheduleResume(){clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>{userInteracting=false},3000)}let speed=0.5;function autoScroll(){if(!userInteracting){strip.scrollLeft+=speed;if(strip.scrollLeft>=strip.scrollWidth-strip.clientWidth-1){strip.scrollLeft=0}}requestAnimationFrame(autoScroll)}strip.style.scrollBehavior='auto';requestAnimationFrame(autoScroll)})();
+
+        // ==== Lightbox ====
+        function openLightbox(imageSrc,title,description){const lightbox=document.getElementById('lightbox');document.getElementById('lightbox-image').src=imageSrc;document.getElementById('lightbox-title').textContent=title;document.getElementById('lightbox-description').textContent=description;lightbox.classList.add('active');document.body.style.overflow='hidden'}
+        function closeLightbox(event){if(!event||event.target.id==='lightbox'||event.target.classList.contains('lightbox-close')){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}}
+        document.addEventListener('keydown',function(event){if(event.key==='Escape'){closeLightbox()}});
+
+        // ==== Pixel Text Rendering ====
+        const FONT={'A':[0b01110,0b10001,0b10001,0b11111,0b10001,0b10001,0b10001],'B':[0b11110,0b10001,0b11110,0b10001,0b10001,0b10001,0b11110],'C':[0b01110,0b10001,0b10000,0b10000,0b10000,0b10001,0b01110],'D':[0b11110,0b10001,0b10001,0b10001,0b10001,0b10001,0b11110],'E':[0b11111,0b10000,0b11110,0b10000,0b10000,0b10000,0b11111],'F':[0b11111,0b10000,0b11110,0b10000,0b10000,0b10000,0b10000],'G':[0b01110,0b10001,0b10000,0b10111,0b10001,0b10001,0b01110],'H':[0b10001,0b10001,0b11111,0b10001,0b10001,0b10001,0b10001],'I':[0b11111,0b00100,0b00100,0b00100,0b00100,0b00100,0b11111],'K':[0b10001,0b10010,0b11100,0b11000,0b11100,0b10010,0b10001],'L':[0b10000,0b10000,0b10000,0b10000,0b10000,0b10000,0b11111],'M':[0b10001,0b11011,0b10101,0b10101,0b10001,0b10001,0b10001],'N':[0b10001,0b11001,0b10101,0b10011,0b10001,0b10001,0b10001],'O':[0b01110,0b10001,0b10001,0b10001,0b10001,0b10001,0b01110],'P':[0b11110,0b10001,0b10001,0b11110,0b10000,0b10000,0b10000],'R':[0b11110,0b10001,0b10001,0b11110,0b11100,0b10010,0b10001],'S':[0b01110,0b10001,0b10000,0b01110,0b00001,0b10001,0b01110],'T':[0b11111,0b00100,0b00100,0b00100,0b00100,0b00100,0b00100],'U':[0b10001,0b10001,0b10001,0b10001,0b10001,0b10001,0b01110],'V':[0b10001,0b10001,0b10001,0b10001,0b10001,0b01010,0b00100],'W':[0b10001,0b10001,0b10001,0b10101,0b10101,0b11011,0b10001],'X':[0b10001,0b10001,0b01010,0b00100,0b01010,0b10001,0b10001],'Y':[0b10001,0b01010,0b00100,0b00100,0b00100,0b00100,0b00100],'Z':[0b11111,0b00001,0b00010,0b00100,0b01000,0b10000,0b11111],' ':[0b00000,0b00000,0b00000,0b00000,0b00000,0b00000,0b00000],'-':[0b00000,0b00000,0b00000,0b11111,0b00000,0b00000,0b00000]};
+        const PIXEL=3,GLYPH_W=5,GLYPH_H=7,SPACING=2,VS=1;
+        function renderPixelText(text,fillColor,opacity){text=text.toUpperCase();const chars=text.split('');let totalW=0;const glyphData=chars.map(ch=>FONT[ch]||FONT[' ']);for(let i=0;i<chars.length;i++){totalW+=GLYPH_W*PIXEL+(i<chars.length-1?SPACING:0)}const totalH=GLYPH_H*PIXEL+(GLYPH_H-1)*VS;const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox',`0 0 ${totalW} ${totalH}`);svg.setAttribute('width',totalW);svg.setAttribute('height',totalH);let cursorX=0;for(let gi=0;gi<glyphData.length;gi++){const rows=glyphData[gi];for(let row=0;row<GLYPH_H;row++){const mask=rows[row];for(let col=0;col<GLYPH_W;col++){if(mask&(1<<(4-col))){const x=cursorX+col*PIXEL;const y=row*(PIXEL+VS);const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');rect.setAttribute('x',x);rect.setAttribute('y',y);rect.setAttribute('width',PIXEL);rect.setAttribute('height',PIXEL);rect.setAttribute('fill',fillColor);rect.setAttribute('opacity',opacity);svg.appendChild(rect)}}}cursorX+=GLYPH_W*PIXEL+SPACING}return svg}
+
+        function cloneLogoSvg(height){const svg=document.querySelector('.header-hero .header-logo').cloneNode(true);svg.removeAttribute('class');svg.setAttribute('style','display:block;height:'+height+'px;width:auto;margin:0;');return svg}
+
+        function addEyenetChips(containerId,chipNames){const container=document.getElementById(containerId);if(!container)return;chipNames.forEach(name=>{const chip=document.createElement('span');chip.className='eyenet-chip';const logoSvg=cloneLogoSvg(14);logoSvg.classList.add('chip-logo-svg');chip.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('chip-sub-svg');chip.appendChild(subSvg);container.appendChild(chip)})}
+
+        // Chips for all cards
+        addEyenetChips('eyenet-chips-platform',['Presence','Signage','VRadar','Gate','Matrix','VProfiles','Logic']);
+        addEyenetChips('eyenet-chips-presence',['Presence','Handshake','Nod','VRadar','VProfiles']);
+        addEyenetChips('eyenet-chips-signage',['Signage','AnonTracking','Insights']);
+        addEyenetChips('eyenet-chips-access',['Presence','Handshake','Nod','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-restricted',['Presence','AnonTracking','VRadar','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-vip',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-remote',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-instant',['Presence','Handshake','Nod','Signage','AnonTracking','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-business',['Presence','Handshake','Nod','VRadar','VProfiles']);
+        addEyenetChips('eyenet-chips-security',['Presence','Handshake','Nod','AnonTracking','Sentinel','Insights','VProfiles']);
+        addEyenetChips('eyenet-chips-marketing',['Signage','AnonTracking','Insights']);
+        addEyenetChips('eyenet-chips-facilities',['Presence','Handshake','Nod','Insights','VProfiles']);
+
+        // Header chips reel
+        (function buildHeaderChips(){const container=document.getElementById('all-chips-header');if(!container)return;const names=['Presence','Handshake','Nod','Signage','Anonymous','VRadar','Gate','Sentinel','Matrix','Insights','VProfiles','Logic','API'];names.forEach(name=>{const chip=document.createElement('span');chip.className='eyenet-chip';const logoSvg=cloneLogoSvg(14);logoSvg.classList.add('chip-logo-svg');chip.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('chip-sub-svg');chip.appendChild(subSvg);container.appendChild(chip)})})();
+
+        // App Suite Headlines
+        (function buildAppSuiteHeadlines(){const mappings={'as-headline-presence':'Presence','as-headline-signage':'Signage','as-headline-vradar':'VRadar','as-headline-gate':'Gate','as-headline-sentinel':'Sentinel','as-headline-matrix':'Matrix'};Object.entries(mappings).forEach(([id,name])=>{const container=document.getElementById(id);if(!container)return;const logoSvg=cloneLogoSvg(28);logoSvg.classList.add('as-logo-svg');container.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('as-sub-svg');container.appendChild(subSvg)})})();
+
+        // Deep Dive Headlines
+        (function buildDeepDiveHeadlines(){const mappings={'dd-headline-presence':'Presence','dd-headline-signage':'Signage','dd-headline-vradar':'VRadar','dd-headline-gate':'Gate','dd-headline-sentinel':'Sentinel','dd-headline-matrix':'Matrix'};Object.entries(mappings).forEach(([id,name])=>{const container=document.getElementById(id);if(!container)return;const logoSvg=cloneLogoSvg(40);logoSvg.classList.add('dd-logo-svg');container.appendChild(logoSvg);const subSvg=renderPixelText(name,'#ecfeff',0.98);subSvg.classList.add('dd-sub-svg');container.appendChild(subSvg)})})();
+
+        // Quick Action Widget Sizing
+        (function initQuickActionWidgetSizing(){const iframes=Array.from(document.querySelectorAll('.qa-widget-iframe'));if(iframes.length===0)return;function setIframeHeight(iframe,height){if(!height||Number.isNaN(height))return;iframe.style.height=`${Math.max(360,Math.ceil(height))}px`}function measureIframe(iframe){try{const doc=iframe.contentDocument||(iframe.contentWindow&&iframe.contentWindow.document);if(!doc)return;const measured=Math.max(doc.documentElement?doc.documentElement.scrollHeight:0,doc.body?doc.body.scrollHeight:0);setIframeHeight(iframe,measured)}catch(e){}}iframes.forEach((iframe)=>{iframe.addEventListener('load',()=>{measureIframe(iframe);setTimeout(()=>measureIframe(iframe),80);setTimeout(()=>measureIframe(iframe),250)})});window.addEventListener('message',(event)=>{const data=event.data;if(!data||data.type!=='quick-actions-height')return;const sourceIframe=iframes.find((iframe)=>iframe.contentWindow===event.source);if(!sourceIframe)return;setIframeHeight(sourceIframe,data.height)});window.addEventListener('resize',()=>{iframes.forEach((iframe)=>measureIframe(iframe))})})();
+    
+</script>
+</body>
+</html>
