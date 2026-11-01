@@ -132,6 +132,88 @@
         .cta-link:hover { gap: 1.25rem; }
         .cta-link svg { width: 1rem; height: 1rem; transition: transform 0.3s ease; }
         .cta-link:hover svg { transform: translateX(4px); }
+        .cta-pair {
+            margin-top: 2rem;
+            display: flex; flex-wrap: wrap; gap: 1.75rem 2.5rem;
+            justify-content: center; align-items: center;
+        }
+        .cta-pair .cta-link { font-size: 1.05rem; }
+        .cta-link-case { color: #67e8f9; }
+        .cta-link-case::after { background: #67e8f9; }
+
+        /* Sticky FAB — product ↔ use cases */
+        .site-fab {
+            position: fixed; z-index: 40;
+            right: 1.25rem; bottom: 1.25rem;
+            display: flex; flex-direction: column; gap: 0.55rem;
+            align-items: flex-end;
+        }
+        .site-fab a {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.7rem 1.05rem;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; text-decoration: none;
+            border: 1px solid rgba(34, 211, 238, 0.45);
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(10px);
+            color: #22d3ee;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+            transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+        .site-fab a:hover {
+            border-color: #22d3ee;
+            background: rgba(8, 20, 28, 0.96);
+            color: #fff;
+        }
+        .site-fab a.site-fab-primary {
+            background: #0891b2;
+            border-color: #22d3ee;
+            color: #041018;
+        }
+        .site-fab a.site-fab-primary:hover {
+            background: #22d3ee;
+            color: #000;
+        }
+
+        .use-case-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            width: 100%;
+            margin-top: 2.5rem;
+        }
+        .use-case-chip {
+            display: flex; flex-direction: column; gap: 0.55rem;
+            padding: 1.5rem 1.25rem;
+            background: #000;
+            text-decoration: none; color: inherit;
+            min-height: 9.5rem;
+            transition: background 0.25s ease;
+        }
+        .use-case-chip:hover { background: #080808; }
+        .use-case-chip-num {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; color: #22d3ee;
+        }
+        .use-case-chip-title {
+            font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em;
+            line-height: 1.2; color: #fff;
+        }
+        .use-case-chip-go {
+            margin-top: auto;
+            font-size: 0.8rem; font-weight: 600; color: #67e8f9;
+        }
+        .footer-links {
+            display: flex; flex-wrap: wrap; gap: 1.25rem 1.75rem;
+            justify-content: center; margin-bottom: 1.5rem;
+        }
+        .footer-links a {
+            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+            text-transform: uppercase; color: rgba(255, 255, 255, 0.45);
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: #22d3ee; }
 
         /* ===== SECTION HEADINGS ===== */
         .section-heading {
@@ -279,10 +361,17 @@
             .stat-value { font-size: 1.8rem; }
             .card-headline { font-size: 1.6rem; }
             .section-heading { font-size: 1.6rem; }
+            .site-fab { right: 0.75rem; bottom: 0.75rem; }
+            .site-fab a { padding: 0.6rem 0.85rem; font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
+
+    <aside class="site-fab" aria-label="Quick links">
+        <a class="site-fab-primary" href="marketing/web/">Use cases</a>
+        <a href="#primary-use-cases">Jump to cases</a>
+    </aside>
 
     <!-- ===== HEADER ===== -->
     <header class="header-hero">
@@ -325,7 +414,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Infinite Scale</div><p class="feature-desc">One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-platform"></div>
-            <div style="margin-top: 2rem;"><a href="#card-presence" class="cta-link">See How It Works <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#card-presence" class="cta-link">See How It Works <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/" class="cta-link cta-link-case">Explore use cases <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -352,7 +444,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Fast Gates</div><p class="feature-desc">Asynchronous two-factor vision applied on fast-moving gate scenarios</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-presence"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-presence" class="cta-link">Discover Eyenet Presence <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-presence" class="cta-link">Discover Eyenet Presence <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/hr-presence/" class="cta-link cta-link-case">Presence use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -379,7 +474,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Prove ROI</div><p class="feature-desc">Measure every impression: views, dwell time, engagement rate — prove your signage ROI</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-signage"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-signage" class="cta-link">Power Your Displays <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-signage" class="cta-link">Power Your Displays <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/mall/" class="cta-link cta-link-case">Signage use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -406,7 +504,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Reports</div><p class="feature-desc">Operational presence reports with full event history for compliance</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-access"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-gate" class="cta-link">Discover Eyenet Gate <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-gate" class="cta-link">Discover Eyenet Gate <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/shipping/" class="cta-link cta-link-case">Onboard / on-site use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -433,7 +534,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Built-In Safety</div><p class="feature-desc">Lone-worker monitoring, PPE checks, and automatic incident documentation</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-restricted"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-vradar" class="cta-link">Deploy Virtual Perimeters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-vradar" class="cta-link">Deploy Virtual Perimeters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/security/" class="cta-link cta-link-case">Security use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -460,7 +564,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Multi-Cam</div><p class="feature-desc">Parallel detection across entire venues, coordinated through a single dashboard</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-vip"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-sentinel" class="cta-link">Protect What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-sentinel" class="cta-link">Protect What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/cottage/" class="cta-link cta-link-case">Home protection use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -487,7 +594,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Zero Cloud</div><p class="feature-desc">No cloud dependency for video or data — your footage never leaves your premises</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-remote"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-card-matrix" class="cta-link">Manage From Anywhere <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-card-matrix" class="cta-link">Manage From Anywhere <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/home-care/" class="cta-link cta-link-case">Home care use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -514,7 +624,34 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Start Small</div><p class="feature-desc">Begin with one camera and one room; scale to hundreds across multiple sites when ready</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-instant"></div>
-            <div style="margin-top: 2rem;"><a href="#application-suite" class="cta-link">Get Started in Minutes <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#application-suite" class="cta-link">Get Started in Minutes <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/shop-floor/" class="cta-link cta-link-case">Shop floor use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
+        </div>
+    </section>
+
+    <div class="hairline"></div>
+
+    <!-- ===== PRIMARY USE CASES ===== -->
+    <section id="primary-use-cases">
+        <div class="content-panel wide">
+            <div class="section-label">Primary use cases</div>
+            <h2 class="section-heading">Choose your <em>wedge</em></h2>
+            <p class="section-subheading">Seven operational stories on the same platform — open a microsite, then come back to the product deep dive.</p>
+            <div class="use-case-strip">
+                <a class="use-case-chip" href="marketing/web/hr-presence/"><span class="use-case-chip-num">01 · Presence</span><span class="use-case-chip-title">Know who is present — and who is not</span><span class="use-case-chip-go">Open microsite →</span></a>
+                <a class="use-case-chip" href="marketing/web/mall/"><span class="use-case-chip-num">02 · Signage</span><span class="use-case-chip-title">Screens that sell themselves</span><span class="use-case-chip-go">Open microsite →</span></a>
+                <a class="use-case-chip" href="marketing/web/shop-floor/"><span class="use-case-chip-num">03 · Shop floor</span><span class="use-case-chip-title">See how shoppers move</span><span class="use-case-chip-go">Open microsite →</span></a>
+                <a class="use-case-chip" href="marketing/web/cottage/"><span class="use-case-chip-num">04 · Home</span><span class="use-case-chip-title">Peace of mind at home — and away</span><span class="use-case-chip-go">Open microsite →</span></a>
+                <a class="use-case-chip" href="marketing/web/home-care/"><span class="use-case-chip-num">05 · Home care</span><span class="use-case-chip-title">Hospital-grade care at home</span><span class="use-case-chip-go">Open microsite →</span></a>
+                <a class="use-case-chip" href="marketing/web/security/"><span class="use-case-chip-num">06 · Security</span><span class="use-case-chip-title">Night shifts that never blink</span><span class="use-case-chip-go">Open microsite →</span></a>
+                <a class="use-case-chip" href="marketing/web/shipping/"><span class="use-case-chip-num">07 · Shipping</span><span class="use-case-chip-title">Who’s onboard. Who’s on site. Who fell.</span><span class="use-case-chip-go">Open microsite →</span></a>
+            </div>
+            <div class="cta-pair">
+                <a href="marketing/web/" class="cta-link cta-link-case">All use-case microsites <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="https://value.eyenet-vision.com/why/" class="cta-link" rel="noopener">Value analysis <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -579,7 +716,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Analytics</div><p class="feature-desc">Operational analytics for presence compliance across all locations</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-business"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-presence" class="cta-link">Monitor Your Business <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-presence" class="cta-link">Monitor Your Business <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/hr-presence/" class="cta-link cta-link-case">Presence use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -606,7 +746,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Auto-Reports</div><p class="feature-desc">Shift handover reports, timelines, and evidence exports — audit-ready 24/7</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-security"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-vradar" class="cta-link">Upgrade Your Watch Room <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-vradar" class="cta-link">Upgrade Your Watch Room <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/security/" class="cta-link cta-link-case">Security use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -633,7 +776,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Prove ROI</div><p class="feature-desc">Automated impression reports, engagement rates, and footfall-to-sales funnels</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-marketing"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-signage" class="cta-link">Measure What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-signage" class="cta-link">Measure What Matters <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/mall/" class="cta-link cta-link-case">Signage use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -660,7 +806,10 @@
                 <div class="feature-item"><div class="feature-head"><span class="accent-dot"></span>Audit-Ready</div><p class="feature-desc">Compliance-ready logs with timestamped video, occupancy records, and incident docs</p></div>
             </div>
             <div class="chip-row" id="eyenet-chips-facilities"></div>
-            <div style="margin-top: 2rem;"><a href="#dd-headline-gate" class="cta-link">Streamline Your Facility <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+            <div class="cta-pair">
+                <a href="#dd-headline-gate" class="cta-link">Streamline Your Facility <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                <a href="marketing/web/shop-floor/" class="cta-link cta-link-case">Shop floor use case <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+            </div>
         </div>
     </section>
 
@@ -768,7 +917,13 @@
 
     <!-- Minimal footer -->
     <footer style="padding:4rem;text-align:center">
-        <p style="font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase">&copy; 2025 Eyenet. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="marketing/web/">Use cases</a>
+            <a href="#primary-use-cases">Case index</a>
+            <a href="https://value.eyenet-vision.com/why/" rel="noopener">Value</a>
+            <a href="https://wiki.eyenet-vision.com/" rel="noopener">Wiki</a>
+        </div>
+        <p style="font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase">&copy; 2026 Eyenet. All rights reserved.</p>
     </footer>
 
     <!-- ===== LIGHTBOX ===== -->
