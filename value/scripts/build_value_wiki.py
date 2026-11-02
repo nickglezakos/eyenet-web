@@ -37,7 +37,7 @@ WHAT_HEADING = {
 
 WHY_HEADING = {
     "en": "Most Valuable Cases",
-    "el": "Πιο πολύτιμες περιπτώσεις",
+    "el": "Ενδεικτικές περιπτώσεις χρήσης",
 }
 
 PACKAGES_HEADING = {
@@ -557,7 +557,7 @@ def apply_case_label_copy(html: str, lang: str) -> str:
             ),
             (
                 r"<li><strong>Mall ως studio</strong> — το δίκτυο digital signage γίνεται μετρήσιμο marketing studio σε διαδρόμους, καταστήματα και spots</li>",
-                "<li><strong>Signage ως studio</strong> — κάθε οθόνη γίνεται μετρήσιμη marketing επιφάνεια σε διαδρόμους, καταστήματα και spots</li>",
+                '<li><strong>Signage ως studio</strong> — κάθε οθόνη γίνεται ένα μετρήσιμο και "ζωντανό" marketing εργαλείο σε διαδρόμους, καταστήματα και spots</li>',
             ),
             (
                 r"Το vision-adaptive Signage μετατρέπει την κίνηση στο mall σε μετρήσιμη marketing νοημοσύνη",
@@ -1163,7 +1163,7 @@ UI = {
             "innovation": "Απλή κι όμως ισχυρή καινοτομία",
             "with-eyenet": "Ποιος χρησιμοποιεί το EyeNet",
             "what": "Τι είναι το EyeNet",
-            "why": "Πιο πολύτιμες περιπτώσεις",
+            "why": "Ενδεικτικές περιπτώσεις χρήσης",
             "packages": "Εμπορικά πακέτα",
         },
         "why_children": [
@@ -1205,7 +1205,7 @@ UI = {
         "cards": [
             ("01", "what", "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
              "Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware."),
-            ("02", "why", "Πιο πολύτιμες περιπτώσεις",
+            ("02", "why", "Ενδεικτικές περιπτώσεις χρήσης",
              "Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, κατάστημα, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία."),
             ("03", "with-eyenet", "Ποιος χρησιμοποιεί το EyeNet",
              "Δυνατά αποτελέσματα για στόλο, βιομηχανικούς χώρους, φροντίδα, HR, ασφάλεια, οικογένεια, signage και κατάστημα."),
@@ -1218,7 +1218,7 @@ UI = {
             "innovation": "Απλή κι όμως ισχυρή καινοτομία",
             "with-eyenet": "Ποιος χρησιμοποιεί το EyeNet",
             "what": "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
-            "why": "Πιο πολύτιμες περιπτώσεις",
+            "why": "Ενδεικτικές περιπτώσεις χρήσης",
             "packages": "Εμπορικά πακέτα — B2C · B2B · Enterprise",
         },
         "why_index_kicker": (
@@ -1624,11 +1624,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
 
     for i, (child, label) in enumerate(ui["why_children"]):
         persona_html = personas[WHY_PERSONA_INDEX[child]]
-        override_name = {
-            "cottage": f"why-cottage-{lang}.html",
-            "mall": f"why-mall-{lang}.html",
-            "shipping": f"why-shipping-{lang}.html",
-        }.get(child)
+        override_name = f"why-{child}-{lang}.html"
         if override_name:
             override = CONTENT_DIR / override_name
             if override.exists():
@@ -2123,8 +2119,28 @@ def sort_why_print_sections(
 
 
 def inject_print_case_overrides(html: str, lang: str) -> str:
-    """Replace cottage/mall personas in print with content overrides when present."""
+    """Replace why-case personas in print with content overrides when present."""
     overrides = [
+        (
+            f"why-hr-presence-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:Know who is present and who is not|Ξέρετε ποιός είναι παρόν και ποιος όχι|"
+            r"HR Presence[^<]*)</h4>.*?"
+            r"(?=</section>)",
+        ),
+        (
+            f"why-mall-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:Screens that sell themselves|Οθόνες που πουλάνε μόνες τους|"
+            r"Vision-adaptive Intelligent Signage|Mall marketing studio[^<]*)</h4>.*?"
+            r"(?=</section>)",
+        ),
+        (
+            f"why-shop-floor-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:See how shoppers move|Δείτε πώς κινούνται οι πελάτες|Shop floor[^<]*)</h4>.*?"
+            r"(?=</section>)",
+        ),
         (
             f"why-cottage-{lang}.html",
             r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
@@ -2134,9 +2150,16 @@ def inject_print_case_overrides(html: str, lang: str) -> str:
             r"(?=</section>)",
         ),
         (
-            f"why-mall-{lang}.html",
+            f"why-home-care-{lang}.html",
             r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
-            r"(?:Screens that sell themselves|Οθόνες που πουλάνε μόνες τους|Vision-adaptive Intelligent Signage|Mall marketing studio[^<]*)</h4>.*?"
+            r"(?:Hospital-grade care at home|Νοσοκομειακή φροντίδα στο σπίτι|Home care[^<]*)</h4>.*?"
+            r"(?=</section>)",
+        ),
+        (
+            f"why-security-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:Night shifts that never blink|Νυχτερινές βάρδιες που επαγρυπνούν|"
+            r"Security personnel[^<]*|Security: night[^<]*)</h4>.*?"
             r"(?=</section>)",
         ),
         (
