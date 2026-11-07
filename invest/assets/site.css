@@ -924,21 +924,13 @@ a.source-link:hover {
   flex: 0 0 auto;
 }
 
-.hero-talos-word {
-  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: #e8f4fd;
-  white-space: nowrap;
-}
-
-.hero-talos-accent {
-  background: linear-gradient(90deg, #00d4ff, #3b82f6, #00d4ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+.page .hero-brands img.hero-talos-word,
+.hero-brands img.hero-talos-word {
+  width: auto;
+  height: 2.15rem;
+  max-height: 2.15rem;
+  max-width: 9.5rem;
+  object-fit: contain;
 }
 
 .hero-brand-sep {
