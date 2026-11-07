@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "eyenet-investor-primer.html"
-ASSET_V = "20261109a"
+ASSET_V = "20261109b"
 
 PAGE_ORDER = [
     "",

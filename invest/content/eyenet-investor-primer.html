@@ -42,6 +42,40 @@
     @media print {
       .sheet { max-width: none; padding: 0; margin: 0; }
       .no-print { display: none !important; }
+      /* Avoid near-empty pages from 1–2 line overflow + forced section breaks */
+      .section.page-start {
+        break-before: auto;
+        page-break-before: auto;
+      }
+      .section {
+        padding: 8px 0 10px;
+      }
+      .page-lead {
+        margin: 6px 0 10px;
+      }
+      .persona-card,
+      .wedge-card,
+      .buyer-point,
+      .panel,
+      .notify,
+      .argument-card {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+      p, li {
+        orphans: 3;
+        widows: 3;
+      }
+      .persona-media,
+      .persona-media img { min-height: 52px; }
+      .wedge-media,
+      .wedge-media img { min-height: 64px; }
+      .buyer-points { gap: 5px; margin-top: 4px; }
+      .buyer-point { padding: 6px 8px; }
+      .persona-cards,
+      .wedge-cards { gap: 8px; }
+      .cols-4, .cols-3, .cols-2 { gap: 10px; margin: 8px 0; }
+      table { margin: 8px 0 10px; }
     }
 
     .no-print.toolbar {
@@ -187,10 +221,12 @@
     }
     .section.flow { break-inside: auto; }
     .section.page-start {
-      break-before: page;
-      page-break-before: always;
-      border-top: 0;
-      padding-top: 4px;
+      /* Soft section starts: forced page breaks left near-empty leftover pages */
+      break-before: auto;
+      page-break-before: auto;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      margin-top: 6px;
     }
     .section-head {
       display: flex; align-items: baseline; gap: 10px;
@@ -262,7 +298,7 @@
     }
 
     .page-lead {
-      position: relative; margin: 22px 0 28px; max-width: 92%; padding-left: 18px;
+      position: relative; margin: 10px 0 12px; max-width: 92%; padding-left: 18px;
       color: var(--brand-dark); font-size: 11pt; font-weight: 600; line-height: 1.45;
     }
     .page-lead::before {
