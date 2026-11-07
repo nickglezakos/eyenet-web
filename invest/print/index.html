@@ -156,8 +156,37 @@
       page-break-after: always;
     }
     .cover-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .cover-brand { display: flex; align-items: center; gap: 12px; }
-    .cover-brand img { height: 34px; width: auto; filter: brightness(0) invert(1); }
+    .cover-brand { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-brand img.cover-logo {
+      display: block;
+      width: auto !important;
+      height: 42px !important;
+      max-height: 42px !important;
+      max-width: 180px !important;
+      object-fit: contain !important;
+      filter: none !important;
+      flex: 0 0 auto;
+    }
+    .cover-brand img.cover-logo-talos {
+      height: 48px !important;
+      max-height: 48px !important;
+      max-width: 52px !important;
+    }
+    .cover-talos {
+      display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto;
+    }
+    .cover-talos-word {
+      font-size: 22px; font-weight: 800; letter-spacing: -0.03em; line-height: 1;
+      color: #e8f4fd; white-space: nowrap;
+    }
+    .cover-talos-accent {
+      background: linear-gradient(90deg, #00d4ff, #3b82f6, #00d4ff);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .cover-brand-sep {
+      width: 1px; height: 28px; background: rgba(255,255,255,0.28); flex: 0 0 auto;
+    }
     .cover-chip {
       padding: 6px 10px; border: 1px solid rgba(255,255,255,0.22);
       font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
@@ -703,7 +732,12 @@
       <div>
         <div class="cover-top">
           <div class="cover-brand">
-            <img src="/assets/eyenet-dark.svg" alt="EyeNet" />
+            <img class="cover-logo" src="/assets/eyenet-light.svg" alt="EyeNet" width="168" height="42" />
+            <span class="cover-brand-sep" aria-hidden="true"></span>
+            <span class="cover-talos">
+              <img class="cover-logo cover-logo-talos" src="/assets/talos-logo-blue.png" alt="" width="48" height="48" />
+              <span class="cover-talos-word">Talos<span class="cover-talos-accent">Group</span></span>
+            </span>
             <span class="cover-chip">Investor Primer</span>
           </div>
         </div>

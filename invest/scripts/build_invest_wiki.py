@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "eyenet-investor-primer.html"
-ASSET_V = "20261109b"
+ASSET_V = "20261109e"
 
 PAGE_ORDER = [
     "",
@@ -497,6 +497,8 @@ def build_print(src_html: str) -> None:
     """Write printable primer under /print/ with Market validation + current numbering."""
     html = src_html
     html = html.replace('src="assets/eyenet-dark.svg"', 'src="/assets/eyenet-dark.svg"')
+    html = html.replace('src="assets/eyenet-light.svg"', 'src="/assets/eyenet-light.svg"')
+    html = html.replace('src="assets/talos-logo-blue.png"', 'src="/assets/talos-logo-blue.png"')
     html = html.replace(
         'src="../../../product/logos/svg/eyenet-dark.svg"',
         'src="/assets/eyenet-dark.svg"',
@@ -594,6 +596,14 @@ def main() -> None:
     )
     home_body = f"""
 <div class="hero-band">
+  <div class="hero-brands" aria-label="EyeNet and TalosGroup">
+    <img class="hero-brand-logo" src="/assets/eyenet-light.svg?v={ASSET_V}" alt="EyeNet" width="168" height="38">
+    <span class="hero-brand-sep" aria-hidden="true"></span>
+    <span class="hero-talos">
+      <img class="hero-brand-logo hero-brand-talos" src="/assets/talos-logo-blue.png?v={ASSET_V}" alt="" width="48" height="48">
+      <span class="hero-talos-word">Talos<span class="hero-talos-accent">Group</span></span>
+    </span>
+  </div>
   <p class="eyebrow">{UI["hero_eyebrow"]}</p>
   <h1>{UI["hero_h1"]}</h1>
   <p class="lead">{UI["hero_lead"]}</p>
