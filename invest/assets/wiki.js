@@ -46,40 +46,32 @@
     const groups = [...nav.querySelectorAll(".nav-group")];
     let visible = 0;
 
-    if (groups.length) {
-      for (const group of groups) {
-        const parent = group.querySelector(".nav-group-link");
-        const children = [...group.querySelectorAll(".nav-child")];
-        const parentShow = !q || (parent?.dataset.title || "").toLowerCase().includes(q);
-        let childVisible = 0;
-        for (const link of children) {
-          const show = !q || (link.dataset.title || "").toLowerCase().includes(q);
-          link.classList.toggle("is-hidden", !show);
-          if (show) childVisible += 1;
-        }
-        const groupShow = parentShow || childVisible > 0;
-        group.classList.toggle("is-hidden", !groupShow);
-        if (q && childVisible > 0) {
-          group.classList.add("is-open");
-          const groupToggle = group.querySelector(".nav-group-toggle");
-          if (groupToggle) groupToggle.setAttribute("aria-expanded", "true");
-        }
-        if (groupShow) visible += 1 + childVisible;
-      }
-      const home = nav.querySelector('a[data-home="true"]');
-      if (home) {
-        const showHome = !q || (home.dataset.title || "").toLowerCase().includes(q);
-        home.classList.toggle("is-hidden", !showHome);
-        if (showHome) visible += 1;
-      }
-    } else {
-      const links = [...nav.querySelectorAll("a[data-title]")];
-      for (const link of links) {
-        const title = (link.dataset.title || "").toLowerCase();
-        const show = !q || title.includes(q);
+    // Primary sidebar links (Home + main sections), excluding nav-group chrome/children.
+    const primaryLinks = [...nav.querySelectorAll(":scope > a[data-title]")];
+    for (const link of primaryLinks) {
+      const show = !q || (link.dataset.title || "").toLowerCase().includes(q);
+      link.classList.toggle("is-hidden", !show);
+      if (show) visible += 1;
+    }
+
+    for (const group of groups) {
+      const parent = group.querySelector(".nav-group-link");
+      const children = [...group.querySelectorAll(".nav-child")];
+      const parentShow = !q || (parent?.dataset.title || "").toLowerCase().includes(q);
+      let childVisible = 0;
+      for (const link of children) {
+        const show = !q || (link.dataset.title || "").toLowerCase().includes(q);
         link.classList.toggle("is-hidden", !show);
-        if (show) visible += 1;
+        if (show) childVisible += 1;
       }
+      const groupShow = parentShow || childVisible > 0;
+      group.classList.toggle("is-hidden", !groupShow);
+      if (q && childVisible > 0) {
+        group.classList.add("is-open");
+        const groupToggle = group.querySelector(".nav-group-toggle");
+        if (groupToggle) groupToggle.setAttribute("aria-expanded", "true");
+      }
+      if (groupShow) visible += 1 + childVisible;
     }
     empty?.classList.toggle(
       "is-visible",

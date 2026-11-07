@@ -20,6 +20,10 @@ python3 scripts/build_invest_wiki.py
 
 **Market validation** (`/market-validation/`, section 07) is built from `content/market-validation.html`. FootfallCam source links live under **Addendum — Reference** (`/addendum-b/`).
 
+**Addenda** in the sidebar: Project status (`/addendum-a/`) + Reference (`/addendum-b/`).
+
+`/addendum-c/` is a redirect stub to `/market-validation/` (legacy URL). Do not revive `content/addendum-c-*.html` — that content folded into market validation.
+
 ## Printable PDF
 
 `/print/` — browser **Print → Save as PDF**.

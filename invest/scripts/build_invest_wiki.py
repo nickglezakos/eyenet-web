@@ -10,13 +10,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "eyenet-investor-primer.html"
-ASSET_V = "20261023d"
+ASSET_V = "20261108x"
 
 PAGE_ORDER = [
     "",
-    "the-bet",
-    "what-changes",
+    "what-is-eyenet",
     "where-it-pays",
+    "what-changes",
+    "the-bet",
     "how-it-is-sold",
     "seed-ladder",
     "footprint",
@@ -28,33 +29,41 @@ PAGE_ORDER = [
 # Primer section id → wiki slug + titles
 SECTIONS = [
     {
-        "id": "page-1",
-        "slug": "the-bet",
+        "id": "page-9",
+        "slug": "what-is-eyenet",
         "num": "01",
-        "nav": "The bet",
-        "title": "The bet",
-        "card": "Incumbents sell cloud storage; EyeNet sells sovereignty and operational action.",
-    },
-    {
-        "id": "page-2",
-        "slug": "what-changes",
-        "num": "02",
-        "nav": "What changes",
-        "title": "What changes",
-        "card": "Edge, action, and hardware-bound scale — not another camera cloud.",
+        "nav": "What is EyeNet",
+        "title": "What is EyeNet",
+        "card": "Who buys and why now — then the platform selling points that cut across every persona.",
     },
     {
         "id": "page-3",
         "slug": "where-it-pays",
-        "num": "03",
+        "num": "02",
         "nav": "Where it pays",
         "title": "Where it pays",
         "card": "Highest-value wedges across care, HR, signage, family, security, and shipping.",
     },
     {
+        "id": "page-2",
+        "slug": "what-changes",
+        "num": "03",
+        "nav": "What changes",
+        "title": "What changes",
+        "card": "Edge, action, and hardware-bound scale — not another camera cloud.",
+    },
+    {
+        "id": "page-1",
+        "slug": "the-bet",
+        "num": "04",
+        "nav": "The bet",
+        "title": "The bet",
+        "card": "Incumbents sell cloud storage; EyeNet sells sovereignty and operational action.",
+    },
+    {
         "id": "page-4",
         "slug": "how-it-is-sold",
-        "num": "04",
+        "num": "05",
         "nav": "How it is sold",
         "title": "How it is sold",
         "card": "B2C Light, B2B, and Enterprise motions with cite-backed pockets.",
@@ -62,7 +71,7 @@ SECTIONS = [
     {
         "id": "page-5",
         "slug": "seed-ladder",
-        "num": "05",
+        "num": "06",
         "nav": "Seed ladder",
         "title": "Seed scenarios — from burn up",
         "card": "$0.5M → $1M → $2.5M ladder with staged outcomes.",
@@ -70,7 +79,7 @@ SECTIONS = [
     {
         "id": "page-6",
         "slug": "footprint",
-        "num": "06",
+        "num": "07",
         "nav": "Footprint",
         "title": "Footprint steps by scenario",
         "card": "What each seed step funds: product, GTM, and footprint.",
@@ -78,7 +87,7 @@ SECTIONS = [
     {
         "id": None,
         "slug": "market-validation",
-        "num": "07",
+        "num": "08",
         "nav": "Market validation",
         "title": "Market validation",
         "card": "FootfallCam proves paid people-analytics demand — without covering EyeNet’s six wedges.",
@@ -87,24 +96,26 @@ SECTIONS = [
     {
         "id": "page-7",
         "slug": "addendum-a",
-        "num": "08",
+        "num": "09",
         "nav": "Project status",
         "title": "Project status",
         "card": "Readiness, partners, and growth path.",
+        "group": "addenda",
     },
     {
         "id": "page-8",
         "slug": "addendum-b",
-        "num": "09",
+        "num": "10",
         "nav": "Reference",
         "title": "Addendum — Reference",
         "card": "Sources for addressable pockets and market validation.",
         "group": "addenda",
         "append": "reference-market-validation.html",
         "kicker_override": (
-            "Public references for How it is sold (addressable pockets) and for "
-            "Market validation (FootfallCam). Enterprise segment dollars are EyeNet "
-            "plan targets, not external census counts."
+            "Public references for The bet (dollar TAM category reports), How it is "
+            "sold (addressable pockets), and Market validation (FootfallCam). "
+            "Enterprise segment-map dollars remain EyeNet plan targets; they are "
+            "not census counts."
         ),
         "title_override": "Addendum — Reference",
     },
@@ -126,8 +137,7 @@ UI = {
     "footer": "EyeNet Vision · Investor primer · Confidential for investor discussion",
     "home_title": "EyeNet Invest",
     "home_lead": (
-        "On-premises vision that detects, decides, and acts — distilled from the "
-        "value thesis and business plan for investor discussion."
+        "On-premises vision that detects, decides, and acts — for investor discussion."
     ),
     "hero_eyebrow": "Edge Vision · Operational Action · Seed Ladder",
     "hero_h1": "EyeNet investor primer",
@@ -137,8 +147,8 @@ UI = {
     ),
     "meta": [
         ("Type", "Investor Primer"),
-        ("Date", "21 October 2026"),
-        ("Structure", "Bet · Wedges · Motions · Seed · Footprint · Validation"),
+        ("Date", "7 November 2026"),
+        ("Structure", "What · Wedges · Changes · Bet · Motions · Seed · Footprint · Validation"),
         ("Seed ladder", "$0.5M → $1M → $2.5M"),
     ],
 }
@@ -180,13 +190,15 @@ def wiki_links(html: str) -> str:
     """Rewrite in-document anchors to wiki routes."""
     html = html.replace('href="#page-7"', 'href="/addendum-a/"')
     html = html.replace('href="#page-8"', 'href="/addendum-b/"')
-    for i in range(1, 9):
+    for i in range(1, 13):
         html = html.replace(f'href="#ref-{i}"', f'href="/addendum-b/#ref-{i}"')
     return html
 
 
 def strip_existing_kicker(html: str) -> str:
-    return re.sub(r'<div class="kicker">.*?</div>\s*', "", html, count=1, flags=re.S)
+    html = re.sub(r'<div class="kicker">.*?</div>\s*', "", html, count=1, flags=re.S)
+    html = re.sub(r'<p class="page-lead">.*?</p>\s*', "", html, count=1, flags=re.S)
+    return html
 
 
 def page_label(path: str) -> str:
@@ -253,7 +265,7 @@ def sidebar_html(current: str) -> str:
             f"""
 <div class="nav-group is-open" data-nav-group="addenda">
 <div class="nav-group-head">
-<a class="nav-group-link" href="/{first_add}/" data-title="Addenda"{cur(first_add)}>Addenda</a>
+<a class="nav-group-link" href="/{first_add}/" data-title="Addenda">Addenda</a>
 <button type="button" class="nav-group-toggle" aria-expanded="true" aria-controls="nav-group-addenda" aria-label="Toggle Addenda">▾</button>
 </div>
 <div class="nav-group-body" id="nav-group-addenda">
@@ -267,9 +279,9 @@ def sidebar_html(current: str) -> str:
 def header_nav(section: str) -> str:
     items = [
         ("home", UI["home"], "/"),
-        ("the-bet", "The bet", "/the-bet/"),
+        ("what-is-eyenet", "What is EyeNet", "/what-is-eyenet/"),
+        ("where-it-pays", "Where it pays", "/where-it-pays/"),
         ("seed-ladder", "Seed ladder", "/seed-ladder/"),
-        ("footprint", "Footprint", "/footprint/"),
         ("market-validation", "Market validation", "/market-validation/"),
     ]
     out = []
@@ -358,7 +370,22 @@ def page_shell_title(num: str, title: str) -> str:
 
 
 PRINT_EXTRA_CSS = """
+    /* the-bet diff table (print) — source already has rules; reinforce if injected */
+    table.diff-table td.col-us {
+      background: #e8f2fc !important;
+      border-left: 3px solid var(--brand);
+      font-weight: 600;
+    }
     /* market-validation print extras */
+    .mv-appendix {
+      margin: 12px 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 14px;
+      background: var(--band);
+    }
+    .mv-appendix > summary { display: none; }
+    .mv-appendix { display: block; }
     .persona {
       background: var(--band);
       border: 1px solid var(--line);
@@ -476,37 +503,34 @@ def build_print(src_html: str) -> None:
         'href="#market-validation-refs"',
     )
     mv_section = f"""
-    <section class="section flow page-start" id="page-mv" data-nav-label="07 · Market validation">
-      <div class="section-head"><span class="section-num">07</span><h2>Market validation</h2></div>
+    <section class="section flow page-start" id="page-mv" data-nav-label="08 · Market validation">
+      <div class="section-head"><span class="section-num">08</span><h2>Market validation</h2></div>
 {mv_body}
     </section>
 """
     if 'id="page-mv"' not in html:
         html = html.replace(
-            "    <!-- 07 ADDENDUM A — PROJECT STATUS -->",
-            mv_section + "\n    <!-- 08 PROJECT STATUS -->",
+            "    <!-- 08 ADDENDUM A — PROJECT STATUS -->",
+            mv_section + "\n    <!-- 09 PROJECT STATUS -->",
         )
 
     html = html.replace(
-        'id="page-7" data-nav-label="07 · Addendum A"',
-        'id="page-7" data-nav-label="08 · Project status"',
+        'id="page-7" data-nav-label="08 · Addendum A"',
+        'id="page-7" data-nav-label="09 · Project status"',
     )
     html = html.replace(
-        '<span class="section-num">07</span><h2>Addendum A — Project status</h2>',
-        '<span class="section-num">08</span><h2>Project status</h2>',
+        '<span class="section-num">08</span><h2>Addendum A — Project status</h2>',
+        '<span class="section-num">09</span><h2>Project status</h2>',
     )
     html = html.replace(
-        'id="page-8" data-nav-label="08 · Addendum B"',
-        'id="page-8" data-nav-label="09 · Reference"',
+        'id="page-8" data-nav-label="09 · Addendum B"',
+        'id="page-8" data-nav-label="10 · Reference"',
     )
     html = html.replace(
-        '<span class="section-num">08</span><h2>Addendum B — Market sources (commercial packages)</h2>',
-        '<span class="section-num">09</span><h2>Addendum — Reference</h2>',
+        '<span class="section-num">09</span><h2>Addendum B — Reference</h2>',
+        '<span class="section-num">10</span><h2>Addendum — Reference</h2>',
     )
-    html = html.replace(
-        '<div class="kicker">Public references used for addressable pockets in How it is sold (B2C Light and B2B Starter / Pro). Same links as the value site commercial packages. Enterprise segment dollars are EyeNet plan targets, not external census counts.</div>',
-        '<div class="kicker">Public references for How it is sold (addressable pockets) and for Market validation (FootfallCam). Enterprise segment dollars are EyeNet plan targets, not external census counts.</div>',
-    )
+    # Reference kicker is authored in the primer source (includes TAM [9]–[12]).
 
     ref_extra = (ROOT / "content" / "reference-market-validation.html").read_text(
         encoding="utf-8"
@@ -520,7 +544,7 @@ def build_print(src_html: str) -> None:
 
     html = html.replace(
         "Project status: <a href=\"#page-7\">Addendum A</a>. Commercial addressable-pocket links: <a href=\"#page-8\">Addendum B</a>.",
-        'Market validation: <a href="#page-mv">§07</a>. Project status: <a href="#page-7">§08</a>. Reference: <a href="#page-8">§09</a>.',
+        'Market validation: <a href="#page-mv">§08</a>. Project status: <a href="#page-7">§09</a>. Reference: <a href="#page-8">§10</a>.',
     )
 
     old_tb = re.search(r'<div class="no-print toolbar">.*?</div>\s*', html, flags=re.S)
@@ -567,7 +591,7 @@ def main() -> None:
   <p class="lead">{UI["hero_lead"]}</p>
   <div class="hero-meta">{meta}</div>
 </div>
-<p class="lead">{UI["home_lead"]}</p>
+<p class="page-lead">{UI["home_lead"]}</p>
 <div class="landing-cards">{cards}</div>
 """
     write(
@@ -603,7 +627,7 @@ def main() -> None:
             if sec.get("kicker_override"):
                 body = (
                     page_shell_title(sec["num"], page_title)
-                    + f'<div class="kicker">{sec["kicker_override"]}</div>\n'
+                    + f'<p class="page-lead">{sec["kicker_override"]}</p>\n'
                     + strip_existing_kicker(wiki_links(by_id[sec["id"]]))
                 )
             if sec.get("append"):

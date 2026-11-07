@@ -234,6 +234,137 @@
     .stat.brand { color: var(--brand); }
     .stat.ok { color: var(--ok); }
 
+    .argument-card { padding: 16px 16px 18px; }
+    .argument-card .stat { margin-bottom: 6px; color: #475569; }
+    .argument-card .stat.cyan { color: #0e7490; }
+    .argument-card .stat.brand { color: #3b82c4; }
+    .argument-card .stat.ok { color: #3f7a55; }
+    .argument-card .stat-claim {
+      display: block;
+      margin: 0 0 8px;
+      color: #334155;
+      font-size: 12pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .argument-card .stat-label {
+      margin: -2px 0 10px;
+      color: #94a3b8;
+      font-size: 8pt;
+    }
+    .argument-card .stat-method {
+      margin: 0;
+      color: #64748b;
+      font-size: 10pt;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .page-lead {
+      position: relative; margin: 22px 0 28px; max-width: 92%; padding-left: 18px;
+      color: var(--brand-dark); font-size: 11pt; font-weight: 600; line-height: 1.45;
+    }
+    .page-lead::before {
+      content: "“"; position: absolute; left: 0; top: -2px;
+      color: rgba(59, 130, 196, 0.35); font-size: 18pt; font-weight: 700; line-height: 1;
+    }
+    .persona-bridge,
+    .use-cases-bridge { margin: 12px 0 14px; }
+    .persona-bridge h3,
+    .use-cases-bridge h3 {
+      margin: 0 0 4px; color: var(--brand-dark); font-size: 11.5pt; font-weight: 800;
+    }
+    .persona-bridge-lead {
+      margin: 0 0 10px; color: var(--muted); font-size: 9pt;
+    }
+    .buyer-points {
+      display: grid; gap: 8px; grid-template-columns: 1fr; margin-top: 8px;
+    }
+    .buyer-point {
+      margin: 0; padding: 9px 11px; background: var(--band); border: 1px solid var(--line);
+      color: var(--ink); font-size: 8.5pt; font-weight: 600; line-height: 1.4;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .buyer-point.alt { background: var(--band-alt); }
+    .buyer-point strong { color: var(--brand); font-weight: 800; }
+    .persona-cards {
+      display: grid; gap: 10px; grid-template-columns: 1fr;
+    }
+    .persona-card {
+      display: grid;
+      grid-template-columns: 32% 1fr;
+      background: var(--band);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .persona-card.alt { background: var(--band-alt); }
+    .persona-media { margin: 0; background: var(--brand-dark); min-height: 72px; }
+    .persona-media img {
+      display: block; width: 100%; height: 100%; min-height: 72px;
+      object-fit: cover; object-position: center 20%;
+    }
+    .persona-body { padding: 8px 10px 10px; }
+    .persona-card h4 {
+      margin: 0 0 4px; color: var(--brand-dark); font-size: 10pt; font-weight: 800;
+    }
+    .persona-now { margin: 0 0 6px; color: var(--muted); font-size: 8.5pt; }
+    .persona-then {
+      margin: 0; padding-top: 6px; border-top: 1px solid var(--line);
+      color: var(--ink); font-size: 8.5pt; font-weight: 600;
+    }
+    .persona-then strong { color: var(--brand); }
+
+    .wedge-cards {
+      display: grid;
+      gap: 12px;
+      margin: 12px 0 4px;
+      grid-template-columns: 1fr;
+    }
+    .wedge-card {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      background: var(--band);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .wedge-card.alt { background: var(--band-alt); }
+    .wedge-media { margin: 0; background: var(--brand-dark); min-height: 90px; }
+    .wedge-media img {
+      display: block; width: 100%; height: 100%; min-height: 90px;
+      object-fit: cover; object-position: center;
+    }
+    .wedge-body { padding: 10px 12px 12px; }
+    .wedge-card-head {
+      display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px;
+    }
+    .wedge-num {
+      color: var(--soft); font-size: 8pt; font-weight: 800; letter-spacing: 0.04em;
+    }
+    .wedge-card h3 {
+      margin: 0; color: var(--brand-dark); font-size: 11pt; font-weight: 800;
+    }
+    .wedge-buyer {
+      margin: 0 0 8px; color: var(--muted); font-size: 8.5pt; font-weight: 600;
+    }
+    .wedge-block {
+      margin: 0; padding-top: 8px; border-top: 1px solid var(--line);
+    }
+    .wedge-k {
+      display: block; margin-bottom: 3px;
+      color: var(--soft); font-size: 7.5pt; font-weight: 800;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .wedge-block p { margin: 0; font-size: 9pt; font-weight: 600; line-height: 1.4; }
+    .wedge-block.problem p { color: var(--muted); }
+    .wedge-block.payoff p { color: var(--ink); }
+
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
     .tag {
       display: inline-block; padding: 3px 8px;
@@ -292,6 +423,43 @@
     tbody tr:nth-child(even) td { background: var(--band); }
     tbody tr.row-accent td { background: var(--band-alt); }
     td strong { color: var(--ink); }
+
+    table.diff-table {
+      margin: 10px 0 18px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    table.diff-table th.col-them { background: #334155; }
+    table.diff-table th.col-us {
+      background: linear-gradient(135deg, var(--brand-dark), var(--brand));
+    }
+    table.diff-table tbody th[scope="row"] {
+      width: 18%;
+      background: var(--band);
+      color: var(--brand-dark);
+      font-size: 8.5pt;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+    table.diff-table td.col-them {
+      color: var(--soft);
+      background: #f8fafc;
+      width: 36%;
+    }
+    table.diff-table td.col-us {
+      background: #e8f2fc;
+      color: var(--ink);
+      width: 46%;
+      border-left: 3px solid var(--brand);
+      font-weight: 600;
+    }
+    table.diff-table tbody tr:nth-child(even) td.col-them { background: #f1f5f9; }
+    table.diff-table tbody tr:nth-child(even) td.col-us { background: #dcebf8; }
+    table.diff-table tbody tr:nth-child(even) th[scope="row"] { background: var(--band-alt); }
+    table.diff-table td.col-us strong { color: var(--brand-dark); }
 
     .summary-panel {
       margin-top: 18px;
@@ -379,11 +547,11 @@
         </div>
         <p class="cover-eyebrow">Edge Vision · Operational Action · Seed Ladder</p>
         <h1>EyeNet investor primer</h1>
-        <p class="cover-lead">On-premises vision that detects, decides, and acts — for homes, care, offices, ships, industrial sites, and venues where cloud cameras cannot follow. Distilled from the current value thesis and business plan for investor discussion.</p>
+        <p class="cover-lead">On-premises vision that detects, decides, and acts — for homes, care, offices, ships, industrial sites, and venues where cloud cameras cannot follow.</p>
         <div class="cover-meta">
           <div><span>Type</span><strong>Investor Primer</strong></div>
-          <div><span>Date</span><strong>21 October 2026</strong></div>
-          <div><span>Structure</span><strong>Bet · Wedges · Motions · Seed · Footprint</strong></div>
+          <div><span>Date</span><strong>7 November 2026</strong></div>
+          <div><span>Structure</span><strong>What · Wedges · Changes · Bet · Motions · Seed · Footprint · Validation</strong></div>
           <div><span>Seed ladder</span><strong>$0.5M → $1M → $2.5M</strong></div>
         </div>
       </div>
@@ -393,55 +561,330 @@
       </div>
     </section>
 
-    <!-- 01 THE BET -->
-    <section class="section flow" id="page-1" data-nav-label="01 · The bet">
-      <div class="section-head"><span class="section-num">01</span><h2>The bet</h2></div>
-      <div class="kicker">Incumbents sell cloud storage, bandwidth, and recordings. EyeNet sells sovereignty and operational action: any camera becomes a vision node on a ~16&nbsp;GB PC, first detection in minutes, no per-camera licenses, and video that never has to leave the site. Scale is hardware-bound — one room to a campus — with no technical ceiling.</div>
+    <!-- 01 WHAT IS EYENET -->
+    <section class="section flow" id="page-9" data-nav-label="01 · What is EyeNet">
+      <div class="section-head"><span class="section-num">01</span><h2>What is EyeNet</h2></div>
+      <p class="page-lead">EyeNet is on-premises computer vision that turns ordinary cameras into vision nodes — they detect, decide, and act on site. Video stays local by default. One platform serves homes, care, offices, shops, security posts, ships, and plants.</p>
 
-      <div class="cols-4">
-        <div class="panel">
-          <span class="stat cyan">$0.5–1.5B</span>
-          <span class="stat-label">B2C TAM, U.S.</span>
-          <p>Conservative consumer addressable market.</p>
+      <div class="persona-bridge">
+        <h3>Who buys — and why now</h3>
+        <p class="page-lead">Real buyers, real jobs: each persona hits a wall with incumbents — then starts on cameras they already have and gets the outcome today.</p>
+        <div class="buyer-points">
+          <p class="buyer-point">An <strong>HR manager</strong> can now let every employee check in from their own PC or phone — and push grants to the ERP/CRM — with zero new hardware, even at thousands of seats.</p>
+          <p class="buyer-point alt">A <strong>shop or mall owner</strong> can now prove who is watching a screen and switch the playlist on cams they already have, without a locked player kit.</p>
+          <p class="buyer-point">A <strong>parent</strong> can now get private intrusion alerts on the home cams they already own — or a cheap everyday camera — with no cloud subscription.</p>
+          <p class="buyer-point alt">A <strong>parent of a student living away</strong> can now watch a remote flat or cottage with one ordinary cam — phone pings only, no guard contract or cloud VMS.</p>
+          <p class="buyer-point">A <strong>care provider</strong> can now turn a patient room cam into fall and help-call events for the clinical stack — without shipping cloud video.</p>
+          <p class="buyer-point alt">A <strong>security ops lead</strong> can now get night vigilance and perimeter from the fence and floor cams already there — without per-camera seats or another night shift.</p>
+          <p class="buyer-point">A <strong>captain or plant ops lead</strong> can now know who’s onboard and who’s in zone when the link dies — on the cams already aboard or on site.</p>
         </div>
-        <div class="panel alt">
-          <span class="stat brand">$2–4B</span>
-          <span class="stat-label">B2B / Enterprise TAM</span>
-          <p>U.S. mid-market and strategic accounts.</p>
+      </div>
+
+      <div class="use-cases-bridge">
+        <h3>Powerful features</h3>
+        <p class="page-lead">Platform reasons that cut across every persona — why EyeNet is not another camera cloud.</p>
+      <div class="cols-3">
+        <div class="panel argument-card">
+          <span class="stat cyan">Any camera</span>
+          <span class="stat-claim">Not vendor lock-in</span>
+          <p class="stat-method">Existing cams, phones, PCs — or inexpensive ordinary cameras. First detection in minutes on a ~16&nbsp;GB PC.</p>
         </div>
-        <div class="panel">
-          <span class="stat">1–3%</span>
-          <span class="stat-label">B2C Share → $5–45M</span>
-          <p>Plan target share of B2C TAM.</p>
+        <div class="panel alt argument-card">
+          <span class="stat brand">Detect → decide → act</span>
+          <span class="stat-claim">Not passive VMS</span>
+          <p class="stat-method">Targeted alerts to mobile, email, webhooks, signage, gates, and the ERP/CRM — only when something needs a person.</p>
         </div>
-        <div class="panel alt">
-          <span class="stat ok">1–2%</span>
-          <span class="stat-label">Enterprise → $20–80M</span>
-          <p>Plan target share of enterprise TAM.</p>
+        <div class="panel argument-card">
+          <span class="stat ok">On-prem by default</span>
+          <span class="stat-claim">Sovereignty + offline</span>
+          <p class="stat-method">Processing and footage stay on premises. Full operation when the internet is down; Matrix syncs on thin links.</p>
         </div>
+      </div>
+
+      <div class="cols-3">
+        <div class="panel alt argument-card">
+          <span class="stat">No per-camera tax</span>
+          <span class="stat-claim">Hardware-bound scale</span>
+          <p class="stat-method">Scale is the mesh you deploy — one room to a campus — not a per-camera license ceiling or a GPU farm.</p>
+        </div>
+        <div class="panel argument-card">
+          <span class="stat cyan">Zero / near-zero hardware</span>
+          <span class="stat-claim">Buy today</span>
+          <p class="stat-method">Staff use their own PC or mobile for presence grants; sites reuse cameras they already own. EyeNet scales to thousands of employees without a camera fleet project.</p>
+        </div>
+        <div class="panel alt argument-card">
+          <span class="stat brand">Six wedges, one fabric</span>
+          <span class="stat-claim">Where it pays</span>
+          <p class="stat-method">HR presence, adaptive signage, home and away, Virtual Ward, night / perimeter security, shipping and industrial — Presence, Vradar, Sentinel, and Matrix on one stack.</p>
+        </div>
+      </div>
       </div>
     </section>
 
-    <!-- 02 WHAT CHANGES -->
-    <section class="section flow page-start" id="page-2" data-nav-label="02 · What changes">
-      <div class="section-head"><span class="section-num">02</span><h2>What changes</h2></div>
-      <div class="kicker">Users are not locked to a camera wall. The platform watches 24/7; the right person gets a targeted alert — mobile, email, webhook, clinical app, or HubSpot — only when something needs them. Ordinary cameras become an always-on assistant that decides and acts on premises, including when the internet is down.</div>
+    <!-- 02 WHERE IT PAYS -->
+    <section class="section flow page-start" id="page-3" data-nav-label="02 · Where it pays">
+      <div class="section-head"><span class="section-num">02</span><h2>Where it pays</h2></div>
+      <p class="page-lead">Six wedges. Same platform. Incumbents lack the model: any camera, hardware-bound scale, no per-camera blockers, detect → decide → act.</p>
+
+      <div class="persona-bridge">
+        <h3>Who pays — and what changes</h3>
+        <p class="page-lead">Each persona hits a hard wall with incumbents. EyeNet turns the same cameras into the job they actually need.</p>
+        <div class="persona-cards">
+          <a class="persona-card" href="#wedge-hr">
+            <div class="persona-media">
+              <img src="/assets/images/persona-hr.jpg" alt="HR / facilities lead" loading="lazy" decoding="async">
+            </div>
+            <div class="persona-body">
+              <h4>HR / facilities lead</h4>
+              <p class="persona-then"><strong>The problem now:</strong> Never trusts badge sheets or remote presence.</p>
+              <p class="persona-then"><strong>With EyeNet:</strong> cameras check people in and push grants to the ERP/CRM (e.g. HubSpot).</p>
+              <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Each staff member uses their own PC or mobile camera to issue presence grants — and complements gate systems. Zero hardware cost; EyeNet scales to companies with thousands of employees.</p>
+            </div>
+          </a>
+          <a class="persona-card alt" href="#wedge-signage">
+            <div class="persona-media">
+              <img src="/assets/images/persona-shop.jpg" alt="Shop / mall owner" loading="lazy" decoding="async">
+            </div>
+            <div class="persona-body">
+              <h4>Shop / mall owner</h4>
+              <p class="persona-then"><strong>The problem now:</strong> Never sees digital-signage impact with today’s locked CMS.</p>
+              <p class="persona-then"><strong>With EyeNet:</strong> who is watching switches the playlist and proves impressions.</p>
+              <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Works on cameras already on their screens, or a cheap off-the-shelf add — no locked player kit, no per-screen SaaS tax. Adaptive playlists and measurable impressions start without a proprietary estate.</p>
+            </div>
+          </a>
+          <a class="persona-card" href="#wedge-family">
+            <div class="persona-media">
+              <img src="/assets/images/persona-parent.jpg" alt="Parent / household at home" loading="lazy" decoding="async">
+            </div>
+            <div class="persona-body">
+              <h4>Parent / household</h4>
+              <p class="persona-then"><strong>The problem now:</strong> Pays for cloud cams that ship video off-site when the house is empty.</p>
+              <p class="persona-then"><strong>With EyeNet:</strong> intrusion and unknown-person alerts stay local on any home camera.</p>
+              <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Plug into cams already at home, or pick up a low-cost everyday camera — no vendor lock-in, no cloud subscription. Private alerts the day they turn it on.</p>
+            </div>
+          </a>
+          <a class="persona-card alt" href="#wedge-family-remote">
+            <div class="persona-media">
+              <img src="/assets/images/persona-student.jpg" alt="Student living away" loading="lazy" decoding="async">
+            </div>
+            <div class="persona-body">
+              <h4>Student living away</h4>
+              <p class="persona-then"><strong>The problem now:</strong> Parents want peace of mind for a remote flat / cottage — without a cloud VMS or a security team.</p>
+              <p class="persona-then"><strong>With EyeNet:</strong> presence and unknown-person alerts at the remote home; phone pings only; footage stays on premises.</p>
+              <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> One cam already at the remote flat or cottage, or a simple budget camera on a shelf — no guard contract, no cloud VMS. Parents get peace of mind without buying a security system.</p>
+            </div>
+          </a>
+          <a class="persona-card" href="#wedge-care">
+            <div class="persona-media">
+              <img src="/assets/images/persona-care.jpg" alt="Care provider / clinician" loading="lazy" decoding="async">
+            </div>
+            <div class="persona-body">
+              <h4>Care provider / clinician</h4>
+              <p class="persona-then"><strong>The problem now:</strong> Gets vitals-only RPM with no vision safety layer.</p>
+              <p class="persona-then"><strong>With EyeNet:</strong> fall and help-call events enter the health stack without cloud video.</p>
+              <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Use the room cams already at the patient, or add an affordable commodity camera — fall / help-call events into the clinical stack without cloud video or a proprietary fleet.</p>
+            </div>
+          </a>
+          <a class="persona-card alt" href="#wedge-security">
+            <div class="persona-media">
+              <img src="/assets/images/persona-security.jpg" alt="Security ops lead" loading="lazy" decoding="async">
+            </div>
+            <div class="persona-body">
+              <h4>Security ops lead</h4>
+              <p class="persona-then"><strong>The problem now:</strong> Buys storage and per-camera seats, not coverage.</p>
+              <p class="persona-then"><strong>With EyeNet:</strong> night posts get vigilance, perimeter, and forensics without 1:1 headcount.</p>
+              <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Cameras already on the fence and floor — vigilance and perimeter without per-camera seats or hiring another night shift.</p>
+            </div>
+          </a>
+          <a class="persona-card" href="#wedge-shipping">
+            <div class="persona-media">
+              <img src="/assets/images/persona-shipping.jpg" alt="Captain / plant ops" loading="lazy" decoding="async">
+            </div>
+            <div class="persona-body">
+              <h4>Captain / plant ops</h4>
+              <p class="persona-then"><strong>The problem now:</strong> Loses truth when the link drops.</p>
+              <p class="persona-then"><strong>With EyeNet:</strong> who’s onboard and who’s in zone stays local; Matrix syncs on thin links.</p>
+              <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Run on the ship or plant cams they have, or drop in low-cost ordinary units where coverage is thin — local who/zone truth when the link dies; no wait for cloud.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="use-cases-bridge">
+        <h3>Typical use cases</h3>
+        <p class="page-lead">Six wedges on one platform — any camera, hardware-bound scale, no per-camera blockers, detect → decide → act.</p>
+      <div class="wedge-cards">
+        <article class="wedge-card" id="wedge-hr">
+          <div class="wedge-media">
+            <img src="/assets/images/hr-presence.png" alt="EyeNet HR presence" loading="lazy" decoding="async">
+          </div>
+          <div class="wedge-body">
+            <header class="wedge-card-head">
+              <span class="wedge-num">01</span>
+              <h3>HR presence</h3>
+            </header>
+            <p class="wedge-buyer">HR, facilities, office ops</p>
+            <div class="wedge-block problem">
+              <span class="wedge-k">Problem now</span>
+              <p>Proprietary readers · per-seat / per-door SaaS · weak remote · no CRM action from cameras you own</p>
+            </div>
+            <div class="wedge-block payoff">
+              <span class="wedge-k">Why paid EyeNet</span>
+              <p>Auto presence on-site + remote · zero roll-call · ERP/CRM first (e.g. HubSpot)</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="wedge-card alt" id="wedge-signage">
+          <div class="wedge-media">
+            <img src="/assets/images/mall-signage.png" alt="EyeNet vision-adaptive signage" loading="lazy" decoding="async">
+          </div>
+          <div class="wedge-body">
+            <header class="wedge-card-head">
+              <span class="wedge-num">02</span>
+              <h3>Vision-adaptive intelligent signage</h3>
+            </header>
+            <p class="wedge-buyer">Retail, venues, agencies, brand studios</p>
+            <div class="wedge-block problem">
+              <span class="wedge-k">Problem now</span>
+              <p>Locked players / camera kits · per-screen SaaS · slow campaigns · no any-camera playlist scale</p>
+            </div>
+            <div class="wedge-block payoff">
+              <span class="wedge-k">Why paid EyeNet</span>
+              <p>Age / gender / group switch in ms · impressions + dwell · measurable studio</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="wedge-card" id="wedge-family">
+          <div class="wedge-media">
+            <img src="/assets/images/family-protection-home.jpg" alt="EyeNet home protection when the house is empty" loading="lazy" decoding="async">
+          </div>
+          <div class="wedge-body">
+            <header class="wedge-card-head">
+              <span class="wedge-num">03</span>
+              <h3>Home protection when the house is empty</h3>
+            </header>
+            <p class="wedge-buyer">Families · parents · households</p>
+            <div class="wedge-block problem">
+              <span class="wedge-k">Problem now</span>
+              <p>Cloud-by-default · vendor cameras only · per-device subscriptions · footage leaves home</p>
+            </div>
+            <div class="wedge-block payoff">
+              <span class="wedge-k">Why paid EyeNet</span>
+              <p>Intrusion + unknown-person alerts · presence check · footage stays local · phone pings only</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="wedge-card alt" id="wedge-family-remote">
+          <div class="wedge-media">
+            <img src="/assets/images/remote-cottage.jpg" alt="Peace of mind at home — and away: cottage and students living away" loading="lazy" decoding="async">
+          </div>
+          <div class="wedge-body">
+            <header class="wedge-card-head">
+              <span class="wedge-num">03</span>
+              <h3>Peace of mind at home — and away</h3>
+            </header>
+            <p class="wedge-buyer">Families · parents · households · students living away</p>
+            <div class="wedge-block problem">
+              <span class="wedge-k">Problem now</span>
+              <p>Remote flat / cottage needs a security team or a cloud VMS · parents get no private peace of mind for kids away</p>
+            </div>
+            <div class="wedge-block payoff">
+              <span class="wedge-k">Why paid EyeNet</span>
+              <p>Presence + unknown-person at the remote home · targeted phone alerts · on-prem privacy · same stack, no cloud video</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="wedge-card" id="wedge-care">
+          <div class="wedge-media">
+            <img src="/assets/images/homecare-caregiver-presence.jpg" alt="EyeNet home care Virtual Ward" loading="lazy" decoding="async">
+          </div>
+          <div class="wedge-body">
+            <header class="wedge-card-head">
+              <span class="wedge-num">04</span>
+              <h3>Home care / Virtual Ward</h3>
+            </header>
+            <p class="wedge-buyer">Care provider, clinician, TMA / Talos (TMAIX)</p>
+            <div class="wedge-block problem">
+              <span class="wedge-k">Problem now</span>
+              <p>Vitals-only RPM · cloud vision · camera lock-in · can’t feed clinical stack without shipping video</p>
+            </div>
+            <div class="wedge-block payoff">
+              <span class="wedge-k">Why paid EyeNet</span>
+              <p>Fall / help-call / zone events · tokenized into health stack · not cloud video</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="wedge-card alt" id="wedge-security">
+          <div class="wedge-media">
+            <img src="/assets/images/security.jpg" alt="EyeNet night and perimeter security" loading="lazy" decoding="async">
+          </div>
+          <div class="wedge-body">
+            <header class="wedge-card-head">
+              <span class="wedge-num">05</span>
+              <h3>Security: night and perimeter</h3>
+            </header>
+            <p class="wedge-buyer">Security firms, corporate &amp; industrial sites</p>
+            <div class="wedge-block problem">
+              <span class="wedge-k">Problem now</span>
+              <p>Storage + per-camera licenses · proprietary hardware · scale = more seats, not more action</p>
+            </div>
+            <div class="wedge-block payoff">
+              <span class="wedge-k">Why paid EyeNet</span>
+              <p>Guard vigilance · perimeter · Vradar · forensics · coverage without 1:1 headcount</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="wedge-card" id="wedge-shipping">
+          <div class="wedge-media">
+            <img src="/assets/images/shipping.jpg" alt="EyeNet shipping and industrial" loading="lazy" decoding="async">
+          </div>
+          <div class="wedge-body">
+            <header class="wedge-card-head">
+              <span class="wedge-num">06</span>
+              <h3>Shipping and industrial</h3>
+            </header>
+            <p class="wedge-buyer">Captain, fleet manager, plant &amp; site ops</p>
+            <div class="wedge-block problem">
+              <span class="wedge-k">Problem now</span>
+              <p>Assumes always-on cloud · fixed camera estates · breaks offline · license ceilings on multi-site</p>
+            </div>
+            <div class="wedge-block payoff">
+              <span class="wedge-k">Why paid EyeNet</span>
+              <p>Who’s onboard · zones · headcount packs · local ops · Matrix on thin links</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      </div>
+
+    </section>
+
+    <!-- 03 WHAT CHANGES -->
+    <section class="section flow page-start" id="page-2" data-nav-label="03 · What changes">
+      <div class="section-head"><span class="section-num">03</span><h2>What changes</h2></div>
+      <p class="page-lead">Users are not locked to a camera wall. The platform watches 24/7; the right person gets a targeted alert — mobile, email, webhook, clinical app, or HubSpot — only when something needs them. Ordinary cameras become an always-on assistant that decides and acts on premises, including when the internet is down.</p>
 
       <div class="cols-3">
-        <div class="panel">
+        <div class="panel argument-card">
           <span class="stat cyan">Edge</span>
-          <span class="stat-label">Not cloud-bound</span>
-          <p>On-device AI. Full offline. Data sovereignty by default. Processing and storage stay on premises.</p>
+          <span class="stat-claim">Not cloud-bound</span>
+          <p class="stat-method">On-device AI. Full offline. Data sovereignty by default. Processing and storage stay on premises.</p>
         </div>
-        <div class="panel alt">
+        <div class="panel alt argument-card">
           <span class="stat brand">Action</span>
-          <span class="stat-label">Not passive VMS</span>
-          <p>Triggers fire mobile, email, webhooks, signage, and gates. Each camera has its own rules.</p>
+          <span class="stat-claim">Not passive VMS</span>
+          <p class="stat-method">Triggers fire mobile, email, webhooks, signage, and gates. Each camera has its own rules.</p>
         </div>
-        <div class="panel">
+        <div class="panel argument-card">
           <span class="stat ok">Scale</span>
-          <span class="stat-label">Hardware-bound</span>
-          <p>Any IP, WiFi, or phone camera. ~16&nbsp;GB PC. One room to an enterprise mesh. No GPU farm.</p>
+          <span class="stat-claim">Hardware-bound</span>
+          <p class="stat-method">Any IP, WiFi, or phone camera. ~16&nbsp;GB PC. One room to an enterprise mesh. No GPU farm.</p>
         </div>
       </div>
 
@@ -475,58 +918,91 @@
       </ul>
     </section>
 
-    <!-- 03 WHERE IT PAYS -->
-    <section class="section flow page-start" id="page-3" data-nav-label="03 · Where it pays">
-      <div class="section-head"><span class="section-num">03</span><h2>Where it pays</h2></div>
-      <div class="kicker">Six wedges. Same platform. The market others abandon is connectivity- and privacy-hostile: ships, industrial sites, clinics, family homes, night posts, Virtual Wards.</div>
+    <!-- 04 THE BET -->
+    <section class="section flow page-start" id="page-1" data-nav-label="04 · The bet">
+      <div class="section-head"><span class="section-num">04</span><h2>The bet</h2></div>
+      <p class="page-lead">EyeNet’s differentiators are the de facto optimal penetrators of the TAM: any camera as a vision node, on-prem detect → decide → act, no per-camera license tax, first value in minutes, hardware-bound scale.</p>
+      <p class="page-lead">That is how you enter the market where incumbents can only rent cloud storage on locked camera hardware and complicated server setups — and expand room-to-campus without a license ceiling.</p>
 
-      <table>
+      <h3>Point-to-point differentiators</h3>
+      <table class="diff-table">
         <thead>
           <tr>
-            <th>Wedge</th>
-            <th>Buyer</th>
-            <th>Why it is paid for</th>
+            <th scope="col">Point</th>
+            <th scope="col" class="col-them">Incumbents</th>
+            <th scope="col" class="col-us">EyeNet</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>HR presence</strong></td>
-            <td>HR, facilities, office ops</td>
-            <td>Automatic staff presence on-site and remote, with zero manual roll-call. HubSpot is the first CRM connector.</td>
+            <th scope="row">Product</th>
+            <td class="col-them">Cloud storage, bandwidth, recordings</td>
+            <td class="col-us"><strong>Sovereignty + operational action</strong></td>
           </tr>
           <tr>
-            <td><strong>Vision-adaptive intelligent signage</strong></td>
-            <td>Retail, venues, agencies, brand studios</td>
-            <td>Age, gender, and group size switch playlists in milliseconds. Impressions, dwell, and A/B turn screens into a measurable studio.</td>
+            <th scope="row">Video</th>
+            <td class="col-them">Cloud by default</td>
+            <td class="col-us"><strong>On-prem by default</strong> — never has to leave the site</td>
           </tr>
           <tr>
-            <td><strong>Family protection at home and remote</strong></td>
-            <td>Families, parents, students living away</td>
-            <td>Intrusion, unknown-person, and presence alerts for the home and for people living away. Footage stays local.</td>
+            <th scope="row">Cameras</th>
+            <td class="col-them">Passive recorders / “AI boxes”</td>
+            <td class="col-us"><strong>Vision nodes</strong> on a ~16&nbsp;GB PC — any IP / Wi‑Fi / phone camera</td>
           </tr>
           <tr>
-            <td><strong>Home care / Virtual Ward</strong></td>
-            <td>Care provider, clinician, Talos / TMAIX</td>
-            <td>Caregiver presence, fall, help-call, and zone events into the health stack — tokenized, not cloud video. Safety layer vitals-only RPM cannot fake.</td>
+            <th scope="row">Licensing</th>
+            <td class="col-them">Per-camera licenses</td>
+            <td class="col-us"><strong>No per-camera licenses</strong></td>
           </tr>
           <tr>
-            <td><strong>Security: night and perimeter</strong></td>
-            <td>Security firms, corporate &amp; industrial sites</td>
-            <td>Guard vigilance, perimeter Presence, Vradar motion, and forensics. Night coverage stops scaling 1:1 with sites.</td>
+            <th scope="row">Outcome</th>
+            <td class="col-them">Passive recordings &amp; dashboards</td>
+            <td class="col-us"><strong>Detect → decide → act</strong> — mobile, email, webhooks, signage, gates</td>
           </tr>
           <tr>
-            <td><strong>Shipping and industrial</strong></td>
-            <td>Captain, fleet manager, plant &amp; site ops</td>
-            <td>Who is onboard or on site, restricted zones, and headcount packs. Full local ops; sync on thin links. Matrix when offline.</td>
+            <th scope="row">Time to value</th>
+            <td class="col-them">Projects that take quarters</td>
+            <td class="col-us"><strong>First detection in minutes</strong></td>
+          </tr>
+          <tr>
+            <th scope="row">Scale</th>
+            <td class="col-them">Cloud / GPU farm ceiling</td>
+            <td class="col-us"><strong>Hardware-bound mesh</strong> — one room to a campus</td>
           </tr>
         </tbody>
       </table>
+
+      <div class="cols-4">
+        <div class="panel argument-card">
+          <span class="stat cyan">$0.5–1.5B</span>
+          <span class="stat-claim">B2C TAM, U.S.</span>
+          <p class="stat-method">Conservative consumer addressable market — grounded in category reports <a class="ref" href="#ref-11">[11]</a>–<a class="ref" href="#ref-12">[12]</a>.</p>
+        </div>
+        <div class="panel alt argument-card">
+          <span class="stat brand">$2–4B</span>
+          <span class="stat-claim">B2B / Enterprise TAM</span>
+          <p class="stat-method">U.S. mid-market and strategic accounts — inside U.S. video analytics <a class="ref" href="#ref-9">[9]</a>–<a class="ref" href="#ref-10">[10]</a>.</p>
+        </div>
+        <div class="panel argument-card">
+          <span class="stat">1–3%</span>
+          <span class="stat-claim">→ $5–45M</span>
+          <span class="stat-label">B2C share of U.S. TAM</span>
+          <p class="stat-method">Plan target share applied to the B2C band.</p>
+        </div>
+        <div class="panel alt argument-card">
+          <span class="stat ok">1–2%</span>
+          <span class="stat-claim">→ $20–80M</span>
+          <span class="stat-label">Enterprise share of U.S. TAM</span>
+          <p class="stat-method">Plan target share applied to the enterprise band.</p>
+        </div>
+      </div>
+      <p class="side-note"><strong>How we size:</strong> Dollar TAM bands are EyeNet’s conservative U.S. addressable ranges, grounded in third-party category reports <a class="ref" href="#ref-9">[9]</a>–<a class="ref" href="#ref-12">[12]</a>. B2B / Enterprise <strong>$2–4B</strong> sits inside U.S. video analytics (MarketsandMarkets: ~$2.3B in 2023 → ~$5.7B by 2028 <a class="ref" href="#ref-10">[10]</a>; Grand View: global $12.7B in 2024 with North America ~⅓ <a class="ref" href="#ref-9">[9]</a>). B2C <strong>$0.5–1.5B</strong> is a software / operational-action slice of the larger U.S. smart-home security camera market (~$3.7B in 2024 <a class="ref" href="#ref-11">[11]</a>), with U.S. VSaaS (~$1.3B <a class="ref" href="#ref-12">[12]</a>) as the cloud-incumbent adjacent. Share → revenue is plan arithmetic on those bands (1–3% of B2C; 1–2% of enterprise). Bottom-up GTM pocket counts: How it is sold and Reference <a class="ref" href="#ref-1">[1]</a>–<a class="ref" href="#ref-8">[8]</a>.</p>
     </section>
 
-    <!-- 04 HOW IT IS SOLD -->
-    <section class="section flow page-start" id="page-4" data-nav-label="04 · How it is sold">
-      <div class="section-head"><span class="section-num">04</span><h2>How it is sold</h2></div>
-      <div class="kicker">Three motions on one platform. Unit economics (CAC, LTV, payback, margins) are the core — they hold across seed capital scenarios.</div>
+    <!-- 05 HOW IT IS SOLD -->
+    <section class="section flow page-start" id="page-4" data-nav-label="05 · How it is sold">
+      <div class="section-head"><span class="section-num">05</span><h2>How it is sold</h2></div>
+      <p class="page-lead">Three motions on one platform. Unit economics (CAC, LTV, payback, margins) are the core — they hold across seed capital scenarios.</p>
 
       <table>
         <thead>
@@ -541,7 +1017,7 @@
           <tr>
             <td><strong>B2C Light</strong></td>
             <td>$20–$300/mo · events $200–$1,200. Shelf: Signage Lite $30–100, Home Security Lite $20–50, Retail Compliance Lite $50–100, Event Security Lite $200–1,200/event. Free funnel 60–90 days, then Lite / Pro.</td>
-            <td>Avg MRR ~$50 · CAC $20–30 · LTV:CAC ~30:1 · payback 1–2 mo</td>
+            <td>Modeled avg MRR ~$50 · CAC $20–30 · LTV:CAC ~30:1 · payback 1–2 mo</td>
             <td>Homeowners, micro-SMEs, consultants, small retail. Credit-card self-serve. Wants alerts and ROI without an IT project. Pockets: ~52K marketing consulting<a class="ref" href="#ref-1">[1]</a>; ~87M owner-occupied homes<a class="ref" href="#ref-2">[2]</a>; ~0.8M Airbnb hosts<a class="ref" href="#ref-3">[3]</a>; ~8K contract security<a class="ref" href="#ref-4">[4]</a>; ~1.0M+ retail + ~0.6M restaurants<a class="ref" href="#ref-5">[5]</a><a class="ref" href="#ref-6">[6]</a>.</td>
           </tr>
           <tr class="row-accent">
@@ -558,6 +1034,7 @@
           </tr>
         </tbody>
       </table>
+      <p class="side-note"><strong>How we model unit economics:</strong> CAC, LTV, and payback are plan models from the July 2026 business plan (not yet cohort-backed). B2C assumes ~$50 blended MRR, low digital CAC via freemium, and multi-year retention; Enterprise LTV ~$144K is ACV × modeled tenure. Treat LTV:CAC as directional underwriting inputs — diligence should pressure-test CAC channels and churn.</p>
 
       <div class="panel summary-panel">
         <h4>Enterprise segment map (U.S. targets)</h4>
@@ -573,10 +1050,10 @@
       <p class="side-note">Addressable-pocket counts for B2C and B2B cite public sources <a class="ref" href="#ref-1">[1]</a>–<a class="ref" href="#ref-8">[8]</a>. Full URLs and labels are in <a href="#page-8">Addendum B</a>. Product readiness, partners, and growth path: <a href="#page-7">Addendum A</a>.</p>
     </section>
 
-    <!-- 05 SEED SCENARIOS -->
-    <section class="section flow page-start" id="page-5" data-nav-label="05 · Seed ladder">
-      <div class="section-head"><span class="section-num">05</span><h2>Seed scenarios — from burn up</h2></div>
-      <div class="kicker">The seed burn floor is $500K — enough for about one year of product, launch, and working capital. Checks of $1M and $2.5M sit above that floor. Extra capital does not rewrite unit economics. It buys speed: more pilots, faster sales coverage, and an earlier geographic footprint.</div>
+    <!-- 06 SEED SCENARIOS -->
+    <section class="section flow page-start" id="page-5" data-nav-label="06 · Seed ladder">
+      <div class="section-head"><span class="section-num">06</span><h2>Seed scenarios — from burn up</h2></div>
+      <p class="page-lead">The seed burn floor is $500K — enough for about one year of product, launch, and working capital. Checks of $1M and $2.5M sit above that floor. Extra capital does not rewrite unit economics. It buys speed and makes way for a sooner and bigger exit.</p>
 
       <div class="cols-3">
         <div class="panel">
@@ -616,7 +1093,7 @@
             <td><strong>Base</strong></td>
             <td>$1M</td>
             <td>Burn covered, plus fuller GTM. Plan terms: ~25% at $3M pre ($4M post). Target: 5–10 pilots, $50–100K ARR, 50-lead pipeline, 2–3 partners.</td>
-            <td>Series A $2–3M on $8–12M pre (Q3–Q4 2026)</td>
+            <td>Series A $2–3M on $8–12M pre (target window through H1 2027)</td>
           </tr>
           <tr>
             <td><strong>Accelerate</strong></td>
@@ -633,10 +1110,10 @@
       </div>
     </section>
 
-    <!-- 06 FOOTPRINT -->
-    <section class="section flow page-start" id="page-6" data-nav-label="06 · Footprint">
-      <div class="section-head"><span class="section-num">06</span><h2>Footprint steps by scenario</h2></div>
-      <div class="kicker">Organizational build-out scales with capital above burn. Unit economics stay the same; the company simply stands up earlier.</div>
+    <!-- 07 FOOTPRINT -->
+    <section class="section flow page-start" id="page-6" data-nav-label="07 · Footprint">
+      <div class="section-head"><span class="section-num">07</span><h2>Footprint steps by scenario</h2></div>
+      <p class="page-lead">Organizational build-out scales with capital above burn. Unit economics stay the same; the company simply stands up earlier.</p>
 
       <table>
         <thead>
@@ -674,7 +1151,7 @@
       <div class="cols-2" style="margin-top: 18px;">
         <div class="panel">
           <h4>What is hard to copy</h4>
-          <p>Privacy-first edge computer vision, six vertical cases on one platform — HR, signage, family protection, home care, night and perimeter security, shipping and industrial — plus partner channels: Talos / TMAIX in eHealth, maritime and plant ops, HubSpot-first CRM. Presence, Vradar, Sentinel, and Matrix are one fabric. A feature checkbox does not reproduce that stack.</p>
+          <p>Privacy-first edge computer vision, six vertical cases on one platform — HR, signage, peace of mind at home and away (cottage / students living away), home care, night and perimeter security, shipping and industrial — plus partner channels: TMA / Talos (TMAIX) in eHealth, maritime and plant ops, HubSpot-first CRM. Presence, Vradar, Sentinel, and Matrix are one fabric. A feature checkbox does not reproduce that stack.</p>
         </div>
         <div class="panel alt">
           <h4>What to underwrite</h4>
@@ -682,13 +1159,13 @@
         </div>
       </div>
 
-      <p class="footer-note">EyeNet Vision · Investor primer · Confidential for investor discussion. Sources: value site (21 October 2026) — cases, motions, and unit economics; business plan burn / staged scenarios ($500K), print plan &amp; executive summary ($1M), HTML investor page ($2.5M). Market figures are plan ranges, not reported revenue. Specs and availability subject to change. Project status: <a href="#page-7">Addendum A</a>. Commercial addressable-pocket links: <a href="#page-8">Addendum B</a>.</p>
+      <p class="footer-note">EyeNet Vision · Investor primer · Confidential for investor discussion. Sources: value site (21 October 2026) — cases, motions, and unit economics; business plan burn / staged scenarios ($500K), print plan &amp; executive summary ($1M), HTML investor page ($2.5M). Dollar TAM bands grounded in third-party category reports (Reference [9]–[12]); share % and segment-map dollars are plan targets, not reported revenue. Specs and availability subject to change. Project status: <a href="#page-7">Addendum A</a>. References: <a href="#page-8">Addendum B</a>.</p>
     </section>
 
-    <!-- 07 ADDENDUM A — PROJECT STATUS -->
-    <section class="section flow page-start" id="page-7" data-nav-label="07 · Addendum A">
-      <div class="section-head"><span class="section-num">07</span><h2>Addendum A — Project status</h2></div>
-      <div class="kicker">Product readiness and partners from the July 2026 business-plan primer, plus the capital and growth path restated in the same seed-ladder language as sections 05–06. Team started July 2024; working prototype in under six months. Five of six products are beta-ready.</div>
+    <!-- 08 ADDENDUM A — PROJECT STATUS -->
+    <section class="section flow page-start" id="page-7" data-nav-label="08 · Addendum A">
+      <div class="section-head"><span class="section-num">08</span><h2>Addendum A — Project status</h2></div>
+      <p class="page-lead">Product readiness and partners from the July 2026 business-plan primer, plus the capital and growth path restated in the same seed-ladder language as sections 05–06. Team started July 2024; working prototype in under six months. Five of six products are beta-ready — <strong>Sentinel</strong> (wearables / drones) remains in active build. Status as of 7 November 2026.</p>
 
       <h3>The six products</h3>
       <table>
@@ -696,48 +1173,55 @@
           <tr>
             <th>Product</th>
             <th>Job</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>EyeNet Presence</strong></td>
             <td>Automatic attendance with face + QR/NFC check-in. Replaces paper timesheets and badge swipes.</td>
+            <td><strong>Beta</strong></td>
           </tr>
           <tr class="row-accent">
             <td><strong>EyeNet Signage</strong></td>
             <td>Digital screens that change content based on who is watching (age, gender). Measurable advertising.</td>
+            <td><strong>Beta</strong></td>
           </tr>
           <tr>
             <td><strong>EyeNet Vradar</strong></td>
             <td>Alert brain: rules such as crowd thresholds that fire mobile, email, or other actions. Powers the rest of the stack.</td>
+            <td><strong>Beta</strong></td>
           </tr>
           <tr class="row-accent">
             <td><strong>EyeNet Gate</strong></td>
             <td>Entrance and exit monitoring. Counts people in and out; flags suspicious faces in real time.</td>
+            <td><strong>Beta</strong></td>
           </tr>
           <tr>
             <td><strong>EyeNet Sentinel</strong></td>
             <td>Wearable camera glasses + drones for VIP / bodyguard teams. Spots persons of interest in a crowd.</td>
+            <td><strong>Active build</strong></td>
           </tr>
           <tr class="row-accent">
             <td><strong>EyeNet Matrix</strong></td>
             <td>One dashboard across dozens of sites. Franchise chains, shipping fleets, multi-location businesses.</td>
+            <td><strong>Beta</strong></td>
           </tr>
         </tbody>
       </table>
-      <p class="side-note">Status: five of six products beta-ready and with design partners for real-world testing (Q3 2026).</p>
+      <p class="side-note">Status as of 7 November 2026: Presence, Signage, Vradar, Gate, and Matrix are beta-ready with design partners. Sentinel (wearables / drones) is the remaining active-build product.</p>
 
       <h3>Current milestones</h3>
       <ul>
         <li><strong>July 2024:</strong> Working prototype delivered in under six months.</li>
-        <li><strong>Q3 2026:</strong> Five of six products beta-ready and in the hands of design partners.</li>
-        <li><strong>Two distribution partners signed:</strong> TMA (EyeNet-branded) and NewGen Group (white-label). Both early-stage, pursuing hot leads across municipalities, enterprises, and maritime clients.</li>
-        <li><strong>Deloitte engagement:</strong> NewGen has laid groundwork for a demo with Deloitte Greece; presentation to the Deloitte EMEA Cyber Security Committee tentatively scheduled for September 2026.</li>
-        <li><strong>LG International hot lead:</strong> TMA is positioning EyeNet for a European municipality and has identified a high-potential early-stage lead with LG International — major upside if it converts.</li>
+        <li><strong>Q3 2026 → now:</strong> Five of six products beta-ready with design partners; Sentinel remains in active build (as of November 2026).</li>
+        <li><strong>Two distribution partners signed:</strong> TMA / Talos (TMAIX) — EyeNet-branded channel — and NewGen Group (white-label). Both early-stage, pursuing hot leads across municipalities, enterprises, and maritime clients.</li>
+        <li><strong>Deloitte engagement:</strong> NewGen has laid groundwork for a demo with Deloitte Greece and a path to the Deloitte EMEA Cyber Security Committee. The tentative September 2026 committee slot has passed; outcome / next date TBD as of November 2026.</li>
+        <li><strong>LG International hot lead:</strong> TMA / Talos is positioning EyeNet for a European municipality and has identified a high-potential early-stage lead with LG International — major upside if it converts.</li>
       </ul>
 
       <h3>Capital and growth path</h3>
-      <p>Same seed ladder as section 05: burn floor first, then how much speed to buy. Extra capital does not rewrite unit economics — it buys earlier pilots, denser sales, and the footprint steps in section 06. Instrument: convertible note or SAFE across scenarios.</p>
+      <p>Same seed ladder as section 05: burn floor first, then how much speed to buy. Extra capital does not rewrite unit economics — it buys speed and makes way for a sooner and bigger exit. Instrument: convertible note or SAFE across scenarios.</p>
 
       <table>
         <thead>
@@ -753,7 +1237,7 @@
           </tr>
           <tr class="row-accent">
             <td><strong>Seed · Base · $1M</strong></td>
-            <td>Burn covered, plus fuller GTM. Plan terms: ~25% at $3M pre ($4M post). Target: 5–10 pilots, $50–100K ARR, 50-lead pipeline, 2–3 partners; formal Greek + U.S. units. Typical next: Series A $2–3M on $8–12M pre (Q3–Q4 2026).</td>
+            <td>Burn covered, plus fuller GTM. Plan terms: ~25% at $3M pre ($4M post). Target: 5–10 pilots, $50–100K ARR, 50-lead pipeline, 2–3 partners; formal Greek + U.S. units. Typical next: Series A $2–3M on $8–12M pre (target window through H1 2027).</td>
           </tr>
           <tr>
             <td><strong>Seed · Accelerate · $2.5M</strong></td>
@@ -784,20 +1268,21 @@
 
       <h3>Why this path is underwritable</h3>
       <ul>
-        <li><strong>Products are built, not imagined:</strong> Five of six apps exist as working beta. Capital on the seed ladder buys selling what works — computer vision, recognition, and alert automation are already done — not building from scratch.</li>
-        <li><strong>Distribution is already on board:</strong> TMA and NewGen are signed partners pursuing leads, not letters of intent. That de-risks the first ~50 paying customers and the base-seed pipeline target.</li>
-        <li><strong>Deloitte is a force multiplier in waiting:</strong> EMEA Cyber Security Committee presentation tentatively on the calendar for September 2026.</li>
+        <li><strong>Products are built, not imagined:</strong> Five of six apps exist as working beta (Sentinel still in active build). Capital on the seed ladder buys selling what works — computer vision, recognition, and alert automation are already done — not building from scratch.</li>
+        <li><strong>Distribution is already on board:</strong> TMA / Talos (TMAIX) and NewGen are signed partners pursuing leads, not letters of intent. That de-risks the first ~50 paying customers and the base-seed pipeline target.</li>
+        <li><strong>Deloitte is a force multiplier in waiting:</strong> Groundwork for Deloitte Greece / EMEA Cyber Security Committee is in place; September 2026 slot passed — confirm outcome or next date in diligence.</li>
         <li><strong>LG International is a global-scale multiplier:</strong> Early-stage hot lead, not a closed deal. A win with LG’s trading and investment arm can unlock manufacturing, logistics, retail, and government supply-chain distribution and open other Korean / Asian conglomerate doors.</li>
         <li><strong>Burn floor first, then speed:</strong> Underwrite $500K ops, then choose $1M or $2.5M for how fast footprint and GTM stand up. CAC, LTV, and payback in How it is sold hold across all three seed scenarios.</li>
       </ul>
       <p class="side-note">Seed scenarios and footprint detail: sections 05–06. TAM share, CAC / LTV, and package pricing: How it is sold and Addendum B. Growth years and exit ranges from eyenet-web/bp/onepager/primer.html (July 2026), restated on the seed ladder.</p>
     </section>
 
-    <!-- 08 ADDENDUM B — MARKET SOURCES -->
-    <section class="section flow page-start" id="page-8" data-nav-label="08 · Addendum B">
-      <div class="section-head"><span class="section-num">08</span><h2>Addendum B — Market sources (commercial packages)</h2></div>
-      <div class="kicker">Public references used for addressable pockets in How it is sold (B2C Light and B2B Starter / Pro). Same links as the value site commercial packages. Enterprise segment dollars are EyeNet plan targets, not external census counts.</div>
+    <!-- 09 ADDENDUM B — MARKET SOURCES -->
+    <section class="section flow page-start" id="page-8" data-nav-label="09 · Addendum B">
+      <div class="section-head"><span class="section-num">09</span><h2>Addendum B — Reference</h2></div>
+      <p class="page-lead">Public references for The bet (dollar TAM category reports), How it is sold (addressable pockets), and Market validation (FootfallCam). Enterprise segment-map dollars remain EyeNet plan targets; they are not census counts.</p>
 
+      <h3>Addressable pockets (GTM counts)</h3>
       <ol class="addendum-list">
         <li id="ref-1">
           <span class="ref-num">[1]</span>
@@ -865,7 +1350,44 @@
         </li>
       </ol>
 
-      <p class="side-note">Cited from value site commercial packages (B2C Light, B2B Starter &amp; Professional). Multi-location retail / office ACV path $12–36K and enterprise segment map dollars are EyeNet plan unit economics, not third-party census links.</p>
+      <h3>Dollar TAM — category reports</h3>
+      <p class="side-note" style="margin-top:0">Third-party category sizes that ground The bet’s U.S. TAM bands. EyeNet’s $2–4B (B2B / Enterprise) and $0.5–1.5B (B2C) are conservative addressable slices of these larger markets — not the full global categories.</p>
+      <ol class="addendum-list" start="9">
+        <li id="ref-9">
+          <span class="ref-num">[9]</span>
+          <div>
+            <span class="ref-label">Grand View Research — Video Analytics Market (2025–2030)</span>
+            <span class="ref-use">Global ~$12.7B (2024); North America ~33.2% share (~$4.2B) · B2B / Enterprise TAM context</span>
+            <a href="https://www.grandviewresearch.com/industry-analysis/video-analytics-market" target="_blank" rel="noopener noreferrer">https://www.grandviewresearch.com/industry-analysis/video-analytics-market</a>
+          </div>
+        </li>
+        <li id="ref-10">
+          <span class="ref-num">[10]</span>
+          <div>
+            <span class="ref-label">MarketsandMarkets — U.S. Video Analytics Market</span>
+            <span class="ref-use">U.S. ~$2.28B (2023) → ~$5.65B (2028) · brackets EyeNet B2B / Enterprise $2–4B band</span>
+            <a href="https://www.marketsandmarkets.com/Market-Reports/geography/intelligent-video-analytics-market/US" target="_blank" rel="noopener noreferrer">https://www.marketsandmarkets.com/Market-Reports/geography/intelligent-video-analytics-market/US</a>
+          </div>
+        </li>
+        <li id="ref-11">
+          <span class="ref-num">[11]</span>
+          <div>
+            <span class="ref-label">Grand View Research Horizon — U.S. Smart Home Security Camera</span>
+            <span class="ref-use">U.S. ~$3.68B (2024) · B2C ceiling; EyeNet $0.5–1.5B is a software / action slice</span>
+            <a href="https://www.grandviewresearch.com/horizon/outlook/smart-home-security-camera-market/united-states" target="_blank" rel="noopener noreferrer">https://www.grandviewresearch.com/horizon/outlook/smart-home-security-camera-market/united-states</a>
+          </div>
+        </li>
+        <li id="ref-12">
+          <span class="ref-num">[12]</span>
+          <div>
+            <span class="ref-label">MarketsandMarkets — U.S. VSaaS Market</span>
+            <span class="ref-use">U.S. ~$1.30B (2026) → ~$2.52B (2031) · cloud-incumbent adjacent (storage / bandwidth)</span>
+            <a href="https://www.marketsandmarkets.com/Market-Reports/geography/video-surveillance-as-a-service-market/US" target="_blank" rel="noopener noreferrer">https://www.marketsandmarkets.com/Market-Reports/geography/video-surveillance-as-a-service-market/US</a>
+          </div>
+        </li>
+      </ol>
+
+      <p class="side-note">Pocket counts [1]–[8] from value site commercial packages (B2C Light, B2B Starter &amp; Professional). Dollar TAM [9]–[12] from public analyst summaries. Multi-location retail / office ACV path $12–36K and enterprise segment-map dollars are EyeNet plan unit economics, not third-party census links. Global report overview (same MnM family as [10]): <a href="https://www.marketsandmarkets.com/Market-Reports/intelligent-video-analytics-market-778.html" target="_blank" rel="noopener noreferrer">intelligent-video-analytics-market-778</a>.</p>
     </section>
   </div>
 
