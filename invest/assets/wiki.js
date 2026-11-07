@@ -25,6 +25,19 @@
     link.addEventListener("click", () => setSidebarOpen(false));
   });
 
+  document.querySelectorAll("table.table-stack").forEach((table) => {
+    const headers = [...table.querySelectorAll("thead th")].map((th) =>
+      (th.textContent || "").trim()
+    );
+    if (!headers.length) return;
+    table.querySelectorAll("tbody tr").forEach((row) => {
+      [...row.children].forEach((cell, index) => {
+        if (!headers[index] || cell.hasAttribute("data-label")) return;
+        cell.setAttribute("data-label", headers[index]);
+      });
+    });
+  });
+
   const indexUrl = body.dataset.searchIndex;
   if (!searchInput || !indexUrl) return;
 

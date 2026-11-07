@@ -1667,20 +1667,33 @@ body[data-wide="true"] .site-footer-inner {
   .page table.diff-table td {
     display: block;
     width: 100%;
+    max-width: none;
+  }
+  .page table.diff-table {
+    table-layout: auto;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
   }
   .page table.diff-table thead { display: none; }
   .page table.diff-table tbody th[scope="row"] {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box;
     border-right: 0;
     border-bottom: 0;
-    padding-bottom: 0.2rem;
+    padding: 0.7rem 0.95rem;
     background: var(--brand-dark) !important;
     color: #f5fbff;
     border-radius: 10px 10px 0 0;
     margin-top: 0.75rem;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
   }
   .page table.diff-table td.col-them {
     border-bottom: 0;
-    padding-top: 0.45rem;
+    padding-top: 0.55rem;
   }
   .page table.diff-table td.col-them::before,
   .page table.diff-table td.col-us::before {
@@ -1704,6 +1717,72 @@ body[data-wide="true"] .site-footer-inner {
     border-top: 1px solid rgba(25, 118, 210, 0.2);
     border-radius: 0 0 10px 10px;
     margin-bottom: 0.15rem;
+  }
+
+  /* Card-stack tables (How it is sold, Seed ladder, six products) */
+  .page table.table-stack,
+  .page table.table-stack thead,
+  .page table.table-stack tbody,
+  .page table.table-stack tr,
+  .page table.table-stack th,
+  .page table.table-stack td {
+    display: block;
+    width: 100%;
+    max-width: none;
+  }
+  .page table.table-stack {
+    border: 0;
+    margin: 0.5rem 0 1.2rem;
+  }
+  .page table.table-stack thead { display: none; }
+  .page table.table-stack tbody tr {
+    margin: 0 0 0.85rem;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 6px 16px rgba(15, 47, 87, 0.05);
+  }
+  .page table.table-stack tbody tr.row-accent {
+    background: var(--band-alt);
+  }
+  .page table.table-stack tbody tr:nth-child(even) td:not(:first-child) {
+    background: transparent;
+  }
+  .page table.table-stack td {
+    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+    padding: 0.7rem 0.95rem;
+  }
+  .page table.table-stack td:last-child {
+    border-bottom: 0;
+  }
+  .page table.table-stack tbody tr td:first-child,
+  .page table.table-stack tbody tr.row-accent td:first-child {
+    background: var(--brand-dark);
+    color: #f5fbff;
+    padding: 0.75rem 0.95rem;
+    border-bottom: 0;
+  }
+  .page table.table-stack tbody tr td:first-child strong,
+  .page table.table-stack tbody tr.row-accent td:first-child strong {
+    color: #f5fbff;
+    font-size: 1rem;
+  }
+  .page table.table-stack td::before {
+    content: attr(data-label);
+    display: block;
+    margin: 0 0 0.28rem;
+    color: var(--soft);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .page table.table-stack td:first-child::before {
+    display: none;
+  }
+  .page table.table-stack .bar-chart {
+    margin: 0.15rem 0 0;
   }
 }
 
