@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "eyenet-investor-primer.html"
-ASSET_V = "20261109e"
+ASSET_V = "20261109g"
 
 PAGE_ORDER = [
     "",
@@ -557,19 +557,25 @@ def build_print(src_html: str) -> None:
         'Market validation: <a href="#page-mv">§08</a>. Project status: <a href="#page-7">§09</a>. Reference: <a href="#page-8">§10</a>.',
     )
 
-    old_tb = re.search(r'<div class="no-print toolbar">.*?</div>\s*', html, flags=re.S)
     toolbar = """  <div class="no-print toolbar">
-    <div>
-      <p><a href="/">← EyeNet Invest</a> · Printable investor primer</p>
-      <p style="margin-top:4px">Use your browser’s Print dialog and choose <strong>Save as PDF</strong>.</p>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-      <button type="button" onclick="window.print()">Print / Save as PDF</button>
-    </div>
+    <p class="toolbar-back"><a href="/">← Back to site</a></p>
+    <button type="button" class="toolbar-pdf" onclick="window.print()">PDF</button>
   </div>
 """
-    if old_tb:
-        html = html[: old_tb.start()] + toolbar + html[old_tb.end() :]
+    # Replace the full toolbar block (stop at sheet) to avoid orphaned fragments
+    html, n_tb = re.subn(
+        r'<div class="no-print toolbar">[\s\S]*?</div>\s*(?=<div class="sheet">)',
+        toolbar,
+        html,
+        count=1,
+    )
+    if not n_tb:
+        html = re.sub(
+            r'<div class="no-print toolbar">[\s\S]*?</div>\s*',
+            toolbar,
+            html,
+            count=1,
+        )
     write(ROOT / "print" / "index.html", html)
 
 
