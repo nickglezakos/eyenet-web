@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "eyenet-investor-primer.html"
-ASSET_V = "20261108x"
+ASSET_V = "20261109a"
 
 PAGE_ORDER = [
     "",
@@ -463,6 +463,14 @@ PRINT_EXTRA_CSS = """
     .bar-chart-accent .bar-fill { background: linear-gradient(90deg, #1e3a5f, #3b82c4); }
     .bar-chart-accent .bar-fill.is-peak { background: linear-gradient(90deg, #0b6e4f, #1faa6e); }
     .bar-value { font-size: 10px; font-weight: 700; text-align: right; }
+    .bar-chart-compact { gap: 4px; min-width: 140px; }
+    .bar-chart-compact .bar-row {
+      grid-template-columns: 4.8rem 1fr 2.6rem;
+      gap: 4px;
+    }
+    .bar-chart-compact .bar-track { height: 9px; }
+    .bar-chart-compact .bar-label { font-size: 8px; }
+    .bar-note { margin: 4px 0 0; font-size: 8px; color: var(--muted); font-weight: 600; }
     .ffc-geo { margin: 8px 0 14px; }
     .ffc-geo-track {
       display: flex;
