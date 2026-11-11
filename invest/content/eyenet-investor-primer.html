@@ -54,7 +54,7 @@
         margin: 6px 0 10px;
       }
       .persona-card,
-      .wedge-card,
+      .case-page,
       .buyer-point,
       .panel,
       .notify,
@@ -68,12 +68,11 @@
       }
       .persona-media,
       .persona-media img { min-height: 52px; }
-      .wedge-media,
-      .wedge-media img { min-height: 64px; }
+      .case-hero img { height: 48mm; }
       .buyer-points { gap: 5px; margin-top: 4px; }
       .buyer-point { padding: 6px 8px; }
       .persona-cards,
-      .wedge-cards { gap: 8px; }
+      .case-stack { gap: 8px; }
       .cols-4, .cols-3, .cols-2 { gap: 10px; margin: 8px 0; }
       table { margin: 8px 0 10px; }
     }
@@ -390,51 +389,70 @@
     }
     .persona-then strong { color: var(--brand); }
 
-    .wedge-cards {
-      display: grid;
-      gap: 12px;
-      margin: 12px 0 4px;
-      grid-template-columns: 1fr;
+    .case-stack { display: grid; gap: 14px; margin: 12px 0 4px; }
+    .case-page {
+      border: 1px solid var(--line); overflow: hidden;
+      break-inside: avoid; page-break-inside: avoid;
     }
-    .wedge-card {
-      display: grid;
-      grid-template-columns: 42% 1fr;
-      background: var(--band);
-      border: 1px solid var(--line);
-      overflow: hidden;
-      break-inside: avoid;
-      page-break-inside: avoid;
-    }
-    .wedge-card.alt { background: var(--band-alt); }
-    .wedge-media { margin: 0; background: var(--brand-dark); min-height: 90px; }
-    .wedge-media img {
-      display: block; width: 100%; height: 100%; min-height: 90px;
+    .case-hero { position: relative; background: #0f172a; }
+    .case-hero img {
+      display: block; width: 100%; height: 70mm;
       object-fit: cover; object-position: center;
+      filter: grayscale(0.15) contrast(1.05);
     }
-    .wedge-body { padding: 10px 12px 12px; }
-    .wedge-card-head {
-      display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px;
+    .case-hero-veil {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,23,42,0.72) 0%, rgba(15,23,42,0.12) 45%, rgba(15,23,42,0.05) 100%);
+      pointer-events: none;
     }
-    .wedge-num {
-      color: var(--soft); font-size: 8pt; font-weight: 800; letter-spacing: 0.04em;
+    .case-hero-meta {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 12px 14px 12px; color: #fff; z-index: 1;
     }
-    .wedge-card h3 {
-      margin: 0; color: var(--brand-dark); font-size: 11pt; font-weight: 800;
+    .case-hero-num {
+      display: inline-block; margin-bottom: 6px; padding: 2px 8px;
+      background: rgba(25,118,210,0.92); color: #fff;
+      font-size: 7.5pt; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
     }
-    .wedge-buyer {
-      margin: 0 0 8px; color: var(--muted); font-size: 8.5pt; font-weight: 600;
+    .case-hero-meta h2 {
+      margin: 0 0 4px; color: #fff; font-size: 14pt; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.15; max-width: 34ch;
     }
-    .wedge-block {
-      margin: 0; padding-top: 8px; border-top: 1px solid var(--line);
+    .case-hero-meta .who {
+      margin: 0; color: rgba(255,255,255,0.78); font-size: 8.5pt; font-weight: 500; line-height: 1.35;
     }
-    .wedge-k {
-      display: block; margin-bottom: 3px;
-      color: var(--soft); font-size: 7.5pt; font-weight: 800;
-      letter-spacing: 0.05em; text-transform: uppercase;
+    .case-hero-credit {
+      position: absolute; top: 8px; right: 10px; z-index: 1; margin: 0;
+      color: rgba(255,255,255,0.55); font-size: 7pt;
     }
-    .wedge-block p { margin: 0; font-size: 9pt; font-weight: 600; line-height: 1.4; }
-    .wedge-block.problem p { color: var(--muted); }
-    .wedge-block.payoff p { color: var(--ink); }
+    .case-body {
+      display: grid; grid-template-columns: 1.35fr 0.9fr; gap: 12px;
+      padding: 10px 12px 12px; align-items: start;
+    }
+    .case-intro { margin: 0 0 8px; font-size: 9.5pt; line-height: 1.4; }
+    .case-features { margin: 0; padding-left: 14px; font-size: 8.75pt; line-height: 1.35; }
+    .case-features li + li { margin-top: 3px; }
+    .case-aside { background: var(--band); padding: 10px 12px; }
+    .case-aside h3 { margin: 0 0 6px; font-size: 9.5pt; font-weight: 800; color: var(--brand-dark); }
+    .case-aside > p { margin: 0 0 8px; font-size: 8.75pt; line-height: 1.35; }
+    .case-aside .side-note { margin-top: 8px; font-size: 8pt; color: var(--soft); }
+    .case-notify { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+    .case-notify h5 {
+      margin: 0 0 4px; font-size: 7.5pt; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--brand);
+    }
+    .case-notify ul { margin: 0; padding-left: 12px; font-size: 8pt; color: var(--muted); }
+    .case-notify li + li { margin-top: 2px; }
+    .case-buyers { border-top: 1px solid var(--line); }
+    .case-buyer {
+      margin: 0; padding: 8px 12px; background: var(--band);
+      font-size: 8.75pt; font-weight: 500; line-height: 1.4; color: var(--ink);
+    }
+    .case-buyer + .case-buyer { border-top: 1px solid var(--line); }
+    .case-buyer.alt { background: var(--band-alt); }
+    .case-buyer strong { color: var(--brand); font-weight: 800; }
+    .tag.category { color: var(--muted); }
+    .anchor-target { display: none; }
 
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
     .tag {
@@ -621,7 +639,7 @@
         <div class="cover-meta">
           <div><span>Type</span><strong>Investor Primer</strong></div>
           <div><span>Date</span><strong>7 November 2026</strong></div>
-          <div><span>Structure</span><strong>What · Wedges · Changes · Bet · Motions · Seed · Footprint · Validation</strong></div>
+          <div><span>Structure</span><strong>What · Wedges · Bet · Motions · Seed · Footprint · Validation</strong></div>
           <div><span>Seed ladder</span><strong>$0.5M → $1M → $2.5M</strong></div>
         </div>
       </div>
@@ -633,81 +651,222 @@
 
     <!-- 01 WHAT IS EYENET -->
     <section class="section flow" id="page-9" data-nav-label="01 · What is EyeNet">
-      <div class="section-head"><span class="section-num">01</span><h2>What is EyeNet</h2></div>
-      <p class="page-lead">EyeNet is on-premises computer vision that turns ordinary cameras into vision nodes — they detect, decide, and act on site. Video stays local by default. One platform serves homes, care, offices, shops, security posts, ships, and plants.</p>
+      <div class="section-head"><span class="section-num">01</span><h2>EyeNet understands what it sees and acts on it automatically</h2></div>
 
-      <div class="persona-bridge">
-        <h3>What EyeNet does</h3>
-        <p class="page-lead">The platform selling points that cut across every persona — why EyeNet is not another camera cloud.</p>
-        <div class="buyer-points">
-          <p class="buyer-point">EyeNet <strong>runs on any camera</strong> — existing cams, phones, PCs, or inexpensive ordinary cameras, with first detection in minutes on a ~16&nbsp;GB PC. Not vendor lock-in.</p>
-          <p class="buyer-point alt">EyeNet <strong>detects, decides, and acts</strong> — targeted alerts to mobile, email, webhooks, signage, gates, and the ERP/CRM, only when something needs a person. Not passive VMS.</p>
-          <p class="buyer-point">EyeNet <strong>stays on-prem by default</strong> — processing and footage stay on premises, with full operation when the internet is down, and essential updates still reach HQ even on a weak or limited connection.</p>
-          <p class="buyer-point alt">EyeNet <strong>scales without a per-camera tax</strong> — scale is the mesh you deploy, from one room to a campus, not a license ceiling or a GPU farm.</p>
-          <p class="buyer-point">EyeNet <strong>starts with zero / near-zero hardware</strong> — staff use their own PC or mobile for presence grants; sites reuse cameras they already own, including thousands of employees without a camera fleet project.</p>
-          <p class="buyer-point alt">EyeNet <strong>serves six wedges on one fabric</strong> — HR presence, adaptive signage, home and away, Virtual Ward, night / perimeter security, shipping and industrial on Presence, Vradar, Sentinel, and Matrix.</p>
+      <div class="notify" style="margin-top:1.5rem">
+        <h5>Everyday people, advanced vision</h5>
+        <p>“EyeNet puts the power of advanced computer vision to work for everyday people — whether you run a small shop, manage a building, or simply want a smarter, safer space.”</p>
+        <p>Instead of passive cameras that only record, the platform <strong>understands</strong> what it sees and acts on it automatically:</p>
+      </div>
+
+      <div class="breaker-grid">
+        <div class="notify"><h5>Know your busiest hours</h5><p>Count visitors so you know your busiest hours.</p></div>
+        <div class="notify alt"><h5>Alert on the unusual</h5><p>Alert you the moment something unusual happens.</p></div>
+        <div class="notify"><h5>Right message, right time</h5><p>Switch digital signs to show the right message at the right time.</p></div>
+        <div class="notify alt"><h5>Phone notifications, no cloud video</h5><p>Send notifications straight to your phone — all without storing a single frame in the cloud.</p></div>
+        <div class="notify"><h5>Local hardware, intact privacy</h5><p>Everything runs locally on your own hardware, so your privacy stays intact and the system keeps working even if the internet goes down.</p></div>
+        <div class="notify alt"><h5>No ceiling, your hardware</h5><p>No per-camera licenses, no mandatory subscriptions, and no technical ceiling — it scales from a single camera at home to hundreds across a campus, adapting to the hardware you already have.</p></div>
+      </div>
+
+      <div class="notify alt">
+        <h5>In short</h5>
+        <p>“EyeNet turns ordinary cameras into an intelligent, always-on assistant that helps you make better decisions, respond faster, and operate more efficiently every single day.”</p>
+      </div>
+
+      <h2>How EyeNet multiplies human operation capacity</h2>
+
+      <div class="persona">
+        <h4>Boost moderate cameras to powerful machine vision nodes</h4>
+        <div class="cols-2">
+          <div>
+            <ul>
+              <li>Turn any IP, WiFi, or mobile camera into an intelligent sensor — no specialised hardware required</li>
+              <li>On-device AI processing: face detection, people counting, demographics, and route tracking in real time</li>
+              <li>One platform. Unlimited cameras. Scale from a single lens to a facility-wide mesh</li>
+            </ul>
+          </div>
+          <div class="panel alt">
+            <img class="card-visual" src="/assets/images/functionalities/platform-hero.png" alt="EyeNet Platform Overview" loading="lazy" decoding="async">
+            <p class="card-visual-credit">The EyeNet Platform — turning every camera into an intelligent sensor</p>
+          </div>
         </div>
       </div>
 
-      <div class="persona-bridge">
-        <h3>Who buys — and why now</h3>
-        <p class="page-lead">Real buyers, real jobs: people today hit a tech wall with incumbents — with EyeNet they can start on moderate hardware they choose or already have and get the outcome today.</p>
-        <div class="buyer-points">
-          <p class="buyer-point">An <strong>HR manager</strong> can now let every employee check in from their own PC or phone — and push presence grants to the ERP/CRM — with zero new hardware, even at thousands of seats.</p>
-          <p class="buyer-point alt">A <strong>shop or mall owner</strong> can now run intelligent signage end to end — prove who is watching each screen with full audience analytics, load and switch playlists, and let marketers log in to manage the full campaign lifecycle — on cams they already have, without a locked player kit.</p>
-          <p class="buyer-point">A <strong>parent</strong> can now turn a door cam into an intelligent doorbell — alerts for known and unknown people, plus webhooks to smart-home screens and sound — on cams they already own or a cheap everyday camera, with no cloud subscription. Default is alerts only with footage kept local; a live view is available only when everyone involved consents.</p>
-          <p class="buyer-point alt">A <strong>parent of a student living away</strong> can now watch a remote flat or cottage with one ordinary cam — phone pings only, no guard contract or cloud VMS. Stakeholders get the ping without shipping video off-site, and can open a live stream only if all parties agree.</p>
-          <p class="buyer-point">A <strong>care provider</strong> can now turn a patient room cam into fall and help-call events for the clinical stack — with alerts to all stakeholders, caregivers and next of kin, escalated per settings — without shipping cloud video. Next of kin stay assured without being glued to a camera: they get instant alerts for their loved ones, full awareness of who is on premises, and whether caregivers are there and on time, with a live feed available at any time.</p>
-          <p class="buyer-point alt">A <strong>security ops lead</strong> can now get night vigilance and perimeter from the fence and floor cams already there — without per-camera seats or another night shift.</p>
-          <p class="buyer-point">A <strong>captain or plant ops lead</strong> can now know who’s onboard and who’s in zone when the link dies — on the cams already aboard or on site. HQs get real-time alerts per settings plus full insights and analytics, scalable from one site to entire ships, fleets, or industrial areas, with recordings and live feed available.</p>
+      <div class="persona alt">
+        <h4>Track and regulate human activity</h4>
+        <div class="cols-2">
+          <div>
+            <ul>
+              <li>Real-time people tracking, counting, and attendance — replace badge systems and manual roll calls</li>
+              <li>3D route analysis and dwell-time mapping reveal bottlenecks, compliance gaps, and safety risks</li>
+              <li>Automated shift reports, zone alerts, and occupancy limits — enforcement without extra personnel</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <img class="card-visual" src="/assets/images/functionalities/eyenet-security.jpg" alt="EyeNet Security &amp; Surveillance" loading="lazy" decoding="async">
+            <p class="card-visual-credit">Advanced security — real-time monitoring and intelligent threat detection</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona">
+        <h4>Empower digital signage with real-time vision triggers</h4>
+        <div class="cols-2">
+          <div>
+            <ul>
+              <li>Cameras read the room — age, gender, group size — and switch content in milliseconds</li>
+              <li>Trigger playlists, promotions, or emergency messages automatically based on who’s watching</li>
+              <li>Measure every impression: views, dwell time, engagement rate — prove your signage ROI</li>
+            </ul>
+          </div>
+          <div class="panel alt">
+            <img class="card-visual" src="/assets/images/functionalities/digital-signage.png" alt="Digital Signage Integration" loading="lazy" decoding="async">
+            <p class="card-visual-credit">Dynamic digital signage — audience-aware content that adapts in real time</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona alt">
+        <h4>Take complete control of entrance and exit points</h4>
+        <div class="cols-2">
+          <div>
+            <ul>
+              <li>Automatic headcount and identity awareness at every door, gate, and checkpoint — no queues, no badges</li>
+              <li>Instant alerts when unauthorised access is detected or capacity limits are breached</li>
+              <li>Full audit trail with timestamps, video evidence, and demographic logs for compliance reporting</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <img class="card-visual" src="/assets/images/functionalities/access-control.png" alt="Access Control" loading="lazy" decoding="async">
+            <p class="card-visual-credit">Intelligent access control — seamless entry management powered by vision AI</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona">
+        <h4>Cover restricted areas with machine vision protective nets</h4>
+        <div class="cols-2">
+          <div>
+            <ul>
+              <li>Define virtual perimeters around any zone — machinery rooms, cargo holds, server racks — enforced 24/7 by AI</li>
+              <li>Instant mobile and email alerts to supervisors the moment an unauthorised presence is detected</li>
+              <li>Lone-worker monitoring, PPE compliance checks, and automatic incident documentation built in</li>
+            </ul>
+          </div>
+          <div class="panel alt">
+            <img class="card-visual" src="/assets/images/functionalities/restricted-area-protection.png" alt="Restricted Area Protection" loading="lazy" decoding="async">
+            <p class="card-visual-credit">Restricted area coverage — automated boundary enforcement and alerts</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona alt">
+        <h4>Protect VIPs with instant machine vision eyewear</h4>
+        <div class="cols-2">
+          <div>
+            <ul>
+              <li>Instant face recognition and person-of-interest alerts streamed directly to security eyewear and mobile devices</li>
+              <li>Known-face whitelists, threat watchlists, and real-time demographic profiling — all on-premises, all private</li>
+              <li>Parallel multi-camera detection across an entire venue, coordinated through a single command dashboard</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <img class="card-visual" src="/assets/images/functionalities/vip-protection.png" alt="VIP Protection" loading="lazy" decoding="async">
+            <p class="card-visual-credit">VIP protection — discreet recognition and priority alert systems</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona">
+        <h4>Take full operational control remotely — even with a single mobile phone</h4>
+        <div class="cols-2">
+          <div>
+            <ul>
+              <li>Secure VPN-powered remote access to every camera, trigger, and dashboard from anywhere in the world</li>
+              <li>Mobile app with live feeds, push alerts, and full configuration control — manage an entire site from your pocket</li>
+              <li>Zero cloud dependency for video and data — your footage never leaves your premises, even when you do</li>
+            </ul>
+          </div>
+          <div class="panel alt">
+            <img class="card-visual" src="/assets/images/functionalities/remote-operations.jpg" alt="Remote Operations" loading="lazy" decoding="async">
+            <p class="card-visual-credit">Remote operations — full platform control from anywhere in the world</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona alt">
+        <h4>Get started instantly using everyday hardware</h4>
+        <div class="cols-2">
+          <div>
+            <ul>
+              <li>16&nbsp;GB of RAM and a modern CPU — that’s all. No GPU servers, no cloud subscriptions, no vendor lock-in</li>
+              <li>Plug in any IP camera, WiFi cam, or just open the app on your phone — your first detection runs in minutes</li>
+              <li>Start with one camera and one room; scale to hundreds of cameras across multiple sites when you’re ready</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <img class="card-visual" src="/assets/images/functionalities/instant-deployment.png" alt="Instant Deployment" loading="lazy" decoding="async">
+            <p class="card-visual-credit">Instant deployment — up and running in minutes, not months</p>
+          </div>
         </div>
       </div>
 
       <div class="use-cases-bridge">
-        <h3>Powerful features</h3>
-        <p class="page-lead">Platform reasons that cut across every persona — why EyeNet is not another camera cloud.</p>
-      <div class="cols-3">
-        <div class="panel argument-card">
-          <span class="stat cyan">Any camera</span>
-          <span class="stat-claim">Not vendor lock-in</span>
-          <p class="stat-method">Existing cams, phones, PCs — or inexpensive ordinary cameras. First detection in minutes on a ~16&nbsp;GB PC.</p>
-        </div>
-        <div class="panel alt argument-card">
-          <span class="stat brand">Detect → decide → act</span>
-          <span class="stat-claim">Not passive VMS</span>
-          <p class="stat-method">Targeted alerts to mobile, email, webhooks, signage, gates, and the ERP/CRM — only when something needs a person.</p>
-        </div>
-        <div class="panel argument-card">
-          <span class="stat ok">On-prem by default</span>
-          <span class="stat-claim">Sovereignty + offline</span>
-          <p class="stat-method">Processing and footage stay on premises. Full operation when the internet is down; essential updates still reach HQ even on a weak or limited connection.</p>
+        <p class="page-lead">Not another camera cloud — one platform that cuts across every buyer.</p>
+        <p class="page-lead">EyeNet is on-premises computer vision that turns ordinary cameras into vision nodes — they detect, decide, and act on site. Video stays local by default. One platform serves homes, care, offices, shops, security posts, ships, and plants.</p>
+        <div class="feature-stack">
+          <div class="panel argument-card">
+            <span class="stat cyan">Any camera</span>
+            <span class="stat-claim">Not vendor lock-in</span>
+            <p class="stat-method">EyeNet <strong>runs on any camera</strong> — existing cams, phones, PCs, or inexpensive ordinary cameras, with first detection in minutes on a ~16&nbsp;GB PC. Not vendor lock-in.</p>
+          </div>
+          <div class="panel alt argument-card">
+            <span class="stat brand">Detect → decide → act</span>
+            <span class="stat-claim">Not passive VMS</span>
+            <p class="stat-method">EyeNet follows <strong>detect → decide → act</strong>. <strong>Detect</strong> uses any modern camera — including ones you already have — and turns them into intelligent machine-vision sensors at the edge that deliver live streams, recordings, and live automations. <strong>Decide</strong> is the automation rule engine. <strong>Act</strong> is the automation action side — alerts, webhooks, signage, gates, ERP/CRM, and more. Not passive VMS.</p>
+          </div>
+          <div class="panel argument-card">
+            <span class="stat ok">On-prem by default</span>
+            <span class="stat-claim">Sovereignty + offline</span>
+            <p class="stat-method">EyeNet <strong>stays on-prem by default</strong> — processing and footage stay on premises, with full operation when the internet is down, and essential updates still reach HQ even on a weak or limited connection. Live video can stream over VPN — a third-party VPN or EyeNet’s own — and remote nodes, including mobile cameras and EyeNet mobile apps, connect through EyeNet’s own mesh VPN.</p>
+          </div>
+          <div class="panel alt argument-card">
+            <span class="stat">No per-camera tax</span>
+            <span class="stat-claim">Hardware-bound scale</span>
+            <p class="stat-method">EyeNet <strong>scales without a per-camera tax</strong> — scale is the mesh you deploy, from one room to a campus, not a license ceiling or a GPU farm.</p>
+          </div>
+          <div class="panel argument-card">
+            <span class="stat cyan">Zero / near-zero hardware</span>
+            <span class="stat-claim">Buy today</span>
+            <p class="stat-method">EyeNet <strong>starts with zero / near-zero hardware</strong> — staff use their own PC or mobile for presence grants; sites reuse cameras they already own, including thousands of employees without a camera fleet project.</p>
+          </div>
+          <div class="panel alt argument-card">
+            <span class="stat brand">Six wedges, one fabric</span>
+            <span class="stat-claim">Where it pays</span>
+            <p class="stat-method">EyeNet <strong>serves six wedges on one fabric</strong> — HR presence, adaptive signage, home and away, Virtual Ward, night / perimeter security, shipping and industrial — on one stack for who is here (Presence), alerts that act (Vradar), field / VIP watch (Sentinel), and many sites in one view (Matrix).</p>
+          </div>
         </div>
       </div>
 
-      <div class="cols-3">
-        <div class="panel alt argument-card">
-          <span class="stat">No per-camera tax</span>
-          <span class="stat-claim">Hardware-bound scale</span>
-          <p class="stat-method">Scale is the mesh you deploy — one room to a campus — not a per-camera license ceiling or a GPU farm.</p>
-        </div>
-        <div class="panel argument-card">
-          <span class="stat cyan">Zero / near-zero hardware</span>
-          <span class="stat-claim">Buy today</span>
-          <p class="stat-method">Staff use their own PC or mobile for presence grants; sites reuse cameras they already own. EyeNet scales to thousands of employees without a camera fleet project.</p>
-        </div>
-        <div class="panel alt argument-card">
-          <span class="stat brand">Six wedges, one fabric</span>
-          <span class="stat-claim">Where it pays</span>
-          <p class="stat-method">HR presence, adaptive signage, home and away, Virtual Ward, night / perimeter security, shipping and industrial — Presence, Vradar, Sentinel, and Matrix on one stack.</p>
-        </div>
+      <h2>Key differentiators</h2>
+      <div class="breaker-grid">
+        <div class="notify"><h5>Privacy-first</h5><p>All processing and storage on-premises</p></div>
+        <div class="notify alt"><h5>Offline-capable</h5><p>Full functionality without internet</p></div>
+        <div class="notify"><h5>Infinitely scalable</h5><p>From single camera to enterprise-wide</p></div>
+        <div class="notify alt"><h5>Secure by design</h5><p>Encrypted, access-controlled, VPN-ready</p></div>
+        <div class="notify"><h5>Integration-ready</h5><p>REST APIs, webhooks, third-party connectors</p></div>
+        <div class="notify alt"><h5>Support-friendly</h5><p>Remote diagnostics without compromising security</p></div>
+        <div class="notify"><h5>Event-driven intelligence</h5><p>Automated actions based on real-time vision analytics</p></div>
+        <div class="notify alt"><h5>Per-camera automation</h5><p>Independent trigger configuration for each camera</p></div>
+        <div class="notify"><h5>Multi-action orchestration</h5><p>Complex workflows with multiple notification channels and integrations</p></div>
       </div>
-      </div>
+
     </section>
 
     <!-- 02 WHERE IT PAYS -->
     <section class="section flow page-start" id="page-3" data-nav-label="02 · Where it pays">
       <div class="section-head"><span class="section-num">02</span><h2>Where it pays</h2></div>
-      <p class="page-lead">Six wedges. Same platform. Incumbents lack the model: any camera, hardware-bound scale, no per-camera blockers, detect → decide → act.</p>
+      <p class="page-lead">Six wedges. Same platform. Incumbents lack the model: ordinary cameras become an always-on assistant that decides and acts on premises, hardware-bound scale, no per-camera blockers, detect → decide → act, including when the internet is down.</p>
 
       <div class="persona-bridge">
         <h3>Who pays — and what changes</h3>
@@ -735,7 +894,18 @@
               <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Works on cameras already on their screens, or a cheap off-the-shelf add — no locked player kit, no per-screen SaaS tax. Adaptive playlists and measurable impressions start without a proprietary estate.</p>
             </div>
           </a>
-          <a class="persona-card" href="#wedge-family">
+          <a class="persona-card" href="#wedge-shop">
+            <div class="persona-media">
+              <img src="/assets/images/persona-shop-floor.jpg" alt="Shop manager / store ops" loading="lazy" decoding="async">
+            </div>
+            <div class="persona-body">
+              <h4>Shop manager / store ops</h4>
+              <p class="persona-then"><strong>The problem now:</strong> Knows someone walked in — not how shoppers move through the floor.</p>
+              <p class="persona-then"><strong>With EyeNet:</strong> people counts, paths, heatmaps, dwell, and occupancy with behavioural alerts when zones get busy or quiet.</p>
+              <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Run on cameras already in the store — digests and alerts for managers, video stays local, no separate analytics stack or cloud footage.</p>
+            </div>
+          </a>
+          <a class="persona-card alt" href="#wedge-family">
             <div class="persona-media">
               <img src="/assets/images/persona-parent.jpg" alt="Parent / household at home" loading="lazy" decoding="async">
             </div>
@@ -746,7 +916,7 @@
               <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Plug into cams already at home, or pick up a low-cost everyday camera — no vendor lock-in, no cloud subscription. Default is alerts only; a live view is available only when everyone involved consents.</p>
             </div>
           </a>
-          <a class="persona-card alt" href="#wedge-family-remote">
+          <a class="persona-card" href="#wedge-family-remote">
             <div class="persona-media">
               <img src="/assets/images/persona-student.jpg" alt="Student living away" loading="lazy" decoding="async">
             </div>
@@ -757,7 +927,7 @@
               <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> One cam already at the remote flat or cottage, or a simple budget camera on a shelf — no guard contract, no cloud VMS. Parents get peace of mind without buying a security system or being glued to a live feed.</p>
             </div>
           </a>
-          <a class="persona-card" href="#wedge-care">
+          <a class="persona-card alt" href="#wedge-care">
             <div class="persona-media">
               <img src="/assets/images/persona-care.jpg" alt="Care provider / clinician" loading="lazy" decoding="async">
             </div>
@@ -768,7 +938,7 @@
               <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Use the room cams already at the patient, or add an affordable commodity camera. Next of kin stay assured without being glued to a camera — instant alerts, full awareness of who is on premises and whether caregivers are there and on time, with a live feed available at any time.</p>
             </div>
           </a>
-          <a class="persona-card alt" href="#wedge-security">
+          <a class="persona-card" href="#wedge-security">
             <div class="persona-media">
               <img src="/assets/images/persona-security.jpg" alt="Security ops lead" loading="lazy" decoding="async">
             </div>
@@ -779,7 +949,7 @@
               <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Cameras already on the fence and floor — vigilance and perimeter without per-camera seats or hiring another night shift.</p>
             </div>
           </a>
-          <a class="persona-card" href="#wedge-shipping">
+          <a class="persona-card alt" href="#wedge-shipping">
             <div class="persona-media">
               <img src="/assets/images/persona-shipping.jpg" alt="Captain / plant ops" loading="lazy" decoding="async">
             </div>
@@ -795,217 +965,385 @@
 
       <div class="use-cases-bridge">
         <h3>Typical use cases</h3>
-        <p class="page-lead">Six wedges on one platform — any camera, hardware-bound scale, no per-camera blockers, detect → decide → act.</p>
-      <div class="wedge-cards">
-        <article class="wedge-card" id="wedge-hr">
-          <div class="wedge-media">
-            <img src="/assets/images/hr-presence.png" alt="EyeNet HR presence" loading="lazy" decoding="async">
+        <p class="page-lead">Seven featured cases on one platform — any camera, hardware-bound scale, no per-camera blockers, detect → decide → act.</p>
+      <div class="case-stack">
+<article class="case-page" id="wedge-hr">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/hr-presence.png" alt="EyeNet staff presence" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 01</span>
+          <h2>Know who is present and who is not</h2>
+          <p class="who">Home · office · warehouse · industrial · shipping · security — one flexible Presence tool</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Presence is one flexible machine vision tool equally suitable for an intelligent doorbell at home, offices, warehouses, industrial floors, ships, and security posts. EyeNet shows who is in, where, and when — automatically — so teams stop chasing roll-calls and badge spreadsheets. Connectors with CRM systems, such as HubSpot, keep presence grants and contacts aligned as people move across sites.</p>
+          <ul class="case-features">
+            <li><strong>Intelligent doorbell</strong> — who is at the door at home; presence without cloud video</li>
+              <li><strong>Entrance / exit stations</strong> — Presence stations at doors for check-in / check-out</li>
+              <li><strong>Vprofile cameras</strong> — offices, warehouses, industrial floors, and watch posts</li>
+              <li><strong>Presence apps</strong> — staff mobile phones and desk PCs</li>
+              <li><strong>Shipping &amp; security posts</strong> — same stack for crew, shifts, and perimeter stations</li>
+              <li><strong>Hands-off ops</strong> — purely automatic; no manual roll-call or chase</li>
+              <li><strong>CRM Connectors</strong> — e.g. HubSpot CRM connector: sync contacts, post grants to HubSpot in real time</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>One flexible machine vision Presence tool equally suitable for home, office, warehouse, industrial, shipping, and security — who is in, where, and when — without badges-only friction or spreadsheet attendance.</p>
+          <div class="tags">
+            <span class="tag category">home</span>
+              <span class="tag category">office</span>
+              <span class="tag category">warehouse</span>
+              <span class="tag category">industrial</span>
+              <span class="tag category">shipping</span>
+              <span class="tag category">security</span>
+              <span class="tag">Presence</span>
+              <span class="tag mode">Stations</span>
+              <span class="tag mode">Vprofile</span>
+              <span class="tag">Mobile · PC apps</span>
+              <span class="tag user">HubSpot CRM</span>
           </div>
-          <div class="wedge-body">
-            <header class="wedge-card-head">
-              <span class="wedge-num">01</span>
-              <h3>HR presence</h3>
-            </header>
-            <p class="wedge-buyer">HR, facilities, office ops</p>
-            <div class="wedge-block problem">
-              <span class="wedge-k">Problem now</span>
-              <p>Proprietary readers · per-seat / per-door SaaS · weak remote · no CRM action from cameras you own</p>
-            </div>
-            <div class="wedge-block payoff">
-              <span class="wedge-k">Why paid EyeNet</span>
-              <p>Auto presence on-site + remote · zero roll-call · ERP/CRM first (e.g. HubSpot)</p>
-            </div>
-          </div>
-        </article>
+          <p class="side-note"><strong>CRM path:</strong> HubSpot first; further CRM connectors follow the same pattern.</p>
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Employee (Presence app confirmations)</li>
+                <li>Line manager (exceptions / late / no-show)</li>
+                <li>HR / People ops (frequent presence reports, near real time, daily, weekly, monthly, configurable, etc.)</li>
+                <li>Facilities · CRM contact timeline (grants)</li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+      <div class="case-buyers">
+        <p class="case-buyer">An <strong>HR manager</strong> can now let every employee check in from their own PC or phone — and push presence grants to the ERP/CRM — with zero new hardware, even at thousands of seats.</p>
+      </div>
+    </article>
 
-        <article class="wedge-card alt" id="wedge-signage">
-          <div class="wedge-media">
-            <img src="/assets/images/mall-signage.png" alt="EyeNet vision-adaptive signage" loading="lazy" decoding="async">
+<article class="case-page" id="wedge-signage">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/mall-signage.png" alt="EyeNet Vision-adaptive Intelligent Signage" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 02</span>
+          <h2>Screens that sell themselves</h2>
+          <p class="who">Retail · venues · agencies · brand studios · digital signage operators</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Static screens burn budget because nobody can prove who saw what or what converted. EyeNet reads the room — age, gender, group size — and drives playlists from live audience signals in milliseconds. Views, dwell, and engagement turn concourses and spots into a measurable marketing studio instead of guesswork.</p>
+          <ul class="case-features">
+            <li><strong>Read the room</strong> — age, gender, group size drive playlist switches in milliseconds</li>
+        <li><strong>Zero surveys</strong> — know who sees each display: views, dwell, engagement</li>
+        <li><strong>A/B in the wild</strong> — swap content on live audience data; measure what converts</li>
+        <li><strong>Signage as studio</strong> — every screen becomes a measurable marketing surface across concourses, shops, and spots</li>
+        <li><strong>Prove ROI</strong> — impression reports, engagement rates, footfall-to-sales funnels</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Static screens burn budget. Vision-adaptive Intelligent Signage turns foot traffic into measurable marketing intelligence — content that reacts, and numbers that justify spend.</p>
+          <div class="tags">
+            <span class="tag category">shop</span>
+        <span class="tag category">marketing</span>
+        <span class="tag">Signage</span>
+        <span class="tag">Automation</span>
+        <span class="tag mode">Spot · Gate · Area</span>
+        <span class="tag user">Demographics</span>
+        <span class="tag ok">ROI · A/B</span>
           </div>
-          <div class="wedge-body">
-            <header class="wedge-card-head">
-              <span class="wedge-num">02</span>
-              <h3>Vision-adaptive intelligent signage</h3>
-            </header>
-            <p class="wedge-buyer">Retail, venues, agencies, brand studios</p>
-            <div class="wedge-block problem">
-              <span class="wedge-k">Problem now</span>
-              <p>Locked players / camera kits · per-screen SaaS · slow campaigns · no any-camera playlist scale</p>
-            </div>
-            <div class="wedge-block payoff">
-              <span class="wedge-k">Why paid EyeNet</span>
-              <p>Age / gender / group switch in ms · impressions + dwell · measurable studio</p>
-            </div>
-          </div>
-        </article>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Marketing manager (campaign / ROI digests)</li>
+          <li>Content / media ops (playlist &amp; A/B triggers)</li>
+          <li>Site / store operations</li>
+          <li>Agency · brand partner (scheduled reports)</li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>shop or mall owner</strong> can now run intelligent signage end to end — prove who is watching each screen with full audience analytics, load and switch playlists, and let marketers log in to manage the full campaign lifecycle — on cams they already have, without a locked player kit.</p>
+      </div>
+    </article>
 
-        <article class="wedge-card" id="wedge-family">
-          <div class="wedge-media">
-            <img src="/assets/images/family-protection-home.jpg" alt="EyeNet home protection when the house is empty" loading="lazy" decoding="async">
+<article class="case-page" id="wedge-shop">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/shop-floor.jpg" alt="EyeNet shop floor customer movement" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 03</span>
+          <h2>See how shoppers move</h2>
+          <p class="who">Shop managers · store ops · multi-site retail</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Shop managers need to know how customers move through the premises — not only that someone walked in. EyeNet turns existing cameras into people counts, paths, heatmaps, dwell, and occupancy, with behavioural alerts when zones get busy or quiet. Managers get digests and alerts; video never has to leave the store.</p>
+          <ul class="case-features">
+            <li><strong>People counting</strong> — Face / Body / Both across entrances and floor cameras</li>
+              <li><strong>Paths &amp; heatmaps</strong> — how customers move through aisles and zones</li>
+              <li><strong>Occupancy &amp; peaks</strong> — busy hours by area, not guesswork</li>
+              <li><strong>Dwell &amp; visit patterns</strong> — where shoppers linger vs pass through</li>
+              <li><strong>Behavioural alerts</strong> — occupancy / dwell / path / co-presence → mobile, email, webhook</li>
+              <li><strong>On-prem privacy</strong> — video stays local; managers get digests and alerts, not cloud footage</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Turn existing CCTV into floor intelligence — count, path, and act — without a separate analytics stack. Signage proves marketing ROI; shop floor proves how customers move.</p>
+          <div class="tags">
+            <span class="tag category">shop</span>
+              <span class="tag">Analytics</span>
+              <span class="tag">Behavioural</span>
+              <span class="tag mode">Counting · Path</span>
+              <span class="tag mode">Occupancy</span>
+              <span class="tag ok">Spot · Area</span>
           </div>
-          <div class="wedge-body">
-            <header class="wedge-card-head">
-              <span class="wedge-num">03</span>
-              <h3>Home protection when the house is empty</h3>
-            </header>
-            <p class="wedge-buyer">Families · parents · households</p>
-            <div class="wedge-block problem">
-              <span class="wedge-k">Problem now</span>
-              <p>Cloud-by-default · vendor cameras only · per-device subscriptions · footage leaves home</p>
-            </div>
-            <div class="wedge-block payoff">
-              <span class="wedge-k">Why paid EyeNet</span>
-              <p>Intelligent doorbell · known + unknown alerts · smart-home webhooks (screens / sound) · footage stays local · alerts by default · live view only with consent</p>
-            </div>
-          </div>
-        </article>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Shop manager (movement / occupancy digests)</li>
+                <li>Store ops · shift lead (busy-zone / dwell alerts)</li>
+                <li>Regional retail ops (multi-site packs)</li>
+                <li>Loss prevention · facilities (selected behavioural events)</li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>shop manager</strong> can now see how customers move through the store — people counts, paths, heatmaps, dwell, and occupancy alerts — on cams already on the floor, with digests instead of cloud footage and video that never has to leave the premises.</p>
+      </div>
+    </article>
 
-        <article class="wedge-card alt" id="wedge-family-remote">
-          <div class="wedge-media">
-            <img src="/assets/images/remote-cottage.jpg" alt="Peace of mind at home — and away: cottage and students living away" loading="lazy" decoding="async">
+<article class="case-page" id="wedge-family">
+      <span id="wedge-family-remote" class="anchor-target" aria-hidden="true"></span>
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/family-protection-home.jpg" alt="EyeNet family protection at home and remote" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 04</span>
+          <h2>Peace of mind at home — and away</h2>
+          <p class="who">Families · parents · households · students living away</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Families need automated protection for the home, cottage, and students living away — without a full security team or forced cloud video. EyeNet confirms presence and alerts when an unknown person stands in front of a door or enters living areas. You get a few targeted phone notifications; footage stays local.</p>
+          <ul class="case-features">
+            <li><strong>Home protection</strong> — intrusion and unknown-person alerts when the house is empty</li>
+        <li><strong>Family away / remote students</strong> — peace of mind when loved ones live away, without cloud video</li>
+        <li><strong>Presence check</strong> — confirm someone is (or should be) at home</li>
+        <li><strong>Secure zones</strong> — alarm if an unspecified person stands in front of a door or enters living areas</li>
+        <li><strong>On-prem privacy</strong> — footage stays local; phone alerts only when needed</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Protect family at home and when someone is away — automatically, privately, without a full security team.</p>
+          <div class="tags">
+            <span class="tag category">home</span>
+        <span class="tag">Gate</span>
+        <span class="tag">Presence</span>
+        <span class="tag">Automation</span>
+        <span class="tag mode">Spot · Area</span>
           </div>
-          <div class="wedge-body">
-            <header class="wedge-card-head">
-              <span class="wedge-num">03</span>
-              <h3>Peace of mind at home — and away</h3>
-            </header>
-            <p class="wedge-buyer">Families · parents · households · students living away</p>
-            <div class="wedge-block problem">
-              <span class="wedge-k">Problem now</span>
-              <p>Remote flat / cottage needs a security team or a cloud VMS · parents get no private peace of mind for kids away</p>
-            </div>
-            <div class="wedge-block payoff">
-              <span class="wedge-k">Why paid EyeNet</span>
-              <p>Presence + unknown-person at the remote home · phone pings without shipping video · live stream only if all parties agree · on-prem privacy · no guard contract or cloud VMS</p>
-            </div>
-          </div>
-        </article>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Parents / family (mobile push · email)</li>
+          <li>Resident (student / household member)</li>
+          <li>Caretaker / neighbour (optional)</li>
+          <li>Local response contact (critical only)</li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>parent</strong> can now turn a door cam into an intelligent doorbell — alerts for known and unknown people, plus webhooks to smart-home screens and sound — on cams they already own or a cheap everyday camera, with no cloud subscription. Default is alerts only with footage kept local; a live view is available only when everyone involved consents.</p>
+        <p class="case-buyer alt">A <strong>parent of a student living away</strong> can now watch a remote flat or cottage with one ordinary cam — phone pings only, no guard contract or cloud VMS. Stakeholders get the ping without shipping video off-site, and can open a live stream only if all parties agree.</p>
+      </div>
+    </article>
 
-        <article class="wedge-card" id="wedge-care">
-          <div class="wedge-media">
-            <img src="/assets/images/homecare-caregiver-presence.jpg" alt="EyeNet home care Virtual Ward" loading="lazy" decoding="async">
+<article class="case-page" id="wedge-care">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/homecare-caregiver-presence.jpg" alt="Talos Homecare — caregiver presence" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: talosgroup.eu/solutions/integration/homecare</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 05</span>
+          <h2>Hospital-grade care at home</h2>
+          <p class="who">Care provider · MDT clinician · patient / family · Talos / TMAIX eHealth partner</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">EyeNet turns the unstaffed home into a care environment that MDT teams and caregivers can trust. Falls, help-calls, presence, and zone breaches become a few targeted alerts in the clinical stack — video stays on-prem. Partners such as Talos / TMAIX fuse those events into Virtual Ward workflows without shipping footage to the cloud.</p>
+          <ul class="case-features">
+            <li><strong>Caregiver presence</strong> — right staff, right home, right time (visit assurance)</li>
+              <li><strong>Secure zones</strong> — alarm on unspecified persons in/around the dwelling</li>
+              <li><strong>Fall detection</strong> — already-developed automation trigger → care team</li>
+              <li><strong>Voice / help-call</strong> — spoken request for help → immediate actionable alert</li>
+              <li><strong>Clinical fuse</strong> — tokenized events into ePokratis / IoMT / telemedicine (not cloud video)</li>
+              <li><strong>Virtual Ward</strong> — hospital-level care at home: admission avoidance &amp; early discharge</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Differentiator vs vitals-only RPM: the home becomes a monitored care environment. Privacy by architecture — vision stays on-prem; only fall / help / presence / zone events reach the health stack.</p>
+          <div class="tags">
+            <span class="tag category">home</span>
+              <span class="tag category">care</span>
+              <span class="tag">Presence</span>
+              <span class="tag">Automation</span>
+              <span class="tag safety">Fall</span>
+              <span class="tag safety">Voice</span>
+              <span class="tag mode">Area · Spot</span>
+              <span class="tag user">Talos · TMAIX</span>
           </div>
-          <div class="wedge-body">
-            <header class="wedge-card-head">
-              <span class="wedge-num">04</span>
-              <h3>Home care / Virtual Ward</h3>
-            </header>
-            <p class="wedge-buyer">Care provider, clinician, TMA / Talos (TMAIX)</p>
-            <div class="wedge-block problem">
-              <span class="wedge-k">Problem now</span>
-              <p>Vitals-only RPM · cloud vision · camera lock-in · can’t feed clinical stack without shipping video</p>
-            </div>
-            <div class="wedge-block payoff">
-              <span class="wedge-k">Why paid EyeNet</span>
-              <p>Fall / help-call / zone events · alerts to caregivers + next of kin escalated per settings · who is on premises · caregiver on-time awareness · live feed anytime · not cloud video</p>
-            </div>
-          </div>
-        </article>
+          <p class="side-note"><strong>Partner:</strong> Talos eHealth / IoMT · TMAIX ePpocrates eCloud</p>
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>MDT / care coordinator · on-call clinician</li>
+                <li>Assigned caregiver (mobile)</li>
+                <li>Patient family / sponsor (selected events)</li>
+                <li>Telemedicine / ePokratis case queue</li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>care provider</strong> can now turn a patient room cam into fall and help-call events for the clinical stack — with alerts to all stakeholders, caregivers and next of kin, escalated per settings — without shipping cloud video. Next of kin stay assured without being glued to a camera: they get instant alerts for their loved ones, full awareness of who is on premises, and whether caregivers are there and on time, with a live feed available at any time.</p>
+      </div>
+    </article>
 
-        <article class="wedge-card alt" id="wedge-security">
-          <div class="wedge-media">
-            <img src="/assets/images/security.jpg" alt="EyeNet night and perimeter security" loading="lazy" decoding="async">
+<article class="case-page" id="wedge-security">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/security.jpg" alt="EyeNet security monitoring" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 06</span>
+          <h2>Night shifts that never blink</h2>
+          <p class="who">Security firms · corporate / industrial / government guard ops</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Night and perimeter coverage cannot depend on hope that every post stays awake. EyeNet watches stations and fences continuously and escalates when a post goes quiet or motion hits the ring. Continuous recording stays ready so incidents have timestamped evidence, not guesswork.</p>
+          <ul class="case-features">
+            <li><strong>Night-shift automation</strong> — first-time automated monitoring that guards stay awake and alert</li>
+              <li><strong>Presence at posts</strong> — Presence services on watch stations across the shift</li>
+              <li><strong>Perimeter nodes</strong> — Presence nodes at fences, gates, and outer rings</li>
+              <li><strong>Vradar</strong> — motion detection, POI / people-match alerts on patrol feeds</li>
+              <li><strong>Forensics</strong> — continuous recording with timestamped evidence for incidents</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Night coverage stops depending on hope. Auto-escalate when a post goes quiet; perimeter + Vradar catch motion before it becomes a breach.</p>
+          <div class="tags">
+            <span class="tag category">security</span>
+              <span class="tag">Presence</span>
+              <span class="tag">Sentinel</span>
+              <span class="tag safety">Vradar</span>
+              <span class="tag mode">Perimeter</span>
+              <span class="tag ok">Recording · forensics</span>
           </div>
-          <div class="wedge-body">
-            <header class="wedge-card-head">
-              <span class="wedge-num">05</span>
-              <h3>Security: night and perimeter</h3>
-            </header>
-            <p class="wedge-buyer">Security firms, corporate &amp; industrial sites</p>
-            <div class="wedge-block problem">
-              <span class="wedge-k">Problem now</span>
-              <p>Storage + per-camera licenses · proprietary hardware · scale = more seats, not more action</p>
-            </div>
-            <div class="wedge-block payoff">
-              <span class="wedge-k">Why paid EyeNet</span>
-              <p>Guard vigilance · perimeter · Vradar · forensics · coverage without 1:1 headcount</p>
-            </div>
-          </div>
-        </article>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>On-duty guard (mobile / post alarm)</li>
+                <li>Shift supervisor · SOC</li>
+                <li>Site security manager</li>
+                <li>Response team · client facilities (critical)</li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>security ops lead</strong> can now get night vigilance and perimeter from the fence and floor cams already there — without per-camera seats or another night shift.</p>
+      </div>
+    </article>
 
-        <article class="wedge-card" id="wedge-shipping">
-          <div class="wedge-media">
-            <img src="/assets/images/shipping.jpg" alt="EyeNet shipping and industrial" loading="lazy" decoding="async">
+<article class="case-page" id="wedge-shipping">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/shipping.jpg" alt="EyeNet shipping and industrial operations" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 07</span>
+          <h2>Who's onboard. Who's on site. Who fell.</h2>
+          <p class="who">Captain · fleet manager · shore HQ · plant / site ops · industrial security</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Ships and industrial sites cannot lean on cloud VMS when links are thin or offline. EyeNet keeps local truth about who is onboard or on site and where they should be, then packs reports for shore or HQ. The same stack covers special zones that need fall detection — decks, holds, warehouses, and industrial floors — so a fall becomes an immediate alert, not a missed radio call.</p>
+          <ul class="case-features">
+            <li><strong>Industrial site zones</strong> — restricted areas, yards, and production floors alert when the wrong people enter</li>
+        <li><strong>Fall detection in special areas</strong> — decks, holds, warehouses, and industrial floors trigger fall alerts to bridge, shore, or site ops</li>
+        <li><strong>Shift &amp; contractor presence</strong> — know who is on site across shifts, contractors, and visitors without badge chasing</li>
+        <li><strong>Hazard / PPE-aware alerts</strong> — optional triggers around high-risk zones and muster points on industrial campuses</li>
+        <li><strong>Everyone in place at sea</strong> — Presence / Gate / Sentinel ensure crew are where they should be</li>
+        <li><strong>Exact onboard count</strong> — know precisely how many people are onboard at any moment</li>
+        <li><strong>Shore &amp; HQ reports anytime</strong> — automated attendance &amp; headcount packs to fleet HQ or plant control</li>
+        <li><strong>Minimal connectivity</strong> — full local ops at sea or on remote industrial sites; sync over thin / intermittent links</li>
+        <li><strong>Fleet / site Matrix</strong> — VPN mesh; degraded queue — no data loss when offline</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Ships and industrial sites cannot depend on cloud VMS. EyeNet gives captains, shore, and plant ops the same truth: who is onboard or on site, where they are — plus fall detection in the zones that need it — with reports that travel on minimal bandwidth.</p>
+          <div class="tags">
+            <span class="tag category">shipping</span>
+        <span class="tag category">industrial</span>
+        <span class="tag">Presence</span>
+        <span class="tag">Gate</span>
+        <span class="tag">Sentinel</span>
+        <span class="tag safety">Fall</span>
+        <span class="tag">Matrix</span>
+        <span class="tag mode">Offline · VPN</span>
           </div>
-          <div class="wedge-body">
-            <header class="wedge-card-head">
-              <span class="wedge-num">06</span>
-              <h3>Shipping and industrial</h3>
-            </header>
-            <p class="wedge-buyer">Captain, fleet manager, plant &amp; site ops</p>
-            <div class="wedge-block problem">
-              <span class="wedge-k">Problem now</span>
-              <p>Assumes always-on cloud · fixed camera estates · breaks offline · license ceilings on multi-site</p>
-            </div>
-            <div class="wedge-block payoff">
-              <span class="wedge-k">Why paid EyeNet</span>
-              <p>Who’s onboard · zones · local ops when the link dies · HQ real-time alerts per settings · insights / analytics · scale one site → ships / fleets / industrial areas · recordings + live feed · essential updates on weak links</p>
-            </div>
-          </div>
-        </article>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Captain · bridge / duty officer</li>
+          <li>Chief mate · security officer (onboard)</li>
+          <li>Shore fleet ops · CSO · plant / site supervisor (incl. fall alerts)</li>
+          <li>Fleet / site HR (attendance / compliance packs)</li>
+          </ul>
+        </div>
+        </aside>
+      </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>captain or plant ops lead</strong> can now know who’s onboard and who’s in zone when the link dies — on the cams already aboard or on site. HQs get real-time alerts per settings plus full insights and analytics, scalable from one site to entire ships, fleets, or industrial areas, with recordings and live feed available.</p>
+      </div>
+    </article>
       </div>
       </div>
 
     </section>
 
-    <!-- 03 WHAT CHANGES -->
-    <section class="section flow page-start" id="page-2" data-nav-label="03 · What changes">
-      <div class="section-head"><span class="section-num">03</span><h2>What changes</h2></div>
-      <p class="page-lead">Users are not locked to a camera wall. The platform watches 24/7; the right person gets a targeted alert — mobile, email, webhook, clinical app, or HubSpot — only when something needs them. Ordinary cameras become an always-on assistant that decides and acts on premises, including when the internet is down.</p>
-
-      <div class="cols-3">
-        <div class="panel argument-card">
-          <span class="stat cyan">Edge</span>
-          <span class="stat-claim">Not cloud-bound</span>
-          <p class="stat-method">On-device AI. Full offline. Data sovereignty by default. Processing and storage stay on premises.</p>
-        </div>
-        <div class="panel alt argument-card">
-          <span class="stat brand">Action</span>
-          <span class="stat-claim">Not passive VMS</span>
-          <p class="stat-method">Triggers fire mobile, email, webhooks, signage, and gates. Each camera has its own rules.</p>
-        </div>
-        <div class="panel argument-card">
-          <span class="stat ok">Scale</span>
-          <span class="stat-claim">Hardware-bound</span>
-          <p class="stat-method">Any IP, WiFi, or phone camera. ~16&nbsp;GB PC. One room to an enterprise mesh. No GPU farm.</p>
-        </div>
-      </div>
-
-      <div class="breaker-vs">
-        <div class="panel">
-          <h4>Incumbents sell</h4>
-          <ul>
-            <li>Cloud storage &amp; monthly bandwidth</li>
-            <li>Passive recordings &amp; dashboards</li>
-            <li>Generic “AI boxes”</li>
-            <li>Projects that take quarters</li>
-          </ul>
-        </div>
-        <div class="panel alt">
-          <h4>EyeNet ships</h4>
-          <ul>
-            <li>On-prem decisions &amp; zero video cloud</li>
-            <li>Targeted notifications that run the operation</li>
-            <li>Purpose-built apps for real jobs</li>
-            <li>Detection in minutes — scale by hardware</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3>How it multiplies operator capacity</h3>
-      <ul>
-        <li><strong>Vision nodes</strong> — face, count, demographics, and routes on cameras the site already owns.</li>
-        <li><strong>Entrances, restricted zones, VIP watchlists</strong> — headcount, unauthorised presence, and person-of-interest alerts without extra posts.</li>
-        <li><strong>Signage that reads the room</strong> — age, gender, and group size switch content in milliseconds, with impressions and dwell.</li>
-        <li><strong>Remote control from a phone</strong> — VPN access to cameras, triggers, and dashboards. Footage stays on premises even when the operator does not.</li>
-      </ul>
-    </section>
-
-    <!-- 04 THE BET -->
-    <section class="section flow page-start" id="page-1" data-nav-label="04 · The bet">
-      <div class="section-head"><span class="section-num">04</span><h2>The bet</h2></div>
-      <p class="page-lead">EyeNet’s differentiators are the de facto optimal penetrators of the TAM: any camera as a vision node, on-prem detect → decide → act, no per-camera license tax, first value in minutes, hardware-bound scale.</p>
-      <p class="page-lead">That is how you enter the market where incumbents can only rent cloud storage on locked camera hardware and complicated server setups — and expand room-to-campus without a license ceiling.</p>
+    <!-- 03 THE BET -->
+    <section class="section flow page-start" id="page-1" data-nav-label="03 · The bet">
+      <div class="section-head"><span class="section-num">03</span><h2>The bet</h2></div>
+      <p class="page-lead">Incumbents rent cloud storage on locked cameras. EyeNet wins with any camera, on-prem detect → decide → act, first value in minutes, and room-to-campus scale — no per-camera tax.</p>
 
       <h3>Point-to-point differentiators</h3>
       <table class="diff-table">
@@ -1083,8 +1421,8 @@
     </section>
 
     <!-- 05 HOW IT IS SOLD -->
-    <section class="section flow page-start" id="page-4" data-nav-label="05 · How it is sold">
-      <div class="section-head"><span class="section-num">05</span><h2>How it is sold</h2></div>
+    <section class="section flow page-start" id="page-4" data-nav-label="04 · How it is sold">
+      <div class="section-head"><span class="section-num">04</span><h2>How it is sold</h2></div>
       <p class="page-lead">Three motions on one platform. Unit economics (CAC, LTV, payback, margins) are the core — they hold across seed capital scenarios.</p>
 
       <div class="use-cases-bridge">
@@ -1259,8 +1597,8 @@
     </section>
 
     <!-- 06 SEED SCENARIOS -->
-    <section class="section flow page-start" id="page-5" data-nav-label="06 · Seed ladder">
-      <div class="section-head"><span class="section-num">06</span><h2>Seed scenarios — from burn up</h2></div>
+    <section class="section flow page-start" id="page-5" data-nav-label="05 · Seed ladder">
+      <div class="section-head"><span class="section-num">05</span><h2>Seed scenarios — from burn up</h2></div>
       <p class="page-lead">The seed burn floor is $500K — enough for about one year of product, launch, and working capital. Checks of $1M and $2.5M sit above that floor. Extra capital does not rewrite unit economics. It buys speed and makes way for a sooner and bigger exit.</p>
 
       <div class="cols-3">
@@ -1459,8 +1797,8 @@
     </section>
 
     <!-- 07 FOOTPRINT -->
-    <section class="section flow page-start" id="page-6" data-nav-label="07 · Footprint">
-      <div class="section-head"><span class="section-num">07</span><h2>Footprint steps by scenario</h2></div>
+    <section class="section flow page-start" id="page-6" data-nav-label="06 · Footprint">
+      <div class="section-head"><span class="section-num">06</span><h2>Footprint steps by scenario</h2></div>
       <p class="page-lead">Organizational build-out scales with capital above burn. Unit economics stay the same; the company simply stands up earlier.</p>
 
       <table>

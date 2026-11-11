@@ -10,13 +10,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "eyenet-investor-primer.html"
-ASSET_V = "20261109n"
+ASSET_V = "20261111c"
 
 PAGE_ORDER = [
     "",
     "what-is-eyenet",
     "where-it-pays",
-    "what-changes",
     "the-bet",
     "how-it-is-sold",
     "seed-ladder",
@@ -33,8 +32,8 @@ SECTIONS = [
         "slug": "what-is-eyenet",
         "num": "01",
         "nav": "What is EyeNet",
-        "title": "What is EyeNet",
-        "card": "Who buys and why now — then the platform selling points that cut across every persona.",
+        "title": "EyeNet understands what it sees and acts on it automatically",
+        "card": "Everyday people, advanced vision — then platform selling points and key differentiators.",
     },
     {
         "id": "page-3",
@@ -45,17 +44,9 @@ SECTIONS = [
         "card": "Highest-value wedges across care, HR, signage, family, security, and shipping.",
     },
     {
-        "id": "page-2",
-        "slug": "what-changes",
-        "num": "03",
-        "nav": "What changes",
-        "title": "What changes",
-        "card": "Edge, action, and hardware-bound scale — not another camera cloud.",
-    },
-    {
         "id": "page-1",
         "slug": "the-bet",
-        "num": "04",
+        "num": "03",
         "nav": "The bet",
         "title": "The bet",
         "card": "Incumbents sell cloud storage; EyeNet sells sovereignty and operational action.",
@@ -63,7 +54,7 @@ SECTIONS = [
     {
         "id": "page-4",
         "slug": "how-it-is-sold",
-        "num": "05",
+        "num": "04",
         "nav": "How it is sold",
         "title": "How it is sold",
         "card": "B2C Light, B2B, and Enterprise motions with cite-backed pockets.",
@@ -71,7 +62,7 @@ SECTIONS = [
     {
         "id": "page-5",
         "slug": "seed-ladder",
-        "num": "06",
+        "num": "05",
         "nav": "Seed ladder",
         "title": "Seed scenarios — from burn up",
         "card": "$0.5M → $1M → $2.5M ladder with staged outcomes.",
@@ -79,7 +70,7 @@ SECTIONS = [
     {
         "id": "page-6",
         "slug": "footprint",
-        "num": "07",
+        "num": "06",
         "nav": "Footprint",
         "title": "Footprint steps by scenario",
         "card": "What each seed step funds: product, GTM, and footprint.",
@@ -87,7 +78,7 @@ SECTIONS = [
     {
         "id": None,
         "slug": "market-validation",
-        "num": "08",
+        "num": "07",
         "nav": "Market validation",
         "title": "Market validation",
         "card": "FootfallCam proves paid people-analytics demand — without covering EyeNet’s six wedges.",
@@ -96,7 +87,7 @@ SECTIONS = [
     {
         "id": "page-7",
         "slug": "addendum-a",
-        "num": "09",
+        "num": "08",
         "nav": "Project status",
         "title": "Project status",
         "card": "Readiness, partners, and growth path.",
@@ -105,7 +96,7 @@ SECTIONS = [
     {
         "id": "page-8",
         "slug": "addendum-b",
-        "num": "10",
+        "num": "09",
         "nav": "Reference",
         "title": "Addendum — Reference",
         "card": "Sources for addressable pockets and market validation.",
@@ -148,7 +139,7 @@ UI = {
     "meta": [
         ("Type", "Investor Primer"),
         ("Date", "7 November 2026"),
-        ("Structure", "What · Wedges · Changes · Bet · Motions · Seed · Footprint · Validation"),
+        ("Structure", "What · Wedges · Bet · Motions · Seed · Footprint · Validation"),
         ("Seed ladder", "$0.5M → $1M → $2.5M"),
     ],
 }
@@ -277,16 +268,27 @@ def sidebar_html(current: str) -> str:
 
 
 def header_nav(section: str) -> str:
-    items = [
+    """Mirror the left sidebar primary pages (plus Home and Addenda)."""
+    primary = [s for s in SECTIONS if s.get("group") != "addenda"]
+    addenda = [s for s in SECTIONS if s.get("group") == "addenda"]
+    items: list[tuple[str, str, str]] = [
         ("home", UI["home"], "/"),
-        ("what-is-eyenet", "What is EyeNet", "/what-is-eyenet/"),
-        ("where-it-pays", "Where it pays", "/where-it-pays/"),
-        ("seed-ladder", "Seed ladder", "/seed-ladder/"),
-        ("market-validation", "Market validation", "/market-validation/"),
     ]
+    for sec in primary:
+        items.append((sec["slug"], sec["nav"], f'/{sec["slug"]}/'))
+    if addenda:
+        items.append(("addenda", "Addenda", f'/{addenda[0]["slug"]}/'))
+
     out = []
     for slug, label, url in items:
-        ac = ' aria-current="section"' if section == slug else ""
+        if slug == "addenda":
+            ac = (
+                ' aria-current="section"'
+                if section in {s["slug"] for s in addenda}
+                else ""
+            )
+        else:
+            ac = ' aria-current="section"' if section == slug else ""
         out.append(f'<a href="{url}"{ac}>{label}</a>')
     return "".join(out)
 
@@ -514,32 +516,32 @@ def build_print(src_html: str) -> None:
         'href="#market-validation-refs"',
     )
     mv_section = f"""
-    <section class="section flow page-start" id="page-mv" data-nav-label="08 · Market validation">
-      <div class="section-head"><span class="section-num">08</span><h2>Market validation</h2></div>
+    <section class="section flow page-start" id="page-mv" data-nav-label="07 · Market validation">
+      <div class="section-head"><span class="section-num">07</span><h2>Market validation</h2></div>
 {mv_body}
     </section>
 """
     if 'id="page-mv"' not in html:
         html = html.replace(
             "    <!-- 08 ADDENDUM A — PROJECT STATUS -->",
-            mv_section + "\n    <!-- 09 PROJECT STATUS -->",
+            mv_section + "\n    <!-- 08 PROJECT STATUS -->",
         )
 
     html = html.replace(
         'id="page-7" data-nav-label="08 · Addendum A"',
-        'id="page-7" data-nav-label="09 · Project status"',
+        'id="page-7" data-nav-label="08 · Project status"',
     )
     html = html.replace(
         '<span class="section-num">08</span><h2>Addendum A — Project status</h2>',
-        '<span class="section-num">09</span><h2>Project status</h2>',
+        '<span class="section-num">08</span><h2>Project status</h2>',
     )
     html = html.replace(
         'id="page-8" data-nav-label="09 · Addendum B"',
-        'id="page-8" data-nav-label="10 · Reference"',
+        'id="page-8" data-nav-label="09 · Reference"',
     )
     html = html.replace(
         '<span class="section-num">09</span><h2>Addendum B — Reference</h2>',
-        '<span class="section-num">10</span><h2>Addendum — Reference</h2>',
+        '<span class="section-num">09</span><h2>Addendum — Reference</h2>',
     )
     # Reference kicker is authored in the primer source (includes TAM [9]–[12]).
 
@@ -555,7 +557,7 @@ def build_print(src_html: str) -> None:
 
     html = html.replace(
         "Project status: <a href=\"#page-7\">Addendum A</a>. Commercial addressable-pocket links: <a href=\"#page-8\">Addendum B</a>.",
-        'Market validation: <a href="#page-mv">§08</a>. Project status: <a href="#page-7">§09</a>. Reference: <a href="#page-8">§10</a>.',
+        'Market validation: <a href="#page-mv">§07</a>. Project status: <a href="#page-7">§08</a>. Reference: <a href="#page-8">§09</a>.',
     )
 
     toolbar = """  <div class="no-print toolbar">

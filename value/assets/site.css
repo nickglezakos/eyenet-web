@@ -1252,3 +1252,304 @@ body[data-wide="true"] .site-footer-inner {
 @media (min-width: 1100px) {
   .landing-cards { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Invest case-page UX (synced from invest) */
+/* Where it pays — featured use cases (usecases brochure UX) */
+.case-stack {
+  display: grid;
+  gap: 1.5rem;
+  margin: 1rem 0 0.4rem;
+}
+.case-page {
+  scroll-margin-top: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(15, 47, 87, 0.04);
+}
+.case-page .anchor-target {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.case-hero {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #0f172a;
+}
+.case-hero img {
+  display: block;
+  width: 100%;
+  height: clamp(11rem, 28vw, 16rem);
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.15) contrast(1.05);
+}
+.case-hero-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.72) 0%, rgba(15, 23, 42, 0.12) 45%, rgba(15, 23, 42, 0.05) 100%);
+  pointer-events: none;
+}
+.case-hero-meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.15rem 1.2rem 1.05rem;
+  color: #fff;
+  z-index: 1;
+}
+.case-hero-num {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.55rem;
+  background: rgba(25, 118, 210, 0.92);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.case-hero-meta h2 {
+  margin: 0 0 0.35rem;
+  color: #fff;
+  font-size: clamp(1.2rem, 2.8vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  max-width: 34ch;
+}
+.case-hero-meta .who {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 58ch;
+}
+.case-hero-credit {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.75rem;
+  z-index: 1;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+}
+.case-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.05rem 1.15rem 1.2rem;
+}
+.case-intro {
+  margin: 0 0 0.85rem;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.case-features {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #334155;
+}
+.case-features li + li { margin-top: 0.4rem; }
+.case-aside {
+  background: var(--band);
+  padding: 1rem 1.05rem 0.95rem;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+}
+.case-aside h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--brand-dark);
+}
+.case-aside > p {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.case-aside .tags { margin-top: 0.65rem; }
+.case-aside .side-note {
+  margin-top: 0.65rem;
+  font-size: 0.82rem;
+  color: var(--soft);
+}
+.case-notify {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+.case-notify h5 {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.case-notify ul {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.case-notify li + li { margin-top: 0.25rem; }
+.case-buyers {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+.case-buyer {
+  margin: 0;
+  padding: 1.05rem 1.2rem;
+  background: var(--band);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #334155;
+}
+.case-buyer + .case-buyer {
+  border-top: 1px solid rgba(148, 163, 184, 0.28);
+}
+.case-buyer.alt { background: var(--band-alt); }
+.case-buyer strong {
+  color: #3b82c4;
+  font-weight: 800;
+}
+.tag.category { color: #475569; }
+
+@media (min-width: 900px) {
+  .case-body {
+    grid-template-columns: 1.35fr 0.9fr;
+    gap: 1.15rem;
+    padding: 1.2rem 1.3rem 1.35rem;
+  }
+  .case-hero img {
+    height: clamp(13rem, 22vw, 18rem);
+  }
+}
+
+/* Invest persona-bridge UX (Who pays — and what changes) */
+.persona-bridge,
+.use-cases-bridge {
+  margin: 1rem 0 1.35rem;
+}
+.persona-bridge h3,
+.use-cases-bridge h3 {
+  margin: 0 0 0.35rem;
+  color: #334155;
+  font-size: clamp(1.1rem, 2.4vw, 1.28rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.persona-bridge-lead {
+  margin: 0 0 1rem;
+  color: #64748b;
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.persona-cards {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 1fr;
+}
+.persona-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  background: var(--band);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(15, 47, 87, 0.04);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.persona-card.alt { background: var(--band-alt); }
+.persona-card:hover {
+  border-color: rgba(59, 130, 196, 0.45);
+  box-shadow: 0 10px 24px rgba(15, 47, 87, 0.08);
+  text-decoration: none;
+}
+.persona-media {
+  margin: 0;
+  min-height: 10rem;
+  background: #0f2f57;
+}
+.persona-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 10rem;
+  max-height: 14rem;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.persona-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.15rem 1.15rem;
+}
+.persona-card h4 {
+  margin: 0;
+  color: #334155;
+  font-size: clamp(1.05rem, 2.3vw, 1.22rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.persona-then {
+  margin: 0;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+  color: #334155;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+.persona-body > .persona-then:first-of-type {
+  padding-top: 0;
+  border-top: 0;
+}
+.persona-then strong {
+  color: #3b82c4;
+  font-weight: 800;
+}
+@media (min-width: 820px) {
+  .persona-card {
+    grid-template-columns: minmax(12rem, 34%) 1fr;
+    align-items: stretch;
+  }
+  .persona-media { min-height: 100%; }
+  .persona-media img {
+    min-height: 100%;
+    max-height: none;
+  }
+}
+
+.page p.page-lead {
+  margin: 0 0 1rem;
+  color: #64748b;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.45;
+}

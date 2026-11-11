@@ -398,6 +398,99 @@
     .breaker-vs ul { margin: 0; font-size: 9pt; }
   
     /* value-print-extras */
+    .persona-bridge { margin: 12px 0 14px; }
+    .persona-bridge h3 {
+      margin: 0 0 4px; color: var(--brand-dark); font-size: 11.5pt; font-weight: 800;
+    }
+    .persona-bridge .page-lead {
+      margin: 0 0 10px; color: var(--muted); font-size: 9pt;
+    }
+    .persona-cards { display: grid; gap: 10px; grid-template-columns: 1fr; }
+    .persona-card {
+      display: grid; grid-template-columns: 32% 1fr;
+      background: var(--band); border: 1px solid var(--line); overflow: hidden;
+      color: inherit; text-decoration: none;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .persona-card.alt { background: var(--band-alt); }
+    .persona-media { margin: 0; background: var(--brand-dark); min-height: 72px; }
+    .persona-media img {
+      display: block; width: 100%; height: 100%; min-height: 72px;
+      object-fit: cover; object-position: center 20%;
+    }
+    .persona-body { padding: 8px 10px 10px; }
+    .persona-card h4 {
+      margin: 0 0 4px; color: var(--brand-dark); font-size: 10pt; font-weight: 800;
+    }
+    .persona-then {
+      margin: 0; padding-top: 6px; border-top: 1px solid var(--line);
+      color: var(--ink); font-size: 8.5pt; font-weight: 400; line-height: 1.35;
+    }
+    .persona-body > .persona-then:first-of-type { padding-top: 0; border-top: 0; }
+    .persona-then strong { color: var(--brand); font-weight: 800; }
+    .case-stack { display: grid; gap: 14px; margin: 12px 0 4px; }
+    .case-page {
+      border: 1px solid var(--line); overflow: hidden;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .case-hero { position: relative; background: #0f172a; }
+    .case-hero img {
+      display: block; width: 100%; height: 70mm;
+      object-fit: cover; object-position: center;
+      filter: grayscale(0.15) contrast(1.05);
+    }
+    .case-hero-veil {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,23,42,0.72) 0%, rgba(15,23,42,0.12) 45%, rgba(15,23,42,0.05) 100%);
+      pointer-events: none;
+    }
+    .case-hero-meta {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 12px 14px 12px; color: #fff; z-index: 1;
+    }
+    .case-hero-num {
+      display: inline-block; margin-bottom: 6px; padding: 2px 8px;
+      background: rgba(25,118,210,0.92); color: #fff;
+      font-size: 7.5pt; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .case-hero-meta h2 {
+      margin: 0 0 4px; color: #fff; font-size: 14pt; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.15; max-width: 34ch;
+    }
+    .case-hero-meta .who {
+      margin: 0; color: rgba(255,255,255,0.78); font-size: 8.5pt; font-weight: 500; line-height: 1.35;
+    }
+    .case-hero-credit {
+      position: absolute; top: 8px; right: 10px; z-index: 1; margin: 0;
+      color: rgba(255,255,255,0.55); font-size: 7pt;
+    }
+    .case-body {
+      display: grid; grid-template-columns: 1.35fr 0.9fr; gap: 12px;
+      padding: 10px 12px 12px; align-items: start;
+    }
+    .case-intro { margin: 0 0 8px; font-size: 9.5pt; line-height: 1.4; }
+    .case-features { margin: 0; padding-left: 14px; font-size: 8.75pt; line-height: 1.35; }
+    .case-features li + li { margin-top: 3px; }
+    .case-aside { background: var(--band); padding: 10px 12px; }
+    .case-aside h3 { margin: 0 0 6px; font-size: 9.5pt; font-weight: 800; color: var(--brand-dark); }
+    .case-aside > p { margin: 0 0 8px; font-size: 8.75pt; line-height: 1.35; }
+    .case-aside .side-note { margin-top: 8px; font-size: 8pt; color: var(--soft); }
+    .case-notify { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+    .case-notify h5 {
+      margin: 0 0 4px; font-size: 7.5pt; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--brand);
+    }
+    .case-notify ul { margin: 0; padding-left: 12px; font-size: 8pt; color: var(--muted); }
+    .case-notify li + li { margin-top: 2px; }
+    .case-buyers { border-top: 1px solid var(--line); }
+    .case-buyer {
+      margin: 0; padding: 8px 12px; background: var(--band);
+      font-size: 8.75pt; font-weight: 500; line-height: 1.4; color: var(--ink);
+    }
+    .case-buyer + .case-buyer { border-top: 1px solid var(--line); }
+    .case-buyer.alt { background: var(--band-alt); }
+    .case-buyer strong { color: var(--brand); font-weight: 800; }
+    .anchor-target { display: none; }
     .breaker-grid { grid-template-columns: 1fr 1fr; }
     .notify > p + p { margin-top: 8px; }
     .func-gallery {
@@ -535,7 +628,7 @@
       <p class="lead">Από παθητικές κάμερες σε on-premises όραση που ανιχνεύει, αποφασίζει και ενεργεί — σε home care, SME, enterprise, βιομηχανία και στόλους.</p>
       <div class="print-home-meta"><div><span>Τύπος</span><strong>Value Brochure</strong></div><div><span>Ημερομηνία</span><strong>18 Οκτωβρίου 2026</strong></div><div><span>Δομή</span><strong>Τι · Περιπτώσεις · Ποιος · Εμπορικά πακέτα · Καινοτομία</strong></div><div><span>Ανάπτυξη</span><strong>On-Premises / VPN</strong></div></div>
       <p class="lead">Πώς το EyeNet αλλάζει το τοπίο του machine vision — από παθητικές κάμερες σε on-premises όραση που ανιχνεύει, αποφασίζει και ενεργεί.</p>
-      <div class="print-toc"><div class="print-toc-card"><span class="num">01</span><strong>Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα</strong><p>Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware.</p></div><div class="print-toc-card"><span class="num">02</span><strong>Ενδεικτικές περιπτώσεις χρήσης</strong><p>Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, κατάστημα, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία.</p></div><div class="print-toc-card"><span class="num">03</span><strong>Ποιος χρησιμοποιεί το EyeNet</strong><p>Δυνατά αποτελέσματα για στόλο, βιομηχανικούς χώρους, φροντίδα, HR, ασφάλεια, οικογένεια, signage και κατάστημα.</p></div><div class="print-toc-card"><span class="num">04</span><strong>Εμπορικά πακέτα</strong><p>B2C Light, B2B Starter & Professional και Enterprise.</p></div><div class="print-toc-card"><span class="num">05</span><strong>Απλή κι όμως ισχυρή καινοτομία</strong><p>On-premises όραση που αποφασίζει και ενεργεί — και ελευθερία από το camera wall με στοχευμένα alerts.</p></div></div>
+      <div class="print-toc"><div class="print-toc-card"><span class="num">01</span><strong>Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα</strong><p>Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware.</p></div><div class="print-toc-card"><span class="num">02</span><strong>Ενδεικτικές περιπτώσεις χρήσης</strong><p>Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, κατάστημα, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία.</p></div><div class="print-toc-card"><span class="num">03</span><strong>Ποιος χρησιμοποιεί το EyeNet</strong><p>Who pays — and what changes: personas για HR, κατάστημα, οικογένεια, φροντίδα, ασφάλεια και ops.</p></div><div class="print-toc-card"><span class="num">04</span><strong>Εμπορικά πακέτα</strong><p>B2C Light, B2B Starter & Professional και Enterprise.</p></div><div class="print-toc-card"><span class="num">05</span><strong>Απλή κι όμως ισχυρή καινοτομία</strong><p>On-premises όραση που αποφασίζει και ενεργεί — και ελευθερία από το camera wall με στοχευμένα alerts.</p></div></div>
     </section>
 
 <section class="section flow page-start" id="page-6" data-nav-label="04 · Τι">
@@ -731,7 +824,7 @@
         </div>
       </div>
 
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/</a></p>
 <h2>1. Computer vision &amp; people analytics</h2>
 <div class="panel">
   <h4>Παρακολούθηση &amp; ανάλυση ανθρώπων</h4>
@@ -742,7 +835,7 @@
     <li>Δημογραφική ανάλυση (ηλικία, φύλο κ.λπ.)</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/presence.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/presence.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/detections-individuals-persons.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/presence.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/presence.html</a></p>
 
 
 <h2>2. Ενσωμάτωση καμερών &amp; hardware</h2>
@@ -755,7 +848,7 @@
     <li>Ολοκληρωμένη παρακολούθηση υγείας καμερών</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/cameras-and-detection.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a></p>
 
 
 <h2>3. Έξυπνα triggers &amp; αυτοματοποιημένες ενέργειες</h2>
@@ -783,7 +876,7 @@
     <li><strong>Custom workflows</strong> — προγραμματιζόμενες αλυσίδες ενεργειών για σύνθετα σενάρια</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/vradar.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/vradar.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/vradar.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/vradar.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a></p>
 
 
 <h2>4. Διαχείριση βίντεο &amp; δεδομένων</h2>
@@ -796,7 +889,7 @@
     <li>Ελάχιστο internet μόνο για απομακρυσμένες ειδοποιήσεις και email</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/media-management.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/media-management.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/media-management.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/shared-platform.html</a></p>
 
 
 <h2>5. Έξυπνες επικοινωνίες</h2>
@@ -811,7 +904,7 @@
     <li>Audit logging όλων των επικοινωνιών με παρακολούθηση παράδοσης</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a></p>
 
 
 <h2>6. Analytics &amp; insights</h2>
@@ -826,7 +919,7 @@
     <li>Παρακολούθηση και στατιστικά εκτέλεσης ενεργειών</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/analytics-and-reports.html</a></p>
 
 
 <h2>7. Αρχιτεκτονική ανάπτυξης</h2>
@@ -848,7 +941,7 @@
     <li>Εγκαταστάσεις με επίγνωση περιβάλλοντος για απομακρυσμένη παρακολούθηση λειτουργίας</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a></p>
 
 
 <h2>8. Ασφάλεια &amp; έλεγχος πρόσβασης</h2>
@@ -862,7 +955,7 @@
     <li>Ασφαλής διαμόρφωση triggers και ενεργειών με audit trails χρηστών</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/users-and-roles.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/users-and-roles.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/users-and-roles.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a></p>
 
 
 <h2>9. Κλιμάκωση &amp; επεκτασιμότητα</h2>
@@ -886,7 +979,7 @@
     <li>Integrations digital signage (standalone και δικτυωμένες οθόνες)</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/matrix.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/matrix.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/hardware.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/hardware.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/matrix.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/matrix.html</a></p>
 
 
 <h2>10. Υποστήριξη &amp; παρακολούθηση</h2>
@@ -901,7 +994,7 @@
     <li>Παρακολούθηση παράδοσης ενεργειών και ανάλυση αποτυχιών</li>
   </ul>
 </div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/multi-site-and-remote.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a></p>
 
 
 <h2>Τεχνικά highlights αρχιτεκτονικής</h2>
@@ -934,7 +1027,7 @@
 </div>
 
 <div class="kicker">Το EyeNet μετατρέπει συνηθισμένες κάμερες σε επιχειρησιακή νοημοσύνη πραγματικού χρόνου — παρουσία, μετρήσεις, demographics, ζώνες και POI — και αυτοματοποιεί alerts, signage και integrations on-premises, offline και μέσω VPN. Έξι εφαρμογές, πέντε modes, μία πλατφόρμα: από ένα σπίτι home care έως στόλους πολλαπλών σημείων, σε μέτριο hardware, με βίντεο που δεν χρειάζεται cloud.</div>
-<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261021p" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/signage.html</a></p>
+<p class="wiki-more"><a class="wiki-chip" href="https://wiki.eyenet-vision.com/" target="_blank" rel="noopener noreferrer" title="EyeNet wiki"><img class="wiki-chip-logo" src="/assets/eyenet-dark.svg?v=20261111c" alt="" width="52" height="13" decoding="async"><span class="wiki-chip-label">wiki</span></a><span class="wiki-more-arrow" aria-hidden="true">→</span><a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/alerts-and-automation.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/entrances-and-activity.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/owners-admins/digital-signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/owners-admins/digital-signage.html</a> · <a class="wiki-addr" href="https://wiki.eyenet-vision.com/what-is-eyenet/signage.html" target="_blank" rel="noopener noreferrer">wiki.eyenet-vision.com/what-is-eyenet/signage.html</a></p>
 
 
 </section>
@@ -942,377 +1035,498 @@
 <section class="section flow page-start" id="page-8" data-nav-label="05 · Οικογενειακή προστασία">
       <div class="section-head"><span class="section-num">02</span><h2>Ενδεικτικές περιπτώσεις χρήσης</h2></div>
 
-      <div class="persona alt">
-        <h4><span class="n">1</span> Ξέρετε ποιός είναι παρόν και ποιος όχι</h4>
-        <p class="who">Σπίτι · γραφείο · αποθήκη · βιομηχανία · ναυτιλία · ασφάλεια — ένα ευέλικτο εργαλείο Presence</p>
-        <div class="cols-2">
-          <div>
-            <p class="case-intro">Η Presence είναι ένα ευέλικτο εργαλείο machine vision εξίσου κατάλληλο για έξυπνο κουδούνι στο σπίτι, γραφεία, αποθήκες, βιομηχανικούς ορόφους, πλοία και θέσεις ασφαλείας. Το EyeNet δείχνει ποιος είναι μέσα, πού και πότε — αυτόματα — ώστε οι ομάδες να σταματήσουν το κυνήγι παρουσιών και badges. Connectors με συστήματα CRM, όπως το HubSpot, κρατούν presence grants και επαφές συγχρονισμένα καθώς οι άνθρωποι μετακινούνται.</p>
-            <ul>
-              <li><strong>Έξυπνο κουδούνι</strong> — ποιος είναι στην πόρτα στο σπίτι· παρουσία χωρίς cloud video</li>
-              <li><strong>Stations εισόδου / εξόδου</strong> — Presence stations στις πόρτες για check-in / check-out</li>
-              <li><strong>Κάμερες Vprofile</strong> — γραφεία, αποθήκες, βιομηχανικοί όροφοι και θέσεις φρουράς</li>
-              <li><strong>Εφαρμογές Presence</strong> — κινητά και PCs προσωπικού</li>
-              <li><strong>Ναυτιλία &amp; θέσεις ασφαλείας</strong> — το ίδιο stack για πλήρωμα, βάρδιες και περίμετρο</li>
-              <li><strong>Hands-off ops</strong> — καθαρά αυτόματο· χωρίς χειροκίνητο roll-call ή κυνήγι</li>
-              <li><strong>CRM Connectors</strong> — π.χ. HubSpot CRM connector: συγχρονισμός επαφών, post grants στο HubSpot σε πραγματικό χρόνο</li>
-            </ul>
-            <div class="notify">
-              <h5>Αυτοματοποιημένες ειδοποιήσεις</h5>
-              <ul>
-                <li>Εργαζόμενος (επιβεβαιώσεις Presence app)</li>
-                <li>Προϊστάμενος (εξαιρέσεις / καθυστέρηση / απουσία)</li>
-                <li>HR / People ops (συχνές αναφορές παρουσίας, σχεδόν πραγματικού χρόνου, ημερήσιες, εβδομαδιαίες, μηνιαίες, παραμετροποιήσιμες κ.λπ.)</li>
-                <li>Εγκαταστάσεις · timeline επαφής CRM (grants)</li>
-              </ul>
-            </div>
-          </div>
-          <div class="panel">
-            <img class="card-visual" src="/assets/images/hr-presence.png" alt="EyeNet παρουσία προσωπικού" />
-            <p class="card-visual-credit">Οπτικό: eyenet-vision.com</p>
-            <h4>Γιατί μετράει</h4>
-            <p>Ένα ευέλικτο εργαλείο machine vision Presence εξίσου κατάλληλο για σπίτι, γραφείο, αποθήκη, βιομηχανία, ναυτιλία και ασφάλεια — ποιος είναι μέσα, πού και πότε — χωρίς τριβή μόνο-badge ή παρουσίες σε spreadsheet.</p>
-            <div class="tags">
-              <span class="tag category">σπίτι</span>
-              <span class="tag category">γραφείο</span>
-              <span class="tag category">αποθήκη</span>
-              <span class="tag category">βιομηχανία</span>
-              <span class="tag category">ναυτιλία</span>
-              <span class="tag category">ασφάλεια</span>
+      <article class="case-page" id="wedge-hr">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/hr-presence.png" alt="EyeNet staff presence" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 01</span>
+          <h2>Know who is present and who is not</h2>
+          <p class="who">Home · office · warehouse · industrial · shipping · security — one flexible Presence tool</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Presence is one flexible machine vision tool equally suitable for an intelligent doorbell at home, offices, warehouses, industrial floors, ships, and security posts. EyeNet shows who is in, where, and when — automatically — so teams stop chasing roll-calls and badge spreadsheets. Connectors with CRM systems, such as HubSpot, keep presence grants and contacts aligned as people move across sites.</p>
+          <ul class="case-features">
+            <li><strong>Intelligent doorbell</strong> — who is at the door at home; presence without cloud video</li>
+              <li><strong>Entrance / exit stations</strong> — Presence stations at doors for check-in / check-out</li>
+              <li><strong>Vprofile cameras</strong> — offices, warehouses, industrial floors, and watch posts</li>
+              <li><strong>Presence apps</strong> — staff mobile phones and desk PCs</li>
+              <li><strong>Shipping &amp; security posts</strong> — same stack for crew, shifts, and perimeter stations</li>
+              <li><strong>Hands-off ops</strong> — purely automatic; no manual roll-call or chase</li>
+              <li><strong>CRM Connectors</strong> — e.g. HubSpot CRM connector: sync contacts, post grants to HubSpot in real time</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>One flexible machine vision Presence tool equally suitable for home, office, warehouse, industrial, shipping, and security — who is in, where, and when — without badges-only friction or spreadsheet attendance.</p>
+          <div class="tags">
+            <span class="tag category">home</span>
+              <span class="tag category">office</span>
+              <span class="tag category">warehouse</span>
+              <span class="tag category">industrial</span>
+              <span class="tag category">shipping</span>
+              <span class="tag category">security</span>
               <span class="tag">Presence</span>
               <span class="tag mode">Stations</span>
               <span class="tag mode">Vprofile</span>
               <span class="tag">Mobile · PC apps</span>
               <span class="tag user">HubSpot CRM</span>
-            </div>
-            <p class="side-note"><strong>CRM διαδρομή:</strong> πρώτα HubSpot· περαιτέρω CRM connectors ακολουθούν το ίδιο μοτίβο.</p>
           </div>
+          <p class="side-note"><strong>CRM path:</strong> HubSpot first; further CRM connectors follow the same pattern.</p>
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Employee (Presence app confirmations)</li>
+                <li>Line manager (exceptions / late / no-show)</li>
+                <li>HR / People ops (frequent presence reports, near real time, daily, weekly, monthly, configurable, etc.)</li>
+                <li>Facilities · CRM contact timeline (grants)</li>
+          </ul>
         </div>
+        </aside>
       </div>
+      <div class="case-buyers">
+        <p class="case-buyer">An <strong>HR manager</strong> can now let every employee check in from their own PC or phone — and push presence grants to the ERP/CRM — with zero new hardware, even at thousands of seats.</p>
+      </div>
+    </article>
 </section>
 
 <section class="section flow page-start" id="page-12" data-nav-label="05 · Οικογενειακή προστασία">
       <div class="section-head"><span class="section-num">02</span><h2>Ενδεικτικές περιπτώσεις χρήσης</h2></div>
 
-      <div class="persona alt">
-  <h4><span class="n">2</span> Οθόνες που πουλάνε μόνες τους</h4>
-  <p class="who">Retail · χώροι · agencies · brand studios · operators digital signage</p>
-  <div class="cols-2">
-    <div>
-      <p class="case-intro">Οι στατικές οθόνες καίνε budget επειδή κανείς δεν αποδεικνύει ποιος είδε τι. Το EyeNet διαβάζει τον χώρο — ηλικία, φύλο, μέγεθος ομάδας — και οδηγεί playlists από ζωντανά audience signals σε milliseconds. επισκεψιμότητα, πελάτες που περνάνε ή και που στέκονται μετατρέπουν διαδρόμους και spots σε μετρήσιμο marketing studio αντί για εικασίες.</p>
-      <ul>
-        <li><strong>Διάβασμα χώρου</strong> — ηλικία, φύλο, μέγεθος ομάδας οδηγούν αλλαγές playlist σε milliseconds</li>
-        <li><strong>Μηδέν έρευνες</strong> — γνωρίζετε ποιος βλέπει κάθε οθόνη: views, dwell, engagement</li>
-        <li><strong>A/B στο πεδίο</strong> — εναλλαγή περιεχομένου με ζωντανά δεδομένα και αναφορές συμπεριφοράς κοινού· μέτρηση τι μετατρέπει</li>
-        <li><strong>Signage ως studio</strong> — κάθε οθόνη γίνεται ένα μετρήσιμο και "ζωντανό" marketing εργαλείο σε διαδρόμους, καταστήματα και spots</li>
-        <li><strong>Απόδειξη ROI</strong> — αναφορές impressions, engagement rates, funnels footfall-to-sales</li>
-      </ul>
-      <div class="notify">
-        <h5>Αυτοματοποιημένες ειδοποιήσεις</h5>
-        <ul>
-          <li>Marketing manager (digests καμπάνιας / ROI)</li>
-          <li>Content / media ops (playlist &amp; A/B triggers)</li>
-          <li>Λειτουργίες χώρου / καταστήματος</li>
-          <li>Agency · brand partner (προγραμματισμένες αναφορές)</li>
-        </ul>
+      <article class="case-page" id="wedge-signage">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/mall-signage.png" alt="EyeNet Vision-adaptive Intelligent Signage" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 02</span>
+          <h2>Screens that sell themselves</h2>
+          <p class="who">Retail · venues · agencies · brand studios · digital signage operators</p>
+        </div>
       </div>
-    </div>
-    <div class="panel">
-      <img class="card-visual" src="/assets/images/mall-signage.png" alt="EyeNet Vision-adaptive Intelligent Signage" />
-      <p class="card-visual-credit">Οπτικό: eyenet-vision.com</p>
-      <h4>Γιατί μετράει</h4>
-      <p>Οι στατικές οθόνες καίνε budget. Το Vision-adaptive Intelligent Signage μετατρέπει την κίνηση σε μετρήσιμη marketing νοημοσύνη — περιεχόμενο που αντιδρά και αριθμοί που δικαιολογούν τη δαπάνη.</p>
-      <div class="tags">
-        <span class="tag category">κατάστημα</span>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Static screens burn budget because nobody can prove who saw what or what converted. EyeNet reads the room — age, gender, group size — and drives playlists from live audience signals in milliseconds. Views, dwell, and engagement turn concourses and spots into a measurable marketing studio instead of guesswork.</p>
+          <ul class="case-features">
+            <li><strong>Read the room</strong> — age, gender, group size drive playlist switches in milliseconds</li>
+        <li><strong>Zero surveys</strong> — know who sees each display: views, dwell, engagement</li>
+        <li><strong>A/B in the wild</strong> — swap content on live audience data; measure what converts</li>
+        <li><strong>Signage as studio</strong> — every screen becomes a measurable marketing surface across concourses, shops, and spots</li>
+        <li><strong>Prove ROI</strong> — impression reports, engagement rates, footfall-to-sales funnels</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Static screens burn budget. Vision-adaptive Intelligent Signage turns foot traffic into measurable marketing intelligence — content that reacts, and numbers that justify spend.</p>
+          <div class="tags">
+            <span class="tag category">shop</span>
         <span class="tag category">marketing</span>
         <span class="tag">Signage</span>
         <span class="tag">Automation</span>
         <span class="tag mode">Spot · Gate · Area</span>
         <span class="tag user">Demographics</span>
         <span class="tag ok">ROI · A/B</span>
+          </div>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Marketing manager (campaign / ROI digests)</li>
+          <li>Content / media ops (playlist &amp; A/B triggers)</li>
+          <li>Site / store operations</li>
+          <li>Agency · brand partner (scheduled reports)</li>
+          </ul>
+        </div>
+        </aside>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>shop or mall owner</strong> can now run intelligent signage end to end — prove who is watching each screen with full audience analytics, load and switch playlists, and let marketers log in to manage the full campaign lifecycle — on cams they already have, without a locked player kit.</p>
+      </div>
+    </article>
 </section>
 
 <section class="section flow page-start" id="page-13" data-nav-label="05 · Οικογενειακή προστασία">
       <div class="section-head"><span class="section-num">02</span><h2>Ενδεικτικές περιπτώσεις χρήσης</h2></div>
 
-      <div class="persona">
-        <h4><span class="n">3</span> Δείτε πώς κινούνται οι πελάτες</h4>
-        <p class="who">Διευθυντές καταστήματος · store ops · πολυτοπικό retail</p>
-        <div class="cols-2">
-          <div>
-            <p class="case-intro">Οι διευθυντές καταστήματος χρειάζονται να ξέρουν πώς κινούνται οι πελάτες στον χώρο — όχι μόνο ότι κάποιος μπήκε. Το EyeNet μετατρέπει τις υπάρχουσες κάμερες σε μετρήσεις ανθρώπων, διαδρομές, heatmaps, dwell και occupancy, με behavioural alerts όταν οι ζώνες γεμίζουν ή αδειάζουν. Οι managers παίρνουν συνοπτικές αναφορές και "ζωντανές" ειδοποιήσεις· το video δεν χρειάζεται να φύγει από το κατάστημα.</p>
-            <ul>
-              <li><strong>Μέτρηση ανθρώπων</strong> — σε εισόδους και κάμερες ορόφου</li>
-              <li><strong>Διαδρομές &amp; heatmaps</strong> — πώς κινούνται οι πελάτες σε διαδρόμους και ζώνες</li>
-              <li><strong>Occupancy &amp; peaks</strong> — ώρες αιχμής ανά περιοχή, χωρίς εικασίες</li>
-              <li><strong>Dwell &amp; επισκέψεις</strong> — πού μένουν οι αγοραστές vs πού περνούν</li>
+      <article class="case-page" id="wedge-shop">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/shop-floor.jpg" alt="EyeNet shop floor customer movement" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 03</span>
+          <h2>See how shoppers move</h2>
+          <p class="who">Shop managers · store ops · multi-site retail</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Shop managers need to know how customers move through the premises — not only that someone walked in. EyeNet turns existing cameras into people counts, paths, heatmaps, dwell, and occupancy, with behavioural alerts when zones get busy or quiet. Managers get digests and alerts; video never has to leave the store.</p>
+          <ul class="case-features">
+            <li><strong>People counting</strong> — Face / Body / Both across entrances and floor cameras</li>
+              <li><strong>Paths &amp; heatmaps</strong> — how customers move through aisles and zones</li>
+              <li><strong>Occupancy &amp; peaks</strong> — busy hours by area, not guesswork</li>
+              <li><strong>Dwell &amp; visit patterns</strong> — where shoppers linger vs pass through</li>
               <li><strong>Behavioural alerts</strong> — occupancy / dwell / path / co-presence → mobile, email, webhook</li>
-              <li><strong>On-prem ιδιωτικότητα</strong> — το video μένει τοπικά· οι managers παίρνουν συνοπτικές αναφορές και "ζωντανές" ειδοποιήσεις, όχι cloud footage</li>
-            </ul>
-            <div class="notify">
-              <h5>Αυτοματοποιημένες ειδοποιήσεις</h5>
-              <ul>
-                <li>Διευθυντής καταστήματος (digests κίνησης / occupancy)</li>
-                <li>Store ops · shift lead (alerts ζώνης / dwell)</li>
-                <li>Regional retail ops (πακέτα multi-site)</li>
-                <li>Loss prevention · facilities (επιλεγμένα behavioural events)</li>
-              </ul>
-            </div>
-          </div>
-          <div class="panel alt">
-            <img class="card-visual" src="/assets/images/shop-floor.jpg" alt="EyeNet κίνηση πελατών σε κατάστημα" />
-            <p class="card-visual-credit">Οπτικό: eyenet-vision.com</p>
-            <h4>Γιατί μετράει</h4>
-            <p>Μετατρέψτε μια απλή εγκατάσταση καμερών σε νοημοσύνη ορόφου με μετρήσεις, διαδρομές, αναφορές και ειδοποιήσεις. Η εγκατάσταση eyenet στο κατάστημα αποδεικνύει πώς κινούνται οι πελάτες.</p>
-            <div class="tags">
-              <span class="tag category">κατάστημα</span>
+              <li><strong>On-prem privacy</strong> — video stays local; managers get digests and alerts, not cloud footage</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Turn existing CCTV into floor intelligence — count, path, and act — without a separate analytics stack. Signage proves marketing ROI; shop floor proves how customers move.</p>
+          <div class="tags">
+            <span class="tag category">shop</span>
               <span class="tag">Analytics</span>
               <span class="tag">Behavioural</span>
               <span class="tag mode">Counting · Path</span>
               <span class="tag mode">Occupancy</span>
               <span class="tag ok">Spot · Area</span>
-            </div>
           </div>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Shop manager (movement / occupancy digests)</li>
+                <li>Store ops · shift lead (busy-zone / dwell alerts)</li>
+                <li>Regional retail ops (multi-site packs)</li>
+                <li>Loss prevention · facilities (selected behavioural events)</li>
+          </ul>
         </div>
+        </aside>
       </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>shop manager</strong> can now see how customers move through the store — people counts, paths, heatmaps, dwell, and occupancy alerts — on cams already on the floor, with digests instead of cloud footage and video that never has to leave the premises.</p>
+      </div>
+    </article>
 </section>
 
 <section class="section flow page-start" id="page-10" data-nav-label="05 · Οικογενειακή προστασία">
       <div class="section-head"><span class="section-num">02</span><h2>Ενδεικτικές περιπτώσεις χρήσης</h2></div>
 
-      <div class="persona alt">
-  <h4><span class="n">4</span> Ηρεμία στο σπίτι — και μακριά</h4>
-  <p class="who">Οικογένειες · γονείς · νοικοκυριά · φοιτητές μακριά από το σπίτι</p>
-  <div class="cols-2">
-    <div>
-      <p class="case-intro">Οι οικογένειες χρειάζονται αυτοματοποιημένη προστασία για σπίτι, εξοχικό και φοιτητές μακριά — χωρίς πλήρη ομάδα ασφαλείας ή υποχρεωτικό cloud video. Το EyeNet επιβεβαιώνει παρουσίες και ειδοποιεί όταν άγνωστο πρόσωπο στέκεται μπροστά σε πόρτα ή μπαίνει σε χώρους διαβίωσης. Λαμβάνετε λίγες στοχευμένες ειδοποιήσεις τηλεφώνου· το υλικό μένει τοπικά.</p>
-      <ul>
-        <li><strong>Προστασία σπιτιού</strong> — alerts εισβολής και αγνώστων όταν το σπίτι είναι κενό</li>
-        <li><strong>Οικογένεια μακριά / φοιτητές</strong> — ηρεμία όταν αγαπημένα πρόσωπα ζουν μακριά, χωρίς cloud video</li>
-        <li><strong>Έλεγχος παρουσίας</strong> — επιβεβαίωση ότι κάποιος είναι (ή πρέπει να είναι) στο σπίτι</li>
-        <li><strong>Secure zones</strong> — συναγερμός αν άγνωστο πρόσωπο σταθεί μπροστά σε πόρτα ή μπει σε χώρους διαβίωσης</li>
-        <li><strong>On-prem ιδιωτικότητα</strong> — το υλικό μένει τοπικά· ειδοποιήσεις τηλεφώνου μόνο όταν χρειάζεται</li>
-      </ul>
-      <div class="notify">
-        <h5>Αυτοματοποιημένες ειδοποιήσεις</h5>
-        <ul>
-          <li>Γονείς / οικογένεια (mobile push · email)</li>
-          <li>Κάτοικος (φοιτητής / μέλος νοικοκυριού)</li>
-          <li>Φροντιστής / γείτονας (προαιρετικά)</li>
-          <li>Τοπική επαφή απόκρισης (μόνο κριτικά)</li>
-        </ul>
+      <article class="case-page" id="wedge-family">
+      <span id="wedge-family-remote" class="anchor-target" aria-hidden="true"></span>
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/family-protection-home.jpg" alt="EyeNet family protection at home and remote" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 04</span>
+          <h2>Peace of mind at home — and away</h2>
+          <p class="who">Families · parents · households · students living away</p>
+        </div>
       </div>
-    </div>
-    <div class="panel">
-      <img class="card-visual" src="/assets/images/family-protection-home.jpg" alt="EyeNet οικογενειακή προστασία στο σπίτι και εξ αποστάσεως" />
-      <p class="card-visual-credit">Οπτικό: eyenet-vision.com</p>
-      <h4>Γιατί μετράει</h4>
-      <p>Προστασία της οικογένειας στο σπίτι και όταν κάποιος είναι μακριά — αυτόματα, ιδιωτικά, χωρίς πλήρη ομάδα ασφαλείας.</p>
-      <div class="tags">
-        <span class="tag category">σπίτι</span>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Families need automated protection for the home, cottage, and students living away — without a full security team or forced cloud video. EyeNet confirms presence and alerts when an unknown person stands in front of a door or enters living areas. You get a few targeted phone notifications; footage stays local.</p>
+          <ul class="case-features">
+            <li><strong>Home protection</strong> — intrusion and unknown-person alerts when the house is empty</li>
+        <li><strong>Family away / remote students</strong> — peace of mind when loved ones live away, without cloud video</li>
+        <li><strong>Presence check</strong> — confirm someone is (or should be) at home</li>
+        <li><strong>Secure zones</strong> — alarm if an unspecified person stands in front of a door or enters living areas</li>
+        <li><strong>On-prem privacy</strong> — footage stays local; phone alerts only when needed</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Protect family at home and when someone is away — automatically, privately, without a full security team.</p>
+          <div class="tags">
+            <span class="tag category">home</span>
         <span class="tag">Gate</span>
         <span class="tag">Presence</span>
         <span class="tag">Automation</span>
         <span class="tag mode">Spot · Area</span>
+          </div>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Parents / family (mobile push · email)</li>
+          <li>Resident (student / household member)</li>
+          <li>Caretaker / neighbour (optional)</li>
+          <li>Local response contact (critical only)</li>
+          </ul>
+        </div>
+        </aside>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>parent</strong> can now turn a door cam into an intelligent doorbell — alerts for known and unknown people, plus webhooks to smart-home screens and sound — on cams they already own or a cheap everyday camera, with no cloud subscription. Default is alerts only with footage kept local; a live view is available only when everyone involved consents.</p>
+        <p class="case-buyer alt">A <strong>parent of a student living away</strong> can now watch a remote flat or cottage with one ordinary cam — phone pings only, no guard contract or cloud VMS. Stakeholders get the ping without shipping video off-site, and can open a live stream only if all parties agree.</p>
+      </div>
+    </article>
 </section>
 
 <section class="section flow page-start" id="page-7" data-nav-label="05 · Οικογενειακή προστασία">
       <div class="section-head"><span class="section-num">02</span><h2>Ενδεικτικές περιπτώσεις χρήσης</h2></div>
       <div class="kicker">Επιλεγμένες περιπτώσεις χρήσης — όπου το EyeNet αντικαθιστά χειροκίνητη παρουσία, τυφλές νύχτες και αποσυνδεδεμένους χώρους με αυτόματη όραση.</div>
 
-      <div class="persona">
-        <h4><span class="n">5</span> Νοσοκομειακή φροντίδα στο σπίτι</h4>
-        <p class="who">Πάροχος φροντίδας · κλινικός MDT · ασθενής / οικογένεια · συνεργάτης Talos / TMAIX eHealth</p>
-        <div class="cols-2">
-          <div>
-            <p class="case-intro">Το EyeNet μετατρέπει το σπίτι χωρίς προσωπικό σε περιβάλλον φροντίδας που εμπιστεύονται MDT και φροντιστές. Πτώσεις, κλήσεις βοήθειας, παρουσία και παραβιάσεις ζωνών γίνονται λίγες στοχευμένες ειδοποιήσεις στο clinical stack — το video μένει στον χώρο τοπικά. Συνεργάτες όπως Talos / TMAIX ενώνουν αυτά τα γεγονότα σε ροές Virtual Ward χωρίς cloud footage.</p>
-            <ul>
-              <li><strong>Παρουσία φροντιστή</strong> — σωστό προσωπικό, σωστό σπίτι, σωστή ώρα (διασφάλιση επίσκεψης)</li>
-              <li><strong>Secure zones</strong> — συναγερμός για άγνωστα πρόσωπα μέσα/γύρω από την κατοικία</li>
-              <li><strong>Ανίχνευση πτώσης</strong> — αυτόματη άμεση ειδοποίηση σε ομάδα φροντίδας και οικεία πρόσωπα</li>
-              <li><strong>Φωνή / κλήση βοήθειας</strong> — προφορικό αίτημα βοήθειας → άμεσα ενεργή ειδοποίηση</li>
-              <li><strong>Ενημέρωση συστημάτων υγείας</strong> — tokenized γεγονότα σε ePokratis / IoMT / telemedicine (όχι cloud video)</li>
-              <li><strong>Virtual Ward</strong> — φροντίδα επιπέδου νοσοκομείου στο σπίτι: αποφυγή εισαγωγής &amp; πρώιμη έξοδος</li>
-            </ul>
-            <div class="notify">
-              <h5>Αυτοματοποιημένες ειδοποιήσεις</h5>
-              <ul>
-                <li>MDT / συντονιστής φροντίδας · εφημερεύων κλινικός</li>
-                <li>Ορισμένος φροντιστής (mobile)</li>
-                <li>Οικογένεια / χορηγός ασθενούς (επιλεγμένα γεγονότα)</li>
-                <li>Ουρά telemedicine / ePokratis</li>
-              </ul>
-            </div>
-          </div>
-          <div class="panel alt">
-            <img class="card-visual" src="/assets/images/homecare-caregiver-presence.jpg" alt="Talos Homecare — παρουσία φροντιστή" />
-            <p class="card-visual-credit">Οπτικό: talosgroup.eu/solutions/integration/homecare</p>
-            <h4>Γιατί μετράει</h4>
-            <p>Διαφοροποίηση έναντι vitals-only RPM: το σπίτι γίνεται περιβάλλον παρακολουθούμενης φροντίδας. Ιδιωτικότητα by architecture — η όραση μένει on-prem· μόνο γεγονότα πτώσης / βοήθειας / παρουσίας / ζώνης φτάνουν στο health stack.</p>
-            <div class="tags">
-              <span class="tag category">σπίτι</span>
-              <span class="tag category">φροντίδα</span>
+      <article class="case-page" id="wedge-care">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/homecare-caregiver-presence.jpg" alt="Talos Homecare — caregiver presence" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: talosgroup.eu/solutions/integration/homecare</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 05</span>
+          <h2>Hospital-grade care at home</h2>
+          <p class="who">Care provider · MDT clinician · patient / family · Talos / TMAIX eHealth partner</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">EyeNet turns the unstaffed home into a care environment that MDT teams and caregivers can trust. Falls, help-calls, presence, and zone breaches become a few targeted alerts in the clinical stack — video stays on-prem. Partners such as Talos / TMAIX fuse those events into Virtual Ward workflows without shipping footage to the cloud.</p>
+          <ul class="case-features">
+            <li><strong>Caregiver presence</strong> — right staff, right home, right time (visit assurance)</li>
+              <li><strong>Secure zones</strong> — alarm on unspecified persons in/around the dwelling</li>
+              <li><strong>Fall detection</strong> — already-developed automation trigger → care team</li>
+              <li><strong>Voice / help-call</strong> — spoken request for help → immediate actionable alert</li>
+              <li><strong>Clinical fuse</strong> — tokenized events into ePokratis / IoMT / telemedicine (not cloud video)</li>
+              <li><strong>Virtual Ward</strong> — hospital-level care at home: admission avoidance &amp; early discharge</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Differentiator vs vitals-only RPM: the home becomes a monitored care environment. Privacy by architecture — vision stays on-prem; only fall / help / presence / zone events reach the health stack.</p>
+          <div class="tags">
+            <span class="tag category">home</span>
+              <span class="tag category">care</span>
               <span class="tag">Presence</span>
               <span class="tag">Automation</span>
               <span class="tag safety">Fall</span>
               <span class="tag safety">Voice</span>
               <span class="tag mode">Area · Spot</span>
               <span class="tag user">Talos · TMAIX</span>
-            </div>
-            <p class="side-note"><strong>Συνεργάτης:</strong> Talos eHealth / IoMT · TMAIX ePpocrates eCloud</p>
           </div>
+          <p class="side-note"><strong>Partner:</strong> Talos eHealth / IoMT · TMAIX ePpocrates eCloud</p>
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>MDT / care coordinator · on-call clinician</li>
+                <li>Assigned caregiver (mobile)</li>
+                <li>Patient family / sponsor (selected events)</li>
+                <li>Telemedicine / ePokratis case queue</li>
+          </ul>
         </div>
+        </aside>
       </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>care provider</strong> can now turn a patient room cam into fall and help-call events for the clinical stack — with alerts to all stakeholders, caregivers and next of kin, escalated per settings — without shipping cloud video. Next of kin stay assured without being glued to a camera: they get instant alerts for their loved ones, full awareness of who is on premises, and whether caregivers are there and on time, with a live feed available at any time.</p>
+      </div>
+    </article>
 </section>
 
 <section class="section flow page-start" id="page-9" data-nav-label="05 · Οικογενειακή προστασία">
       <div class="section-head"><span class="section-num">02</span><h2>Ενδεικτικές περιπτώσεις χρήσης</h2></div>
 
-      <div class="persona">
-        <h4><span class="n">6</span> Νυχτερινές βάρδιες που επαγρυπνούν</h4>
-        <p class="who">Εταιρείες ασφαλείας · εταιρική / βιομηχανική / κυβερνητική φύλαξη</p>
-        <div class="cols-2">
-          <div>
-            <p class="case-intro">Η νυχτερινή και περιμετρική κάλυψη δεν μπορεί να βασίζεται στην ελπίδα ότι κάθε πόστο μένει ξύπνιο. Το EyeNet παρακολουθεί σταθμούς και περίμετρο συνεχώς και κλιμακώνει όταν ένα πόστο σιωπά ή εμφανίζεται κίνηση. Η συνεχής εγγραφή είναι έτοιμη ώστε τα περιστατικά να έχουν χρονοσημασμένα αποδεικτικά.</p>
-            <ul>
-              <li><strong>Αυτοματοποίηση νυχτερινής βάρδιας</strong> — αυτοματοποιημένη παρακολούθηση ότι οι φύλακες μένουν ξύπνιοι και σε εγρήγορση</li>
-              <li><strong>Presence σε θέσεις</strong> — υπηρεσίες Presence σε φυλάκια καθ’ όλη τη βάρδια</li>
-              <li><strong>Κόμβοι περιμέτρου</strong> — Presence nodes σε φράχτες, πύλες και εξωτερικούς δακτυλίους</li>
-              <li><strong>Vradar</strong> — ανίχνευση κίνησης, POI / people-match alerts σε feeds περιπολίας</li>
-              <li><strong>Forensics</strong> — συνεχής εγγραφή με χρονοσημασμένα τεκμήρια για συμβάντα</li>
-            </ul>
-            <div class="notify">
-              <h5>Αυτοματοποιημένες ειδοποιήσεις</h5>
-              <ul>
-                <li>Φύλακας υπηρεσίας (mobile / συναγερμός θέσης)</li>
-                <li>Επόπτης βάρδιας · SOC</li>
-                <li>Διευθυντής ασφαλείας χώρου</li>
-                <li>Ομάδα απόκρισης · εγκαταστάσεις πελάτη (κριτικά)</li>
-              </ul>
-            </div>
-          </div>
-          <div class="panel alt">
-            <img class="card-visual" src="/assets/images/security.jpg" alt="EyeNet παρακολούθηση ασφαλείας" />
-            <p class="card-visual-credit">Οπτικό: eyenet-vision.com</p>
-            <h4>Γιατί μετράει</h4>
-            <p>Η νυχτερινή κάλυψη σταματά να εξαρτάται από την ελπίδα. Αυτόματη κλιμάκωση όταν μια θέση σωπαίνει· περίμετρος + Vradar πιάνουν κίνηση πριν γίνει παραβίαση.</p>
-            <div class="tags">
-              <span class="tag category">ασφάλεια</span>
+      <article class="case-page" id="wedge-security">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/security.jpg" alt="EyeNet security monitoring" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 06</span>
+          <h2>Night shifts that never blink</h2>
+          <p class="who">Security firms · corporate / industrial / government guard ops</p>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Night and perimeter coverage cannot depend on hope that every post stays awake. EyeNet watches stations and fences continuously and escalates when a post goes quiet or motion hits the ring. Continuous recording stays ready so incidents have timestamped evidence, not guesswork.</p>
+          <ul class="case-features">
+            <li><strong>Night-shift automation</strong> — first-time automated monitoring that guards stay awake and alert</li>
+              <li><strong>Presence at posts</strong> — Presence services on watch stations across the shift</li>
+              <li><strong>Perimeter nodes</strong> — Presence nodes at fences, gates, and outer rings</li>
+              <li><strong>Vradar</strong> — motion detection, POI / people-match alerts on patrol feeds</li>
+              <li><strong>Forensics</strong> — continuous recording with timestamped evidence for incidents</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Night coverage stops depending on hope. Auto-escalate when a post goes quiet; perimeter + Vradar catch motion before it becomes a breach.</p>
+          <div class="tags">
+            <span class="tag category">security</span>
               <span class="tag">Presence</span>
               <span class="tag">Sentinel</span>
               <span class="tag safety">Vradar</span>
               <span class="tag mode">Perimeter</span>
               <span class="tag ok">Recording · forensics</span>
-            </div>
           </div>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>On-duty guard (mobile / post alarm)</li>
+                <li>Shift supervisor · SOC</li>
+                <li>Site security manager</li>
+                <li>Response team · client facilities (critical)</li>
+          </ul>
         </div>
+        </aside>
       </div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>security ops lead</strong> can now get night vigilance and perimeter from the fence and floor cams already there — without per-camera seats or another night shift.</p>
+      </div>
+    </article>
 </section>
 
 <section class="section flow page-start" id="page-11" data-nav-label="05 · Οικογενειακή προστασία">
       <div class="section-head"><span class="section-num">02</span><h2>Ενδεικτικές περιπτώσεις χρήσης</h2></div>
 
-      <div class="persona">
-  <h4><span class="n">7</span> Ποιος είναι στην θέση του. Ποιος στον χώρο. Ποιος έπεσε.</h4>
-  <p class="who">Πλοίαρχος · διαχειριστής στόλου · HQ ξηράς · λειτουργίες εργοστασίου / χώρου · βιομηχανική ασφάλεια</p>
-  <div class="cols-2">
-    <div>
-      <p class="case-intro">Πλοία και βιομηχανικοί χώροι δεν μπορούν να στηριχθούν σε cloud VMS όταν η συνδεσιμότητα είναι ελλειπής ή offline. Το EyeNet κρατά τοπική αλήθεια για το ποιος είναι onboard ή on site και πού πρέπει να είναι, και στέλνει πακέτα αναφορών στην ξηρά ή το HQ. Το ίδιο stack καλύπτει ειδικές ζώνες που χρειάζονται ανίχνευση πτώσης — καταστρώματα, αμπάρια, αποθήκες και βιομηχανικοί όροφοι — ώστε η πτώση να γίνει άμεσο alert, όχι χαμένη κλήση ασυρμάτου.</p>
-      <ul>
-        <li><strong>Ζώνες βιομηχανικού χώρου</strong> — περιορισμένες περιοχές, αυλές και γραμμές παραγωγής ειδοποιούν όταν μπαίνουν λάθος άτομα</li>
-        <li><strong>Ανίχνευση πτώσης σε ειδικές περιοχές</strong> — καταστρώματα, αμπάρια, αποθήκες και βιομηχανικοί όροφοι στέλνουν fall alerts στη γέφυρα, την ξηρά ή τις λειτουργίες χώρου</li>
-        <li><strong>Παρουσία βάρδιας &amp; εργολάβων</strong> — ποιος είναι στον χώρο σε βάρδιες, εργολάβους και επισκέπτες χωρίς κυνήγι badges</li>
-        <li><strong>Alerts κινδύνου / PPE</strong> — προαιρετικά triggers γύρω από υψηλού κινδύνου ζώνες και σημεία συγκέντρωσης σε βιομηχανικά campuses</li>
-        <li><strong>Όλοι στη θέση τους στη θάλασσα</strong> — Presence / Gate / Sentinel διασφαλίζουν ότι το πλήρωμα είναι όπου πρέπει</li>
-        <li><strong>Ακριβής αριθμός επί του σκάφους</strong> — γνωρίζετε ακριβώς πόσοι είναι onboard ανά πάσα στιγμή</li>
-        <li><strong>Αναφορές ξηράς &amp; HQ anytime</strong> — αυτοματοποιημένα πακέτα παρουσίας &amp; headcount στο fleet HQ ή στον έλεγχο εργοστασίου</li>
-        <li><strong>Ελάχιστη συνδεσιμότητα</strong> — πλήρης τοπική λειτουργία στη θάλασσα ή σε απομακρυσμένους βιομηχανικούς χώρους· συγχρονισμός σε λεπτούς / διακοπτόμενους συνδέσμους</li>
-        <li><strong>Fleet / site Matrix</strong> — VPN mesh· αναμονής δεδομένων σε degraded mode — χωρίς απώλεια δεδομένων όταν offline</li>
-      </ul>
-      <div class="notify">
-        <h5>Αυτοματοποιημένες ειδοποιήσεις</h5>
-        <ul>
-          <li>Πλοίαρχος · γέφυρα / αξιωματικός υπηρεσίας</li>
-          <li>Ύπαρχος · αξιωματικός ασφαλείας (επί του σκάφους)</li>
-          <li>Λειτουργίες στόλου ξηράς · CSO · επόπτης εργοστασίου / χώρου (συμπ. fall alerts)</li>
-          <li>Fleet / site HR (πακέτα παρουσίας / συμμόρφωσης)</li>
-        </ul>
+      <article class="case-page" id="wedge-shipping">
+      <div class="case-hero">
+        <img loading="lazy" decoding="async" src="/assets/images/shipping.jpg" alt="EyeNet shipping and industrial operations" />
+        <div class="case-hero-veil"></div>
+        <p class="case-hero-credit">Visual: eyenet-vision.com</p>
+        <div class="case-hero-meta">
+          <span class="case-hero-num">Case 07</span>
+          <h2>Who's onboard. Who's on site. Who fell.</h2>
+          <p class="who">Captain · fleet manager · shore HQ · plant / site ops · industrial security</p>
+        </div>
       </div>
-    </div>
-    <div class="panel alt">
-      <img class="card-visual" src="/assets/images/shipping.jpg" alt="EyeNet ναυτιλία και βιομηχανία" />
-      <p class="card-visual-credit">Οπτικό: eyenet-vision.com</p>
-      <h4>Γιατί μετράει</h4>
-      <p>Τα πλοία και οι βιομηχανικοί χώροι δεν μπορούν να βασίζονται σε cloud VMS. Το EyeNet δίνει σε πλοίαρχο, ξηρά και λειτουργίες εργοστασίου την ίδια αλήθεια: ποιος είναι onboard ή στον χώρο, πού βρίσκεται — και ανίχνευση πτώσης στις ζώνες που τη χρειάζονται — με αναφορές που ταξιδεύουν σε ελάχιστο bandwidth.</p>
-      <div class="tags">
-        <span class="tag category">ναυτιλία</span>
-        <span class="tag category">βιομηχανία</span>
+      <div class="case-body">
+        <div class="case-main">
+          <p class="case-intro">Ships and industrial sites cannot lean on cloud VMS when links are thin or offline. EyeNet keeps local truth about who is onboard or on site and where they should be, then packs reports for shore or HQ. The same stack covers special zones that need fall detection — decks, holds, warehouses, and industrial floors — so a fall becomes an immediate alert, not a missed radio call.</p>
+          <ul class="case-features">
+            <li><strong>Industrial site zones</strong> — restricted areas, yards, and production floors alert when the wrong people enter</li>
+        <li><strong>Fall detection in special areas</strong> — decks, holds, warehouses, and industrial floors trigger fall alerts to bridge, shore, or site ops</li>
+        <li><strong>Shift &amp; contractor presence</strong> — know who is on site across shifts, contractors, and visitors without badge chasing</li>
+        <li><strong>Hazard / PPE-aware alerts</strong> — optional triggers around high-risk zones and muster points on industrial campuses</li>
+        <li><strong>Everyone in place at sea</strong> — Presence / Gate / Sentinel ensure crew are where they should be</li>
+        <li><strong>Exact onboard count</strong> — know precisely how many people are onboard at any moment</li>
+        <li><strong>Shore &amp; HQ reports anytime</strong> — automated attendance &amp; headcount packs to fleet HQ or plant control</li>
+        <li><strong>Minimal connectivity</strong> — full local ops at sea or on remote industrial sites; sync over thin / intermittent links</li>
+        <li><strong>Fleet / site Matrix</strong> — VPN mesh; degraded queue — no data loss when offline</li>
+          </ul>
+        </div>
+        <aside class="case-aside">
+          <h3>Why it matters</h3>
+          <p>Ships and industrial sites cannot depend on cloud VMS. EyeNet gives captains, shore, and plant ops the same truth: who is onboard or on site, where they are — plus fall detection in the zones that need it — with reports that travel on minimal bandwidth.</p>
+          <div class="tags">
+            <span class="tag category">shipping</span>
+        <span class="tag category">industrial</span>
         <span class="tag">Presence</span>
         <span class="tag">Gate</span>
         <span class="tag">Sentinel</span>
         <span class="tag safety">Fall</span>
         <span class="tag">Matrix</span>
         <span class="tag mode">Offline · VPN</span>
+          </div>
+          
+                  <div class="case-notify">
+          <h5>Automated notifications</h5>
+          <ul>
+            <li>Captain · bridge / duty officer</li>
+          <li>Chief mate · security officer (onboard)</li>
+          <li>Shore fleet ops · CSO · plant / site supervisor (incl. fall alerts)</li>
+          <li>Fleet / site HR (attendance / compliance packs)</li>
+          </ul>
+        </div>
+        </aside>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="case-buyers">
+        <p class="case-buyer">A <strong>captain or plant ops lead</strong> can now know who’s onboard and who’s in zone when the link dies — on the cams already aboard or on site. HQs get real-time alerts per settings plus full insights and analytics, scalable from one site to entire ships, fleets, or industrial areas, with recordings and live feed available.</p>
+      </div>
+    </article>
 </section>
 
 <section class="section flow page-start" id="page-4" data-nav-label="03 · Με το EyeNet">
       <div class="section-head"><span class="section-num">03</span><h2>Ποιος χρησιμοποιεί το EyeNet</h2></div>
-      <div class="kicker">Δυνατά αποτελέσματα για πραγματικούς operators — καθαρή εικόνα, λίγες στοχευμένες ειδοποιήσεις, χωρίς cloud lock-in.</div>
-      <div class="intro-kickers">
-        <div class="notify">
-          <h5>Λειτουργίες στόλου &amp; βιομηχανίας</h5>
-          <p>Με το EyeNet, ένας διαχειριστής στόλου ή εργοστασίου αποκτά καθαρή επιχειρησιακή εικόνα κάθε πλοίου ή βιομηχανικού χώρου — ποιος είναι επί του σκάφους ή στον χώρο, πού πρέπει να είναι — με λίγες στοχευμένες mobile ειδοποιήσεις ακόμη και με λεπτή συνδεσιμότητα.</p>
-        </div>
-        <div class="notify alt">
-          <h5>Συντονιστής φροντίδας · Virtual Ward</h5>
-          <p>Με το EyeNet, ένας συντονιστής φροντίδας αποκτά ασφάλεια επιπέδου νοσοκομείου σε κάθε χωρίς προσωπικό σπίτι — πτώσεις, κλήσεις βοήθειας και παραβιάσεις ζωνών ως λίγα στοχευμένα alerts στην κλινική εφαρμογή.</p>
-        </div>
-        <div class="notify">
-          <h5>HR · People ops</h5>
-          <p>Με το EyeNet, ένας υπεύθυνος HR αποκτά ζωντανή παρουσία προσωπικού σε γραφείο και remote — χωρίς να κυνηγάει κανέναν — μέσω λίγων στοχευμένων ειδοποιήσεων εξαιρέσεων και ενημερώσεων HubSpot.</p>
-        </div>
-        <div class="notify alt">
-          <h5>Επόπτης ασφαλείας</h5>
-          <p>Με το EyeNet, ένας επόπτης ασφαλείας αποκτά βεβαιότητα νυχτερινής βάρδιας ότι οι θέσεις μένουν ξύπνιες και οι περίμετροι καθαρές — με λίγα στοχευμένα mobile alerts αντί για συνεχές παρακολούθηση οθόνης.</p>
-        </div>
+      <div class="persona-bridge">
+  <h3>Who pays — and what changes</h3>
+  <p class="page-lead">Each persona hits a hard wall with incumbents. EyeNet turns the same cameras into the job they actually need.</p>
+  <div class="persona-cards">
+    <a class="persona-card">
+      <div class="persona-media">
+        <img src="/assets/images/persona-hr.jpg" alt="HR / facilities lead" loading="lazy" decoding="async">
       </div>
-    </section>
-
-<section class="section flow page-start" id="page-5" data-nav-label="03 · Ρόλοι">
-      <div class="section-head"><span class="section-num">03</span><h2>Ποιος χρησιμοποιεί το EyeNet</h2></div>
-      <div class="intro-kickers">
-        <div class="notify">
-          <h5>Οικογενειακή προστασία στο σπίτι και εξ αποστάσεως</h5>
-          <p>Με το EyeNet, ένας γονέας αποκτά ηρεμία για το οικογενειακό σπίτι και για αγαπημένα πρόσωπα μακριά — γεγονότα εισβολής και παρουσίας ως λίγες στοχευμένες ειδοποιήσεις τηλεφώνου, χωρίς υποχρεωτικό cloud video.</p>
-        </div>
-        <div class="notify alt">
-          <h5>Marketer εμπορικού κέντρου</h5>
-          <p>Με το EyeNet, ένας marketer mall μετατρέπει την κίνηση επισκεπτών σε μετρήσιμο studio ROI — ποιος είδε τι, τι μετέτρεψε — με λίγα στοχευμένα digests καμπάνιας αντί για εικασίες.</p>
-        </div>
-        <div class="notify">
-          <h5>Διευθυντής καταστήματος</h5>
-          <p>Με το EyeNet, ένας διευθυντής καταστήματος βλέπει την κίνηση πελατών ως νοημοσύνη ορόφου — μετρήσεις, διαδρομές, dwell και occupancy — με λίγα στοχευμένα digests και behavioural alerts αντί να περπατά τυφλά τον χώρο.</p>
-        </div>
+      <div class="persona-body">
+        <h4>HR / facilities lead</h4>
+        <p class="persona-then"><strong>The problem now:</strong> Never trusts badge sheets or remote presence.</p>
+        <p class="persona-then"><strong>With EyeNet:</strong> cameras check people in and push grants to the ERP/CRM (e.g. HubSpot).</p>
+        <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Each staff member uses their own PC or mobile camera to issue presence grants — and complements gate systems. Zero hardware cost; EyeNet scales to companies with thousands of employees.</p>
       </div>
-      <div class="intro-heroes">
-        <div class="notify"><p>Με το EyeNet, η όραση σταματά να είναι υλικό εγγραφής και αρχίζει να είναι αποφάσεις.</p></div>
-        <div class="notify alt"><p>Με το EyeNet, μία συνδρομή μετατρέπει τις κάμερες σε operators που δεν κοιμούνται ποτέ.</p></div>
-        <div class="notify alt"><p>Με το EyeNet, παρουσία, ασφάλεια και marketing σταματούν να χρειάζονται επιπλέον προσωπικό.</p></div>
-        <div class="notify"><p>Με το EyeNet, κάθε χώρος — σπίτι, γραφείο, πλοίο, mall, κατάστημα — αναφέρει μόνο ό,τι μετράει.</p></div>
+    </a>
+    <a class="persona-card alt">
+      <div class="persona-media">
+        <img src="/assets/images/persona-shop.jpg" alt="Shop / mall owner" loading="lazy" decoding="async">
       </div>
-    </section>
+      <div class="persona-body">
+        <h4>Shop / mall owner</h4>
+        <p class="persona-then"><strong>The problem now:</strong> Never sees digital-signage impact with today’s locked CMS.</p>
+        <p class="persona-then"><strong>With EyeNet:</strong> who is watching switches the playlist and proves impressions.</p>
+        <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Works on cameras already on their screens, or a cheap off-the-shelf add — no locked player kit, no per-screen SaaS tax. Adaptive playlists and measurable impressions start without a proprietary estate.</p>
+      </div>
+    </a>
+    <a class="persona-card">
+      <div class="persona-media">
+        <img src="/assets/images/persona-shop-floor.jpg" alt="Shop manager / store ops" loading="lazy" decoding="async">
+      </div>
+      <div class="persona-body">
+        <h4>Shop manager / store ops</h4>
+        <p class="persona-then"><strong>The problem now:</strong> Knows someone walked in — not how shoppers move through the floor.</p>
+        <p class="persona-then"><strong>With EyeNet:</strong> people counts, paths, heatmaps, dwell, and occupancy with behavioural alerts when zones get busy or quiet.</p>
+        <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Run on cameras already in the store — digests and alerts for managers, video stays local, no separate analytics stack or cloud footage.</p>
+      </div>
+    </a>
+    <a class="persona-card alt">
+      <div class="persona-media">
+        <img src="/assets/images/persona-parent.jpg" alt="Parent / household at home" loading="lazy" decoding="async">
+      </div>
+      <div class="persona-body">
+        <h4>Parent / household</h4>
+        <p class="persona-then"><strong>The problem now:</strong> Pays for cloud cams that ship video off-site when the house is empty.</p>
+        <p class="persona-then"><strong>With EyeNet:</strong> a door cam becomes an intelligent doorbell — known and unknown person alerts, plus webhooks to smart-home screens and sound — with footage kept local.</p>
+        <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Plug into cams already at home, or pick up a low-cost everyday camera — no vendor lock-in, no cloud subscription. Default is alerts only; a live view is available only when everyone involved consents.</p>
+      </div>
+    </a>
+    <a class="persona-card">
+      <div class="persona-media">
+        <img src="/assets/images/persona-student.jpg" alt="Student living away" loading="lazy" decoding="async">
+      </div>
+      <div class="persona-body">
+        <h4>Student living away</h4>
+        <p class="persona-then"><strong>The problem now:</strong> Parents want peace of mind for a remote flat / cottage — without a cloud VMS or a security team.</p>
+        <p class="persona-then"><strong>With EyeNet:</strong> presence and unknown-person alerts at the remote home; stakeholders get the phone ping without shipping video off-site, and can open a live stream only if all parties agree.</p>
+        <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> One cam already at the remote flat or cottage, or a simple budget camera on a shelf — no guard contract, no cloud VMS. Parents get peace of mind without buying a security system or being glued to a live feed.</p>
+      </div>
+    </a>
+    <a class="persona-card alt">
+      <div class="persona-media">
+        <img src="/assets/images/persona-care.jpg" alt="Care provider / clinician" loading="lazy" decoding="async">
+      </div>
+      <div class="persona-body">
+        <h4>Care provider / clinician</h4>
+        <p class="persona-then"><strong>The problem now:</strong> Gets vitals-only RPM with no vision safety layer.</p>
+        <p class="persona-then"><strong>With EyeNet:</strong> fall and help-call events enter the health stack without cloud video, with alerts to caregivers and next of kin escalated per settings.</p>
+        <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Use the room cams already at the patient, or add an affordable commodity camera. Next of kin stay assured without being glued to a camera — instant alerts, full awareness of who is on premises and whether caregivers are there and on time, with a live feed available at any time.</p>
+      </div>
+    </a>
+    <a class="persona-card">
+      <div class="persona-media">
+        <img src="/assets/images/persona-security.jpg" alt="Security ops lead" loading="lazy" decoding="async">
+      </div>
+      <div class="persona-body">
+        <h4>Security ops lead</h4>
+        <p class="persona-then"><strong>The problem now:</strong> Buys storage and per-camera seats, not coverage.</p>
+        <p class="persona-then"><strong>With EyeNet:</strong> night posts get vigilance, perimeter, and forensics without 1:1 headcount.</p>
+        <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Cameras already on the fence and floor — vigilance and perimeter without per-camera seats or hiring another night shift.</p>
+      </div>
+    </a>
+    <a class="persona-card alt">
+      <div class="persona-media">
+        <img src="/assets/images/persona-shipping.jpg" alt="Captain / plant ops" loading="lazy" decoding="async">
+      </div>
+      <div class="persona-body">
+        <h4>Captain / plant ops</h4>
+        <p class="persona-then"><strong>The problem now:</strong> Loses truth when the link drops.</p>
+        <p class="persona-then"><strong>With EyeNet:</strong> who’s onboard and who’s in zone stays local; essential updates still reach HQ even on a weak or limited connection. HQs get real-time alerts per settings plus full insights and analytics.</p>
+        <p class="persona-then"><strong>What makes them buy EyeNet now:</strong> Run on the ship or plant cams they have, or drop in low-cost ordinary units where coverage is thin — scalable from one site to entire ships, fleets, or industrial areas, with recordings and live feed available; no wait for cloud.</p>
+      </div>
+    </a>
+  </div>
+</div>
+</section>
 
 <section class="section flow page-start" id="page-14" data-nav-label="06 · B2C Light">
       <div class="section-head"><span class="section-num">04</span><h2>Εμπορικά πακέτα — B2C · B2B · Enterprise</h2></div>

@@ -8,16 +8,16 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC_EN = Path(
-    "/Users/nickgklezakos/Documents/ppl-meta-code/docs/company/business plan/value/"
-    "how-eyenet-changes-the-machine-vision-landscape.html"
-)
-SRC_EL = Path(
-    "/Users/nickgklezakos/Documents/ppl-meta-code/docs/company/business plan/value/"
-    "how-eyenet-changes-the-machine-vision-landscape-el.html"
-)
+_SRC_CANDIDATES = [
+    Path(r"D:\code\ppl-meta-code\docs\company\business plan\value"),
+    Path(r"C:\Users\Administrator.KVALVIS-PC\code\ppl-meta-code\docs\company\business plan\value"),
+    Path("/Users/nickgklezakos/Documents/ppl-meta-code/docs/company/business plan/value"),
+]
+_SRC_DIR = next((p for p in _SRC_CANDIDATES if p.exists()), _SRC_CANDIDATES[0])
+SRC_EN = _SRC_DIR / "how-eyenet-changes-the-machine-vision-landscape.html"
+SRC_EL = _SRC_DIR / "how-eyenet-changes-the-machine-vision-landscape-el.html"
 
-ASSET_V = "20261021p"
+ASSET_V = "20261111c"
 
 WITH_HEADING = {
     "en": "Who uses EyeNet",
@@ -1122,7 +1122,7 @@ UI = {
             ("02", "why", "Most Valuable Cases",
              "Featured use cases across HR, signage, shop floor, family protection, home care, security, shipping, and industrial sites."),
             ("03", "with-eyenet", "Who uses EyeNet",
-             "Strong outcomes for fleet, industrial sites, care, HR, security, family, signage, and shop-floor operators."),
+             "Who pays — and what changes: HR, shop, family, care, security, and ops personas."),
             ("04", "packages", "Commercial Packages",
              "B2C Light, B2B Starter & Professional, and Enterprise motions."),
             ("05", "innovation", "Simple yet powerful innovation",
@@ -1208,7 +1208,7 @@ UI = {
             ("02", "why", "Ενδεικτικές περιπτώσεις χρήσης",
              "Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, κατάστημα, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία."),
             ("03", "with-eyenet", "Ποιος χρησιμοποιεί το EyeNet",
-             "Δυνατά αποτελέσματα για στόλο, βιομηχανικούς χώρους, φροντίδα, HR, ασφάλεια, οικογένεια, signage και κατάστημα."),
+             "Who pays — and what changes: personas για HR, κατάστημα, οικογένεια, φροντίδα, ασφάλεια και ops."),
             ("04", "packages", "Εμπορικά πακέτα",
              "B2C Light, B2B Starter & Professional και Enterprise."),
             ("05", "innovation", "Απλή κι όμως ισχυρή καινοτομία",
@@ -1548,7 +1548,13 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
                 lang,
             )
         if slug == "with-eyenet":
-            body = apply_case_label_copy(apply_family_protection_copy(body, lang), lang)
+            override = CONTENT_DIR / f"with-eyenet-{lang}.html"
+            if override.exists():
+                body = page_shell_title(lang, display_num, title) + override.read_text(
+                    encoding="utf-8"
+                )
+            else:
+                body = apply_case_label_copy(apply_family_protection_copy(body, lang), lang)
         write(
             base / slug / "index.html",
             render_page(
@@ -1829,6 +1835,99 @@ def write_legacy_redirects() -> None:
 
 
 PRINT_EXTRA_CSS = """
+    .persona-bridge { margin: 12px 0 14px; }
+    .persona-bridge h3 {
+      margin: 0 0 4px; color: var(--brand-dark); font-size: 11.5pt; font-weight: 800;
+    }
+    .persona-bridge .page-lead {
+      margin: 0 0 10px; color: var(--muted); font-size: 9pt;
+    }
+    .persona-cards { display: grid; gap: 10px; grid-template-columns: 1fr; }
+    .persona-card {
+      display: grid; grid-template-columns: 32% 1fr;
+      background: var(--band); border: 1px solid var(--line); overflow: hidden;
+      color: inherit; text-decoration: none;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .persona-card.alt { background: var(--band-alt); }
+    .persona-media { margin: 0; background: var(--brand-dark); min-height: 72px; }
+    .persona-media img {
+      display: block; width: 100%; height: 100%; min-height: 72px;
+      object-fit: cover; object-position: center 20%;
+    }
+    .persona-body { padding: 8px 10px 10px; }
+    .persona-card h4 {
+      margin: 0 0 4px; color: var(--brand-dark); font-size: 10pt; font-weight: 800;
+    }
+    .persona-then {
+      margin: 0; padding-top: 6px; border-top: 1px solid var(--line);
+      color: var(--ink); font-size: 8.5pt; font-weight: 400; line-height: 1.35;
+    }
+    .persona-body > .persona-then:first-of-type { padding-top: 0; border-top: 0; }
+    .persona-then strong { color: var(--brand); font-weight: 800; }
+    .case-stack { display: grid; gap: 14px; margin: 12px 0 4px; }
+    .case-page {
+      border: 1px solid var(--line); overflow: hidden;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .case-hero { position: relative; background: #0f172a; }
+    .case-hero img {
+      display: block; width: 100%; height: 70mm;
+      object-fit: cover; object-position: center;
+      filter: grayscale(0.15) contrast(1.05);
+    }
+    .case-hero-veil {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,23,42,0.72) 0%, rgba(15,23,42,0.12) 45%, rgba(15,23,42,0.05) 100%);
+      pointer-events: none;
+    }
+    .case-hero-meta {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 12px 14px 12px; color: #fff; z-index: 1;
+    }
+    .case-hero-num {
+      display: inline-block; margin-bottom: 6px; padding: 2px 8px;
+      background: rgba(25,118,210,0.92); color: #fff;
+      font-size: 7.5pt; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .case-hero-meta h2 {
+      margin: 0 0 4px; color: #fff; font-size: 14pt; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.15; max-width: 34ch;
+    }
+    .case-hero-meta .who {
+      margin: 0; color: rgba(255,255,255,0.78); font-size: 8.5pt; font-weight: 500; line-height: 1.35;
+    }
+    .case-hero-credit {
+      position: absolute; top: 8px; right: 10px; z-index: 1; margin: 0;
+      color: rgba(255,255,255,0.55); font-size: 7pt;
+    }
+    .case-body {
+      display: grid; grid-template-columns: 1.35fr 0.9fr; gap: 12px;
+      padding: 10px 12px 12px; align-items: start;
+    }
+    .case-intro { margin: 0 0 8px; font-size: 9.5pt; line-height: 1.4; }
+    .case-features { margin: 0; padding-left: 14px; font-size: 8.75pt; line-height: 1.35; }
+    .case-features li + li { margin-top: 3px; }
+    .case-aside { background: var(--band); padding: 10px 12px; }
+    .case-aside h3 { margin: 0 0 6px; font-size: 9.5pt; font-weight: 800; color: var(--brand-dark); }
+    .case-aside > p { margin: 0 0 8px; font-size: 8.75pt; line-height: 1.35; }
+    .case-aside .side-note { margin-top: 8px; font-size: 8pt; color: var(--soft); }
+    .case-notify { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+    .case-notify h5 {
+      margin: 0 0 4px; font-size: 7.5pt; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--brand);
+    }
+    .case-notify ul { margin: 0; padding-left: 12px; font-size: 8pt; color: var(--muted); }
+    .case-notify li + li { margin-top: 2px; }
+    .case-buyers { border-top: 1px solid var(--line); }
+    .case-buyer {
+      margin: 0; padding: 8px 12px; background: var(--band);
+      font-size: 8.75pt; font-weight: 500; line-height: 1.4; color: var(--ink);
+    }
+    .case-buyer + .case-buyer { border-top: 1px solid var(--line); }
+    .case-buyer.alt { background: var(--band-alt); }
+    .case-buyer strong { color: var(--brand); font-weight: 800; }
+    .anchor-target { display: none; }
     .breaker-grid { grid-template-columns: 1fr 1fr; }
     .notify > p + p { margin-top: 8px; }
     .func-gallery {
@@ -2053,6 +2152,35 @@ def sync_print_pages() -> None:
         )
         if n_with < 1:
             raise SystemExit(f"Could not rename With EyeNet headings in print ({lang})")
+
+        with_override = CONTENT_DIR / f"with-eyenet-{lang}.html"
+        if with_override.exists():
+            with_body = with_override.read_text(encoding="utf-8").rstrip() + "\n"
+            # Drop wiki case deep-links in print (anchors stay on-page only).
+            with_body = re.sub(r' href="[^"]*"', "", with_body)
+            html, n_with_body = re.subn(
+                r'(<section class="section flow page-start" id="page-4"[^>]*>\s*'
+                r'<div class="section-head"><span class="section-num">03</span><h2>[^<]*</h2></div>\s*)'
+                r".*?"
+                r"(?=</section>)",
+                rf"\1{with_body}",
+                html,
+                count=1,
+                flags=re.S,
+            )
+            if n_with_body != 1:
+                raise SystemExit(f"Could not inject Who uses EyeNet personas into print ({lang})")
+            # Remove the old second With EyeNet / Roles page (legacy intro kickers).
+            html, n_roles = re.subn(
+                r'\s*<section class="section flow page-start" id="page-5"[^>]*>'
+                r".*?</section>",
+                "\n",
+                html,
+                count=1,
+                flags=re.S,
+            )
+            if n_roles != 1:
+                raise SystemExit(f"Could not remove legacy Who uses Roles section in print ({lang})")
 
         pkg_heading = PACKAGES_HEADING[lang]
         html, n_pkg = re.subn(
