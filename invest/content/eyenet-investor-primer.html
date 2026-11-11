@@ -53,9 +53,19 @@
       .buyer-point,
       .panel,
       .notify,
-      .argument-card {
+      .argument-card,
+      .cols-2,
+      .cols-3,
+      .cols-4 {
         break-inside: auto;
         page-break-inside: auto;
+      }
+      /* Short trailing sections: fill leftover space instead of forcing a blank page */
+      #page-6,
+      #page-7,
+      #page-8 {
+        break-before: auto;
+        page-break-before: auto;
       }
       p, li {
         orphans: 3;
@@ -1811,7 +1821,7 @@
     </section>
 
     <!-- 07 FOOTPRINT -->
-    <section class="section flow page-start" id="page-6" data-nav-label="06 · Footprint">
+    <section class="section flow" id="page-6" data-nav-label="06 · Footprint">
       <div class="section-head"><span class="section-num">06</span><h2>Footprint steps by scenario</h2></div>
       <p class="page-lead">Organizational build-out scales with capital above burn. Unit economics stay the same; the company simply stands up earlier.</p>
 
@@ -1863,7 +1873,7 @@
     </section>
 
     <!-- 08 ADDENDUM A — PROJECT STATUS -->
-    <section class="section flow page-start" id="page-7" data-nav-label="08 · Addendum A">
+    <section class="section flow" id="page-7" data-nav-label="08 · Addendum A">
       <div class="section-head"><span class="section-num">08</span><h2>Addendum A — Project status</h2></div>
       <p class="page-lead">Product readiness and partners from the July 2026 business-plan primer, plus the capital and growth path restated in the same seed-ladder language as sections 05–06. Team started July 2024; working prototype in under six months. Five of six products are beta-ready — <strong>Sentinel</strong> (wearables / drones) remains in active build. Status as of 7 November 2026.</p>
 
@@ -1978,7 +1988,7 @@
     </section>
 
     <!-- 09 ADDENDUM B — MARKET SOURCES -->
-    <section class="section flow page-start" id="page-8" data-nav-label="09 · Addendum B">
+    <section class="section flow" id="page-8" data-nav-label="09 · Addendum B">
       <div class="section-head"><span class="section-num">09</span><h2>Addendum B — Reference</h2></div>
       <p class="page-lead">Public references for The bet (dollar TAM category reports), How it is sold (addressable pockets), and Market validation (FootfallCam). Enterprise segment-map dollars remain EyeNet plan targets; they are not census counts.</p>
 
