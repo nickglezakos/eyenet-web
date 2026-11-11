@@ -2209,6 +2209,7 @@ def sync_print_pages() -> None:
 
         # Reading order: What · Cases · Who · Packages · Innovation
         html = reorder_print_sections(html, lang)
+        html = fix_innovation_print_breaks(html)
         html = apply_case_label_copy(apply_family_protection_copy(html, lang), lang)
         html = inject_print_case_overrides(html, lang)
         html = normalize_package_addressable_pockets(html, lang)
@@ -2374,6 +2375,35 @@ def _refresh_print_cover(block: str, lang: str) -> str:
     if n != 1:
         raise SystemExit(f"Could not refresh cover Structure meta ({lang})")
     return block
+
+
+def fix_innovation_print_breaks(html: str) -> str:
+    """Start Simple yet powerful innovation on a new page; keep its parts continuous."""
+    html, n1 = re.subn(
+        r'<section class="section flow" id="page-1"',
+        '<section class="section flow page-start" id="page-1"',
+        html,
+        count=1,
+    )
+    if n1 != 1:
+        raise SystemExit("Could not push innovation Competition section to a new print page")
+    html, n2 = re.subn(
+        r'<section class="section flow page-start" id="page-2"',
+        '<section class="section flow" id="page-2"',
+        html,
+        count=1,
+    )
+    if n2 != 1:
+        raise SystemExit("Could not remove Differentiation page-break in print innovation")
+    html, n3 = re.subn(
+        r'<section class="section flow page-start" id="page-3"',
+        '<section class="section flow" id="page-3"',
+        html,
+        count=1,
+    )
+    if n3 != 1:
+        raise SystemExit("Could not remove Freedom page-break in print innovation")
+    return html
 
 
 def reorder_print_sections(html: str, lang: str) -> str:
