@@ -2463,31 +2463,27 @@ def _refresh_print_cover(block: str, lang: str) -> str:
 
 
 def fix_innovation_print_breaks(html: str) -> str:
-    """Start Simple yet powerful innovation on a new page; keep its parts continuous."""
-    html, n1 = re.subn(
-        r'<section class="section flow" id="page-1"',
-        '<section class="section flow page-start" id="page-1"',
-        html,
-        count=1,
-    )
-    if n1 != 1:
-        raise SystemExit("Could not push innovation Competition section to a new print page")
-    html, n2 = re.subn(
-        r'<section class="section flow page-start" id="page-2"',
-        '<section class="section flow" id="page-2"',
-        html,
-        count=1,
-    )
-    if n2 != 1:
-        raise SystemExit("Could not remove Differentiation page-break in print innovation")
-    html, n3 = re.subn(
-        r'<section class="section flow page-start" id="page-3"',
-        '<section class="section flow" id="page-3"',
-        html,
-        count=1,
-    )
-    if n3 != 1:
-        raise SystemExit("Could not remove Freedom page-break in print innovation")
+    """Keep Simple yet powerful innovation continuous — no forced page breaks inside it."""
+    for sid in ("page-1", "page-2", "page-3"):
+        html, n = re.subn(
+            rf'(<section\b[^>]*\bid="{sid}"[^>]*\bclass=")([^"]*)(")',
+            lambda m: m.group(1)
+            + re.sub(r"\s*page-start\s*", " ", m.group(2)).strip()
+            + m.group(3),
+            html,
+            count=1,
+        )
+        if n != 1:
+            html, n = re.subn(
+                rf'(<section\b[^>]*\bclass=")([^"]*)("[^>]*\bid="{sid}")',
+                lambda m, _sid=sid: m.group(1)
+                + re.sub(r"\s*page-start\s*", " ", m.group(2)).strip()
+                + m.group(3),
+                html,
+                count=1,
+            )
+        if n != 1:
+            raise SystemExit(f"Could not clear innovation page-break on {sid}")
     return html
 
 

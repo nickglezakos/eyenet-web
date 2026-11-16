@@ -2399,6 +2399,7 @@ def sync_print_pages() -> None:
         )
         html = split_six_apps_print_page(html, lang)
         html = inject_print_who_uses(html, lang)
+        html = fix_innovation_print_breaks(html)
         html = apply_print_short_scope(html)
         html = inject_short_print_helpers(html)
 
@@ -2741,6 +2742,32 @@ def _refresh_print_cover(block: str, lang: str) -> str:
         block,
     )
     return block
+
+
+def fix_innovation_print_breaks(html: str) -> str:
+    """Keep Simple yet powerful innovation continuous — no forced page breaks inside it."""
+    for sid in ("page-1", "page-2", "page-3"):
+        html, n = re.subn(
+            rf'(<section\b[^>]*\bid="{sid}"[^>]*\bclass=")([^"]*)(")',
+            lambda m: m.group(1)
+            + re.sub(r"\s*page-start\s*", " ", m.group(2)).strip()
+            + m.group(3),
+            html,
+            count=1,
+        )
+        if n != 1:
+            # class may appear before id
+            html, n = re.subn(
+                rf'(<section\b[^>]*\bclass=")([^"]*)("[^>]*\bid="{sid}")',
+                lambda m, _sid=sid: m.group(1)
+                + re.sub(r"\s*page-start\s*", " ", m.group(2)).strip()
+                + m.group(3),
+                html,
+                count=1,
+            )
+        if n != 1:
+            raise SystemExit(f"Could not clear innovation page-break on {sid}")
+    return html
 
 
 def reorder_print_sections(html: str, lang: str) -> str:
