@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TalosVision Investor Primer — PDF</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #64748b;
+      --line: #dbe3ee;
+      --band: #f3f7fb;
+      --band-alt: #eaf1f8;
+      --brand: #1976d2;
+      --brand-dark: #0f2f57;
+      --cyan: #0891b2;
+      --warn: #b45309;
+      --ok: #166534;
+      --danger: #b91c1c;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      color: var(--ink);
+      background: #fff;
+      font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    @page {
+      size: A4;
+      margin: 16mm 14mm 18mm 14mm;
+    }
+
+    .sheet { max-width: 190mm; margin: 0 auto; padding: 14mm 0 96px; }
+    @media print {
+      .sheet { max-width: none; padding: 0; margin: 0; }
+      .no-print { display: none !important; }
+    }
+
+    .no-print.toolbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding: 12px 16px; margin-bottom: 18px;
+      background: #fff; border-bottom: 1px solid var(--line);
+    }
+    .no-print.toolbar p { margin: 0; color: var(--soft); font-size: 12px; max-width: 48ch; }
+    .no-print.toolbar button {
+      flex: 0 0 auto;
+      border: 0; border-radius: 8px; padding: 10px 16px;
+      background: var(--brand); color: #fff; font: inherit; font-weight: 600; cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .doc-nav {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+      background: rgba(255,255,255,0.96);
+      border-top: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 -6px 24px rgba(15, 23, 42, 0.06);
+    }
+    .doc-nav button {
+      border: 1px solid var(--line); border-radius: 8px;
+      padding: 10px 12px; background: #fff; color: var(--ink);
+      font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .doc-nav button:disabled {
+      opacity: 0.35; cursor: default;
+    }
+    .doc-nav-prev { justify-self: start; }
+    .doc-nav-next { justify-self: end; }
+    .doc-nav-mid {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      min-width: 0; text-align: center;
+    }
+    .doc-nav-label {
+      max-width: 42vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      color: var(--soft); font-size: 11px; font-weight: 600;
+    }
+    .doc-nav-pdf {
+      border: 0 !important; border-radius: 8px !important;
+      padding: 8px 14px !important;
+      background: var(--brand) !important; color: #fff !important;
+      font-size: 12px !important; font-weight: 700 !important;
+    }
+
+    @media (max-width: 720px) {
+      .no-print.toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .no-print.toolbar p { display: none; }
+      .no-print.toolbar button {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+      }
+      .doc-nav { gap: 6px; padding-left: 8px; padding-right: 8px; }
+      .doc-nav button { padding: 10px 8px; font-size: 12px; }
+      .doc-nav-label { max-width: 34vw; font-size: 10px; }
+      .cols-4, .cols-3, .cols-2, .breaker-vs { grid-template-columns: 1fr !important; }
+      table { font-size: 8pt; }
+    }
+
+    /* Cover */
+    .cover {
+      min-height: 250mm;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 18mm 14mm;
+      background: linear-gradient(165deg, #0b1220 0%, #10284a 55%, #163a66 100%);
+      color: #fff;
+      break-after: page;
+      page-break-after: always;
+    }
+    .cover-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .cover-brand { display: flex; align-items: center; gap: 12px; }
+    .cover-brand img { height: 34px; width: auto; filter: brightness(0) invert(1); }
+    .cover-chip {
+      padding: 6px 10px; border: 1px solid rgba(255,255,255,0.22);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      color: #cfefff;
+    }
+    .cover-eyebrow {
+      margin: 56px 0 18px;
+      color: #67e8f9; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .cover h1 {
+      margin: 0 0 20px; font-size: 36px; line-height: 1.08;
+      letter-spacing: -0.03em; font-weight: 700; max-width: 14ch;
+    }
+    .cover-lead {
+      margin: 0; max-width: 48ch; color: #d7e3f2; font-size: 14px; line-height: 1.65;
+    }
+    .cover-meta {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      margin-top: 52px; padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+    .cover-meta div { min-width: 0; }
+    .cover-meta span {
+      display: block; margin-bottom: 4px;
+      color: #9fb0c3; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .cover-meta strong { font-size: 12px; font-weight: 600; color: #fff; }
+    .cover-foot {
+      display: flex; justify-content: space-between; gap: 16px;
+      color: #9fb0c3; font-size: 11px;
+    }
+
+    /* Body */
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h2 {
+      margin: 0 0 12px; font-size: 16pt; letter-spacing: -0.02em;
+      color: var(--brand-dark); break-after: avoid; page-break-after: avoid;
+    }
+    h3 {
+      margin: 18px 0 8px; font-size: 11.5pt; color: var(--ink);
+      break-after: avoid; page-break-after: avoid;
+    }
+    h4 {
+      margin: 0 0 8px; font-size: 10.5pt; color: var(--ink);
+    }
+    p { margin: 0 0 10px; color: var(--muted); }
+    ul { margin: 0 0 12px; padding-left: 16px; color: var(--muted); }
+    li + li { margin-top: 6px; }
+    strong { color: var(--ink); }
+
+    .sheet > section {
+      scroll-margin-top: 72px;
+      scroll-margin-bottom: 96px;
+    }
+    .section {
+      padding: 18px 0 22px;
+      border-bottom: 1px solid var(--line);
+      break-inside: avoid-page;
+    }
+    .section.flow { break-inside: auto; }
+    .section.page-start {
+      break-before: page;
+      page-break-before: always;
+      border-top: 0;
+      padding-top: 4px;
+    }
+    .section-head {
+      display: flex; align-items: baseline; gap: 10px;
+      margin-bottom: 14px; break-after: avoid; page-break-after: avoid;
+    }
+    .section-num {
+      flex: 0 0 auto;
+      min-width: 22px;
+      color: var(--brand); font-size: 11px; font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .kicker {
+      margin: 0 0 16px; padding: 14px 16px;
+      background: var(--brand-dark); color: #f5fbff;
+      font-size: 10pt; font-weight: 600; line-height: 1.5;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+
+    .cols-4, .cols-3, .cols-2 { display: grid; gap: 14px; margin: 14px 0; }
+    .cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cols-2 { grid-template-columns: 1fr 1fr; }
+    .panel {
+      background: var(--band); padding: 14px 14px;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .panel.alt { background: var(--band-alt); }
+    .panel p, .panel li { font-size: 9.5pt; }
+    .stat {
+      display: block; margin-bottom: 4px;
+      font-size: 18pt; font-weight: 800; letter-spacing: -0.03em; line-height: 1;
+    }
+    .stat-label {
+      display: block; margin-bottom: 8px;
+      color: var(--soft); font-size: 8.5pt; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .stat.cyan { color: var(--cyan); }
+    .stat.danger { color: var(--danger); }
+    .stat.brand { color: var(--brand); }
+    .stat.ok { color: var(--ok); }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tag {
+      display: inline-block; padding: 3px 8px;
+      background: #fff; border: 1px solid var(--line);
+      color: var(--brand); font-size: 8.5pt; font-weight: 600;
+    }
+    .tag.mode { color: var(--cyan); }
+    .tag.user { color: var(--warn); }
+    .tag.safety { color: var(--danger); }
+    .tag.ok { color: var(--ok); }
+
+    .notify {
+      margin-top: 12px; padding: 10px 12px;
+      background: #fff; border: 1px solid var(--line);
+      border-left: 3px solid var(--brand);
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .notify h5 {
+      margin: 0 0 6px; font-size: 8.5pt; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--brand-dark);
+    }
+    .notify p {
+      margin: 0; font-size: 9.5pt; color: var(--muted); line-height: 1.5;
+    }
+
+    .breaker-vs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;
+    }
+    .breaker-vs .panel h4 { margin-bottom: 8px; }
+    .breaker-vs ul { margin: 0; font-size: 9pt; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      break-inside: auto;
+    }
+    thead { break-after: avoid; page-break-after: avoid; }
+    th {
+      text-align: left;
+      padding: 8px 10px;
+      background: var(--brand-dark);
+      color: #f5fbff;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) td { background: var(--band); }
+    tbody tr.row-accent td { background: var(--band-alt); }
+    td strong { color: var(--ink); }
+
+    .summary-panel {
+      margin-top: 18px;
+      padding: 14px 16px;
+    }
+    .summary-panel .tags { margin-top: 10px; }
+
+    .footer-note {
+      margin-top: 18px; color: var(--soft); font-size: 9pt;
+    }
+    .side-note {
+      margin-top: 12px; font-size: 9pt; color: var(--soft);
+    }
+
+    a.ref {
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 8pt;
+      vertical-align: super;
+      line-height: 0;
+      text-decoration: none;
+      margin-left: 1px;
+    }
+    a.ref:hover { text-decoration: underline; }
+    .addendum-list {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 9pt;
+    }
+    .addendum-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .addendum-list li:last-child { border-bottom: 0; }
+    .addendum-list .ref-num {
+      color: var(--brand);
+      font-weight: 800;
+      font-size: 9pt;
+    }
+    .addendum-list a {
+      color: var(--brand-dark);
+      word-break: break-all;
+    }
+    .addendum-list .ref-label {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .addendum-list .ref-use {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--soft);
+      font-size: 8.5pt;
+    }
+
+    /* market-validation print extras */
+    .persona {
+      background: var(--band);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 0;
+    }
+    .persona.alt { background: var(--band-alt); }
+    .persona h4 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .persona .n {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--brand-dark);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .persona .who {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .persona ul { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: 12px; }
+    .intro-kickers { display: grid; gap: 12px; margin: 14px 0; }
+    @media (min-width: 700px) {
+      .intro-kickers.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+    .breaker-vs { display: grid; gap: 12px; }
+    @media (min-width: 700px) {
+      .breaker-vs.cols-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .ffc-charts { display: grid; gap: 12px; margin: 12px 0 16px; }
+    @media (min-width: 700px) {
+      .ffc-charts { grid-template-columns: 1fr 1fr; }
+    }
+    .chart-block {
+      background: var(--band);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .chart-block h4 { margin: 0 0 10px; font-size: 12px; }
+    .bar-chart { display: flex; flex-direction: column; gap: 6px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr 3.2rem;
+      gap: 6px;
+      align-items: center;
+    }
+    .bar-label { font-size: 10px; font-weight: 700; color: var(--muted); }
+    .bar-track {
+      height: 12px;
+      background: rgba(15, 40, 70, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--brand-dark), var(--brand));
+      min-width: 2px;
+    }
+    .bar-fill.is-peak { background: linear-gradient(90deg, #0b6e4f, #1faa6e); }
+    .bar-fill.is-dip { background: linear-gradient(90deg, #9a3412, #ea580c); }
+    .bar-chart-accent .bar-fill { background: linear-gradient(90deg, #1e3a5f, #3b82c4); }
+    .bar-chart-accent .bar-fill.is-peak { background: linear-gradient(90deg, #0b6e4f, #1faa6e); }
+    .bar-value { font-size: 10px; font-weight: 700; text-align: right; }
+    .ffc-geo { margin: 8px 0 14px; }
+    .ffc-geo-track {
+      display: flex;
+      height: 28px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .ffc-geo-uk, .ffc-geo-abroad {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .ffc-geo-uk { background: var(--brand-dark); }
+    .ffc-geo-abroad { background: linear-gradient(90deg, var(--brand), #3b82c4); }
+    .ffc-geo-caption { margin: 6px 0 0; font-size: 11px; color: var(--muted); }
+
+  
+    :root {
+      --brand: #3B82F6;
+      --brand-dark: #0F2142;
+      --cyan: #00D4FF;
+    }
+    /* Icon + TALOSVISION wordmark (same pairing as talosvisionweb / talos-usecases) */
+    .cover-brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 14px !important;
+      flex-wrap: wrap;
+    }
+    .cover-brand img,
+    .cover-brand img.cover-logo,
+    .cover-brand .cover-logo-icon {
+      height: 52px !important;
+      width: auto !important;
+      max-width: 72px !important;
+      object-fit: contain !important;
+      filter: none !important;
+      flex: 0 0 auto;
+    }
+    .cover-wordmark {
+      font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: #E8F4FD;
+      white-space: nowrap;
+    }
+    .cover-wordmark .cover-vision {
+      background: linear-gradient(90deg, #00D4FF, #3B82F6, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .section-num,
+    .tag,
+    .print-toc-card .num {
+      color: var(--brand);
+    }
+    .cover-chip {
+      border-color: rgba(0, 212, 255, 0.45);
+      color: #E8F4FD;
+      background: rgba(0, 212, 255, 0.12);
+    }
+    .no-print.toolbar button,
+    .doc-nav-pdf {
+      background: #0F2142 !important;
+    }
+    .cover {
+      background: linear-gradient(165deg, #040D18 0%, #0F2142 48%, #163a66 100%) !important;
+    }
+
+  </style>
+</head>
+<body>
+      <div class="no-print toolbar">
+    <div>
+      <p>TalosVision Investor Primer · Print</p>
+      <p style="margin-top:4px">Use your browser’s Print dialog and choose <strong>Save as PDF</strong>.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <a href="/talos-usecases/" style="color:var(--brand);font-weight:600;text-decoration:none">Cases brochure</a>
+      <button type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <a href="/value/print/" style="color:var(--brand);font-weight:600;text-decoration:none">Value brochure</a>
+      <button type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <section class="cover" id="page-0" data-nav-label="Cover">
+      <div>
+        <div class="cover-top">
+                    <div class="cover-brand">
+            <img src="/assets/talos-full-logo-ux-recolored.png" alt="" class="cover-logo-icon" />
+            <span class="cover-wordmark">TALOS<span class="cover-vision">VISION</span></span>
+            <span class="cover-chip">Investor Primer</span>
+          </div>
+        </div>
+        <p class="cover-eyebrow">Edge Vision · Operational Action · Seed Ladder</p>
+        <h1>TalosVision investor primer</h1>
+        <p class="cover-lead">On-premises vision that detects, decides, and acts — for homes, care, offices, ships, industrial sites, and venues where cloud cameras cannot follow. Distilled from the current value thesis and business plan for investor discussion.</p>
+        <div class="cover-meta">
+          <div><span>Type</span><strong>Investor Primer</strong></div>
+          <div><span>Date</span><strong>21 October 2026</strong></div>
+          <div><span>Structure</span><strong>Bet · Wedges · Motions · Seed · Footprint</strong></div>
+          <div><span>Seed ladder</span><strong>$0.5M → $1M → $2.5M</strong></div>
+        </div>
+      </div>
+      <div class="cover-foot">
+        <span>talosgroup.eu</span>
+        <span>info@talosgroup.eu</span>
+      </div>
+    </section>
+
+    <!-- 01 THE BET -->
+    <section class="section flow" id="page-1" data-nav-label="01 · The bet">
+      <div class="section-head"><span class="section-num">01</span><h2>The bet</h2></div>
+      <div class="kicker">Incumbents sell cloud storage, bandwidth, and recordings. TalosVision sells sovereignty and operational action: any camera becomes a vision node on a ~16&nbsp;GB PC, first detection in minutes, no per-camera licenses, and video that never has to leave the site. Scale is hardware-bound — one room to a campus — with no technical ceiling.</div>
+
+      <div class="cols-4">
+        <div class="panel">
+          <span class="stat cyan">$0.5–1.5B</span>
+          <span class="stat-label">B2C TAM, U.S.</span>
+          <p>Conservative consumer addressable market.</p>
+        </div>
+        <div class="panel alt">
+          <span class="stat brand">$2–4B</span>
+          <span class="stat-label">B2B / Enterprise TAM</span>
+          <p>U.S. mid-market and strategic accounts.</p>
+        </div>
+        <div class="panel">
+          <span class="stat">1–3%</span>
+          <span class="stat-label">B2C Share → $5–45M</span>
+          <p>Plan target share of B2C TAM.</p>
+        </div>
+        <div class="panel alt">
+          <span class="stat ok">1–2%</span>
+          <span class="stat-label">Enterprise → $20–80M</span>
+          <p>Plan target share of enterprise TAM.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 WHAT CHANGES -->
+    <section class="section flow page-start" id="page-2" data-nav-label="02 · What changes">
+      <div class="section-head"><span class="section-num">02</span><h2>What changes</h2></div>
+      <div class="kicker">Users are not locked to a camera wall. The platform watches 24/7; the right person gets a targeted alert — mobile, email, webhook, clinical app, or HubSpot — only when something needs them. Ordinary cameras become an always-on assistant that decides and acts on premises, including when the internet is down.</div>
+
+      <div class="cols-3">
+        <div class="panel">
+          <span class="stat cyan">Edge</span>
+          <span class="stat-label">Not cloud-bound</span>
+          <p>On-device AI. Full offline. Data sovereignty by default. Processing and storage stay on premises.</p>
+        </div>
+        <div class="panel alt">
+          <span class="stat brand">Action</span>
+          <span class="stat-label">Not passive VMS</span>
+          <p>Triggers fire mobile, email, webhooks, signage, and gates. Each camera has its own rules.</p>
+        </div>
+        <div class="panel">
+          <span class="stat ok">Scale</span>
+          <span class="stat-label">Hardware-bound</span>
+          <p>Any IP, WiFi, or phone camera. ~16&nbsp;GB PC. One room to an enterprise mesh. No GPU farm.</p>
+        </div>
+      </div>
+
+      <div class="breaker-vs">
+        <div class="panel">
+          <h4>Incumbents sell</h4>
+          <ul>
+            <li>Cloud storage &amp; monthly bandwidth</li>
+            <li>Passive recordings &amp; dashboards</li>
+            <li>Generic “AI boxes”</li>
+            <li>Projects that take quarters</li>
+          </ul>
+        </div>
+        <div class="panel alt">
+          <h4>TalosVision ships</h4>
+          <ul>
+            <li>On-prem decisions &amp; zero video cloud</li>
+            <li>Targeted notifications that run the operation</li>
+            <li>Purpose-built apps for real jobs</li>
+            <li>Detection in minutes — scale by hardware</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>How it multiplies operator capacity</h3>
+      <ul>
+        <li><strong>Vision nodes</strong> — face, count, demographics, and routes on cameras the site already owns.</li>
+        <li><strong>Entrances, restricted zones, VIP watchlists</strong> — headcount, unauthorised presence, and person-of-interest alerts without extra posts.</li>
+        <li><strong>Signage that reads the room</strong> — age, gender, and group size switch content in milliseconds, with impressions and dwell.</li>
+        <li><strong>Remote control from a phone</strong> — VPN access to cameras, triggers, and dashboards. Footage stays on premises even when the operator does not.</li>
+      </ul>
+    </section>
+
+    <!-- 03 WHERE IT PAYS -->
+    <section class="section flow page-start" id="page-3" data-nav-label="03 · Where it pays">
+      <div class="section-head"><span class="section-num">03</span><h2>Where it pays</h2></div>
+      <div class="kicker">Six wedges. Same platform. The market others abandon is connectivity- and privacy-hostile: ships, industrial sites, clinics, family homes, night posts, Virtual Wards.</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Wedge</th>
+            <th>Buyer</th>
+            <th>Why it is paid for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>HR presence</strong></td>
+            <td>HR, facilities, office ops</td>
+            <td>Automatic staff presence on-site and remote, with zero manual roll-call. HubSpot is the first CRM connector.</td>
+          </tr>
+          <tr>
+            <td><strong>Vision-adaptive intelligent signage</strong></td>
+            <td>Retail, venues, agencies, brand studios</td>
+            <td>Age, gender, and group size switch playlists in milliseconds. Impressions, dwell, and A/B turn screens into a measurable studio.</td>
+          </tr>
+          <tr>
+            <td><strong>Family protection at home and remote</strong></td>
+            <td>Families, parents, students living away</td>
+            <td>Intrusion, unknown-person, and presence alerts for the home and for people living away. Footage stays local.</td>
+          </tr>
+          <tr>
+            <td><strong>Home care / Virtual Ward</strong></td>
+            <td>Care provider, clinician, Talos / TMAIX</td>
+            <td>Caregiver presence, fall, help-call, and zone events into the health stack — tokenized, not cloud video. Safety layer vitals-only RPM cannot fake.</td>
+          </tr>
+          <tr>
+            <td><strong>Security: night and perimeter</strong></td>
+            <td>Security firms, corporate &amp; industrial sites</td>
+            <td>Guard vigilance, perimeter Presence, Vradar motion, and forensics. Night coverage stops scaling 1:1 with sites.</td>
+          </tr>
+          <tr>
+            <td><strong>Shipping and industrial</strong></td>
+            <td>Captain, fleet manager, plant &amp; site ops</td>
+            <td>Who is onboard or on site, restricted zones, and headcount packs. Full local ops; sync on thin links. Matrix when offline.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 04 HOW IT IS SOLD -->
+    <section class="section flow page-start" id="page-4" data-nav-label="04 · How it is sold">
+      <div class="section-head"><span class="section-num">04</span><h2>How it is sold</h2></div>
+      <div class="kicker">Three motions on one platform. Unit economics (CAC, LTV, payback, margins) are the core — they hold across seed capital scenarios.</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Motion</th>
+            <th>Price</th>
+            <th>Economics</th>
+            <th>Buyer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>B2C Light</strong></td>
+            <td>$20–$300/mo · events $200–$1,200. Shelf: Signage Lite $30–100, Home Security Lite $20–50, Retail Compliance Lite $50–100, Event Security Lite $200–1,200/event. Free funnel 60–90 days, then Lite / Pro.</td>
+            <td>Avg MRR ~$50 · CAC $20–30 · LTV:CAC ~30:1 · payback 1–2 mo</td>
+            <td>Homeowners, micro-SMEs, consultants, small retail. Credit-card self-serve. Wants alerts and ROI without an IT project. Pockets: ~52K marketing consulting<a class="ref" href="#ref-1">[1]</a>; ~87M owner-occupied homes<a class="ref" href="#ref-2">[2]</a>; ~0.8M Airbnb hosts<a class="ref" href="#ref-3">[3]</a>; ~8K contract security<a class="ref" href="#ref-4">[4]</a>; ~1.0M+ retail + ~0.6M restaurants<a class="ref" href="#ref-5">[5]</a><a class="ref" href="#ref-6">[6]</a>.</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>B2B Starter / Pro</strong></td>
+            <td>$500–$3,000/mo · ACV ~$12–36K. Starter $500–1,000 (1–5 sites, 5 cameras, one app). Professional $1,500–3,000 (5–20 sites, 25 cameras, multi-app). Mobile / wearable +40–60%.</td>
+            <td>Retention 85–90% · CAC payback ~3–4 mo</td>
+            <td>Multi-site retail, offices, regional security, campuses, warehouses. Buys Presence, Gate, and Signage on ROI, not a custom build. Pockets: ~8K contract security (Starter → Pro)<a class="ref" href="#ref-4">[4]</a>; ~99K public K–12<a class="ref" href="#ref-7">[7]</a>; ~38K warehousing<a class="ref" href="#ref-8">[8]</a>.</td>
+          </tr>
+          <tr>
+            <td><strong>Enterprise</strong></td>
+            <td>$5,000+/mo · contracts $6K–$150K+/yr. Unlimited sites and cameras, Matrix, VPN fleets, custom ERP / CRM / eHealth / SIEM.</td>
+            <td>Modeled LTV ~$144K · CAC $3–5K · LTV:CAC ~40:1</td>
+            <td>Home care, maritime, industrial, municipal, multi-brand retail. On-prem, data residency, partners. Segment targets are plan ranges (see map below); market-size URLs in <a href="#page-8">Addendum B</a>.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="panel summary-panel">
+        <h4>Enterprise segment map (U.S. targets)</h4>
+        <div class="tags">
+          <span class="tag">Large retail $12–24M</span>
+          <span class="tag mode">Security agencies $6–12M</span>
+          <span class="tag user">Education $6–12M</span>
+          <span class="tag ok">CRE $12–24M</span>
+          <span class="tag safety">Gov / LE</span>
+        </div>
+      </div>
+
+      <p class="side-note">Addressable-pocket counts for B2C and B2B cite public sources <a class="ref" href="#ref-1">[1]</a>–<a class="ref" href="#ref-8">[8]</a>. Full URLs and labels are in <a href="#page-8">Addendum B</a>. Product readiness, partners, and growth path: <a href="#page-7">Addendum A</a>.</p>
+    </section>
+
+    <!-- 05 SEED SCENARIOS -->
+    <section class="section flow page-start" id="page-5" data-nav-label="05 · Seed ladder">
+      <div class="section-head"><span class="section-num">05</span><h2>Seed scenarios — from burn up</h2></div>
+      <div class="kicker">The seed burn floor is $500K — enough for about one year of product, launch, and working capital. Checks of $1M and $2.5M sit above that floor. Extra capital does not rewrite unit economics. It buys speed: more pilots, faster sales coverage, and an earlier geographic footprint.</div>
+
+      <div class="cols-3">
+        <div class="panel">
+          <span class="stat">$500K</span>
+          <span class="stat-label">Burn Floor · Year-1 Ops</span>
+          <p>Personnel, marketing/CAC, tech, ops — lean runway.</p>
+        </div>
+        <div class="panel alt">
+          <span class="stat brand">$1M</span>
+          <span class="stat-label">Base Seed</span>
+          <p>Burn covered, plus headroom for a fuller GTM.</p>
+        </div>
+        <div class="panel">
+          <span class="stat ok">$2.5M</span>
+          <span class="stat-label">Accelerate Seed</span>
+          <p>Same economics, earlier scale and footprint.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Seed in</th>
+            <th>What it buys</th>
+            <th>Typical next round</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Burn floor</strong></td>
+            <td>$500K</td>
+            <td>Personnel ~$180K, marketing/CAC ~$135K, tech ~$125K, ops/R&amp;D ~$60K. Launch, first pilots, lean runway.</td>
+            <td>Series A / growth ~$700K–$1M after traction</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>Base</strong></td>
+            <td>$1M</td>
+            <td>Burn covered, plus fuller GTM. Plan terms: ~25% at $3M pre ($4M post). Target: 5–10 pilots, $50–100K ARR, 50-lead pipeline, 2–3 partners.</td>
+            <td>Series A $2–3M on $8–12M pre (Q3–Q4 2026)</td>
+          </tr>
+          <tr>
+            <td><strong>Accelerate</strong></td>
+            <td>$2.5M</td>
+            <td>Same core economics, earlier scale: denser sales, marketing, and multi-site footprint in the seed window. Dilution set by negotiated pre-money.</td>
+            <td>Series A still available for land-and-expand; larger seed compresses time to that raise</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="notify">
+        <h5>Instrument</h5>
+        <p>Convertible note or SAFE across scenarios. The $1M and $2.5M figures both appear in the business-plan set; treat them as capital choices on the same ladder, not as competing truths.</p>
+      </div>
+    </section>
+
+    <!-- 06 FOOTPRINT -->
+    <section class="section flow page-start" id="page-6" data-nav-label="06 · Footprint">
+      <div class="section-head"><span class="section-num">06</span><h2>Footprint steps by scenario</h2></div>
+      <div class="kicker">Organizational build-out scales with capital above burn. Unit economics stay the same; the company simply stands up earlier.</div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Burn $500K</th>
+            <th>Base $1M</th>
+            <th>Accelerate $2.5M</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1 · Greek unit</strong></td>
+            <td>Yes — EU pilot, GDPR-first, lean team</td>
+            <td>Yes — formal Greek business unit</td>
+            <td>Yes — Greek unit as EU operating base</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>2 · U.S. business unit</strong></td>
+            <td>Lean commercial start in primary market</td>
+            <td>Yes — U.S. unit for enterprise + B2C launch</td>
+            <td>Yes — U.S. unit with denser sales and partner coverage</td>
+          </tr>
+          <tr>
+            <td><strong>3 · London office</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td>Yes — London representation for UK / North-West Europe</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="side-note">Greece is the plan’s EU pilot (compliance, education, tourism). The United States is the primary commercial market. London appears only on the high seed: a representation office, not a second R&amp;D center.</p>
+
+      <div class="cols-2" style="margin-top: 18px;">
+        <div class="panel">
+          <h4>What is hard to copy</h4>
+          <p>Privacy-first edge computer vision, six vertical cases on one platform — HR, signage, family protection, home care, night and perimeter security, shipping and industrial — plus partner channels: Talos / TMAIX in eHealth, maritime and plant ops, HubSpot-first CRM. Presence, Vradar, Sentinel, and Matrix are one fabric. A feature checkbox does not reproduce that stack.</p>
+        </div>
+        <div class="panel alt">
+          <h4>What to underwrite</h4>
+          <p>Burn floor first, then how much speed to buy. CAC, LTV, and payback are the core. Capital above $500K accelerates the same motions — consumer volume, mid-market land-and-expand, enterprise ACV — and the footprint steps above.</p>
+        </div>
+      </div>
+
+      <p class="footer-note">TalosVision · Investor primer · Confidential for investor discussion. Sources: cases brochure (21 October 2026) — cases, motions, and unit economics; business plan burn / staged scenarios ($500K), print plan &amp; executive summary ($1M), HTML investor page ($2.5M). Market figures are plan ranges, not reported revenue. Specs and availability subject to change. Market validation: <a href="#page-mv">§07</a>. Project status: <a href="#page-7">§08</a>. Reference: <a href="#page-8">§09</a>.</p>
+    </section>
+
+
+    <section class="section flow page-start" id="page-mv" data-nav-label="07 · Market validation">
+      <div class="section-head"><span class="section-num">07</span><h2>Market validation</h2></div>
+<div class="kicker">FootfallCam is a successful, long-running commercial proof that buyers will pay for camera-based people analytics at scale. That is useful market validation for TalosVision — yet FootfallCam does not fully cover, and in several cases does not cover at all, TalosVision’s six vertical market segments. TalosVision’s wedge is sovereignty plus operational action across those six; FootfallCam’s wedge is retail and facility footfall BI.</div>
+
+<div class="intro-kickers cols-3" style="margin:1rem 0 1.25rem">
+  <div class="notify">
+    <h5>Validation</h5>
+    <p>FootfallCam shows a real paid market for edge people analytics — multi-year UK entity, partner channel, global installs.</p>
+  </div>
+  <div class="notify alt">
+    <h5>Gap</h5>
+    <p>Their primary industries (retail, malls, queues, washrooms, offices-as-occupancy) leave TalosVision’s six wedges largely open.</p>
+  </div>
+  <div class="notify">
+    <h5>TalosVision six</h5>
+    <p>HR Presence · Signage · Family / cottage · Home care · Night security · Shipping &amp; industrial</p>
+  </div>
+</div>
+
+<div class="cols-2 breaker-vs" style="margin:0 0 1.4rem">
+  <div class="persona">
+    <h4><span class="n">1</span> TalosVision</h4>
+    <p class="who">On-prem edge vision + operational action</p>
+    <ul>
+      <li>Presence, Gate, Signage, Vradar, Sentinel, Matrix</li>
+      <li>Detect → decide → act; video stays local by default</li>
+      <li>Any IP / Wi‑Fi / mobile camera on a ~16&nbsp;GB PC; no per-camera licenses</li>
+      <li>Full B2C → B2B → Enterprise package ladder</li>
+    </ul>
+  </div>
+  <div class="persona alt">
+    <h4><span class="n">2</span> FootfallCam</h4>
+    <p class="who">People-flow / space analytics platform</p>
+    <ul>
+      <li>Hardware counters + V9 Analytic Manager</li>
+      <li>Measure visitors / occupancy / queues → BI and ops workflows</li>
+      <li>Own counters + Centroid on existing CCTV; UK-designed hardware + software</li>
+      <li>Contact / reseller sales — no self-serve B2C ladder</li>
+    </ul>
+  </div>
+</div>
+
+<h3>1. Vertical markets</h3>
+<p>Ordered by TalosVision’s six use cases first, then FootfallCam industry wedges where TalosVision has no matching named market. The first six rows are the validation gap: TalosVision’s paid wedges versus FootfallCam’s coverage.</p>
+<table>
+  <thead>
+    <tr><th>Vertical market</th><th>TalosVision</th><th>FootfallCam</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>1. HR / workplace Presence</strong></td><td><strong>Yes</strong> — entrance stations, Presence apps, remote WFH</td><td><strong>No</strong> as HR attendance (office pages are occupancy / portfolio)</td></tr>
+    <tr class="row-accent"><td><strong>2. Vision-adaptive Intelligent Signage</strong></td><td><strong>Yes</strong> — age, gender, group size → playlist switching</td><td><strong>Different</strong> — marketing ROI on footfall events, not screen content switching</td></tr>
+    <tr><td><strong>3. Family / cottage protection</strong></td><td><strong>Yes</strong></td><td><strong>No</strong></td></tr>
+    <tr class="row-accent"><td><strong>4. Home care / Virtual Ward</strong></td><td><strong>Yes</strong> — fall, voice help-call, tokenized clinical events</td><td><strong>No</strong></td></tr>
+    <tr><td><strong>5. Night / perimeter security</strong></td><td><strong>Yes</strong> — guard vigilance, Vradar, forensics</td><td><strong>No</strong></td></tr>
+    <tr class="row-accent"><td><strong>6. Shipping &amp; industrial</strong></td><td><strong>Yes</strong> — zones, PPE, thin-link Matrix sync</td><td><strong>No</strong> (public-transport footfall ≠ shipboard ops)</td></tr>
+    <tr><td>Retail / mall ops analytics</td><td><strong>Partial</strong> — Signage, Gate, Retail Compliance Lite</td><td><strong>Yes</strong> — primary market</td></tr>
+    <tr class="row-accent"><td>QSR / supermarket queues</td><td><strong>Not documented</strong></td><td><strong>Yes</strong></td></tr>
+    <tr><td>Washrooms / cleaning ops</td><td><strong>Not documented</strong></td><td><strong>Yes</strong></td></tr>
+    <tr class="row-accent"><td>Offices / desk utilisation</td><td><strong>Partial</strong> — Presence / capacity</td><td><strong>Yes</strong> — Space Occupancy</td></tr>
+    <tr><td>Airports, museums, libraries, universities, smart cities</td><td><strong>Not documented</strong> as named industries</td><td><strong>Yes</strong></td></tr>
+    <tr class="row-accent"><td>Exhibitions / events</td><td><strong>Partial</strong> — Event Security Lite</td><td><strong>Yes</strong></td></tr>
+    <tr><td>Wearables / drones (Sentinel)</td><td><strong>Yes</strong></td><td><strong>No</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>2. Architecture &amp; deployment</h3>
+<table>
+  <thead>
+    <tr><th>Capability</th><th>TalosVision</th><th>FootfallCam</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Edge / on-device processing</td><td><strong>Yes</strong></td><td><strong>Yes</strong></td></tr>
+    <tr class="row-accent"><td>Video must leave the premises</td><td><strong>No</strong> — zero video cloud by default</td><td><strong>Different</strong> — analytics to V9 (cloud / private / on-prem); privacy framed as no PII</td></tr>
+    <tr><td>Full offline operation</td><td><strong>Yes</strong></td><td><strong>Partial</strong></td></tr>
+    <tr class="row-accent"><td>On-prem server hosting</td><td><strong>Yes</strong> — default</td><td><strong>Yes</strong></td></tr>
+    <tr><td>Storage connectivity</td><td><strong>Yes</strong> — separate storage module (on-prem or cloud backends)</td><td><strong>Different</strong> — V9 hosting choices for analytics data</td></tr>
+    <tr class="row-accent"><td>Works with existing IP cameras</td><td><strong>Yes</strong> — any camera</td><td><strong>Yes</strong> — Centroid RTSP/ONVIF + own counters</td></tr>
+    <tr><td>Hardware floor</td><td><strong>Yes</strong> — ~16&nbsp;GB PC, no GPU farm</td><td><strong>Different</strong> — dedicated counters / Centroid appliance</td></tr>
+    <tr class="row-accent"><td>Per-camera licenses</td><td><strong>No</strong></td><td>Sold as counters + V9 suites</td></tr>
+    <tr><td>Multi-site / fleet ops</td><td><strong>Yes</strong> — Matrix, VPN fleets</td><td><strong>Yes</strong> — multi-site V9</td></tr>
+    <tr class="row-accent"><td>Full documented API (OpenAPI / Swagger)</td><td><strong>Yes</strong></td><td><strong>Partial</strong> — device/server APIs in KB; not OpenAPI/Swagger-first</td></tr>
+  </tbody>
+</table>
+
+<h3>3. People &amp; space analytics</h3>
+<table>
+  <thead>
+    <tr><th>Capability</th><th>TalosVision</th><th>FootfallCam</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>In/out counting</td><td><strong>Yes</strong> — Gate</td><td><strong>Yes</strong></td></tr>
+    <tr class="row-accent"><td>Live occupancy / zones</td><td><strong>Yes</strong></td><td><strong>Yes</strong></td></tr>
+    <tr><td>Group counting / staff exclusion</td><td><strong>Not documented</strong> as dedicated filters</td><td><strong>Yes</strong></td></tr>
+    <tr class="row-accent"><td>Child / age-band filter &amp; automation</td><td><strong>Yes</strong> — age from instant detection drives triggers</td><td><strong>Yes</strong> — Child Filter</td></tr>
+    <tr><td>Demographics (age, gender)</td><td><strong>Yes</strong></td><td><strong>Yes</strong> (incl. emotions)</td></tr>
+    <tr class="row-accent"><td>Dwell / route / behavioural paths</td><td><strong>Yes</strong> + <strong>WIP</strong> Route Behavioural Configurator (body routes + face cross-validation on same camera/time plane; target mid Nov 2026)</td><td><strong>Yes</strong> — heat dwell, heatmaps shipping today</td></tr>
+    <tr><td>Heatmaps / queues / desk occupancy suites</td><td>Heatmap <strong>WIP</strong>; queues <strong>not documented</strong>; desk suite <strong>partial</strong></td><td><strong>Yes</strong></td></tr>
+    <tr class="row-accent"><td>Face / POI / watchlist</td><td><strong>Yes</strong></td><td><strong>Different</strong> — demographics, not security POI stack</td></tr>
+    <tr><td>Intrusion, fall/voice, PPE, guard vigilance</td><td><strong>Yes</strong></td><td><strong>No</strong></td></tr>
+    <tr class="row-accent"><td>Attendance / Presence check-in</td><td><strong>Yes</strong> — face + QR/NFC</td><td><strong>Different</strong> — footfall, not HR check-in</td></tr>
+  </tbody>
+</table>
+<div class="notify alt">
+  <h5>TalosVision — Route Behavioural Configurator (WIP)</h5>
+  <p>Worker in development: people-movement from body detection, known-body identity via face recognition cross-validated on the same route position / camera / time plane. Expected ship mid November 2026 — behavioural analytics parity with FootfallCam-style path/dwell metrics on TalosVision’s on-prem fabric.</p>
+</div>
+
+<h3>4. Action &amp; automation</h3>
+<table>
+  <thead>
+    <tr><th>Capability</th><th>TalosVision</th><th>FootfallCam</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Rule engine / thresholds / alerts</td><td><strong>Yes</strong> — Vradar, per-camera triggers, AND/OR</td><td><strong>Yes</strong></td></tr>
+    <tr class="row-accent"><td>Age / demographic trigger conditions</td><td><strong>Yes</strong></td><td><strong>Partial</strong></td></tr>
+    <tr><td>Mobile / email / SMS</td><td><strong>Yes</strong></td><td><strong>Partial</strong></td></tr>
+    <tr class="row-accent"><td>Slack / Teams + general workflows</td><td><strong>Yes</strong> — simple user settings</td><td><strong>Not documented</strong> / custom pods</td></tr>
+    <tr><td>Vision-driven digital signage</td><td><strong>Yes</strong></td><td><strong>No</strong> as core product</td></tr>
+    <tr class="row-accent"><td>Retail ops apps (roster, checkout, washroom)</td><td><strong>Not documented</strong> as packaged apps</td><td><strong>Yes</strong></td></tr>
+    <tr><td>Webhooks / gates / physical actions</td><td><strong>Yes</strong></td><td><strong>Partial</strong> — data webhooks; checkout alerts</td></tr>
+    <tr class="row-accent"><td>Multi-site Matrix + VPN remote</td><td><strong>Yes</strong></td><td><strong>Partial</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>Where each wins</h3>
+<div class="cols-2">
+  <div class="notify alt">
+    <h5>TalosVision</h5>
+    <ul>
+      <li>Six use-case markets FootfallCam does not productise (HR Presence, Signage, cottage, Virtual Ward, night security, shipping/industrial + Sentinel)</li>
+      <li>On-prem vision that acts — age-band triggers, Slack/Teams workflows, OpenAPI/Swagger, pluggable storage</li>
+      <li>B2C → B2B → Enterprise package ladder; no per-camera license ceiling</li>
+      <li>Behavioural route parity via WIP configurator (mid Nov 2026)</li>
+    </ul>
+  </div>
+  <div class="notify">
+    <h5>FootfallCam</h5>
+    <ul>
+      <li>Purpose-built retail/facility people-flow measurement shipping today (queues, staff exclusion, heatmaps, desk occupancy)</li>
+      <li>Packaged ops apps (roster, checkout, washroom, marketing ROI)</li>
+      <li>Mature multi-protocol data plane into BI / BMS</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Business model &amp; go-to-market</h3>
+<table>
+  <thead>
+    <tr><th>Dimension</th><th>TalosVision</th><th>FootfallCam</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Primary motion</td><td><strong>Full ladder</strong> — B2C Light freemium → B2B Starter &amp; Pro → Enterprise</td><td><strong>Contact / consultative sales only</strong> — demo, pilot, quote via sales or certified reseller; no self-serve checkout</td></tr>
+    <tr class="row-accent"><td>How to buy</td><td>Web/app signup for Light; sales-assisted B2B; custom Enterprise</td><td>Consultancy → planning/quote → local distributor → install</td></tr>
+    <tr><td>Offer shape</td><td>Software packages on cameras you own; no per-camera licenses</td><td>Hardware counters + Centroid + V9; “starting at” then custom</td></tr>
+    <tr class="row-accent"><td>Channel</td><td>Direct + partners (CRM, eHealth)</td><td>Global reseller / distributor network</td></tr>
+    <tr><td>Consumer / B2C</td><td><strong>Yes</strong> — B2C Light</td><td><strong>Not offered</strong></td></tr>
+  </tbody>
+</table>
+<div class="cols-2" style="margin-top:0.8rem">
+  <div class="persona">
+    <h4><span class="n">1</span> TalosVision packages</h4>
+    <ul>
+      <li><strong>B2C Light</strong> — freemium 60–90 days; Signage Lite $30–100/mo; Home Security Lite $20–50/mo; Retail Compliance Lite $50–100/mo; Event Security Lite $200–1,200/event</li>
+      <li><strong>B2B Starter</strong> — $500–1,000/mo · 1–5 locs · 5 cameras</li>
+      <li><strong>B2B Professional</strong> — $1,500–3,000/mo · 5–20 locs · 25 cameras · ACV path ~$12–36K/yr</li>
+      <li><strong>Enterprise</strong> — $5,000+/mo · Matrix · VPN fleets · custom integrations</li>
+    </ul>
+  </div>
+  <div class="persona alt">
+    <h4><span class="n">2</span> FootfallCam packages</h4>
+    <ul>
+      <li>Retail Essentials / Standard / Enterprise from <strong>$550 / $1,100 / $1,700</strong></li>
+      <li>Mall Essentials / Standard / Enterprise from <strong>$3,300 / $9,500 / $9,970</strong></li>
+      <li>All paths still close via <strong>contact sales</strong> or local partner</li>
+      <li>No public B2C / self-serve consumer SKU</li>
+    </ul>
+  </div>
+</div>
+
+<h3>FootfallCam only — typical clients &amp; installations</h3>
+<p style="color:var(--muted);font-size:0.92rem;margin:-0.15rem 0 0.85rem">FootfallCam’s published client and install footprint only — used here as market-size colour for the validation thesis.</p>
+<div class="intro-kickers cols-3" style="margin-bottom:1rem">
+  <div class="notify"><h5>30,000+</h5><p>Businesses supported with partners</p></div>
+  <div class="notify alt"><h5>500+</h5><p>Named global clients; tens of thousands of counters</p></div>
+  <div class="notify"><h5>10,000+</h5><p>Locations claimed worldwide</p></div>
+</div>
+<div class="cols-2">
+  <div class="notify">
+    <h5>Segment mix (marketing)</h5>
+    <ul>
+      <li><strong>2,200+</strong> retailers</li>
+      <li><strong>1,200+</strong> mall operators</li>
+      <li><strong>500+</strong> offices</li>
+      <li><strong>150+</strong> bus / public transport</li>
+    </ul>
+  </div>
+  <div class="notify alt">
+    <h5>Typical install pattern</h5>
+    <ul>
+      <li>Pro2 counters at entrances (often 1–2 per retail door set)</li>
+      <li>Centroid reuses existing CCTV for zones / heatmaps / journey</li>
+      <li>Install via partner network, customer contractor, or guided self-install</li>
+      <li>Retail starting packages ~$550 / $1,100 / $1,700; malls ~$3,300 / $9,500 / $9,970 (still sales-led)</li>
+    </ul>
+  </div>
+</div>
+
+<h4>FootfallCam only — UK vs abroad install geography estimate</h4>
+<p>FootfallCam is <strong>designed and manufactured in the UK</strong> with UK/Malaysia ops centres, but public footprint claims describe a <strong>global-majority</strong> install base: deployments in <strong>200+ countries</strong>, <strong>10,000+ locations</strong>, and a “global-domestic” reseller model. Named UK rollouts show a real home market; they do not read as the majority of volume versus worldwide partner installs.</p>
+<div class="ffc-geo" role="img" aria-label="Illustrative install geography: roughly one-fifth UK, four-fifths abroad">
+  <div class="ffc-geo-track">
+    <div class="ffc-geo-uk" style="width:22%"><span>UK ~⅕</span></div>
+    <div class="ffc-geo-abroad" style="width:78%"><span>Abroad ~⅘</span></div>
+  </div>
+  <p class="ffc-geo-caption">Illustrative estimate from public footprint claims (not a disclosed UK/ROW revenue split).</p>
+</div>
+
+<h3>FootfallCam only — financials (USD)</h3>
+<p style="color:var(--muted);font-size:0.92rem;margin:-0.15rem 0 0.85rem">FOOTFALLCAM UK LIMITED public accounts only — colour on the validation thesis, not an TalosVision comparison table.</p>
+<p>Unaudited abridged accounts. Converted at <strong>≈ $1.27 / £1</strong>. Turnover / operating profit for 2019–2023 are third-party estimates. Net assets and cash through 2024 from filed-account extracts. No public VC rounds; company states zero external financing / zero debt.</p>
+
+<div class="ffc-charts">
+  <div class="chart-block">
+    <h4>Estimated turnover (USD)</h4>
+    <div class="bar-chart" role="img" aria-label="Estimated turnover rising from about 5.4 million dollars in 2019 to 11.1 million in 2023">
+      <div class="bar-row"><span class="bar-label">2019</span><div class="bar-track"><div class="bar-fill" style="width:49%"></div></div><span class="bar-value">$5.4M</span></div>
+      <div class="bar-row"><span class="bar-label">2020</span><div class="bar-track"><div class="bar-fill" style="width:76%"></div></div><span class="bar-value">$8.5M</span></div>
+      <div class="bar-row"><span class="bar-label">2021</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><span class="bar-value">$8.0M</span></div>
+      <div class="bar-row"><span class="bar-label">2022</span><div class="bar-track"><div class="bar-fill" style="width:81%"></div></div><span class="bar-value">$8.9M</span></div>
+      <div class="bar-row"><span class="bar-label">2023</span><div class="bar-track"><div class="bar-fill is-peak" style="width:100%"></div></div><span class="bar-value">$11.1M</span></div>
+    </div>
+  </div>
+
+  <div class="chart-block">
+    <h4>Estimated operating profit (USD)</h4>
+    <div class="bar-chart bar-chart-accent" role="img" aria-label="Operating profit near 1.7 million dollars then a 2021 dip and recovery to about 1.4 million in 2023">
+      <div class="bar-row"><span class="bar-label">2019</span><div class="bar-track"><div class="bar-fill" style="width:98%"></div></div><span class="bar-value">$1.68M</span></div>
+      <div class="bar-row"><span class="bar-label">2020</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-value">$1.71M</span></div>
+      <div class="bar-row"><span class="bar-label">2021</span><div class="bar-track"><div class="bar-fill is-dip" style="width:2%"></div></div><span class="bar-value">$0.03M</span></div>
+      <div class="bar-row"><span class="bar-label">2022</span><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div><span class="bar-value">$1.21M</span></div>
+      <div class="bar-row"><span class="bar-label">2023</span><div class="bar-track"><div class="bar-fill" style="width:81%"></div></div><span class="bar-value">$1.39M</span></div>
+    </div>
+  </div>
+
+  <div class="chart-block">
+    <h4>Net assets (USD)</h4>
+    <div class="bar-chart" role="img" aria-label="Net assets rising from about 4.5 million dollars in 2020 to 7.5 million in 2024">
+      <div class="bar-row"><span class="bar-label">2020</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-value">$4.5M</span></div>
+      <div class="bar-row"><span class="bar-label">2021</span><div class="bar-track"><div class="bar-fill" style="width:61%"></div></div><span class="bar-value">$4.6M</span></div>
+      <div class="bar-row"><span class="bar-label">2022</span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div><span class="bar-value">$5.7M</span></div>
+      <div class="bar-row"><span class="bar-label">2023</span><div class="bar-track"><div class="bar-fill" style="width:89%"></div></div><span class="bar-value">$6.7M</span></div>
+      <div class="bar-row"><span class="bar-label">2024</span><div class="bar-track"><div class="bar-fill is-peak" style="width:100%"></div></div><span class="bar-value">$7.5M</span></div>
+    </div>
+  </div>
+
+  <div class="chart-block">
+    <h4>Cash (USD)</h4>
+    <div class="bar-chart bar-chart-accent" role="img" aria-label="Cash around 1.1 million dollars with a 2024 rise to about 1.8 million">
+      <div class="bar-row"><span class="bar-label">2020</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-value">$1.10M</span></div>
+      <div class="bar-row"><span class="bar-label">2021</span><div class="bar-track"><div class="bar-fill" style="width:57%"></div></div><span class="bar-value">$1.05M</span></div>
+      <div class="bar-row"><span class="bar-label">2022</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="bar-value">$1.28M</span></div>
+      <div class="bar-row"><span class="bar-label">2023</span><div class="bar-track"><div class="bar-fill" style="width:62%"></div></div><span class="bar-value">$1.13M</span></div>
+      <div class="bar-row"><span class="bar-label">2024</span><div class="bar-track"><div class="bar-fill is-peak" style="width:100%"></div></div><span class="bar-value">$1.83M</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="notify" style="margin-top:1rem">
+  <h5>FootfallCam only — capital posture</h5>
+  <p>No public venture or PE rounds. Growth funded from retained earnings. UK Companies House filings show ~6–9 employees on the UK entity — the figure that triangulates with the P&amp;L above. Website “200+ employees” claims are addressed in the staff note below.</p>
+</div>
+
+<h3>FootfallCam only — staff &amp; partner ecosystem</h3>
+<p style="color:var(--muted);font-size:0.92rem;margin:-0.15rem 0 0.85rem">Organisation and channel claims cross-checked against UK filings. Exact global reseller/distributor headcount is not disclosed.</p>
+
+<div class="intro-kickers cols-3" style="margin-bottom:1rem">
+  <div class="notify"><h5>~6–9</h5><p>Employees on UK Companies House filings (YE 2020–2025)</p></div>
+  <div class="notify alt"><h5>~$11M</h5><p>Est. YE 2023 turnover (UK entity)</p></div>
+  <div class="notify"><h5>200+ / 80+</h5><p>Marketing claim on About page — treat with caution</p></div>
+</div>
+
+<div class="notify alt" style="margin-bottom:1rem">
+  <h5>Gentle note — headcount vs financials</h5>
+  <p>FootfallCam’s About page states a team of <strong>over 200 employees</strong> (HQ and regional offices), including <strong>80+ engineers</strong>. That claim does <em>not</em> line up cleanly with the UK legal entity’s public accounts:</p>
+  <ul>
+    <li>FOOTFALLCAM UK LIMITED reports only <strong>~6 employees</strong> for most recent years (about <strong>9</strong> in the latest Endole extract for YE 2025).</li>
+    <li>Estimated UK-entity turnover peaks near <strong>$11M</strong> (YE 2023). At 200 FTEs that would imply only ~<strong>$55k revenue per employee</strong> — thin for a hardware + analytics vendor, and hard to fund if a large share of roles were UK-costed.</li>
+    <li>Filed UK staff costs for ~6 people fit a small UK core; they do <strong>not</strong> look like a 200-person payroll on that entity alone.</li>
+  </ul>
+  <p>A fair reading is that <strong>200+ / 80+</strong> is likely a <strong>marketing or group-wide framing</strong> (possibly blending offshore teams, contractors, or partner capacity) rather than verified FTE on the UK books. Prefer the <strong>filed UK headcount</strong> for financial triangulation; treat the website staff figures as <strong>overstated or at least not directly comparable</strong> to the published P&amp;L until a consolidated group disclosure appears.</p>
+</div>
+
+<div class="cols-2">
+  <div class="notify">
+    <h5>What the filings support</h5>
+    <ul>
+      <li>Small UK entity headcount (~6–9) with meaningful net assets and cash</li>
+      <li>Ops narrative of UK + Malaysia centres — some delivery may sit outside the UK filing</li>
+      <li>Third-party aggregators sometimes show ~115–118 “employees” — still far below 200, and still not the UK statutory figure</li>
+    </ul>
+  </div>
+  <div class="notify alt">
+    <h5>Channel ecosystem (published roles)</h5>
+    <ul>
+      <li><strong>Authorised resellers</strong> — local demand, customer ownership, deployments</li>
+      <li><strong>Technology / regional distributors</strong> — stock, logistics, local invoicing; country/region exclusivity offered</li>
+      <li><strong>System / enterprise integrators</strong> — infrastructure and enterprise rollouts</li>
+      <li><strong>Installation specialists &amp; deployment partners</strong> — on-site install, field deployment, maintenance</li>
+      <li><strong>Consultants</strong> — planning and project specification</li>
+      <li><strong>Nationwide field-service partners</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="notify" style="margin-top:0.9rem">
+  <h5>Ecosystem scale signals (FootfallCam only)</h5>
+  <ul>
+    <li><strong>200+ countries</strong> with successful deployments</li>
+    <li><strong>10,000+ locations</strong> worldwide</li>
+    <li><strong>30,000+ businesses</strong> supported together with partners</li>
+    <li>“Global-domestic” model: FootfallCam supplies the platform; <strong>partners lead local sales, deployment, and support</strong></li>
+    <li>Exact headcount of resellers / distributors / SI partners is <strong>not published</strong> as a single roster total</li>
+  </ul>
+</div>
+
+<p class="side-note" style="margin-top:1.4rem">Public URLs and filing links for this section live in <a href="#market-validation-refs">Addendum — Reference</a>.</p>
+
+    </section>
+
+    <!-- 08 PROJECT STATUS -->
+    <section class="section flow page-start" id="page-7" data-nav-label="08 · Project status">
+      <div class="section-head"><span class="section-num">08</span><h2>Project status</h2></div>
+      <div class="kicker">Product readiness and partners from the July 2026 business-plan primer, plus the capital and growth path restated in the same seed-ladder language as sections 05–06. Team started July 2024; working prototype in under six months. Five of six products are beta-ready.</div>
+
+      <h3>The six products</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Job</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>TalosVision Presence</strong></td>
+            <td>Automatic attendance with face + QR/NFC check-in. Replaces paper timesheets and badge swipes.</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>TalosVision Signage</strong></td>
+            <td>Digital screens that change content based on who is watching (age, gender). Measurable advertising.</td>
+          </tr>
+          <tr>
+            <td><strong>TalosVision Vradar</strong></td>
+            <td>Alert brain: rules such as crowd thresholds that fire mobile, email, or other actions. Powers the rest of the stack.</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>TalosVision Gate</strong></td>
+            <td>Entrance and exit monitoring. Counts people in and out; flags suspicious faces in real time.</td>
+          </tr>
+          <tr>
+            <td><strong>TalosVision Sentinel</strong></td>
+            <td>Wearable camera glasses + drones for VIP / bodyguard teams. Spots persons of interest in a crowd.</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>TalosVision Matrix</strong></td>
+            <td>One dashboard across dozens of sites. Franchise chains, shipping fleets, multi-location businesses.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="side-note">Status: five of six products beta-ready and with design partners for real-world testing (Q3 2026).</p>
+
+      <h3>Current milestones</h3>
+      <ul>
+        <li><strong>July 2024:</strong> Working prototype delivered in under six months.</li>
+        <li><strong>Q3 2026:</strong> Five of six products beta-ready and in the hands of design partners.</li>
+        <li><strong>Two distribution partners signed:</strong> TMA (TalosVision-branded) and NewGen Group (white-label). Both early-stage, pursuing hot leads across municipalities, enterprises, and maritime clients.</li>
+        <li><strong>Deloitte engagement:</strong> NewGen has laid groundwork for a demo with Deloitte Greece; presentation to the Deloitte EMEA Cyber Security Committee tentatively scheduled for September 2026.</li>
+        <li><strong>LG International hot lead:</strong> TMA is positioning TalosVision for a European municipality and has identified a high-potential early-stage lead with LG International — major upside if it converts.</li>
+      </ul>
+
+      <h3>Capital and growth path</h3>
+      <p>Same seed ladder as section 05: burn floor first, then how much speed to buy. Extra capital does not rewrite unit economics — it buys earlier pilots, denser sales, and the footprint steps in section 06. Instrument: convertible note or SAFE across scenarios.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Horizon</th>
+            <th>Plan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Seed · Burn floor · $500K</strong></td>
+            <td>Year-1 ops floor: launch, first pilots, lean runway. Personnel / marketing / tech / ops covered; Greek unit as EU pilot. Typical next: Series A / growth ~$700K–$1M after traction.</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>Seed · Base · $1M</strong></td>
+            <td>Burn covered, plus fuller GTM. Plan terms: ~25% at $3M pre ($4M post). Target: 5–10 pilots, $50–100K ARR, 50-lead pipeline, 2–3 partners; formal Greek + U.S. units. Typical next: Series A $2–3M on $8–12M pre (Q3–Q4 2026).</td>
+          </tr>
+          <tr>
+            <td><strong>Seed · Accelerate · $2.5M</strong></td>
+            <td>Same core economics, earlier scale: denser sales and multi-site footprint in the seed window; Greek + U.S. units and London representation. Series A still available for land-and-expand; larger seed compresses time to that raise.</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>Series A</strong></td>
+            <td>Size and timing scale with seed choice: ~$700K–$1M after burn-floor traction; $2–3M on the base path; larger seed still leaves Series A for land-and-expand. Use of proceeds: dedicated sales, marketing ramp, path toward ~200 customers.</td>
+          </tr>
+          <tr>
+            <td><strong>2027</strong></td>
+            <td>~$1M revenue · 50 B2B · ~600 consumer users — first commercial proof after seed launch of the five beta-ready products.</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>2028</strong></td>
+            <td>~$8M revenue · 200 B2B · 6,000+ consumer — breakeven. Capital above burn accelerates arrival; unit economics stay the same.</td>
+          </tr>
+          <tr>
+            <td><strong>2029</strong></td>
+            <td>~$26M revenue · 500 B2B · 20,000+ consumer — solidly profitable on the three motions (B2C Light, B2B Starter / Pro, Enterprise).</td>
+          </tr>
+          <tr class="row-accent">
+            <td><strong>2030–2031</strong></td>
+            <td>Exit path: IPO or strategic acquisition at $500M–$1B (plan target range).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Why this path is underwritable</h3>
+      <ul>
+        <li><strong>Products are built, not imagined:</strong> Five of six apps exist as working beta. Capital on the seed ladder buys selling what works — computer vision, recognition, and alert automation are already done — not building from scratch.</li>
+        <li><strong>Distribution is already on board:</strong> TMA and NewGen are signed partners pursuing leads, not letters of intent. That de-risks the first ~50 paying customers and the base-seed pipeline target.</li>
+        <li><strong>Deloitte is a force multiplier in waiting:</strong> EMEA Cyber Security Committee presentation tentatively on the calendar for September 2026.</li>
+        <li><strong>LG International is a global-scale multiplier:</strong> Early-stage hot lead, not a closed deal. A win with LG’s trading and investment arm can unlock manufacturing, logistics, retail, and government supply-chain distribution and open other Korean / Asian conglomerate doors.</li>
+        <li><strong>Burn floor first, then speed:</strong> Underwrite $500K ops, then choose $1M or $2.5M for how fast footprint and GTM stand up. CAC, LTV, and payback in How it is sold hold across all three seed scenarios.</li>
+      </ul>
+      <p class="side-note">Seed scenarios and footprint detail: sections 05–06. TAM share, CAC / LTV, and package pricing: How it is sold and Addendum B. Growth years and exit ranges from talosvision-web/bp/onepager/primer.html (July 2026), restated on the seed ladder.</p>
+    </section>
+
+    <!-- 08 ADDENDUM B — MARKET SOURCES -->
+    <section class="section flow page-start" id="page-8" data-nav-label="09 · Reference">
+      <div class="section-head"><span class="section-num">09</span><h2>Addendum — Reference</h2></div>
+      <div class="kicker">Public references for How it is sold (addressable pockets) and for Market validation (FootfallCam). Enterprise segment dollars are TalosVision plan targets, not external census counts.</div>
+
+      <ol class="addendum-list">
+        <li id="ref-1">
+          <span class="ref-num">[1]</span>
+          <div>
+            <span class="ref-label">U.S. Census CBP 2023 · NAICS 541613</span>
+            <span class="ref-use">B2C · ~52K marketing consulting establishments</span>
+            <a href="https://naicscodes.org/industry/54161-management-consulting-services/" target="_blank" rel="noopener noreferrer">https://naicscodes.org/industry/54161-management-consulting-services/</a>
+          </div>
+        </li>
+        <li id="ref-2">
+          <span class="ref-num">[2]</span>
+          <div>
+            <span class="ref-label">U.S. Census ACS 2024</span>
+            <span class="ref-use">B2C · ~87M owner-occupied homes</span>
+            <a href="https://data.census.gov/table/ACSDT1Y2024.C25075" target="_blank" rel="noopener noreferrer">https://data.census.gov/table/ACSDT1Y2024.C25075</a>
+          </div>
+        </li>
+        <li id="ref-3">
+          <span class="ref-num">[3]</span>
+          <div>
+            <span class="ref-label">Industry reports 2024 (CRE Daily)</span>
+            <span class="ref-use">B2C · ~0.8M U.S. Airbnb hosts</span>
+            <a href="https://www.credaily.com/briefs/the-political-influence-of-short-term-rentals-is-growing/" target="_blank" rel="noopener noreferrer">https://www.credaily.com/briefs/the-political-influence-of-short-term-rentals-is-growing/</a>
+          </div>
+        </li>
+        <li id="ref-4">
+          <span class="ref-num">[4]</span>
+          <div>
+            <span class="ref-label">NASCO 2024 white paper</span>
+            <span class="ref-use">B2C &amp; B2B · ~8K U.S. contract security companies</span>
+            <a href="https://www.nasco.org/wp-content/uploads/2024/09/2024_White_Paper.pdf" target="_blank" rel="noopener noreferrer">https://www.nasco.org/wp-content/uploads/2024/09/2024_White_Paper.pdf</a>
+          </div>
+        </li>
+        <li id="ref-5">
+          <span class="ref-num">[5]</span>
+          <div>
+            <span class="ref-label">U.S. Census Economic Census</span>
+            <span class="ref-use">B2C · ~1.0M+ retail establishments</span>
+            <a href="https://data.census.gov/table/ECNBASIC2022.EC2244BASIC" target="_blank" rel="noopener noreferrer">https://data.census.gov/table/ECNBASIC2022.EC2244BASIC</a>
+          </div>
+        </li>
+        <li id="ref-6">
+          <span class="ref-num">[6]</span>
+          <div>
+            <span class="ref-label">CBP / NAICS 7225</span>
+            <span class="ref-use">B2C · ~0.6M restaurant / eating-place establishments</span>
+            <a href="https://naicscodes.org/industry-group/7225-restaurants-and-other-eating-places/" target="_blank" rel="noopener noreferrer">https://naicscodes.org/industry-group/7225-restaurants-and-other-eating-places/</a>
+          </div>
+        </li>
+        <li id="ref-7">
+          <span class="ref-num">[7]</span>
+          <div>
+            <span class="ref-label">NCES SY 2024–25</span>
+            <span class="ref-use">B2B · ~99K public K–12 schools</span>
+            <a href="https://nces.ed.gov/ccd/tables/202425_summary_3.asp" target="_blank" rel="noopener noreferrer">https://nces.ed.gov/ccd/tables/202425_summary_3.asp</a>
+          </div>
+        </li>
+        <li id="ref-8">
+          <span class="ref-num">[8]</span>
+          <div>
+            <span class="ref-label">IBISWorld 2024</span>
+            <span class="ref-use">B2B · ~38K general warehousing &amp; storage businesses</span>
+            <a href="https://www.ibisworld.com/united-states/number-of-businesses/general-warehousing-storage/1224/" target="_blank" rel="noopener noreferrer">https://www.ibisworld.com/united-states/number-of-businesses/general-warehousing-storage/1224/</a>
+          </div>
+        </li>
+      </ol>
+
+<h3 id="market-validation-refs">Market validation resources</h3>
+<p class="side-note">Public sources behind the Market validation section (TalosVision vs FootfallCam). Results are summarised in the main primer; links collected here for diligence.</p>
+<ol class="addendum-list" start="9">
+  <li id="ref-mv-1">
+    <span class="ref-num">[MV1]</span>
+    <div>
+      <span class="ref-label">FootfallCam — homepage</span>
+      <span class="ref-use">Industries, partner stats (30,000+ businesses; retail / mall / office / transport counts)</span>
+      <a href="https://www.footfallcam.com/" target="_blank" rel="noopener noreferrer">https://www.footfallcam.com/</a>
+    </div>
+  </li>
+  <li id="ref-mv-2">
+    <span class="ref-num">[MV2]</span>
+    <div>
+      <span class="ref-label">FootfallCam — V9 software suites / features</span>
+      <span class="ref-use">People-counting metrics, apps, servers, privacy claims</span>
+      <a href="https://www.footfallcam.com/Product/FootfallCam-Software-Suites-Features" target="_blank" rel="noopener noreferrer">https://www.footfallcam.com/Product/FootfallCam-Software-Suites-Features</a>
+    </div>
+  </li>
+  <li id="ref-mv-3">
+    <span class="ref-num">[MV3]</span>
+    <div>
+      <span class="ref-label">FootfallCam — Centroid 64 / CCTV integration</span>
+      <span class="ref-use">RTSP/ONVIF on existing cameras</span>
+      <a href="https://www.footfallcam.com/Product/FootfallCam-Centroid-64-Integration" target="_blank" rel="noopener noreferrer">https://www.footfallcam.com/Product/FootfallCam-Centroid-64-Integration</a>
+    </div>
+  </li>
+  <li id="ref-mv-4">
+    <span class="ref-num">[MV4]</span>
+    <div>
+      <span class="ref-label">FootfallCam — How to Buy / Contact</span>
+      <span class="ref-use">Contact-sales and distributor GTM</span>
+      <a href="https://www.footfallcam.com/Home/HowToBuy" target="_blank" rel="noopener noreferrer">https://www.footfallcam.com/Home/HowToBuy</a>
+    </div>
+  </li>
+  <li id="ref-mv-5">
+    <span class="ref-num">[MV5]</span>
+    <div>
+      <span class="ref-label">FootfallCam — Retail &amp; mall pricing pages</span>
+      <span class="ref-use">Starting package bands ($550–$1,700 retail; $3,300–$9,970 mall)</span>
+      <a href="https://www.footfallcam.com/Industries/RetailPricing" target="_blank" rel="noopener noreferrer">https://www.footfallcam.com/Industries/RetailPricing</a>
+    </div>
+  </li>
+  <li id="ref-mv-6">
+    <span class="ref-num">[MV6]</span>
+    <div>
+      <span class="ref-label">FootfallCam — About / Partnerships / Partner Program</span>
+      <span class="ref-use">Staff marketing claims; reseller / distributor / SI roles</span>
+      <a href="https://www.footfallcam.com/Home/About" target="_blank" rel="noopener noreferrer">https://www.footfallcam.com/Home/About</a>
+    </div>
+  </li>
+  <li id="ref-mv-7">
+    <span class="ref-num">[MV7]</span>
+    <div>
+      <span class="ref-label">FootfallCam — 200+ countries blog</span>
+      <span class="ref-use">Global install footprint (10,000+ locations)</span>
+      <a href="https://www.footfallcam.com/blog/2025/07/footfallcam-powers-businesses-in-200plus-countries-and-growing/" target="_blank" rel="noopener noreferrer">https://www.footfallcam.com/blog/2025/07/footfallcam-powers-businesses-in-200plus-countries-and-growing/</a>
+    </div>
+  </li>
+  <li id="ref-mv-8">
+    <span class="ref-num">[MV8]</span>
+    <div>
+      <span class="ref-label">Companies House — FOOTFALLCAM UK LIMITED 04471557</span>
+      <span class="ref-use">UK entity filings; employee counts; abridged accounts</span>
+      <a href="https://find-and-update.company-information.service.gov.uk/company/04471557" target="_blank" rel="noopener noreferrer">https://find-and-update.company-information.service.gov.uk/company/04471557</a>
+    </div>
+  </li>
+  <li id="ref-mv-9">
+    <span class="ref-num">[MV9]</span>
+    <div>
+      <span class="ref-label">Pomanda / CompanyCheck / CompanyPulse / Endole</span>
+      <span class="ref-use">Estimated P&amp;L series and balance-sheet extracts used for USD charts</span>
+      <a href="https://pomanda.com/company/04471557/footfallcam-uk-limited" target="_blank" rel="noopener noreferrer">https://pomanda.com/company/04471557/footfallcam-uk-limited</a>
+    </div>
+  </li>
+  <li id="ref-mv-10">
+    <span class="ref-num">[MV10]</span>
+    <div>
+      <span class="ref-label">Tracxn / PitchBook (FootfallCam)</span>
+      <span class="ref-use">Unfunded / private stage; no disclosed VC rounds</span>
+      <a href="https://tracxn.com/d/companies/footfallcam/__mu6MA_wd4d9N4s2V49qrdZDmdtRSG3tMZu7BrNnoV6c" target="_blank" rel="noopener noreferrer">https://tracxn.com/d/companies/footfallcam/…</a>
+    </div>
+  </li>
+</ol>
+
+      <p class="side-note">Cited from cases brochure commercial packages (B2C Light, B2B Starter &amp; Professional). Multi-location retail / office ACV path $12–36K and enterprise segment map dollars are TalosVision plan unit economics, not third-party census links.</p>
+    </section>
+  </div>
+
+  <nav class="doc-nav no-print" aria-label="Page navigation">
+    <button type="button" class="doc-nav-prev">← Previous</button>
+    <div class="doc-nav-mid">
+      <span class="doc-nav-label"></span>
+      <button type="button" class="doc-nav-pdf" onclick="window.print()">PDF</button>
+    </div>
+    <button type="button" class="doc-nav-next">Next →</button>
+  </nav>
+<script>
+(function () {
+  var pages = Array.prototype.slice.call(document.querySelectorAll(".sheet > section[data-nav-label]"));
+  if (!pages.length) return;
+  var prevBtn = document.querySelector(".doc-nav-prev");
+  var nextBtn = document.querySelector(".doc-nav-next");
+  var labelEl = document.querySelector(".doc-nav-label");
+  var index = 0;
+
+  function currentIndex() {
+    var mid = window.scrollY + window.innerHeight * 0.28;
+    var best = 0;
+    for (var i = 0; i < pages.length; i++) {
+      if (pages[i].offsetTop <= mid) best = i;
+    }
+    return best;
+  }
+
+  function sync() {
+    index = currentIndex();
+    var page = pages[index];
+    labelEl.textContent = (index + 1) + " / " + pages.length + " · " + page.getAttribute("data-nav-label");
+    prevBtn.disabled = index <= 0;
+    nextBtn.disabled = index >= pages.length - 1;
+  }
+
+  function go(delta) {
+    var next = Math.max(0, Math.min(pages.length - 1, currentIndex() + delta));
+    pages[next].scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  prevBtn.addEventListener("click", function () { go(-1); });
+  nextBtn.addEventListener("click", function () { go(1); });
+  window.addEventListener("scroll", sync, { passive: true });
+  window.addEventListener("resize", sync);
+  sync();
+})();
+</script>
+</body>
+</html>

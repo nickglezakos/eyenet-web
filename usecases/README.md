@@ -1,27 +1,23 @@
-# EyeNet use cases (print-only)
+# EyeNet use cases wiki
 
-Separate bilingual print site with **only** the featured use cases from `value/`.
-Full-width visuals · one use case per printable page.
+Customer-facing slice of `value/`:
 
-- English: `/` (Print → Save as PDF)
-- Greek: `/el/`
+- Home
+- What is EyeNet (no wiki deep-links)
+- Most Valuable Cases (as in value)
+- Who uses EyeNet (as in value)
+- Commercial Packages (pricing marked indicative `*`; TAM / financial model / internal notes removed)
 
-## Rebuild
-
-After updating the value print brochure:
-
-```bash
-python3 usecases/scripts/build_cases_print.py
-```
+Not included: Innovation, financial TAM panels, wiki.eyenet-vision.com chips.
 
 ## Preview
 
 ```bash
 cd usecases
-python3 -m http.server 8769
-# open http://127.0.0.1:8769/ and http://127.0.0.1:8769/el/
+python3 -m http.server 8769 --bind 127.0.0.1
+# open http://127.0.0.1:8769/
 ```
 
-## Deploy
+## Sync note
 
-Cloudflare Pages project with root directory `usecases` (separate from `value.eyenet-vision.com`).
+Do **not** blindly rsync `value/` → `usecases/` after this trim — that would restore Innovation, wiki links, and financials. Re-apply this transform (or edit here) after pulling value updates.
