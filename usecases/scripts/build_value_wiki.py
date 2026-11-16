@@ -1137,9 +1137,9 @@ UI = {
             ("01", "what", "EyeNet understands what it sees and acts on it automatically",
              "Edge intelligence, action automation, and hardware-bound scale."),
             ("02", "why", "Most Valuable Cases",
-             "Featured use cases across HR, signage, shop floor, family protection, home care, security, shipping, and industrial sites."),
+             "Featured use cases across HR, signage, shop floor, family, care, security, shipping, enterprise perimeter, and smart city."),
             ("03", "with-eyenet", "Who uses EyeNet",
-             "Strong outcomes for fleet, industrial sites, care, HR, security, family, signage, and shop-floor operators."),
+             "Strong outcomes for fleet, industrial sites, care, HR, security, family, signage, shop-floor, CSO, and city ops."),
             ("04", "packages", "Commercial Packages",
              "B2C Light, B2B Starter & Professional, and Enterprise motions."),
             ("05", "innovation", "Simple yet powerful innovation",
@@ -1225,9 +1225,9 @@ UI = {
             ("01", "what", "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
              "Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware."),
             ("02", "why", "Ενδεικτικές περιπτώσεις χρήσης",
-             "Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, κατάστημα, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία."),
+             "Επιλεγμένες περιπτώσεις σε HR, signage, κατάστημα, οικογένεια, φροντίδα, ασφάλεια, ναυτιλία, enterprise περίμετρο και smart city."),
             ("03", "with-eyenet", "Ποιος χρησιμοποιεί το EyeNet",
-             "Δυνατά αποτελέσματα για στόλο, βιομηχανικούς χώρους, φροντίδα, HR, ασφάλεια, οικογένεια, signage και κατάστημα."),
+             "Δυνατά αποτελέσματα για στόλο, βιομηχανία, φροντίδα, HR, ασφάλεια, οικογένεια, signage, κατάστημα, CSO και city ops."),
             ("04", "packages", "Εμπορικά πακέτα",
              "B2C Light, B2B Starter & Professional και Enterprise."),
             ("05", "innovation", "Απλή κι όμως ισχυρή καινοτομία",
@@ -2584,10 +2584,80 @@ def inject_print_case_overrides(html: str, lang: str) -> str:
         body = path.read_text(encoding="utf-8").rstrip() + "\n"
         html, n = re.subn(pattern, body, html, count=1, flags=re.S)
         if n != 1:
-            # Override-only cases may already be embedded as .case-page in print HTML.
+            # Override-only cases (08–09) are appended below when absent from brochure source.
             if "enterprise-perimeter" in fname or "smart-city" in fname:
                 continue
             raise SystemExit(f"Could not inject print override {fname} ({lang})")
+    return _append_missing_print_cases(html, lang)
+
+
+def _append_missing_print_cases(html: str, lang: str) -> str:
+    """Insert Cases 08–09 after shipping when brochure source lacks them."""
+    why_h2 = WHY_HEADING[lang]
+    specs = [
+        (
+            f"why-enterprise-perimeter-{lang}.html",
+            "page-enterprise-perimeter",
+            "8",
+            (
+                "Perimeters that detect, verify, and dispatch"
+                if lang == "en"
+                else "Περίμετροι που ανιχνεύουν, επαληθεύουν και αναπτύσσουν"
+            ),
+            True,  # persona alt
+        ),
+        (
+            f"why-smart-city-{lang}.html",
+            "page-smart-city",
+            "9",
+            (
+                "City cameras that decide and act"
+                if lang == "en"
+                else "Κάμερες πόλης που αποφασίζουν και δρουν"
+            ),
+            False,
+        ),
+    ]
+    blocks: list[str] = []
+    for fname, page_id, num, title, want_alt in specs:
+        if re.search(re.escape(title), html):
+            continue
+        path = CONTENT_DIR / fname
+        if not path.exists():
+            raise SystemExit(f"Missing {fname} for print cases ({lang})")
+        persona = path.read_text(encoding="utf-8").rstrip()
+        persona = re.sub(
+            r'(<h4><span class="n">)\d+(</span>)',
+            rf"\g<1>{num}\2",
+            persona,
+            count=1,
+        )
+        if want_alt and 'class="persona alt"' not in persona:
+            persona = persona.replace('class="persona"', 'class="persona alt"', 1)
+        elif not want_alt:
+            persona = persona.replace('class="persona alt"', 'class="persona"', 1)
+        blocks.append(
+            f'<section class="section flow page-start" id="{page_id}" '
+            f'data-nav-label="05 · {title}">\n'
+            f'      <div class="section-head"><span class="section-num">02</span>'
+            f"<h2>{why_h2}</h2></div>\n\n"
+            f"      {persona}\n"
+            f"</section>"
+        )
+    if not blocks:
+        return html
+    insert = "\n\n".join(blocks)
+    # After shipping (page-11), before first Who / With section (section-num 03).
+    html, n = re.subn(
+        r'(id="page-11"[^>]*>[\s\S]*?</section>)(\s*)'
+        r'(<section\b[^>]*>\s*<div class="section-head">\s*'
+        r'<span class="section-num">03</span>)',
+        rf"\1\n\n{insert}\n\n\3",
+        html,
+        count=1,
+    )
+    if n != 1:
+        raise SystemExit(f"Could not append cases 08–09 to print ({lang})")
     return html
 
 

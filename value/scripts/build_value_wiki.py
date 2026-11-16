@@ -2298,6 +2298,20 @@ def inject_print_case_overrides(html: str, lang: str) -> str:
             r"Ποιος είναι στην θέση του\. Ποιος στον χώρο\. Ποιος έπεσε\.|Ναυτιλία[^<]*)</h4>.*?"
             r"(?=</section>)",
         ),
+        (
+            f"why-enterprise-perimeter-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:Perimeters that detect, verify, and dispatch|Περίμετροι που ανιχνεύουν, επαληθεύουν και αναπτύσσουν|"
+            r"Enterprise perimeter[^<]*)</h4>.*?"
+            r"(?=</section>)",
+        ),
+        (
+            f"why-smart-city-{lang}.html",
+            r'<div class="persona(?: alt)?">\s*<h4><span class="n">\d+</span>\s*'
+            r"(?:City cameras that decide and act|Κάμερες πόλης που αποφασίζουν και δρουν|"
+            r"Smart city[^<]*)</h4>.*?"
+            r"(?=</section>)",
+        ),
     ]
     for fname, pattern in overrides:
         path = CONTENT_DIR / fname
@@ -2306,7 +2320,78 @@ def inject_print_case_overrides(html: str, lang: str) -> str:
         body = path.read_text(encoding="utf-8").rstrip() + "\n"
         html, n = re.subn(pattern, body, html, count=1, flags=re.S)
         if n != 1:
+            if "enterprise-perimeter" in fname or "smart-city" in fname:
+                continue
             raise SystemExit(f"Could not inject print override {fname} ({lang})")
+    return _append_missing_print_cases(html, lang)
+
+
+def _append_missing_print_cases(html: str, lang: str) -> str:
+    """Insert Cases 08–09 after shipping when brochure source lacks them."""
+    why_h2 = WHY_HEADING[lang]
+    specs = [
+        (
+            f"why-enterprise-perimeter-{lang}.html",
+            "page-enterprise-perimeter",
+            "8",
+            (
+                "Perimeters that detect, verify, and dispatch"
+                if lang == "en"
+                else "Περίμετροι που ανιχνεύουν, επαληθεύουν και αναπτύσσουν"
+            ),
+            True,
+        ),
+        (
+            f"why-smart-city-{lang}.html",
+            "page-smart-city",
+            "9",
+            (
+                "City cameras that decide and act"
+                if lang == "en"
+                else "Κάμερες πόλης που αποφασίζουν και δρουν"
+            ),
+            False,
+        ),
+    ]
+    blocks: list[str] = []
+    for fname, page_id, num, title, want_alt in specs:
+        if re.search(re.escape(title), html):
+            continue
+        path = CONTENT_DIR / fname
+        if not path.exists():
+            raise SystemExit(f"Missing {fname} for print cases ({lang})")
+        persona = path.read_text(encoding="utf-8").rstrip()
+        persona = re.sub(
+            r'(<h4><span class="n">)\d+(</span>)',
+            rf"\g<1>{num}\2",
+            persona,
+            count=1,
+        )
+        if want_alt and 'class="persona alt"' not in persona:
+            persona = persona.replace('class="persona"', 'class="persona alt"', 1)
+        elif not want_alt:
+            persona = persona.replace('class="persona alt"', 'class="persona"', 1)
+        blocks.append(
+            f'<section class="section flow page-start" id="{page_id}" '
+            f'data-nav-label="05 · {title}">\n'
+            f'      <div class="section-head"><span class="section-num">02</span>'
+            f"<h2>{why_h2}</h2></div>\n\n"
+            f"      {persona}\n"
+            f"</section>"
+        )
+    if not blocks:
+        return html
+    insert = "\n\n".join(blocks)
+    html, n = re.subn(
+        r'(id="page-11"[^>]*>[\s\S]*?</section>)(\s*)'
+        r'(<section\b[^>]*>\s*<div class="section-head">\s*'
+        r'<span class="section-num">03</span>)',
+        rf"\1\n\n{insert}\n\n\3",
+        html,
+        count=1,
+    )
+    if n != 1:
+        raise SystemExit(f"Could not append cases 08–09 to print ({lang})")
     return html
 
 

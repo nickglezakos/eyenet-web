@@ -12,6 +12,11 @@ VALUE = REPO / "value"
 OUT = REPO / "usecases"
 
 SRC = {
+    # Prefer local usecases print (has Cases 08–09); fall back to value.
+    "en": OUT / "print" / "index.html",
+    "el": OUT / "el" / "print" / "index.html",
+}
+SRC_FALLBACK = {
     "en": VALUE / "print" / "index.html",
     "el": VALUE / "el" / "print" / "index.html",
 }
@@ -24,6 +29,8 @@ CASE_ORDER_EN = [
     "page-7",   # Home care
     "page-9",   # Security
     "page-11",  # Shipping
+    "page-enterprise-perimeter",  # Enterprise perimeter
+    "page-smart-city",            # Smart city
 ]
 
 # Greek print keeps the same section ids as EN for these cases.
@@ -38,15 +45,15 @@ META = {
         "cover_lead": "",
         "meta": [
             ("Type", "Cases Brochure"),
-            ("Date", "2 November 2026"),
-            ("Structure", "Seven featured cases"),
+            ("Date", "16 November 2026"),
+            ("Structure", "Nine featured cases"),
             ("Deployment", "On-Premises / VPN"),
         ],
         "home_num": "00",
         "home_h2": "Most Valuable Cases",
         "home_lead": (
             "Featured use cases across HR, signage, shop floor, family protection, "
-            "home care, security, shipping, and industrial sites."
+            "home care, security, shipping, enterprise perimeter, and smart city."
         ),
         "toolbar_back": "",
         "toolbar_note": "Use your browser’s Print dialog and choose <strong>Save as PDF</strong>.",
@@ -67,15 +74,15 @@ META = {
         "cover_lead": "",
         "meta": [
             ("Τύπος", "Brochure περιπτώσεων"),
-            ("Ημερομηνία", "2 Νοεμβρίου 2026"),
-            ("Δομή", "Επτά επιλεγμένες περιπτώσεις"),
+            ("Ημερομηνία", "16 Νοεμβρίου 2026"),
+            ("Δομή", "Εννέα επιλεγμένες περιπτώσεις"),
             ("Ανάπτυξη", "On-Premises / VPN"),
         ],
         "home_num": "00",
         "home_h2": "Ενδεικτικές περιπτώσεις χρήσης",
         "home_lead": (
             "Επιλεγμένες περιπτώσεις σε HR, ψηφιακή σήμανση, χώρο πώλησης, οικογενειακή προστασία, "
-            "κατ’ οίκον φροντίδα, ασφάλεια, ναυτιλία και βιομηχανικές εγκαταστάσεις."
+            "κατ’ οίκον φροντίδα, ασφάλεια, ναυτιλία, enterprise περίμετρο και smart city."
         ),
         "toolbar_back": "",
         "toolbar_note": "Χρησιμοποιήστε Print και επιλέξτε <strong>Save as PDF</strong>.",
@@ -564,7 +571,10 @@ def render_case_page(section_html: str, num: int, nav_label: str, sid: str) -> s
 
 def build_lang(lang: str) -> str:
     ui = META[lang]
-    src_html = SRC[lang].read_text(encoding="utf-8")
+    src_path = SRC[lang] if SRC[lang].exists() else SRC_FALLBACK[lang]
+    if not src_path.exists():
+        raise SystemExit(f"Missing print source for {lang}: {src_path}")
+    src_html = src_path.read_text(encoding="utf-8")
     style = extract_head_styles(src_html)
     # Inject layout CSS before closing </style>
     if "</style>" in style:
