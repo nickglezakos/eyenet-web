@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EyeNet Flashcards</title>
+  <meta name="description" content="EyeNet use-case flashcards — Netflix-style showcase strip.">
+  <link rel="icon" href="assets/eyenet-dark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cyan: #22d3ee;
+      --rail-pad: clamp(1rem, 4vw, 3.5rem);
+      --card-w: min(380px, 82vw);
+      --gap: 1rem;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #05080e;
+      color: #fff;
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .showcase {
+      position: relative;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(900px 420px at 15% 20%, rgba(25, 118, 210, 0.16), transparent 60%),
+        radial-gradient(700px 380px at 85% 70%, rgba(34, 211, 238, 0.08), transparent 55%),
+        #05080e;
+    }
+
+    .rail-wrap {
+      position: relative;
+      width: 100%;
+      padding: 2rem 0;
+    }
+
+    .rail {
+      display: flex;
+      gap: var(--gap);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--rail-pad);
+      padding: 1.25rem var(--rail-pad) 1.75rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+    }
+    .rail::-webkit-scrollbar { display: none; }
+
+    .flash {
+      --accent: var(--cyan);
+      flex: 0 0 var(--card-w);
+      width: var(--card-w);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #071018;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      color: #fff;
+      transform-origin: center center;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .flash:hover,
+    .flash:focus-within {
+      transform: scale(1.035);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.55);
+      z-index: 2;
+    }
+
+    .flash-head {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 0.95rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, #0b1522, #071018);
+    }
+    .flash-logo {
+      height: 14px;
+      width: auto;
+      flex: 0 0 auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.95;
+    }
+    .flash-motto {
+      margin: 0;
+      flex: 1 1 auto;
+      min-width: 0;
+      color: var(--accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .flash-badge {
+      flex: 0 0 auto;
+      padding: 0.2rem 0.45rem;
+      background: rgba(25, 118, 210, 0.92);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .flash-visual {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #03080f;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .flash-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.45s ease;
+    }
+    .flash:hover .flash-visual img { transform: scale(1.04); }
+
+    .flash-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem 1rem 1.15rem;
+      background: linear-gradient(180deg, #0a1522 0%, #071018 100%);
+    }
+    .flash-hook {
+      margin: 0;
+      font-family: Syne, sans-serif;
+      font-size: clamp(1.35rem, 3.8vw, 1.85rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      text-wrap: balance;
+    }
+    .flash-points {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.38rem;
+    }
+    .flash-points li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-size: clamp(0.9rem, 2.6vw, 1rem);
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.3;
+    }
+    .flash-points li::before {
+      content: "";
+      flex: 0 0 0.42rem;
+      width: 0.42rem;
+      height: 0.42rem;
+      margin-top: 0.3rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+    }
+    .flash-cta {
+      margin: 0;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.78);
+      font-size: clamp(0.88rem, 2.4vw, 0.98rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+    }
+    .flash-cta em {
+      font-style: normal;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .flash[data-tone="presence"] { --accent: #22d3ee; }
+    .flash[data-tone="signage"] { --accent: #38bdf8; }
+    .flash[data-tone="shop"] { --accent: #34d399; }
+    .flash[data-tone="home"] { --accent: #fbbf24; }
+    .flash[data-tone="care"] { --accent: #fb7185; }
+    .flash[data-tone="security"] { --accent: #60a5fa; }
+    .flash[data-tone="shipping"] { --accent: #2dd4bf; }
+    .flash[data-tone="perimeter"] { --accent: #f87171; }
+    .flash[data-tone="city"] { --accent: #a78bfa; }
+
+    .rail-btn {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      translate: 0 -50%;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(8, 16, 28, 0.72);
+      color: #fff;
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, background 0.2s ease;
+    }
+    .rail-btn:hover { background: rgba(25, 118, 210, 0.95); }
+    .rail-btn.prev { left: 0.65rem; }
+    .rail-btn.next { right: 0.65rem; }
+    .rail-wrap:hover .rail-btn,
+    .rail-btn:focus-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .rail-btn[disabled] { opacity: 0.2; pointer-events: none; }
+
+    @media (hover: none) {
+      .rail-btn { opacity: 0.7; pointer-events: auto; }
+      .flash:hover { transform: none; }
+      .flash:hover .flash-visual img { transform: none; }
+      :root { --card-w: min(320px, 86vw); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flash, .flash-visual img, .rail-btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="showcase" aria-label="EyeNet use-case flashcards">
+    <div class="rail-wrap">
+      <button class="rail-btn prev" type="button" aria-label="Previous cards">‹</button>
+      <div class="rail" id="rail" tabindex="0" aria-label="Flashcard strip">
+
+        <figure class="flash" data-tone="presence" aria-label="Flashcard 01 Presence">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Presence without the chase</p>
+            <span class="flash-badge">01</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/hr-presence.png" alt="Presence — who is in and who is not">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">Who’s in. Who’s not.</h3>
+            <ul class="flash-points">
+              <li>Any camera · auto check-in</li>
+              <li>PC &amp; phone Presence apps</li>
+              <li>HubSpot grants · live</li>
+            </ul>
+            <p class="flash-cta"><em>Presence</em> without the badge chase.</p>
+          </div>
+        </figure>
+
+        <figure class="flash" data-tone="signage" aria-label="Flashcard 02 Signage">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Screens that earn their keep</p>
+            <span class="flash-badge">02</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/mall-signage.png" alt="Vision-adaptive digital signage">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">Screens that sell.</h3>
+            <ul class="flash-points">
+              <li>Read the room in ms</li>
+              <li>Playlists that adapt</li>
+              <li>Impressions you can prove</li>
+            </ul>
+            <p class="flash-cta"><em>Stop guessing.</em> Start measuring.</p>
+          </div>
+        </figure>
+
+        <figure class="flash" data-tone="shop" aria-label="Flashcard 03 Shop floor">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Floor truth. Local video</p>
+            <span class="flash-badge">03</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/shop-floor.jpg" alt="Shop floor movement intelligence">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">See how they move.</h3>
+            <ul class="flash-points">
+              <li>Counts · paths · heatmaps</li>
+              <li>Busy-zone alerts</li>
+              <li>Digests for managers</li>
+            </ul>
+            <p class="flash-cta"><em>Floor intel.</em> Video stays local.</p>
+          </div>
+        </figure>
+
+        <figure class="flash" data-tone="home" aria-label="Flashcard 04 Home">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Know without watching</p>
+            <span class="flash-badge">04</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/family-protection-home.jpg" alt="Home peace of mind with intelligent alerts">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">Peace of mind. Alerts that matter.</h3>
+            <ul class="flash-points">
+              <li>Door · motion · presence alerts</li>
+              <li>Away home · cottage · flat</li>
+              <li>Local video · no forced cloud</li>
+            </ul>
+            <p class="flash-cta"><em>Know</em> without watching.</p>
+          </div>
+        </figure>
+
+        <figure class="flash" data-tone="care" aria-label="Flashcard 05 Home care">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Hospital-grade. At home</p>
+            <span class="flash-badge">05</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/homecare-caregiver-presence.jpg" alt="Home care Virtual Ward safety">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">Care that sees.</h3>
+            <ul class="flash-points">
+              <li>Fall &amp; help-call alerts</li>
+              <li>Caregiver visit proof</li>
+              <li>Events → clinical stack</li>
+            </ul>
+            <p class="flash-cta"><em>Hospital-grade.</em> At home.</p>
+          </div>
+        </figure>
+
+        <figure class="flash" data-tone="security" aria-label="Flashcard 06 Security">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Coverage without headcount</p>
+            <span class="flash-badge">06</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/security.jpg" alt="Night security that never blinks">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">Night shifts that never blink.</h3>
+            <ul class="flash-points">
+              <li>Posts stay awake</li>
+              <li>Perimeter · Vradar</li>
+              <li>Timestamped evidence</li>
+            </ul>
+            <p class="flash-cta"><em>Coverage</em> without 1:1 headcount.</p>
+          </div>
+        </figure>
+
+        <figure class="flash" data-tone="shipping" aria-label="Flashcard 07 Shipping">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Works when the link dies</p>
+            <span class="flash-badge">07</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/shipping.jpg" alt="Shipping and industrial presence">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">Who’s onboard. Who’s on shift. Who fell.</h3>
+            <ul class="flash-points">
+              <li>Exact headcount · on shift</li>
+              <li>Fall alerts in special zones</li>
+              <li>Shore packs over thin links</li>
+            </ul>
+            <p class="flash-cta"><em>Works</em> when the link dies.</p>
+          </div>
+        </figure>
+
+        <figure class="flash" data-tone="perimeter" aria-label="Flashcard 08 Security perimeter">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Breach stopped at the fence</p>
+            <span class="flash-badge">08</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/restricted-area-protection.png" alt="Restricted area perimeter protection">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">The ring never sleeps.</h3>
+            <ul class="flash-points">
+              <li>Nodes on fence · gate · ring</li>
+              <li>Vradar motion · POI match</li>
+              <li>One view for the whole ring</li>
+            </ul>
+            <p class="flash-cta"><em>Breach</em> stopped at the fence.</p>
+          </div>
+        </figure>
+
+        <figure class="flash" data-tone="city" aria-label="Flashcard 09 Smart city">
+          <header class="flash-head">
+            <img class="flash-logo" src="assets/eyenet-dark.svg" alt="EyeNet">
+            <p class="flash-motto">Smart city. Edge-private</p>
+            <span class="flash-badge">09</span>
+          </header>
+          <div class="flash-visual">
+            <img src="assets/smart-city.jpg" alt="Smart city vision fabric over the skyline">
+          </div>
+          <div class="flash-body">
+            <h3 class="flash-hook">One fabric. Whole city.</h3>
+            <ul class="flash-points">
+              <li>Plazas · facilities · rings</li>
+              <li>Presence · alerts · Matrix</li>
+              <li>City cams · edge privacy</li>
+            </ul>
+            <p class="flash-cta"><em>Smart city.</em> Edge-private.</p>
+          </div>
+        </figure>
+
+      </div>
+      <button class="rail-btn next" type="button" aria-label="Next cards">›</button>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var rail = document.getElementById("rail");
+      var prev = document.querySelector(".rail-btn.prev");
+      var next = document.querySelector(".rail-btn.next");
+      if (!rail || !prev || !next) return;
+
+      function step() {
+        var card = rail.querySelector(".flash");
+        if (!card) return 320;
+        var styles = getComputedStyle(rail);
+        var gap = parseFloat(styles.columnGap || styles.gap) || 16;
+        return card.getBoundingClientRect().width + gap;
+      }
+
+      function updateButtons() {
+        var max = rail.scrollWidth - rail.clientWidth - 2;
+        prev.disabled = rail.scrollLeft <= 2;
+        next.disabled = rail.scrollLeft >= max;
+      }
+
+      function scrollByDir(dir) {
+        rail.scrollBy({ left: dir * step(), behavior: "smooth" });
+      }
+
+      prev.addEventListener("click", function () { scrollByDir(-1); });
+      next.addEventListener("click", function () { scrollByDir(1); });
+      rail.addEventListener("scroll", updateButtons, { passive: true });
+      window.addEventListener("resize", updateButtons);
+      updateButtons();
+
+      rail.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight") { e.preventDefault(); scrollByDir(1); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); scrollByDir(-1); }
+      });
+    })();
+  </script>
+</body>
+</html>
