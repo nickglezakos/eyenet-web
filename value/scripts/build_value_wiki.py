@@ -30,6 +30,11 @@ INNOVATION_HEADING = {
     "el": "Απλή κι όμως ισχυρή καινοτομία",
 }
 
+COMPETITION_HEADING = {
+    "en": "Competition by use case",
+    "el": "Ανταγωνισμός ανά περίπτωση χρήσης",
+}
+
 WHAT_HEADING = {
     "en": "EyeNet understands what it sees and acts on it automatically",
     "el": "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
@@ -57,12 +62,24 @@ PAGE_ORDER = [
     "why/home-care",
     "why/security",
     "why/shipping",
+    "why/enterprise-perimeter",
+    "why/smart-city",
     "with-eyenet",
     "packages",
     "packages/b2c",
     "packages/b2b",
     "packages/enterprise",
     "innovation",
+    "competition",
+    "competition/hr-presence",
+    "competition/mall",
+    "competition/shop-floor",
+    "competition/cottage",
+    "competition/home-care",
+    "competition/security",
+    "competition/shipping",
+    "competition/enterprise-perimeter",
+    "competition/smart-city",
 ]
 
 
@@ -104,6 +121,16 @@ WHY_CASE_TAXONOMY = {
         "en": ["shipping", "industrial"],
         "el": ["ναυτιλία", "βιομηχανία"],
     },
+    "enterprise-perimeter": {
+        "keys": ["security", "industrial", "office"],
+        "en": ["security", "industrial", "office"],
+        "el": ["ασφάλεια", "βιομηχανία", "γραφείο"],
+    },
+    "smart-city": {
+        "keys": ["city", "security", "industrial"],
+        "en": ["city", "security", "industrial"],
+        "el": ["πόλη", "ασφάλεια", "βιομηχανία"],
+    },
 }
 
 CATEGORY_FILTER_ORDER = [
@@ -115,6 +142,7 @@ CATEGORY_FILTER_ORDER = [
     "industrial",
     "shipping",
     "security",
+    "city",
     "marketing",
 ]
 
@@ -129,6 +157,7 @@ CATEGORY_FILTER_LABELS = {
         "industrial": "industrial",
         "shipping": "shipping",
         "security": "security",
+        "city": "city",
         "marketing": "marketing",
     },
     "el": {
@@ -141,6 +170,7 @@ CATEGORY_FILTER_LABELS = {
         "industrial": "βιομηχανία",
         "shipping": "ναυτιλία",
         "security": "ασφάλεια",
+        "city": "πόλη",
         "marketing": "marketing",
     },
 }
@@ -1079,6 +1109,7 @@ UI = {
             "what": "What is EyeNet",
             "why": "Most Valuable Cases",
             "packages": "Commercial Packages",
+            "competition": "Competition by use case",
         },
         "why_children": [
             ("hr-presence", "Know who is present and who is not"),
@@ -1088,6 +1119,19 @@ UI = {
             ("home-care", "Hospital-grade care at home"),
             ("security", "Night shifts that never blink"),
             ("shipping", "Who’s onboard. Who’s on site. Who fell."),
+            ("enterprise-perimeter", "Perimeters that detect, verify, and dispatch"),
+            ("smart-city", "City cameras that decide and act"),
+        ],
+        "competition_children": [
+            ("hr-presence", "HR presence · Verkada"),
+            ("mall", "Mall signage · Quividi"),
+            ("shop-floor", "Shop floor · RetailNext"),
+            ("cottage", "Home / away · Ring"),
+            ("home-care", "Home care · SafelyYou"),
+            ("security", "Night security · LVT"),
+            ("shipping", "Shipping · ShipIn"),
+            ("enterprise-perimeter", "Perimeter · Senstar"),
+            ("smart-city", "Smart city · Genetec"),
         ],
         "pkg_children": [
             ("b2c", "B2C Light"),
@@ -1113,23 +1157,26 @@ UI = {
         "meta": [
             ("Type", "Value Brochure"),
             ("Date", "18 October 2026"),
-            ("Structure", "What · Cases · Who · Commercial Packages · Innovation"),
+            ("Structure", "What · Cases · Who · Packages · Innovation · Competition"),
             ("Deployment", "On-Premises / VPN"),
         ],
         "cards": [
             ("01", "what", "EyeNet understands what it sees and acts on it automatically",
              "Edge intelligence, action automation, and hardware-bound scale."),
             ("02", "why", "Most Valuable Cases",
-             "Featured use cases across HR, signage, shop floor, family protection, home care, security, shipping, and industrial sites."),
+             "Featured use cases across HR, signage, shop floor, family, care, security, shipping, enterprise perimeter, and smart city."),
             ("03", "with-eyenet", "Who uses EyeNet",
-             "Who pays — and what changes: HR, shop, family, care, security, and ops personas."),
+             "Strong outcomes for fleet, industrial sites, care, HR, security, family, signage, shop-floor, CSO, and city ops."),
             ("04", "packages", "Commercial Packages",
              "B2C Light, B2B Starter & Professional, and Enterprise motions."),
             ("05", "innovation", "Simple yet powerful innovation",
              "On-premises vision that decides and acts — plus freedom from the camera wall with targeted alerts."),
+            ("06", "competition", "Competition by use case",
+             "Closest vertical rival per case — story, financials, and feature comparison vs EyeNet."),
         ],
         "page_titles": {
             "innovation": "Simple yet powerful innovation",
+            "competition": "Competition by use case",
             "with-eyenet": "Who uses EyeNet",
             "what": "EyeNet understands what it sees and acts on it automatically",
             "why": "Most Valuable Cases",
@@ -1165,6 +1212,7 @@ UI = {
             "what": "Τι είναι το EyeNet",
             "why": "Ενδεικτικές περιπτώσεις χρήσης",
             "packages": "Εμπορικά πακέτα",
+            "competition": "Ανταγωνισμός ανά περίπτωση χρήσης",
         },
         "why_children": [
             ("hr-presence", "Ξέρετε ποιός είναι παρόν και ποιος όχι"),
@@ -1174,6 +1222,19 @@ UI = {
             ("home-care", "Νοσοκομειακή φροντίδα στο σπίτι"),
             ("security", "Νυχτερινές βάρδιες που επαγρυπνούν"),
             ("shipping", "Ποιος είναι στην θέση του. Ποιος στον χώρο. Ποιος έπεσε."),
+            ("enterprise-perimeter", "Περίμετροι που ανιχνεύουν, επαληθεύουν και αναπτύσσουν"),
+            ("smart-city", "Κάμερες πόλης που αποφασίζουν και δρουν"),
+        ],
+        "competition_children": [
+            ("hr-presence", "Παρουσία HR · Verkada"),
+            ("mall", "Signage · Quividi"),
+            ("shop-floor", "Κατάστημα · RetailNext"),
+            ("cottage", "Σπίτι · Ring"),
+            ("home-care", "Φροντίδα · SafelyYou"),
+            ("security", "Νύχτα · LVT"),
+            ("shipping", "Ναυτιλία · ShipIn"),
+            ("enterprise-perimeter", "Περίμετρος · Senstar"),
+            ("smart-city", "Πόλη · Genetec"),
         ],
         "pkg_children": [
             ("b2c", "B2C Light"),
@@ -1199,23 +1260,26 @@ UI = {
         "meta": [
             ("Τύπος", "Value Brochure"),
             ("Ημερομηνία", "18 Οκτωβρίου 2026"),
-            ("Δομή", "Τι · Περιπτώσεις · Ποιος · Εμπορικά πακέτα · Καινοτομία"),
+            ("Δομή", "Τι · Περιπτώσεις · Ποιος · Πακέτα · Καινοτομία · Ανταγωνισμός"),
             ("Ανάπτυξη", "On-Premises / VPN"),
         ],
         "cards": [
             ("01", "what", "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
              "Edge νοημοσύνη, αυτοματοποίηση δράσης και κλίμακα με βάση το hardware."),
             ("02", "why", "Ενδεικτικές περιπτώσεις χρήσης",
-             "Επιλεγμένες περιπτώσεις χρήσης σε HR, signage, κατάστημα, οικογενειακή προστασία, home care, ασφάλεια, ναυτιλία και βιομηχανία."),
+             "Επιλεγμένες περιπτώσεις σε HR, signage, κατάστημα, οικογένεια, φροντίδα, ασφάλεια, ναυτιλία, enterprise περίμετρο και έξυπνη πόλη."),
             ("03", "with-eyenet", "Ποιος χρησιμοποιεί το EyeNet",
-             "Ποιος πληρώνει — και τι αλλάζει: personas για HR, κατάστημα, οικογένεια, φροντίδα, ασφάλεια και ops."),
+             "Ισχυρά αποτελέσματα για στόλο, βιομηχανία, φροντίδα, HR, ασφάλεια, οικογένεια, signage, shop-floor, CSO και λειτουργίες πόλης."),
             ("04", "packages", "Εμπορικά πακέτα",
              "B2C Light, B2B Starter & Professional και Enterprise."),
             ("05", "innovation", "Απλή κι όμως ισχυρή καινοτομία",
              "On-premises όραση που αποφασίζει και ενεργεί — και ελευθερία από το camera wall με στοχευμένα alerts."),
+            ("06", "competition", "Ανταγωνισμός ανά περίπτωση χρήσης",
+             "Πλησιέστερος κάθετος αντίπαλος ανά περίπτωση — ιστορία, οικονομικά και σύγκριση vs EyeNet."),
         ],
         "page_titles": {
             "innovation": "Απλή κι όμως ισχυρή καινοτομία",
+            "competition": "Ανταγωνισμός ανά περίπτωση χρήσης",
             "with-eyenet": "Ποιος χρησιμοποιεί το EyeNet",
             "what": "Το EyeNet κατανοεί ό,τι βλέπει και ενεργεί αυτόματα",
             "why": "Ενδεικτικές περιπτώσεις χρήσης",
@@ -1284,6 +1348,7 @@ def sidebar_html(lang: str, current: str) -> str:
         f'<a href="{p}/with-eyenet/" data-title="{sections["with-eyenet"]}"{cur("with-eyenet")}>{sections["with-eyenet"]}</a>',
         group("packages", ui["pkg_children"], sections["packages"]),
         f'<a href="{p}/innovation/" data-title="{sections["innovation"]}"{cur("innovation")}>{sections["innovation"]}</a>',
+        group("competition", ui["competition_children"], sections["competition"]),
     ]
     return "\n".join(links)
 
@@ -1296,6 +1361,7 @@ def header_nav(lang: str, section: str) -> str:
         ("why", ui["sections"]["why"], f"{p}/why/"),
         ("packages", ui["sections"]["packages"], f"{p}/packages/"),
         ("innovation", ui["sections"]["innovation"], f"{p}/innovation/"),
+        ("competition", ui["sections"]["competition"], f"{p}/competition/"),
     ]
     out = []
     for slug, label, url in items:
@@ -1321,6 +1387,11 @@ def page_label(lang: str, path: str) -> str:
     if path.startswith("packages/"):
         child = path.split("/", 1)[1]
         for slug, label in ui["pkg_children"]:
+            if slug == child:
+                return label
+    if path.startswith("competition/"):
+        child = path.split("/", 1)[1]
+        for slug, label in ui["competition_children"]:
             if slug == child:
                 return label
     return path
@@ -1500,7 +1571,7 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
         }
     )
 
-    # Merged innovation page (brochure §01 + §02) — last in reading order
+    # Merged innovation page (brochure §01 + §02)
     innov_title = ui["page_titles"]["innovation"]
     innov_body = (
         page_shell_title(lang, "05", innov_title)
@@ -1530,6 +1601,66 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
             "text": re.sub(r"<[^>]+>", " ", innov_body),
         }
     )
+
+    # Competition by use case (§06) — content overrides
+    comp_title = ui["page_titles"]["competition"]
+    comp_index_path = CONTENT_DIR / f"competition-index-{lang}.html"
+    if not comp_index_path.exists():
+        raise SystemExit(f"Missing {comp_index_path.name}")
+    comp_index_body = page_shell_title(lang, "06", comp_title) + fix_asset_paths(
+        comp_index_path.read_text(encoding="utf-8")
+    )
+    write(
+        base / "competition" / "index.html",
+        render_page(
+            lang=lang,
+            path="competition",
+            title=comp_title,
+            body=comp_index_body,
+            audience="competition",
+            section="competition",
+            wide=True,
+        ),
+    )
+    search_entries.append(
+        {
+            "lang": lang,
+            "url": f"{pfx}/competition/",
+            "title": comp_title,
+            "section": ui["sections"]["competition"],
+            "sectionSlug": "competition",
+            "text": re.sub(r"<[^>]+>", " ", comp_index_body),
+        }
+    )
+    for child, label in ui["competition_children"]:
+        child_path = CONTENT_DIR / f"competition-{child}-{lang}.html"
+        if not child_path.exists():
+            raise SystemExit(f"Missing {child_path.name}")
+        child_body = page_shell_title(lang, "06", label) + fix_asset_paths(
+            child_path.read_text(encoding="utf-8")
+        )
+        write(
+            base / "competition" / child / "index.html",
+            render_page(
+                lang=lang,
+                path=f"competition/{child}",
+                title=label,
+                body=child_body,
+                audience=f"competition/{child}",
+                section="competition",
+                wide=True,
+            ),
+        )
+        search_entries.append(
+            {
+                "lang": lang,
+                "url": f"{pfx}/competition/{child}/",
+                "title": label,
+                "section": ui["sections"]["competition"],
+                "sectionSlug": "competition",
+                "text": re.sub(r"<[^>]+>", " ", child_body),
+            }
+        )
 
     # Remaining single pages: (brochure section key, slug, display num, wide)
     mapping = [
@@ -1629,22 +1760,24 @@ def build_lang(lang: str, sections: dict[str, str], search_entries: list[dict]) 
     )
 
     for i, (child, label) in enumerate(ui["why_children"]):
-        persona_html = personas[WHY_PERSONA_INDEX[child]]
-        override_name = f"why-{child}-{lang}.html"
-        if override_name:
-            override = CONTENT_DIR / override_name
-            if override.exists():
-                persona_html = override.read_text(encoding="utf-8")
-            elif child == "cottage":
+        override = CONTENT_DIR / f"why-{child}-{lang}.html"
+        if override.exists():
+            persona_html = override.read_text(encoding="utf-8")
+        elif child in WHY_PERSONA_INDEX:
+            persona_html = personas[WHY_PERSONA_INDEX[child]]
+            if child == "cottage":
                 persona_html = apply_family_protection_copy(persona_html, lang)
+            else:
+                persona_html = apply_case_label_copy(persona_html, lang)
+                persona_html = re.sub(
+                    r'(<h4><span class="n">)\d+(</span>)',
+                    rf"\g<1>{i + 1}\2",
+                    persona_html,
+                    count=1,
+                )
         else:
-            persona_html = apply_case_label_copy(persona_html, lang)
-            # Keep display numbers aligned with reading order.
-            persona_html = re.sub(
-                r'(<h4><span class="n">)\d+(</span>)',
-                rf"\g<1>{i + 1}\2",
-                persona_html,
-                count=1,
+            raise SystemExit(
+                f"No brochure persona or content override for why/{child} ({lang})"
             )
         persona_html = ensure_persona_category_chips(persona_html, child, lang)
         body = (
@@ -1812,14 +1945,14 @@ def main() -> None:
 
 
 def write_legacy_redirects() -> None:
-    """Point old Competition breaker / Freedom URLs at the merged innovation page."""
+    """Point legacy URLs at current sections (competition-breaker → competition)."""
     targets = [
-        (ROOT / "competition-breaker" / "index.html", "/innovation/"),
-        (ROOT / "freedom" / "index.html", "/innovation/"),
-        (ROOT / "el" / "competition-breaker" / "index.html", "/el/innovation/"),
-        (ROOT / "el" / "freedom" / "index.html", "/el/innovation/"),
+        (ROOT / "competition-breaker" / "index.html", "/competition/", "Competition by use case"),
+        (ROOT / "freedom" / "index.html", "/innovation/", "Simple yet powerful innovation"),
+        (ROOT / "el" / "competition-breaker" / "index.html", "/el/competition/", "Ανταγωνισμός ανά περίπτωση χρήσης"),
+        (ROOT / "el" / "freedom" / "index.html", "/el/innovation/", "Απλή κι όμως ισχυρή καινοτομία"),
     ]
-    for path, dest in targets:
+    for path, dest, label in targets:
         path.parent.mkdir(parents=True, exist_ok=True)
         write(
             path,
@@ -1828,7 +1961,7 @@ def write_legacy_redirects() -> None:
                 f'<meta charset="utf-8"><meta http-equiv="refresh" content="0;url={dest}">'
                 f'<link rel="canonical" href="{dest}">'
                 f"<title>Redirect</title></head><body>"
-                f'<p><a href="{dest}">Continue to Simple yet powerful innovation</a></p>'
+                f'<p><a href="{dest}">Continue to {label}</a></p>'
                 "</body></html>\n"
             ),
         )
@@ -2207,9 +2340,10 @@ def sync_print_pages() -> None:
         if n_innov2 < 1:
             raise SystemExit(f"Could not merge Freedom headings into innovation in print ({lang})")
 
-        # Reading order: What · Cases · Who · Packages · Innovation
+        # Reading order: What · Cases · Who · Packages · Innovation · Competition
         html = reorder_print_sections(html, lang)
         html = fix_innovation_print_breaks(html)
+        html = append_print_competition(html, lang)
         html = apply_case_label_copy(apply_family_protection_copy(html, lang), lang)
         html = inject_print_case_overrides(html, lang)
         html = normalize_package_addressable_pockets(html, lang)
@@ -2485,6 +2619,40 @@ def fix_innovation_print_breaks(html: str) -> str:
         if n != 1:
             raise SystemExit(f"Could not clear innovation page-break on {sid}")
     return html
+
+
+def append_print_competition(html: str, lang: str) -> str:
+    """Append §06 Competition by use case after innovation in the print brochure."""
+    ui = UI[lang]
+    title = COMPETITION_HEADING[lang]
+    index_path = CONTENT_DIR / f"competition-index-{lang}.html"
+    if not index_path.exists():
+        raise SystemExit(f"Missing print competition index ({lang})")
+    parts = [index_path.read_text(encoding="utf-8").rstrip()]
+    for child, label in ui["competition_children"]:
+        path = CONTENT_DIR / f"competition-{child}-{lang}.html"
+        if not path.exists():
+            raise SystemExit(f"Missing print competition page {path.name}")
+        body = path.read_text(encoding="utf-8").rstrip()
+        # Print-friendly: drop wiki deep-links to keep PDF self-contained where useful
+        body = re.sub(r' href="/(?:el/)?why/[^"]*"', "", body)
+        body = re.sub(r' href="/(?:el/)?competition/[^"]*"', "", body)
+        parts.append(f'<h3 class="sub">{label}</h3>\n{body}')
+    inner = "\n".join(parts)
+    section = (
+        f'\n<section class="section flow page-start" id="page-competition" '
+        f'data-nav-label="06 · {title}">\n'
+        f'  <div class="section-head"><span class="section-num">06</span>'
+        f"<h2>{title}</h2></div>\n{inner}\n</section>\n"
+    )
+    # Insert before closing </div> of .sheet if present, else append before </body>
+    m = re.search(r"(</div>\s*<nav class=\"doc-nav)", html)
+    if m:
+        return html[: m.start()] + section + html[m.start() :]
+    m2 = re.search(r"</body>", html, flags=re.I)
+    if not m2:
+        raise SystemExit(f"Could not append competition print section ({lang})")
+    return html[: m2.start()] + section + html[m2.start() :]
 
 
 def reorder_print_sections(html: str, lang: str) -> str:
